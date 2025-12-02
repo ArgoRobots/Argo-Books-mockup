@@ -6,6 +6,138 @@
   <title>Reports - Argo Books</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .report-card-body {
+      padding: 12px;
+    }
+    .chart-list {
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 8px;
+    }
+    .chart-item {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chart-item:hover {
+      background: var(--gray-100);
+    }
+    .chart-item input {
+      margin-right: 10px;
+    }
+    .chart-item-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      margin-right: 10px;
+      font-size: 12px;
+    }
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+    .template-item {
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .template-item:hover {
+      border-color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .template-item.selected {
+      border-color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .template-item i {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+    .template-item .name {
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .template-item .desc {
+      font-size: 10px;
+      color: var(--gray-500);
+    }
+    .date-option {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .date-option:hover {
+      border-color: var(--primary-color);
+    }
+    .date-option.selected {
+      border-color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .date-option input[type="radio"] {
+      margin-right: 10px;
+    }
+    .date-option-label {
+      flex: 1;
+    }
+    .custom-date-pickers {
+      display: none;
+      padding: 12px;
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      margin-top: 8px;
+    }
+    .custom-date-pickers.visible {
+      display: block;
+    }
+    .card-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 12px;
+    }
+    .card-tab {
+      padding: 10px 16px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: all 0.2s;
+    }
+    .card-tab:hover {
+      color: var(--primary-color);
+    }
+    .card-tab.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+    }
+    .card-tab-content {
+      display: none;
+    }
+    .card-tab-content.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div class="app-container">
@@ -18,54 +150,18 @@
 
 
       <div class="page-content">
-        <!-- Tabs -->
-        <div class="tabs">
-          <div class="tab active" data-tab="create-report">Create Report</div>
-          <div class="tab" data-tab="saved-reports">Saved Reports</div>
-          <div class="tab" data-tab="templates">Templates</div>
-        </div>
-
-        <!-- Create Report Tab -->
-        <div class="tab-content" id="create-report">
-          <!-- Wizard Steps -->
-          <div class="card mb-3">
-            <div class="card-body">
-              <div class="d-flex justify-between align-center">
-                <div class="text-center" style="flex: 1;">
-                  <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-weight: 600;">1</div>
-                  <span class="fw-600">Select Data</span>
-                </div>
-                <div style="flex: 2; height: 2px; background: var(--gray-300);"></div>
-                <div class="text-center" style="flex: 1;">
-                  <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gray-300); color: var(--gray-600); display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-weight: 600;">2</div>
-                  <span class="text-muted">Design Layout</span>
-                </div>
-                <div style="flex: 2; height: 2px; background: var(--gray-300);"></div>
-                <div class="text-center" style="flex: 1;">
-                  <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gray-300); color: var(--gray-600); display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-weight: 600;">3</div>
-                  <span class="text-muted">Preview & Export</span>
-                </div>
-              </div>
+        <div class="grid grid-2">
+          <!-- Left Card: Charts & Templates -->
+          <div class="card">
+            <div class="card-tabs">
+              <div class="card-tab active" data-card-tab="custom-charts">Custom</div>
+              <div class="card-tab" data-card-tab="templates">Templates</div>
             </div>
-          </div>
-
-          <!-- Step 1: Data Selection -->
-          <div class="grid grid-2">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Select Charts</h3>
-              </div>
-              <div class="card-body">
-                <div class="form-group">
-                  <label class="form-label">Date Range</label>
-                  <div class="d-flex gap-2">
-                    <input type="date" class="form-control">
-                    <span class="d-flex align-center">to</span>
-                    <input type="date" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Chart Type Filter</label>
+            <div class="report-card-body">
+              <!-- Custom Charts Tab -->
+              <div class="card-tab-content active" id="custom-charts">
+                <div class="form-group mb-2">
+                  <label class="form-label fs-sm">Chart Type Filter</label>
                   <select class="form-control form-select">
                     <option>All Charts</option>
                     <option>Revenue Charts</option>
@@ -73,198 +169,203 @@
                     <option>Rental Charts</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Available Charts</label>
-                  <div style="max-height: 200px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: var(--radius); padding: 10px;">
-                    <div class="form-check mb-2">
-                      <input type="checkbox" class="form-check-input" checked>
-                      <label>Revenue vs Expenses (Line)</label>
+                <label class="form-label fs-sm">Available Charts</label>
+                <div class="chart-list">
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input" checked>
+                    <div class="chart-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                      <i class="fas fa-chart-line"></i>
                     </div>
-                    <div class="form-check mb-2">
-                      <input type="checkbox" class="form-check-input" checked>
-                      <label>Expense Breakdown (Pie)</label>
+                    <div>
+                      <div class="fw-600 fs-sm">Revenue vs Expenses</div>
+                      <div class="text-muted" style="font-size: 11px;">Line Chart</div>
                     </div>
-                    <div class="form-check mb-2">
-                      <input type="checkbox" class="form-check-input">
-                      <label>Revenue by Category (Bar)</label>
+                  </label>
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input" checked>
+                    <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                      <i class="fas fa-chart-pie"></i>
                     </div>
-                    <div class="form-check mb-2">
-                      <input type="checkbox" class="form-check-input">
-                      <label>Sales by Region (Geo)</label>
+                    <div>
+                      <div class="fw-600 fs-sm">Expense Breakdown</div>
+                      <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
                     </div>
-                    <div class="form-check mb-2">
-                      <input type="checkbox" class="form-check-input" checked>
-                      <label>Monthly Trends (Line)</label>
+                  </label>
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input">
+                    <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
+                      <i class="fas fa-chart-bar"></i>
                     </div>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input">
-                      <label>Rental Performance (Bar)</label>
+                    <div>
+                      <div class="fw-600 fs-sm">Revenue by Category</div>
+                      <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
                     </div>
-                  </div>
+                  </label>
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input">
+                    <div class="chart-item-icon" style="background: #fff8e6; color: #e6a700;">
+                      <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600 fs-sm">Sales by Region</div>
+                      <div class="text-muted" style="font-size: 11px;">Geo Chart</div>
+                    </div>
+                  </label>
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input" checked>
+                    <div class="chart-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
+                      <i class="fas fa-chart-area"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600 fs-sm">Monthly Trends</div>
+                      <div class="text-muted" style="font-size: 11px;">Area Chart</div>
+                    </div>
+                  </label>
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input">
+                    <div class="chart-item-icon" style="background: #e6f0ff; color: var(--info-color);">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600 fs-sm">Rental Performance</div>
+                      <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
+                    </div>
+                  </label>
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input">
+                    <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
+                      <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600 fs-sm">Profit Margins</div>
+                      <div class="text-muted" style="font-size: 11px;">Line Chart</div>
+                    </div>
+                  </label>
+                  <label class="chart-item">
+                    <input type="checkbox" class="form-check-input">
+                    <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600 fs-sm">Top Suppliers</div>
+                      <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
+                    </div>
+                  </label>
                 </div>
               </div>
-            </div>
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Report Template</h3>
-              </div>
-              <div class="card-body">
-                <div class="grid grid-2">
-                  <div class="p-3 text-center" style="border: 2px solid var(--primary-color); border-radius: var(--radius); cursor: pointer; background: var(--primary-light);">
-                    <i class="fas fa-file-alt" style="font-size: 32px; color: var(--primary-color); margin-bottom: 8px;"></i>
-                    <div class="fw-600">Monthly Summary</div>
-                    <div class="text-muted fs-sm">Default template</div>
+              <!-- Templates Tab -->
+              <div class="card-tab-content" id="templates">
+                <div class="template-grid">
+                  <div class="template-item selected">
+                    <i class="fas fa-file-invoice-dollar" style="color: var(--primary-color);"></i>
+                    <div class="name">Monthly Summary</div>
+                    <div class="desc">Revenue & expenses overview</div>
                   </div>
-                  <div class="p-3 text-center" style="border: 2px solid var(--border-color); border-radius: var(--radius); cursor: pointer;">
-                    <i class="fas fa-chart-bar" style="font-size: 32px; color: var(--gray-400); margin-bottom: 8px;"></i>
-                    <div class="fw-600">Financial Report</div>
-                    <div class="text-muted fs-sm">Detailed financials</div>
+                  <div class="template-item">
+                    <i class="fas fa-chart-pie" style="color: var(--success-color);"></i>
+                    <div class="name">Financial Report</div>
+                    <div class="desc">Detailed financials</div>
                   </div>
-                  <div class="p-3 text-center" style="border: 2px solid var(--border-color); border-radius: var(--radius); cursor: pointer;">
-                    <i class="fas fa-users" style="font-size: 32px; color: var(--gray-400); margin-bottom: 8px;"></i>
-                    <div class="fw-600">Customer Report</div>
-                    <div class="text-muted fs-sm">Customer metrics</div>
+                  <div class="template-item">
+                    <i class="fas fa-users" style="color: var(--secondary-color);"></i>
+                    <div class="name">Customer Report</div>
+                    <div class="desc">Customer metrics</div>
                   </div>
-                  <div class="p-3 text-center" style="border: 2px solid var(--border-color); border-radius: var(--radius); cursor: pointer;">
-                    <i class="fas fa-plus" style="font-size: 32px; color: var(--gray-400); margin-bottom: 8px;"></i>
-                    <div class="fw-600">Blank Template</div>
-                    <div class="text-muted fs-sm">Start from scratch</div>
+                  <div class="template-item">
+                    <i class="fas fa-box" style="color: var(--warning-color);"></i>
+                    <div class="name">Rental Performance</div>
+                    <div class="desc">Rental analytics</div>
                   </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <div class="d-flex justify-between">
-                  <button class="btn btn-secondary" disabled>
-                    <i class="fas fa-arrow-left"></i>
-                    Previous
-                  </button>
-                  <button class="btn btn-primary">
-                    Next Step
-                    <i class="fas fa-arrow-right"></i>
-                  </button>
+                  <div class="template-item">
+                    <i class="fas fa-user-tie" style="color: var(--info-color);"></i>
+                    <div class="name">Employee Report</div>
+                    <div class="desc">Payroll summary</div>
+                  </div>
+                  <div class="template-item">
+                    <i class="fas fa-plus" style="color: var(--gray-400);"></i>
+                    <div class="name">Blank Template</div>
+                    <div class="desc">Start from scratch</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Saved Reports Tab -->
-        <div class="tab-content" id="saved-reports" style="display: none;">
+          <!-- Right Card: Report Settings -->
           <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Saved Reports</h3>
+            <div class="card-header" style="padding: 12px 16px;">
+              <h3 class="card-title" style="font-size: 14px;">Report Settings</h3>
             </div>
-            <div class="card-body p-0">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Report Name</th>
-                    <th>Type</th>
-                    <th>Date Range</th>
-                    <th>Created</th>
-                    <th>Created By</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><i class="fas fa-file-pdf text-danger"></i> November Financial Summary</td>
-                    <td>Financial Report</td>
-                    <td>Nov 1 - Nov 30, 2024</td>
-                    <td>Dec 1, 2024</td>
-                    <td>John Doe</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-download"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><i class="fas fa-file-pdf text-danger"></i> Q3 Revenue Analysis</td>
-                    <td>Revenue Report</td>
-                    <td>Jul 1 - Sep 30, 2024</td>
-                    <td>Oct 2, 2024</td>
-                    <td>Jane Smith</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-download"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><i class="fas fa-file-pdf text-danger"></i> Annual Expense Report 2024</td>
-                    <td>Expense Report</td>
-                    <td>Jan 1 - Dec 31, 2024</td>
-                    <td>Nov 28, 2024</td>
-                    <td>John Doe</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-download"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+            <div class="report-card-body">
+              <div class="form-group mb-3">
+                <label class="form-label fs-sm">Report Name</label>
+                <input type="text" class="form-control" placeholder="Enter report name...">
+              </div>
 
-        <!-- Templates Tab -->
-        <div class="tab-content" id="templates" style="display: none;">
-          <div class="grid grid-3">
-            <div class="card">
-              <div class="card-body text-center p-4">
-                <i class="fas fa-file-invoice-dollar" style="font-size: 48px; color: var(--primary-color); margin-bottom: 16px;"></i>
-                <h4 class="fw-600 mb-1">Monthly Summary</h4>
-                <p class="text-muted fs-sm mb-3">Overview of monthly revenue, expenses, and profit margins</p>
-                <button class="btn btn-outline btn-sm">Use Template</button>
+              <label class="form-label fs-sm">Date Range</label>
+              <div id="dateRangeOptions">
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="today">
+                  <span class="date-option-label">Today</span>
+                </label>
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="yesterday">
+                  <span class="date-option-label">Yesterday</span>
+                </label>
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="this-week">
+                  <span class="date-option-label">This Week</span>
+                </label>
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="last-week">
+                  <span class="date-option-label">Last Week</span>
+                </label>
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="this-month">
+                  <span class="date-option-label">This Month</span>
+                </label>
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="last-month">
+                  <span class="date-option-label">Last Month</span>
+                </label>
+                <label class="date-option selected">
+                  <input type="radio" name="dateRange" value="this-quarter" checked>
+                  <span class="date-option-label">This Quarter</span>
+                </label>
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="this-year">
+                  <span class="date-option-label">This Year</span>
+                </label>
+                <label class="date-option" id="customDateOption">
+                  <input type="radio" name="dateRange" value="custom">
+                  <span class="date-option-label">Custom Range</span>
+                </label>
+              </div>
+
+              <div class="custom-date-pickers" id="customDatePickers">
+                <div class="form-row">
+                  <div class="form-group mb-0">
+                    <label class="form-label fs-sm">Start Date</label>
+                    <input type="date" class="form-control">
+                  </div>
+                  <div class="form-group mb-0">
+                    <label class="form-label fs-sm">End Date</label>
+                    <input type="date" class="form-control">
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-body text-center p-4">
-                <i class="fas fa-chart-pie" style="font-size: 48px; color: var(--success-color); margin-bottom: 16px;"></i>
-                <h4 class="fw-600 mb-1">Financial Report</h4>
-                <p class="text-muted fs-sm mb-3">Comprehensive financial analysis with detailed breakdowns</p>
-                <button class="btn btn-outline btn-sm">Use Template</button>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body text-center p-4">
-                <i class="fas fa-users" style="font-size: 48px; color: var(--secondary-color); margin-bottom: 16px;"></i>
-                <h4 class="fw-600 mb-1">Customer Report</h4>
-                <p class="text-muted fs-sm mb-3">Customer metrics, retention, and revenue per customer</p>
-                <button class="btn btn-outline btn-sm">Use Template</button>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body text-center p-4">
-                <i class="fas fa-box" style="font-size: 48px; color: var(--warning-color); margin-bottom: 16px;"></i>
-                <h4 class="fw-600 mb-1">Rental Performance</h4>
-                <p class="text-muted fs-sm mb-3">Rental inventory utilization and revenue analysis</p>
-                <button class="btn btn-outline btn-sm">Use Template</button>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body text-center p-4">
-                <i class="fas fa-user-tie" style="font-size: 48px; color: var(--info-color); margin-bottom: 16px;"></i>
-                <h4 class="fw-600 mb-1">Employee Report</h4>
-                <p class="text-muted fs-sm mb-3">Payroll summary and employee performance metrics</p>
-                <button class="btn btn-outline btn-sm">Use Template</button>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body text-center p-4">
-                <i class="fas fa-plus-circle" style="font-size: 48px; color: var(--gray-400); margin-bottom: 16px;"></i>
-                <h4 class="fw-600 mb-1">Create Custom</h4>
-                <p class="text-muted fs-sm mb-3">Build your own report template from scratch</p>
-                <button class="btn btn-primary btn-sm">Create New</button>
+            <div class="card-footer" style="padding: 12px 16px;">
+              <div class="d-flex gap-2 justify-end">
+                <button class="btn btn-secondary">
+                  <i class="fas fa-eye"></i>
+                  Preview
+                </button>
+                <button class="btn btn-primary">
+                  <i class="fas fa-file-export"></i>
+                  Generate Report
+                </button>
               </div>
             </div>
           </div>
@@ -281,5 +382,48 @@
   <script src="../js/components/user-panel.js"></script>
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/navigation.js"></script>
+  <script>
+    // Card tabs functionality
+    document.querySelectorAll('.card-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-card-tab');
+
+        // Update tab active states
+        this.closest('.card-tabs').querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Update content visibility
+        this.closest('.card').querySelectorAll('.card-tab-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Date range radio buttons
+    document.querySelectorAll('input[name="dateRange"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        // Update selected styling
+        document.querySelectorAll('.date-option').forEach(opt => opt.classList.remove('selected'));
+        this.closest('.date-option').classList.add('selected');
+
+        // Show/hide custom date pickers
+        const customPickers = document.getElementById('customDatePickers');
+        if (this.value === 'custom') {
+          customPickers.classList.add('visible');
+        } else {
+          customPickers.classList.remove('visible');
+        }
+      });
+    });
+
+    // Template selection
+    document.querySelectorAll('.template-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.template-item').forEach(t => t.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+  </script>
 </body>
 </html>
