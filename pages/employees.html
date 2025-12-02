@@ -372,6 +372,7 @@
               <option>Sales</option>
               <option>IT</option>
               <option>HR</option>
+              <option>Customer Support</option>
             </select>
           </div>
         </div>
@@ -385,10 +386,34 @@
             <input type="date" class="form-control">
           </div>
         </div>
+        <div class="form-group">
+          <label class="form-label">Compensation Type</label>
+          <div class="d-flex gap-3" style="margin-top: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="compensationType" value="annual" checked onchange="toggleCompensationType(this)">
+              <span>Annual Salary</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="compensationType" value="hourly" onchange="toggleCompensationType(this)">
+              <span>Hourly Rate</span>
+            </label>
+          </div>
+        </div>
         <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Salary</label>
-            <input type="number" class="form-control" placeholder="Annual salary">
+          <div class="form-group" id="annualSalaryGroup">
+            <label class="form-label">Annual Salary</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+            </div>
+          </div>
+          <div class="form-group" id="hourlyRateGroup" style="display: none;">
+            <label class="form-label">Hourly Rate</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Pay Frequency</label>
@@ -574,5 +599,20 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script>
+    // Toggle compensation type in Add Employee modal
+    function toggleCompensationType(radio) {
+      const annualGroup = document.getElementById('annualSalaryGroup');
+      const hourlyGroup = document.getElementById('hourlyRateGroup');
+
+      if (radio.value === 'annual') {
+        annualGroup.style.display = 'block';
+        hourlyGroup.style.display = 'none';
+      } else {
+        annualGroup.style.display = 'none';
+        hourlyGroup.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>

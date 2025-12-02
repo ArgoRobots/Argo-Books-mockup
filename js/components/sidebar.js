@@ -92,6 +92,10 @@
             <i class="fas fa-user-tie"></i>
             <span>Employees</span>
           </a>
+          <a class="nav-item" data-page="${pathPrefix}departments.html">
+            <i class="fas fa-building"></i>
+            <span>Departments</span>
+          </a>
           <a class="nav-item" data-page="${pathPrefix}accountants.html">
             <i class="fas fa-calculator"></i>
             <span>Accountants</span>
