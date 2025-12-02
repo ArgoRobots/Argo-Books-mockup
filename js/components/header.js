@@ -22,6 +22,11 @@
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search...">
           </div>
+          <button class="header-icon" id="upgrade-icon" title="Upgrades">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+          </button>
           <button class="header-icon" id="notification-icon">
             <i class="fas fa-bell"></i>
             <span class="badge"></span>
