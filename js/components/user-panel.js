@@ -57,10 +57,6 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Display Name</label>
-          <input type="text" class="form-control" value="John Doe">
-        </div>
-        <div class="form-group">
           <label class="form-label">Email</label>
           <input type="email" class="form-control" value="john.doe@company.com" disabled>
         </div>
