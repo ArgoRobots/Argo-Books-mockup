@@ -46,6 +46,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Company modal handling
+  const sidebarHeader = document.querySelector('.sidebar-header.clickable');
+  const companyModal = document.getElementById('company-modal');
+
+  if (sidebarHeader && companyModal) {
+    sidebarHeader.addEventListener('click', function() {
+      companyModal.classList.add('active');
+    });
+  }
+
+  // Company item selection
+  const companyItems = document.querySelectorAll('.company-item');
+  companyItems.forEach(item => {
+    item.addEventListener('click', function() {
+      companyItems.forEach(ci => ci.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Analytics tab switching
+  const analyticsTabs = document.querySelectorAll('.analytics-tab');
+  const analyticsContents = document.querySelectorAll('.analytics-content');
+
+  analyticsTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetContent = this.getAttribute('data-analytics-tab');
+
+      // Remove active from all tabs
+      analyticsTabs.forEach(t => t.classList.remove('active'));
+      // Add active to clicked tab
+      this.classList.add('active');
+
+      // Hide all analytics contents
+      analyticsContents.forEach(content => {
+        content.style.display = 'none';
+      });
+
+      // Show target analytics content
+      const targetElement = document.getElementById(targetContent);
+      if (targetElement) {
+        targetElement.style.display = 'block';
+      }
+    });
+  });
+
   // Tab switching
   const tabs = document.querySelectorAll('.tab[data-tab]');
   const tabContents = document.querySelectorAll('.tab-content');
