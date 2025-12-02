@@ -475,6 +475,19 @@
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
+        <!-- Profile Picture Section -->
+        <div class="form-group" style="text-align: center; margin-bottom: 20px;">
+          <label class="form-label">Profile Picture</label>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+            <div class="avatar" style="width: 64px; height: 64px; font-size: 24px; background: var(--primary-light); color: var(--primary-color);">JD</div>
+            <div style="text-align: left;">
+              <button type="button" class="btn btn-outline btn-sm" style="margin-bottom: 4px;">
+                <i class="fas fa-upload"></i> Upload Photo
+              </button>
+              <p style="margin: 0; font-size: 11px; color: var(--gray-400);">JPG, PNG up to 5MB</p>
+            </div>
+          </div>
+        </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First Name</label>
@@ -495,6 +508,12 @@
             <input type="tel" class="form-control" value="(555) 123-4567">
           </div>
           <div class="form-group">
+            <label class="form-label">Emergency Contact</label>
+            <input type="tel" class="form-control" value="(555) 987-6543" placeholder="Emergency contact number">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
             <label class="form-label">Department</label>
             <select class="form-control form-select">
               <option>Select department</option>
@@ -505,15 +524,23 @@
               <option>HR</option>
             </select>
           </div>
-        </div>
-        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Position</label>
             <input type="text" class="form-control" value="CFO">
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Hire Date</label>
             <input type="date" class="form-control" value="2020-01-15">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-control form-select">
+              <option selected>Active</option>
+              <option>On Leave</option>
+              <option>Terminated</option>
+            </select>
           </div>
         </div>
         <div class="form-row">
@@ -529,14 +556,6 @@
               <option>Monthly</option>
             </select>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Status</label>
-          <select class="form-control form-select">
-            <option selected>Active</option>
-            <option>On Leave</option>
-            <option>Terminated</option>
-          </select>
         </div>
       </div>
       <div class="modal-footer">
