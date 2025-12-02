@@ -259,6 +259,60 @@
     </div>
   </div>
 
+  <!-- Edit Supplier Modal -->
+  <div class="modal-overlay" id="editSupplierModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Supplier</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Supplier Name</label>
+          <input type="text" class="form-control" value="Staples Inc.">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact Email</label>
+          <input type="email" class="form-control" value="contact@staples.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" value="(800) 555-1234">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <select class="form-control form-select">
+            <option>Select country</option>
+            <option selected>USA</option>
+            <option>China</option>
+            <option>Germany</option>
+            <option>Japan</option>
+            <option>Netherlands</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <input type="text" class="form-control" value="Office supplies">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control form-select">
+            <option selected>Active</option>
+            <option>Inactive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes (optional)">Primary supplier for office materials</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
   <script src="../js/components/company-modal.js"></script>

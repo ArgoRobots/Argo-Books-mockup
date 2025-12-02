@@ -325,6 +325,95 @@
     </div>
   </div>
 
+  <!-- Edit Revenue Modal -->
+  <div class="modal-overlay" id="editRevenueModal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Sale Transaction</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Accountant</label>
+            <select class="form-control form-select">
+              <option>Select accountant</option>
+              <option selected>John Doe</option>
+              <option>Jane Smith</option>
+              <option>Mike Brown</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" value="2024-12-01">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Customer</label>
+          <select class="form-control form-select">
+            <option>Select customer</option>
+            <option selected>Acme Corp</option>
+            <option>TechStart Inc</option>
+            <option>Global Trade</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product</label>
+            <select class="form-control form-select">
+              <option>Select product</option>
+              <option selected>Premium Widget</option>
+              <option>Consulting Service</option>
+              <option>Software License</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination Country</label>
+            <select class="form-control form-select">
+              <option>Select country</option>
+              <option selected>USA</option>
+              <option>Canada</option>
+              <option>UK</option>
+              <option>Germany</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" value="10">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Price Per Unit</label>
+            <input type="number" class="form-control" value="245.00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Shipping</label>
+            <input type="number" class="form-control" value="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tax</label>
+            <input type="number" class="form-control" value="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Discount</label>
+            <input type="number" class="form-control" value="0.00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes (optional)">Quarterly widget order for Acme Corp</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
   <script src="../js/components/company-modal.js"></script>
