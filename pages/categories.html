@@ -29,305 +29,342 @@
 
         <!-- Expense Categories Tab -->
         <div class="tab-content" id="expense-categories">
-          <div class="toolbar">
-            <div class="toolbar-left">
-              <span class="text-muted">8 categories found</span>
-            </div>
-            <div class="toolbar-right">
-              <button class="btn btn-primary" data-modal="addCategoryModal">
-                <i class="fas fa-plus"></i>
-                Add Category
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon blue" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-pencil-alt"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Office Supplies</h4>
-                <p class="text-muted fs-sm mb-2">Pens, paper, stationery, etc.</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">24 products</span>
-                </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Expense Categories</h3>
+              <div class="d-flex gap-2">
+                <span class="text-muted" style="display: flex; align-items: center;">8 categories found</span>
+                <button class="btn btn-primary" data-modal="addCategoryModal">
+                  <i class="fas fa-plus"></i>
+                  Add Category
+                </button>
               </div>
             </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon green" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-laptop"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Electronics</h4>
-                <p class="text-muted fs-sm mb-2">Computers, peripherals, devices</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">18 products</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon yellow" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-broom"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Maintenance</h4>
-                <p class="text-muted fs-sm mb-2">Cleaning, repairs, upkeep</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">12 products</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon red" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-industry"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Raw Materials</h4>
-                <p class="text-muted fs-sm mb-2">Steel, wood, plastics</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">31 products</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon purple" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-server"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">IT Services</h4>
-                <p class="text-muted fs-sm mb-2">Software, hosting, support</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">15 products</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon blue" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-truck"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Logistics</h4>
-                <p class="text-muted fs-sm mb-2">Shipping, transport, delivery</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">8 products</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon green" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-building"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Utilities</h4>
-                <p class="text-muted fs-sm mb-2">Electric, water, gas, internet</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">6 products</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon yellow" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-bullhorn"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Marketing</h4>
-                <p class="text-muted fs-sm mb-2">Advertising, promotions</p>
-                <div class="d-flex justify-between align-center">
-                  <span class="badge badge-info">9 products</span>
-                </div>
-              </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Products</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon blue" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <div class="fw-600">Office Supplies</div>
+                      </div>
+                    </td>
+                    <td>Pens, paper, stationery, etc.</td>
+                    <td><span class="badge badge-info">24 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon green" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="fw-600">Electronics</div>
+                      </div>
+                    </td>
+                    <td>Computers, peripherals, devices</td>
+                    <td><span class="badge badge-info">18 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon yellow" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-broom"></i>
+                        </div>
+                        <div class="fw-600">Maintenance</div>
+                      </div>
+                    </td>
+                    <td>Cleaning, repairs, upkeep</td>
+                    <td><span class="badge badge-info">12 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon red" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-industry"></i>
+                        </div>
+                        <div class="fw-600">Raw Materials</div>
+                      </div>
+                    </td>
+                    <td>Steel, wood, plastics</td>
+                    <td><span class="badge badge-info">31 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon purple" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-server"></i>
+                        </div>
+                        <div class="fw-600">IT Services</div>
+                      </div>
+                    </td>
+                    <td>Software, hosting, support</td>
+                    <td><span class="badge badge-info">15 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon blue" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="fw-600">Logistics</div>
+                      </div>
+                    </td>
+                    <td>Shipping, transport, delivery</td>
+                    <td><span class="badge badge-info">8 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon green" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-building"></i>
+                        </div>
+                        <div class="fw-600">Utilities</div>
+                      </div>
+                    </td>
+                    <td>Electric, water, gas, internet</td>
+                    <td><span class="badge badge-info">6 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon yellow" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="fw-600">Marketing</div>
+                      </div>
+                    </td>
+                    <td>Advertising, promotions</td>
+                    <td><span class="badge badge-info">9 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
         <!-- Revenue Categories Tab (hidden by default) -->
         <div class="tab-content" id="revenue-categories" style="display: none;">
-          <div class="toolbar">
-            <div class="toolbar-left">
-              <span class="text-muted">5 categories found</span>
-            </div>
-            <div class="toolbar-right">
-              <button class="btn btn-primary" data-modal="addCategoryModal">
-                <i class="fas fa-plus"></i>
-                Add Category
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon blue" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-cog"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Widgets</h4>
-                <p class="text-muted fs-sm mb-2">Various widget products</p>
-                <span class="badge badge-info">42 products</span>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Revenue Categories</h3>
+              <div class="d-flex gap-2">
+                <span class="text-muted" style="display: flex; align-items: center;">3 categories found</span>
+                <button class="btn btn-primary" data-modal="addCategoryModal">
+                  <i class="fas fa-plus"></i>
+                  Add Category
+                </button>
               </div>
             </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon green" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-handshake"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Consulting</h4>
-                <p class="text-muted fs-sm mb-2">Business consulting services</p>
-                <span class="badge badge-info">8 products</span>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon purple" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-code"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Software</h4>
-                <p class="text-muted fs-sm mb-2">Software licenses and subscriptions</p>
-                <span class="badge badge-info">15 products</span>
-              </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Products</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon blue" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="fw-600">Widgets</div>
+                      </div>
+                    </td>
+                    <td>Various widget products</td>
+                    <td><span class="badge badge-info">42 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon green" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="fw-600">Consulting</div>
+                      </div>
+                    </td>
+                    <td>Business consulting services</td>
+                    <td><span class="badge badge-info">8 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon purple" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-code"></i>
+                        </div>
+                        <div class="fw-600">Software</div>
+                      </div>
+                    </td>
+                    <td>Software licenses and subscriptions</td>
+                    <td><span class="badge badge-info">15 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
         <!-- Rental Categories Tab (hidden by default) -->
         <div class="tab-content" id="rental-categories" style="display: none;">
-          <div class="toolbar">
-            <div class="toolbar-left">
-              <span class="text-muted">4 categories found</span>
-            </div>
-            <div class="toolbar-right">
-              <button class="btn btn-primary" data-modal="addCategoryModal">
-                <i class="fas fa-plus"></i>
-                Add Category
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon blue" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-tools"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Tools</h4>
-                <p class="text-muted fs-sm mb-2">Power tools, hand tools</p>
-                <span class="badge badge-info">28 products</span>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Rental Categories</h3>
+              <div class="d-flex gap-2">
+                <span class="text-muted" style="display: flex; align-items: center;">3 categories found</span>
+                <button class="btn btn-primary" data-modal="addCategoryModal">
+                  <i class="fas fa-plus"></i>
+                  Add Category
+                </button>
               </div>
             </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon green" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-camera"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Photography</h4>
-                <p class="text-muted fs-sm mb-2">Cameras, lighting, tripods</p>
-                <span class="badge badge-info">15 products</span>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-between align-center mb-2">
-                  <div class="stat-icon yellow" style="width: 40px; height: 40px; font-size: 16px;">
-                    <i class="fas fa-hard-hat"></i>
-                  </div>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-icon btn-outline btn-sm"><i class="fas fa-trash"></i></button>
-                  </div>
-                </div>
-                <h4 class="fw-600 mb-1">Construction</h4>
-                <p class="text-muted fs-sm mb-2">Heavy equipment, scaffolding</p>
-                <span class="badge badge-info">12 products</span>
-              </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Products</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon blue" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="fw-600">Tools</div>
+                      </div>
+                    </td>
+                    <td>Power tools, hand tools</td>
+                    <td><span class="badge badge-info">28 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon green" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="fw-600">Photography</div>
+                      </div>
+                    </td>
+                    <td>Cameras, lighting, tripods</td>
+                    <td><span class="badge badge-info">15 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="stat-icon yellow" style="width: 36px; height: 36px; font-size: 14px;">
+                          <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="fw-600">Construction</div>
+                      </div>
+                    </td>
+                    <td>Heavy equipment, scaffolding</td>
+                    <td><span class="badge badge-info">12 products</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

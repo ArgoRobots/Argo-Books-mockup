@@ -8,7 +8,6 @@
   <div class="help-panel" id="help-panel">
     <div class="help-panel-header">
       <h3>Help & Resources</h3>
-      <button class="help-panel-close"><i class="fas fa-times"></i></button>
     </div>
     <div class="help-panel-body">
       <a href="#" class="help-panel-link">
@@ -69,22 +68,6 @@
       color: var(--text-primary);
     }
 
-    .help-panel-close {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      padding: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 0.2s ease;
-    }
-
-    .help-panel-close:hover {
-      color: var(--text-primary);
-    }
-
     .help-panel-body {
       padding: 8px 0;
     }
@@ -138,15 +121,6 @@
       helpPanel.classList.toggle('active');
       helpIcon.classList.toggle('active');
     });
-
-    // Close panel on close button click
-    const closeBtn = helpPanel.querySelector('.help-panel-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
-        helpPanel.classList.remove('active');
-        helpIcon.classList.remove('active');
-      });
-    }
 
     // Close panel when clicking outside
     document.addEventListener('click', function(e) {
