@@ -63,7 +63,7 @@
             <div class="card-header">
               <h3 class="card-title">Active Rental Records</h3>
               <div class="d-flex gap-2">
-                <button class="btn btn-outline">
+                <button class="btn btn-outline" data-modal="filterRentalRecordsModal">
                   <i class="fas fa-filter"></i>
                   Filter
                 </button>
@@ -340,6 +340,75 @@
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-primary">Create Rental</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Rental Records Modal -->
+  <div class="modal-overlay" id="filterRentalRecordsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Rental Records</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Start Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Start Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Due Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Due Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Customer</label>
+          <select class="form-control form-select">
+            <option value="">All Customers</option>
+            <option>Sarah Johnson</option>
+            <option>Mike Wilson</option>
+            <option>Emily Chen</option>
+            <option>James Martinez</option>
+            <option>Robert Brown</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Rental Item</label>
+            <select class="form-control form-select">
+              <option value="">All Items</option>
+              <option>Power Drill Set</option>
+              <option>Camera Equipment</option>
+              <option>Projector HD</option>
+              <option>Pressure Washer</option>
+              <option>Generator 5000W</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Rate Type</label>
+            <select class="form-control form-select">
+              <option value="">All Types</option>
+              <option>Daily</option>
+              <option>Weekly</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Reset</button>
+        <button class="btn btn-primary">Apply Filter</button>
       </div>
     </div>
   </div>

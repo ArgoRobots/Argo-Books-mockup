@@ -76,7 +76,7 @@
             <div class="card-header">
               <h3 class="card-title">Expense Products</h3>
               <div class="d-flex gap-2">
-                <button class="btn btn-outline">
+                <button class="btn btn-outline" data-modal="filterProductsModal">
                   <i class="fas fa-filter"></i>
                   Filter
                 </button>
@@ -436,6 +436,70 @@
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Products Modal -->
+  <div class="modal-overlay" id="filterProductsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Products</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Product Name</label>
+          <input type="text" class="form-control" placeholder="Search by name...">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Item Type</label>
+            <select class="form-control form-select">
+              <option value="">All Types</option>
+              <option>Product</option>
+              <option>Service</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-control form-select">
+              <option value="">All Categories</option>
+              <option>Office Supplies</option>
+              <option>Electronics</option>
+              <option>Maintenance</option>
+              <option>Raw Materials</option>
+              <option>IT Services</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option value="">All Suppliers</option>
+              <option>Staples Inc.</option>
+              <option>Tech Distributors</option>
+              <option>CleanCo Services</option>
+              <option>Steel Works Inc.</option>
+              <option>TechHelp Pro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country of Origin</label>
+            <select class="form-control form-select">
+              <option value="">All Countries</option>
+              <option>USA</option>
+              <option>China</option>
+              <option>Germany</option>
+              <option>Japan</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Reset</button>
+        <button class="btn btn-primary">Apply Filter</button>
       </div>
     </div>
   </div>
