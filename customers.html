@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers - Argo Books</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">AB</div>
+        <span class="sidebar-brand">Argo Books</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <a class="nav-item" data-page="index.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </a>
+          <a class="nav-item" data-page="analytics.html">
+            <i class="fas fa-chart-line"></i>
+            <span>Analytics</span>
+          </a>
+          <a class="nav-item" data-page="reports.html">
+            <i class="fas fa-file-alt"></i>
+            <span>Reports</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Transactions</div>
+          <a class="nav-item" data-page="expenses.html">
+            <i class="fas fa-arrow-down"></i>
+            <span>Expenses</span>
+          </a>
+          <a class="nav-item" data-page="revenue.html">
+            <i class="fas fa-arrow-up"></i>
+            <span>Revenue</span>
+          </a>
+          <a class="nav-item" data-page="invoices.html">
+            <i class="fas fa-file-invoice"></i>
+            <span>Invoices</span>
+          </a>
+          <a class="nav-item" data-page="payments.html">
+            <i class="fas fa-credit-card"></i>
+            <span>Payments</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Rentals</div>
+          <a class="nav-item" data-page="rentals.html">
+            <i class="fas fa-box"></i>
+            <span>Rental Inventory</span>
+          </a>
+          <a class="nav-item" data-page="rental-records.html">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Rental Records</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Management</div>
+          <a class="nav-item active" data-page="customers.html">
+            <i class="fas fa-users"></i>
+            <span>Customers</span>
+          </a>
+          <a class="nav-item" data-page="products.html">
+            <i class="fas fa-cube"></i>
+            <span>Products</span>
+          </a>
+          <a class="nav-item" data-page="categories.html">
+            <i class="fas fa-tags"></i>
+            <span>Categories</span>
+          </a>
+          <a class="nav-item" data-page="suppliers.html">
+            <i class="fas fa-truck"></i>
+            <span>Suppliers</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Team</div>
+          <a class="nav-item" data-page="employees.html">
+            <i class="fas fa-user-tie"></i>
+            <span>Employees</span>
+          </a>
+          <a class="nav-item" data-page="accountants.html">
+            <i class="fas fa-calculator"></i>
+            <span>Accountants</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Tracking</div>
+          <a class="nav-item" data-page="returns.html">
+            <i class="fas fa-undo"></i>
+            <span>Returns</span>
+          </a>
+          <a class="nav-item" data-page="lost-products.html">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Lost/Damaged</span>
+          </a>
+          <a class="nav-item" data-page="receipts.html">
+            <i class="fas fa-receipt"></i>
+            <span>Receipts</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Tools</div>
+          <a class="nav-item" data-page="import-export.html">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Import/Export</span>
+          </a>
+          <a class="nav-item" data-page="settings.html">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle btn-icon">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="page-title">Customers</h1>
+        </div>
+
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search customers...">
+          </div>
+          <button class="header-icon">
+            <i class="fas fa-bell"></i>
+            <span class="badge"></span>
+          </button>
+          <div class="user-menu">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+              <span class="user-name">John Doe</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">1,247</div>
+              <div class="stat-label">Total Customers</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <i class="fas fa-user-check"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">1,189</div>
+              <div class="stat-label">Active Customers</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon yellow">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">42</div>
+              <div class="stat-label">Overdue Payments</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon red">
+              <i class="fas fa-ban"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">16</div>
+              <div class="stat-label">Banned Customers</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customers Table -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Customer List</h3>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline" data-modal="filterModal">
+                <i class="fas fa-filter"></i>
+                Filter
+              </button>
+              <button class="btn btn-primary" data-modal="addCustomerModal">
+                <i class="fas fa-plus"></i>
+                Add Customer
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Payment Status</th>
+                    <th>Outstanding</th>
+                    <th>Last Rental</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar">SJ</div>
+                        <div>
+                          <div class="fw-600">Sarah Johnson</div>
+                          <div class="text-muted fs-sm">#CUS-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>sarah.j@email.com</td>
+                    <td>(555) 123-4567</td>
+                    <td>123 Main St, City</td>
+                    <td><span class="badge badge-success">Current</span></td>
+                    <td>$0.00</td>
+                    <td>Dec 1, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-icon btn-outline" title="Edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar">MW</div>
+                        <div>
+                          <div class="fw-600">Mike Wilson</div>
+                          <div class="text-muted fs-sm">#CUS-002</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>mike.w@email.com</td>
+                    <td>(555) 234-5678</td>
+                    <td>456 Oak Ave, Town</td>
+                    <td><span class="badge badge-warning">Overdue</span></td>
+                    <td>$225.00</td>
+                    <td>Nov 28, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-icon btn-outline" title="Edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar">EC</div>
+                        <div>
+                          <div class="fw-600">Emily Chen</div>
+                          <div class="text-muted fs-sm">#CUS-003</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>emily.c@email.com</td>
+                    <td>(555) 345-6789</td>
+                    <td>789 Pine Rd, Village</td>
+                    <td><span class="badge badge-success">Current</span></td>
+                    <td>$0.00</td>
+                    <td>Dec 1, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-icon btn-outline" title="Edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="background: #ffe6e6; color: var(--danger-color);">RB</div>
+                        <div>
+                          <div class="fw-600">Robert Brown</div>
+                          <div class="text-muted fs-sm">#CUS-004 <span class="badge badge-danger">Banned</span></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>robert.b@email.com</td>
+                    <td>(555) 456-7890</td>
+                    <td>321 Elm St, Metro</td>
+                    <td><span class="badge badge-danger">Delinquent</span></td>
+                    <td>$1,450.00</td>
+                    <td>Oct 15, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-icon btn-outline" title="Edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar">AD</div>
+                        <div>
+                          <div class="fw-600">Amanda Davis</div>
+                          <div class="text-muted fs-sm">#CUS-005</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>amanda.d@email.com</td>
+                    <td>(555) 567-8901</td>
+                    <td>654 Maple Dr, County</td>
+                    <td><span class="badge badge-success">Current</span></td>
+                    <td>$0.00</td>
+                    <td>Nov 30, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-icon btn-outline" title="Edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar">JM</div>
+                        <div>
+                          <div class="fw-600">James Martinez</div>
+                          <div class="text-muted fs-sm">#CUS-006</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>james.m@email.com</td>
+                    <td>(555) 678-9012</td>
+                    <td>987 Cedar Ln, District</td>
+                    <td><span class="badge badge-warning">Overdue</span></td>
+                    <td>$89.50</td>
+                    <td>Nov 25, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-icon btn-outline" title="Edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Showing 1-6 of 1,247 customers</span>
+              <div class="pagination">
+                <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">...</button>
+                <button class="pagination-btn">208</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Customer Modal -->
+  <div class="modal-overlay" id="addCustomerModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Customer</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" placeholder="Enter first name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" placeholder="Enter last name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <textarea class="form-control" placeholder="Enter full address"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes (optional)"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Add Customer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>

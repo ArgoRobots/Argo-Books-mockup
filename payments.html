@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments - Argo Books</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">AB</div>
+        <span class="sidebar-brand">Argo Books</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <a class="nav-item" data-page="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+          <a class="nav-item" data-page="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+          <a class="nav-item" data-page="reports.html"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Transactions</div>
+          <a class="nav-item" data-page="expenses.html"><i class="fas fa-arrow-down"></i><span>Expenses</span></a>
+          <a class="nav-item" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
+          <a class="nav-item" data-page="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a>
+          <a class="nav-item active" data-page="payments.html"><i class="fas fa-credit-card"></i><span>Payments</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Rentals</div>
+          <a class="nav-item" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
+          <a class="nav-item" data-page="rental-records.html"><i class="fas fa-clipboard-list"></i><span>Rental Records</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Management</div>
+          <a class="nav-item" data-page="customers.html"><i class="fas fa-users"></i><span>Customers</span></a>
+          <a class="nav-item" data-page="products.html"><i class="fas fa-cube"></i><span>Products</span></a>
+          <a class="nav-item" data-page="categories.html"><i class="fas fa-tags"></i><span>Categories</span></a>
+          <a class="nav-item" data-page="suppliers.html"><i class="fas fa-truck"></i><span>Suppliers</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Team</div>
+          <a class="nav-item" data-page="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a>
+          <a class="nav-item" data-page="accountants.html"><i class="fas fa-calculator"></i><span>Accountants</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tracking</div>
+          <a class="nav-item" data-page="returns.html"><i class="fas fa-undo"></i><span>Returns</span></a>
+          <a class="nav-item" data-page="lost-products.html"><i class="fas fa-exclamation-triangle"></i><span>Lost/Damaged</span></a>
+          <a class="nav-item" data-page="receipts.html"><i class="fas fa-receipt"></i><span>Receipts</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tools</div>
+          <a class="nav-item" data-page="import-export.html"><i class="fas fa-exchange-alt"></i><span>Import/Export</span></a>
+          <a class="nav-item" data-page="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle btn-icon"><i class="fas fa-bars"></i></button>
+          <h1 class="page-title">Payments</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search payments...">
+          </div>
+          <button class="header-icon"><i class="fas fa-bell"></i><span class="badge"></span></button>
+          <div class="user-menu">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+              <span class="user-name">John Doe</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-dollar-sign"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">$76,313</div>
+              <div class="stat-label">Received This Month</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>8.3% from last month</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-credit-card"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">142</div>
+              <div class="stat-label">Transactions</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-sync"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">8</div>
+              <div class="stat-label">Pending</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon yellow"><i class="fas fa-undo"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Refunds</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Providers -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3 class="card-title">Connected Payment Providers</h3>
+            <button class="btn btn-outline">
+              <i class="fas fa-plus"></i>
+              Add Provider
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-3">
+              <div class="p-3 d-flex align-center gap-3" style="border: 1px solid var(--border-color); border-radius: var(--radius);">
+                <div style="width: 48px; height: 48px; background: #635bff; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                  S
+                </div>
+                <div style="flex: 1;">
+                  <div class="fw-600">Stripe</div>
+                  <div class="text-muted fs-sm">Connected</div>
+                </div>
+                <span class="badge badge-success">Active</span>
+              </div>
+              <div class="p-3 d-flex align-center gap-3" style="border: 1px solid var(--border-color); border-radius: var(--radius);">
+                <div style="width: 48px; height: 48px; background: #003087; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                  P
+                </div>
+                <div style="flex: 1;">
+                  <div class="fw-600">PayPal</div>
+                  <div class="text-muted fs-sm">Connected</div>
+                </div>
+                <span class="badge badge-success">Active</span>
+              </div>
+              <div class="p-3 d-flex align-center gap-3" style="border: 1px solid var(--border-color); border-radius: var(--radius); opacity: 0.6;">
+                <div style="width: 48px; height: 48px; background: #000; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                  Sq
+                </div>
+                <div style="flex: 1;">
+                  <div class="fw-600">Square</div>
+                  <div class="text-muted fs-sm">Not connected</div>
+                </div>
+                <button class="btn btn-sm btn-outline">Connect</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payments Table -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Recent Payments</h3>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline">
+                <i class="fas fa-filter"></i>
+                Filter
+              </button>
+              <button class="btn btn-primary" data-modal="recordPaymentModal">
+                <i class="fas fa-plus"></i>
+                Record Payment
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Payment ID</th>
+                  <th>Invoice</th>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Method</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="fw-600">#PAY-001</span></td>
+                  <td>#INV-2024-002</td>
+                  <td>TechStart Inc</td>
+                  <td>Dec 1, 2024</td>
+                  <td>
+                    <span class="d-flex align-center gap-1">
+                      <i class="fab fa-cc-stripe" style="color: #635bff;"></i>
+                      Stripe
+                    </span>
+                  </td>
+                  <td class="fw-600 text-success">$1,890.00</td>
+                  <td><span class="badge badge-success">Completed</span></td>
+                  <td>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-receipt"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="fw-600">#PAY-002</span></td>
+                  <td>#INV-2024-003</td>
+                  <td>Global Trade</td>
+                  <td>Nov 30, 2024</td>
+                  <td>
+                    <span class="d-flex align-center gap-1">
+                      <i class="fab fa-cc-paypal" style="color: #003087;"></i>
+                      PayPal
+                    </span>
+                  </td>
+                  <td class="fw-600 text-success">$5,200.00</td>
+                  <td><span class="badge badge-success">Completed</span></td>
+                  <td>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-receipt"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="fw-600">#PAY-003</span></td>
+                  <td>#INV-2024-005</td>
+                  <td>Metro Services</td>
+                  <td>Nov 28, 2024</td>
+                  <td>
+                    <span class="d-flex align-center gap-1">
+                      <i class="fas fa-university" style="color: var(--gray-600);"></i>
+                      Bank Transfer
+                    </span>
+                  </td>
+                  <td class="fw-600 text-success">$3,100.00</td>
+                  <td><span class="badge badge-success">Completed</span></td>
+                  <td>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-receipt"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="fw-600">#PAY-004</span></td>
+                  <td>#INV-2024-006</td>
+                  <td>Smart Co.</td>
+                  <td>Nov 25, 2024</td>
+                  <td>
+                    <span class="d-flex align-center gap-1">
+                      <i class="fab fa-cc-stripe" style="color: #635bff;"></i>
+                      Stripe
+                    </span>
+                  </td>
+                  <td class="fw-600 text-success">$6,000.00</td>
+                  <td><span class="badge badge-info">Partial</span></td>
+                  <td>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-receipt"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="fw-600">#PAY-005</span></td>
+                  <td>#INV-2024-010</td>
+                  <td>Local Shop</td>
+                  <td>Nov 22, 2024</td>
+                  <td>
+                    <span class="d-flex align-center gap-1">
+                      <i class="fab fa-cc-paypal" style="color: #003087;"></i>
+                      PayPal
+                    </span>
+                  </td>
+                  <td class="fw-600">$450.00</td>
+                  <td><span class="badge badge-warning">Pending</span></td>
+                  <td>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr style="background: #fff8e6;">
+                  <td><span class="fw-600">#PAY-006</span></td>
+                  <td>#INV-2024-008</td>
+                  <td>Acme Corp</td>
+                  <td>Nov 20, 2024</td>
+                  <td>
+                    <span class="d-flex align-center gap-1">
+                      <i class="fab fa-cc-stripe" style="color: #635bff;"></i>
+                      Stripe
+                    </span>
+                  </td>
+                  <td class="fw-600 text-danger">-$500.00</td>
+                  <td><span class="badge badge-warning">Refunded</span></td>
+                  <td>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Showing 1-6 of 142 payments</span>
+              <div class="pagination">
+                <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">...</button>
+                <button class="pagination-btn">24</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Record Payment Modal -->
+  <div class="modal-overlay" id="recordPaymentModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Record Payment</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Invoice</label>
+          <select class="form-control form-select">
+            <option>Select invoice</option>
+            <option>#INV-2024-001 - Acme Corp ($2,450.00)</option>
+            <option>#INV-2024-004 - Local Shop ($890.00)</option>
+            <option>#INV-2024-006 - Smart Co. ($6,000.00 remaining)</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <select class="form-control form-select">
+            <option>Stripe</option>
+            <option>PayPal</option>
+            <option>Bank Transfer</option>
+            <option>Cash</option>
+            <option>Check</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reference Number</label>
+          <input type="text" class="form-control" placeholder="Transaction ID or check number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Record Payment</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>

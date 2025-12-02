@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipts - Argo Books</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">AB</div>
+        <span class="sidebar-brand">Argo Books</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <a class="nav-item" data-page="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+          <a class="nav-item" data-page="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+          <a class="nav-item" data-page="reports.html"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Transactions</div>
+          <a class="nav-item" data-page="expenses.html"><i class="fas fa-arrow-down"></i><span>Expenses</span></a>
+          <a class="nav-item" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
+          <a class="nav-item" data-page="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a>
+          <a class="nav-item" data-page="payments.html"><i class="fas fa-credit-card"></i><span>Payments</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Rentals</div>
+          <a class="nav-item" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
+          <a class="nav-item" data-page="rental-records.html"><i class="fas fa-clipboard-list"></i><span>Rental Records</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Management</div>
+          <a class="nav-item" data-page="customers.html"><i class="fas fa-users"></i><span>Customers</span></a>
+          <a class="nav-item" data-page="products.html"><i class="fas fa-cube"></i><span>Products</span></a>
+          <a class="nav-item" data-page="categories.html"><i class="fas fa-tags"></i><span>Categories</span></a>
+          <a class="nav-item" data-page="suppliers.html"><i class="fas fa-truck"></i><span>Suppliers</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Team</div>
+          <a class="nav-item" data-page="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a>
+          <a class="nav-item" data-page="accountants.html"><i class="fas fa-calculator"></i><span>Accountants</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tracking</div>
+          <a class="nav-item" data-page="returns.html"><i class="fas fa-undo"></i><span>Returns</span></a>
+          <a class="nav-item" data-page="lost-products.html"><i class="fas fa-exclamation-triangle"></i><span>Lost/Damaged</span></a>
+          <a class="nav-item active" data-page="receipts.html"><i class="fas fa-receipt"></i><span>Receipts</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tools</div>
+          <a class="nav-item" data-page="import-export.html"><i class="fas fa-exchange-alt"></i><span>Import/Export</span></a>
+          <a class="nav-item" data-page="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle btn-icon"><i class="fas fa-bars"></i></button>
+          <h1 class="page-title">Receipts</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search receipts...">
+          </div>
+          <button class="header-icon"><i class="fas fa-bell"></i><span class="badge"></span></button>
+          <div class="user-menu">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+              <span class="user-name">John Doe</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-receipt"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">856</div>
+              <div class="stat-label">Total Receipts</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red"><i class="fas fa-arrow-down"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">412</div>
+              <div class="stat-label">Expense Receipts</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-arrow-up"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">444</div>
+              <div class="stat-label">Revenue Receipts</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-robot"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">98</div>
+              <div class="stat-label">AI Scanned</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex gap-2 align-center" style="flex-wrap: wrap;">
+              <div class="form-group mb-0" style="min-width: 150px;">
+                <select class="form-control form-select">
+                  <option>All Types</option>
+                  <option>Expense Receipts</option>
+                  <option>Revenue Receipts</option>
+                </select>
+              </div>
+              <div class="form-group mb-0" style="min-width: 150px;">
+                <input type="date" class="form-control" placeholder="From Date">
+              </div>
+              <div class="form-group mb-0" style="min-width: 150px;">
+                <input type="date" class="form-control" placeholder="To Date">
+              </div>
+              <button class="btn btn-primary">
+                <i class="fas fa-filter"></i>
+                Apply Filter
+              </button>
+              <div style="margin-left: auto;" class="d-flex gap-2">
+                <button class="btn btn-outline">
+                  <i class="fas fa-camera"></i>
+                  AI Scan Receipt
+                </button>
+                <button class="btn btn-outline">
+                  <i class="fas fa-download"></i>
+                  Export Selected
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Receipts Grid -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Receipt Archive</h3>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline btn-sm">
+                <i class="fas fa-th"></i>
+              </button>
+              <button class="btn btn-outline btn-sm">
+                <i class="fas fa-list"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-4">
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
+                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#EXP-001</div>
+                      <div class="text-muted fs-sm">Dec 1, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-danger">Expense</span>
+                    <span class="fw-600">$1,245</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
+                  <i class="fas fa-file-pdf" style="font-size: 48px; color: var(--danger-color);"></i>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#REV-001</div>
+                      <div class="text-muted fs-sm">Dec 1, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-success">Revenue</span>
+                    <span class="fw-600">$2,450</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
+                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#EXP-002</div>
+                      <div class="text-muted fs-sm">Dec 1, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-danger">Expense</span>
+                    <span class="fw-600">$3,890</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0; position: relative;">
+                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+                  <span class="badge badge-info" style="position: absolute; top: 10px; right: 10px;"><i class="fas fa-robot"></i> AI</span>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#REV-003</div>
+                      <div class="text-muted fs-sm">Nov 30, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-success">Revenue</span>
+                    <span class="fw-600">$5,200</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
+                  <i class="fas fa-file-pdf" style="font-size: 48px; color: var(--danger-color);"></i>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#EXP-004</div>
+                      <div class="text-muted fs-sm">Nov 29, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-danger">Expense</span>
+                    <span class="fw-600">$12,500</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
+                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#REV-004</div>
+                      <div class="text-muted fs-sm">Nov 29, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-success">Revenue</span>
+                    <span class="fw-600">$890</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0; position: relative;">
+                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+                  <span class="badge badge-info" style="position: absolute; top: 10px; right: 10px;"><i class="fas fa-robot"></i> AI</span>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#EXP-006</div>
+                      <div class="text-muted fs-sm">Nov 27, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-danger">Expense</span>
+                    <span class="fw-600">$890</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
+                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
+                  <i class="fas fa-file-pdf" style="font-size: 48px; color: var(--danger-color);"></i>
+                </div>
+                <div class="card-body" style="padding: 12px;">
+                  <div class="d-flex align-center gap-2">
+                    <input type="checkbox" class="form-check-input">
+                    <div>
+                      <div class="fw-600 fs-sm">#REV-006</div>
+                      <div class="text-muted fs-sm">Nov 27, 2024</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-between mt-2">
+                    <span class="badge badge-success">Revenue</span>
+                    <span class="fw-600">$12,000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Showing 1-8 of 856 receipts</span>
+              <div class="pagination">
+                <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">...</button>
+                <button class="pagination-btn">107</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expenses - Argo Books</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">AB</div>
+        <span class="sidebar-brand">Argo Books</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <a class="nav-item" data-page="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+          <a class="nav-item" data-page="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+          <a class="nav-item" data-page="reports.html"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Transactions</div>
+          <a class="nav-item active" data-page="expenses.html"><i class="fas fa-arrow-down"></i><span>Expenses</span></a>
+          <a class="nav-item" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
+          <a class="nav-item" data-page="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a>
+          <a class="nav-item" data-page="payments.html"><i class="fas fa-credit-card"></i><span>Payments</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Rentals</div>
+          <a class="nav-item" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
+          <a class="nav-item" data-page="rental-records.html"><i class="fas fa-clipboard-list"></i><span>Rental Records</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Management</div>
+          <a class="nav-item" data-page="customers.html"><i class="fas fa-users"></i><span>Customers</span></a>
+          <a class="nav-item" data-page="products.html"><i class="fas fa-cube"></i><span>Products</span></a>
+          <a class="nav-item" data-page="categories.html"><i class="fas fa-tags"></i><span>Categories</span></a>
+          <a class="nav-item" data-page="suppliers.html"><i class="fas fa-truck"></i><span>Suppliers</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Team</div>
+          <a class="nav-item" data-page="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a>
+          <a class="nav-item" data-page="accountants.html"><i class="fas fa-calculator"></i><span>Accountants</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tracking</div>
+          <a class="nav-item" data-page="returns.html"><i class="fas fa-undo"></i><span>Returns</span></a>
+          <a class="nav-item" data-page="lost-products.html"><i class="fas fa-exclamation-triangle"></i><span>Lost/Damaged</span></a>
+          <a class="nav-item" data-page="receipts.html"><i class="fas fa-receipt"></i><span>Receipts</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tools</div>
+          <a class="nav-item" data-page="import-export.html"><i class="fas fa-exchange-alt"></i><span>Import/Export</span></a>
+          <a class="nav-item" data-page="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle btn-icon"><i class="fas fa-bars"></i></button>
+          <h1 class="page-title">Expenses</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search expenses...">
+          </div>
+          <button class="header-icon"><i class="fas fa-bell"></i><span class="badge"></span></button>
+          <div class="user-menu">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+              <span class="user-name">John Doe</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon red"><i class="fas fa-shopping-cart"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">$45,234</div>
+              <div class="stat-label">Total This Month</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-up"></i>
+                <span>3.2% from last month</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-file-invoice"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">156</div>
+              <div class="stat-label">Transactions</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-receipt"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">142</div>
+              <div class="stat-label">With Receipts</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon yellow"><i class="fas fa-undo"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">8</div>
+              <div class="stat-label">Returns</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expenses Table -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Expense Transactions</h3>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline">
+                <i class="fas fa-filter"></i>
+                Filter
+              </button>
+              <button class="btn btn-outline">
+                <i class="fas fa-camera"></i>
+                Scan Receipt
+              </button>
+              <button class="btn btn-primary" data-modal="addExpenseModal">
+                <i class="fas fa-plus"></i>
+                New Expense
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Accountant</th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Supplier</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Receipt</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fw-600">#EXP-001</span></td>
+                    <td>John Doe</td>
+                    <td>Office Supplies Bundle</td>
+                    <td>Office Supplies</td>
+                    <td>Staples Inc.</td>
+                    <td>Dec 1, 2024</td>
+                    <td class="fw-600">$1,245.00</td>
+                    <td><span class="badge badge-success"><i class="fas fa-check"></i></span></td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#EXP-002</span></td>
+                    <td>Jane Smith</td>
+                    <td>Multiple items (5)</td>
+                    <td>Electronics</td>
+                    <td>Tech Distributors</td>
+                    <td>Dec 1, 2024</td>
+                    <td class="fw-600">$3,890.00</td>
+                    <td><span class="badge badge-success"><i class="fas fa-check"></i></span></td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="background: #fff8e6;">
+                    <td><span class="fw-600">#EXP-003</span></td>
+                    <td>Mike Brown</td>
+                    <td>Cleaning Service</td>
+                    <td>Maintenance</td>
+                    <td>CleanCo Services</td>
+                    <td>Nov 30, 2024</td>
+                    <td class="fw-600">$450.00</td>
+                    <td><span class="badge badge-secondary"><i class="fas fa-times"></i></span></td>
+                    <td><span class="badge badge-warning">Partial Return</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#EXP-004</span></td>
+                    <td>Emily Wilson</td>
+                    <td>Raw Materials - Steel</td>
+                    <td>Raw Materials</td>
+                    <td>Steel Works Inc.</td>
+                    <td>Nov 29, 2024</td>
+                    <td class="fw-600">$12,500.00</td>
+                    <td><span class="badge badge-success"><i class="fas fa-check"></i></span></td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="background: #ffe6e6;">
+                    <td><span class="fw-600">#EXP-005</span></td>
+                    <td>Robert Lee</td>
+                    <td>IT Equipment</td>
+                    <td>IT Services</td>
+                    <td>TechHelp Pro</td>
+                    <td>Nov 28, 2024</td>
+                    <td class="fw-600 text-danger" style="text-decoration: line-through;">$2,100.00</td>
+                    <td><span class="badge badge-success"><i class="fas fa-check"></i></span></td>
+                    <td><span class="badge badge-danger">Returned</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#EXP-006</span></td>
+                    <td>Alice Chen</td>
+                    <td>Marketing Materials</td>
+                    <td>Marketing</td>
+                    <td>PrintCo Ltd.</td>
+                    <td>Nov 27, 2024</td>
+                    <td class="fw-600">$890.00</td>
+                    <td><span class="badge badge-success"><i class="fas fa-check"></i></span></td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Showing 1-6 of 156 expenses</span>
+              <div class="pagination">
+                <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">...</button>
+                <button class="pagination-btn">26</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Expense Modal -->
+  <div class="modal-overlay" id="addExpenseModal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">New Expense Transaction</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Accountant</label>
+            <select class="form-control form-select">
+              <option>Select accountant</option>
+              <option>John Doe</option>
+              <option>Jane Smith</option>
+              <option>Mike Brown</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product</label>
+            <select class="form-control form-select">
+              <option>Select product</option>
+              <option>Office Supplies Bundle</option>
+              <option>Computer Equipment</option>
+              <option>Cleaning Service</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option>Select supplier</option>
+              <option>Staples Inc.</option>
+              <option>Tech Distributors</option>
+              <option>CleanCo Services</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" placeholder="1" value="1">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Price Per Unit</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Shipping</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tax</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Discount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes (optional)"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Attach Receipt</label>
+          <div style="border: 2px dashed var(--border-color); border-radius: var(--radius); padding: 30px; text-align: center; cursor: pointer;">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: var(--gray-400); margin-bottom: 10px;"></i>
+            <p class="text-muted">Drag and drop or click to upload receipt</p>
+            <p class="text-muted fs-sm">Supports: JPG, PNG, PDF</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-outline">Add Another Item</button>
+        <button class="btn btn-primary">Save Expense</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>

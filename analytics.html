@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - Argo Books</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">AB</div>
+        <span class="sidebar-brand">Argo Books</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <a class="nav-item" data-page="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+          <a class="nav-item active" data-page="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+          <a class="nav-item" data-page="reports.html"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Transactions</div>
+          <a class="nav-item" data-page="expenses.html"><i class="fas fa-arrow-down"></i><span>Expenses</span></a>
+          <a class="nav-item" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
+          <a class="nav-item" data-page="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a>
+          <a class="nav-item" data-page="payments.html"><i class="fas fa-credit-card"></i><span>Payments</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Rentals</div>
+          <a class="nav-item" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
+          <a class="nav-item" data-page="rental-records.html"><i class="fas fa-clipboard-list"></i><span>Rental Records</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Management</div>
+          <a class="nav-item" data-page="customers.html"><i class="fas fa-users"></i><span>Customers</span></a>
+          <a class="nav-item" data-page="products.html"><i class="fas fa-cube"></i><span>Products</span></a>
+          <a class="nav-item" data-page="categories.html"><i class="fas fa-tags"></i><span>Categories</span></a>
+          <a class="nav-item" data-page="suppliers.html"><i class="fas fa-truck"></i><span>Suppliers</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Team</div>
+          <a class="nav-item" data-page="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a>
+          <a class="nav-item" data-page="accountants.html"><i class="fas fa-calculator"></i><span>Accountants</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tracking</div>
+          <a class="nav-item" data-page="returns.html"><i class="fas fa-undo"></i><span>Returns</span></a>
+          <a class="nav-item" data-page="lost-products.html"><i class="fas fa-exclamation-triangle"></i><span>Lost/Damaged</span></a>
+          <a class="nav-item" data-page="receipts.html"><i class="fas fa-receipt"></i><span>Receipts</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tools</div>
+          <a class="nav-item" data-page="import-export.html"><i class="fas fa-exchange-alt"></i><span>Import/Export</span></a>
+          <a class="nav-item" data-page="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle btn-icon"><i class="fas fa-bars"></i></button>
+          <h1 class="page-title">Analytics</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search...">
+          </div>
+          <button class="header-icon"><i class="fas fa-bell"></i><span class="badge"></span></button>
+          <div class="user-menu">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+              <span class="user-name">John Doe</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Time Filter -->
+        <div class="d-flex justify-between align-center mb-3">
+          <div class="tabs" style="border-bottom: none; margin-bottom: 0;">
+            <div class="tab active">This Month</div>
+            <div class="tab">This Quarter</div>
+            <div class="tab">This Year</div>
+            <div class="tab">Custom Range</div>
+          </div>
+          <button class="btn btn-outline">
+            <i class="fas fa-download"></i>
+            Export Charts
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-dollar-sign"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">$124,563</div>
+              <div class="stat-label">Total Revenue</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>12.5% from last period</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red"><i class="fas fa-shopping-cart"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">$45,234</div>
+              <div class="stat-label">Total Expenses</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-up"></i>
+                <span>3.2% from last period</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-chart-pie"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">$79,329</div>
+              <div class="stat-label">Net Profit</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>18.7% from last period</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-percentage"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">63.7%</div>
+              <div class="stat-label">Profit Margin</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>4.2% from last period</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="grid grid-2 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Revenue vs Expenses</h3>
+              <select class="form-control form-select" style="width: auto;">
+                <option>Line Chart</option>
+                <option>Bar Chart</option>
+                <option>Area Chart</option>
+              </select>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height: 300px;">
+                <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                  <div style="display: flex; gap: 20px; justify-content: center;">
+                    <span><i class="fas fa-circle" style="color: var(--success-color);"></i> Revenue</span>
+                    <span><i class="fas fa-circle" style="color: var(--danger-color);"></i> Expenses</span>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-chart-line" style="font-size: 64px; opacity: 0.3;"></i>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; color: var(--gray-500); font-size: 12px;">
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                    <span>Jul</span>
+                    <span>Aug</span>
+                    <span>Sep</span>
+                    <span>Oct</span>
+                    <span>Nov</span>
+                    <span>Dec</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Expense Breakdown</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height: 300px;">
+                <div style="height: 100%; display: flex; align-items: center; justify-content: center; gap: 40px;">
+                  <i class="fas fa-chart-pie" style="font-size: 120px; opacity: 0.3;"></i>
+                  <div style="text-align: left;">
+                    <div class="mb-2"><i class="fas fa-circle" style="color: #0075ff;"></i> Office Supplies (28%)</div>
+                    <div class="mb-2"><i class="fas fa-circle" style="color: #28a745;"></i> Electronics (22%)</div>
+                    <div class="mb-2"><i class="fas fa-circle" style="color: #ffc107;"></i> Raw Materials (18%)</div>
+                    <div class="mb-2"><i class="fas fa-circle" style="color: #dc3545;"></i> IT Services (15%)</div>
+                    <div class="mb-2"><i class="fas fa-circle" style="color: #6f42c1;"></i> Marketing (10%)</div>
+                    <div><i class="fas fa-circle" style="color: #6c757d;"></i> Other (7%)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="grid grid-2 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Revenue by Category</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height: 250px;">
+                <div style="height: 100%; display: flex; align-items: flex-end; justify-content: space-around; padding: 20px;">
+                  <div style="text-align: center;">
+                    <div style="background: var(--primary-color); width: 50px; height: 180px; border-radius: 4px 4px 0 0;"></div>
+                    <span class="fs-sm text-muted">Widgets</span>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="background: var(--success-color); width: 50px; height: 140px; border-radius: 4px 4px 0 0;"></div>
+                    <span class="fs-sm text-muted">Consulting</span>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="background: var(--warning-color); width: 50px; height: 100px; border-radius: 4px 4px 0 0;"></div>
+                    <span class="fs-sm text-muted">Software</span>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="background: var(--secondary-color); width: 50px; height: 60px; border-radius: 4px 4px 0 0;"></div>
+                    <span class="fs-sm text-muted">Rentals</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Sales by Region</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height: 250px;">
+                <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-globe-americas" style="font-size: 100px; opacity: 0.3;"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Predictive Analytics -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fas fa-robot" style="color: var(--primary-color); margin-right: 8px;"></i>
+              AI Predictive Analytics
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-3">
+              <div class="p-3" style="background: var(--gray-100); border-radius: var(--radius);">
+                <h4 class="fw-600 mb-2"><i class="fas fa-chart-line text-success"></i> Revenue Forecast</h4>
+                <div class="stat-value" style="font-size: 24px;">$142,500</div>
+                <p class="text-muted fs-sm">Predicted revenue for next month based on historical trends and seasonal patterns.</p>
+                <div class="progress mt-2">
+                  <div class="progress-bar success" style="width: 85%;"></div>
+                </div>
+                <span class="fs-sm text-muted">85% confidence</span>
+              </div>
+              <div class="p-3" style="background: var(--gray-100); border-radius: var(--radius);">
+                <h4 class="fw-600 mb-2"><i class="fas fa-exclamation-circle text-warning"></i> Expense Alert</h4>
+                <div class="stat-value" style="font-size: 24px;">+8.5%</div>
+                <p class="text-muted fs-sm">Projected increase in IT expenses due to upcoming software renewals.</p>
+                <div class="progress mt-2">
+                  <div class="progress-bar warning" style="width: 72%;"></div>
+                </div>
+                <span class="fs-sm text-muted">72% confidence</span>
+              </div>
+              <div class="p-3" style="background: var(--gray-100); border-radius: var(--radius);">
+                <h4 class="fw-600 mb-2"><i class="fas fa-lightbulb text-primary"></i> Growth Opportunity</h4>
+                <div class="stat-value" style="font-size: 24px;">+23%</div>
+                <p class="text-muted fs-sm">Consulting services show strong growth potential based on market trends.</p>
+                <div class="progress mt-2">
+                  <div class="progress-bar" style="width: 91%;"></div>
+                </div>
+                <span class="fs-sm text-muted">91% confidence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>
