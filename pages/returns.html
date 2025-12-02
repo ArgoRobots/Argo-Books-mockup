@@ -11,11 +11,9 @@
   <div class="app-container">
     <!-- Sidebar injected by js/components/sidebar.js -->
 
-
     <!-- Main Content -->
     <main class="main-content">
       <!-- Header injected by js/components/header.js -->
-
 
       <div class="page-content">
         <!-- Tabs -->
@@ -61,7 +59,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Expense Returns (To Supplier)</h3>
-              <button class="btn btn-outline">
+              <button class="btn btn-outline" data-modal="filterExpenseReturnsModal">
                 <i class="fas fa-filter"></i>
                 Filter
               </button>
@@ -132,7 +130,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Customer Returns</h3>
-              <button class="btn btn-outline">
+              <button class="btn btn-outline" data-modal="filterRevenueReturnsModal">
                 <i class="fas fa-filter"></i>
                 Filter
               </button>
@@ -227,6 +225,135 @@
     </main>
   </div>
 
+  <!-- Filter Expense Returns Modal -->
+  <div class="modal-overlay" id="filterExpenseReturnsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Expense Returns</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Return Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Return Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option value="">All Suppliers</option>
+              <option>TechHelp Pro</option>
+              <option>CleanCo Services</option>
+              <option>Furniture Plus</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reason</label>
+            <select class="form-control form-select">
+              <option value="">All Reasons</option>
+              <option>Defective product</option>
+              <option>Service not rendered</option>
+              <option>Wrong item shipped</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-control form-select">
+              <option value="">All Statuses</option>
+              <option>Full Return</option>
+              <option>Partial Return</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Returned By</label>
+            <select class="form-control form-select">
+              <option value="">All Employees</option>
+              <option>Robert Lee</option>
+              <option>Mike Brown</option>
+              <option>Jane Smith</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Reset</button>
+        <button class="btn btn-primary">Apply Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Revenue Returns Modal -->
+  <div class="modal-overlay" id="filterRevenueReturnsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Customer Returns</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Return Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Return Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Customer</label>
+            <select class="form-control form-select">
+              <option value="">All Customers</option>
+              <option>Metro Services</option>
+              <option>Local Shop</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reason</label>
+            <select class="form-control form-select">
+              <option value="">All Reasons</option>
+              <option>Customer changed mind</option>
+              <option>Product damaged in shipping</option>
+              <option>Defective product</option>
+              <option>Wrong item</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-control form-select">
+              <option value="">All Statuses</option>
+              <option>Full Return</option>
+              <option>Partial Return</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Processed By</label>
+            <select class="form-control form-select">
+              <option value="">All Employees</option>
+              <option>Robert Lee</option>
+              <option>Emily Wilson</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Reset</button>
+        <button class="btn btn-primary">Apply Filter</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
   <script src="../js/components/company-modal.js"></script>
@@ -234,6 +361,7 @@
   <script src="../js/components/notification-panel.js"></script>
   <script src="../js/components/user-panel.js"></script>
   <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
 </body>
 </html>

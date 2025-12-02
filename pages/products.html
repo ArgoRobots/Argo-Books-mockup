@@ -11,12 +11,10 @@
   <div class="app-container">
     <!-- Sidebar injected by js/components/sidebar.js -->
 
-
     <!-- Main Content -->
     <main class="main-content">
       <!-- Header -->
       <!-- Header injected by js/components/header.js -->
-
 
       <!-- Page Content -->
       <div class="page-content">
@@ -76,7 +74,7 @@
             <div class="card-header">
               <h3 class="card-title">Expense Products</h3>
               <div class="d-flex gap-2">
-                <button class="btn btn-outline">
+                <button class="btn btn-outline" data-modal="filterProductsModal">
                   <i class="fas fa-filter"></i>
                   Filter
                 </button>
@@ -112,7 +110,7 @@
                     <td>USA</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -129,7 +127,7 @@
                     <td>China</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -146,7 +144,7 @@
                     <td>USA</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -163,7 +161,7 @@
                     <td>Germany</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -180,7 +178,7 @@
                     <td>USA</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -234,7 +232,7 @@
                     <td>Widgets</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -246,7 +244,7 @@
                     <td>Consulting</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -286,7 +284,7 @@
                     <td>Tools</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -298,7 +296,7 @@
                     <td>Photography</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -376,6 +374,134 @@
     </div>
   </div>
 
+  <!-- Edit Product Modal -->
+  <div class="modal-overlay" id="editProductModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Product</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Product Name</label>
+          <input type="text" class="form-control" value="Office Supplies Bundle">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-control">Pens, paper, folders, etc.</textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Item Type</label>
+            <select class="form-control form-select">
+              <option value="product" selected>Product</option>
+              <option value="service">Service</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-control form-select">
+              <option>Select category</option>
+              <option selected>Office Supplies</option>
+              <option>Electronics</option>
+              <option>Maintenance</option>
+              <option>Raw Materials</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option>Select supplier</option>
+              <option selected>Staples Inc.</option>
+              <option>Tech Distributors</option>
+              <option>CleanCo Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country of Origin</label>
+            <select class="form-control form-select">
+              <option>Select country</option>
+              <option selected>USA</option>
+              <option>China</option>
+              <option>Germany</option>
+              <option>Japan</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Products Modal -->
+  <div class="modal-overlay" id="filterProductsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Products</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Product Name</label>
+          <input type="text" class="form-control" placeholder="Search by name...">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Item Type</label>
+            <select class="form-control form-select">
+              <option value="">All Types</option>
+              <option>Product</option>
+              <option>Service</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-control form-select">
+              <option value="">All Categories</option>
+              <option>Office Supplies</option>
+              <option>Electronics</option>
+              <option>Maintenance</option>
+              <option>Raw Materials</option>
+              <option>IT Services</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option value="">All Suppliers</option>
+              <option>Staples Inc.</option>
+              <option>Tech Distributors</option>
+              <option>CleanCo Services</option>
+              <option>Steel Works Inc.</option>
+              <option>TechHelp Pro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country of Origin</label>
+            <select class="form-control form-select">
+              <option value="">All Countries</option>
+              <option>USA</option>
+              <option>China</option>
+              <option>Germany</option>
+              <option>Japan</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Reset</button>
+        <button class="btn btn-primary">Apply Filter</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
   <script src="../js/components/company-modal.js"></script>
@@ -383,6 +509,7 @@
   <script src="../js/components/notification-panel.js"></script>
   <script src="../js/components/user-panel.js"></script>
   <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
 </body>
 </html>

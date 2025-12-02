@@ -11,11 +11,9 @@
   <div class="app-container">
     <!-- Sidebar injected by js/components/sidebar.js -->
 
-
     <!-- Main Content -->
     <main class="main-content">
       <!-- Header injected by js/components/header.js -->
-
 
       <div class="page-content">
         <!-- Stats -->
@@ -55,7 +53,7 @@
           <div class="card-header">
             <h3 class="card-title">Lost & Damaged Products</h3>
             <div class="d-flex gap-2">
-              <button class="btn btn-outline">
+              <button class="btn btn-outline" data-modal="filterLostProductsModal">
                 <i class="fas fa-filter"></i>
                 Filter
               </button>
@@ -218,6 +216,86 @@
     </div>
   </div>
 
+  <!-- Filter Lost Products Modal -->
+  <div class="modal-overlay" id="filterLostProductsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Lost/Damaged Products</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Type</label>
+            <select class="form-control form-select">
+              <option value="">All Types</option>
+              <option>Lost</option>
+              <option>Damaged</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-control form-select">
+              <option value="">All Statuses</option>
+              <option>Written Off</option>
+              <option>Insurance Claim</option>
+              <option>Recovered</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date Recorded From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date Recorded To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Reason</label>
+            <select class="form-control form-select">
+              <option value="">All Reasons</option>
+              <option>Lost in transit</option>
+              <option>Delivery not received</option>
+              <option>Warehouse accident</option>
+              <option>Customer misuse</option>
+              <option>Natural disaster</option>
+              <option>Theft</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Recorded By</label>
+            <select class="form-control form-select">
+              <option value="">All Employees</option>
+              <option>John Doe</option>
+              <option>Jane Smith</option>
+              <option>Mike Brown</option>
+              <option>Emily Wilson</option>
+              <option>Robert Lee</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Loss Value Min</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Loss Value Max</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Reset</button>
+        <button class="btn btn-primary">Apply Filter</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
   <script src="../js/components/company-modal.js"></script>
@@ -225,6 +303,7 @@
   <script src="../js/components/notification-panel.js"></script>
   <script src="../js/components/user-panel.js"></script>
   <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
 </body>
 </html>

@@ -11,11 +11,9 @@
   <div class="app-container">
     <!-- Sidebar injected by js/components/sidebar.js -->
 
-
     <!-- Main Content -->
     <main class="main-content">
       <!-- Header injected by js/components/header.js -->
-
 
       <div class="page-content">
         <!-- Tabs -->
@@ -62,7 +60,7 @@
             <div class="card-header">
               <h3 class="card-title">All Employees</h3>
               <div class="d-flex gap-2">
-                <button class="btn btn-outline">
+                <button class="btn btn-outline" data-modal="filterEmployeesModal">
                   <i class="fas fa-filter"></i>
                   Filter
                 </button>
@@ -106,7 +104,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -129,7 +127,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -152,7 +150,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -175,7 +173,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -198,7 +196,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -221,7 +219,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -372,6 +370,7 @@
               <option>Sales</option>
               <option>IT</option>
               <option>HR</option>
+              <option>Customer Support</option>
             </select>
           </div>
         </div>
@@ -385,10 +384,34 @@
             <input type="date" class="form-control">
           </div>
         </div>
+        <div class="form-group">
+          <label class="form-label">Compensation Type</label>
+          <div class="d-flex gap-3" style="margin-top: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="compensationType" value="annual" checked onchange="toggleCompensationType(this)">
+              <span>Annual Salary</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="compensationType" value="hourly" onchange="toggleCompensationType(this)">
+              <span>Hourly Rate</span>
+            </label>
+          </div>
+        </div>
         <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Salary</label>
-            <input type="number" class="form-control" placeholder="Annual salary">
+          <div class="form-group" id="annualSalaryGroup">
+            <label class="form-label">Annual Salary</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+            </div>
+          </div>
+          <div class="form-group" id="hourlyRateGroup" style="display: none;">
+            <label class="form-label">Hourly Rate</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Pay Frequency</label>
@@ -407,6 +430,164 @@
     </div>
   </div>
 
+  <!-- Filter Employees Modal -->
+  <div class="modal-overlay" id="filterEmployeesModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Employees</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <select class="form-control form-select">
+            <option value="">All Departments</option>
+            <option>Finance</option>
+            <option>Operations</option>
+            <option>Sales</option>
+            <option>IT</option>
+            <option>HR</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control form-select">
+            <option value="">All Statuses</option>
+            <option>Active</option>
+            <option>On Leave</option>
+            <option>Terminated</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Hire Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hire Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Min Salary</label>
+            <input type="number" class="form-control" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Salary</label>
+            <input type="number" class="form-control" placeholder="0">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Search</label>
+          <input type="text" class="form-control" placeholder="Name, email, or position">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Clear Filters</button>
+        <button class="btn btn-primary">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Employee Modal -->
+  <div class="modal-overlay" id="editEmployeeModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Employee</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <!-- Profile Picture Section -->
+        <div class="form-group" style="text-align: center; margin-bottom: 20px;">
+          <label class="form-label">Profile Picture</label>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+            <div class="avatar" style="width: 64px; height: 64px; font-size: 24px; background: var(--primary-light); color: var(--primary-color);">JD</div>
+            <div style="text-align: left;">
+              <button type="button" class="btn btn-outline btn-sm" style="margin-bottom: 4px;">
+                <i class="fas fa-upload"></i> Upload Photo
+              </button>
+              <p style="margin: 0; font-size: 11px; color: var(--gray-400);">JPG, PNG up to 5MB</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" value="John">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" value="Doe">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" value="john.doe@company.com">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" value="(555) 123-4567">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Emergency Contact</label>
+            <input type="tel" class="form-control" value="(555) 987-6543" placeholder="Emergency contact number">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Department</label>
+            <select class="form-control form-select">
+              <option>Select department</option>
+              <option selected>Finance</option>
+              <option>Operations</option>
+              <option>Sales</option>
+              <option>IT</option>
+              <option>HR</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Position</label>
+            <input type="text" class="form-control" value="CFO">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Hire Date</label>
+            <input type="date" class="form-control" value="2020-01-15">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-control form-select">
+              <option selected>Active</option>
+              <option>On Leave</option>
+              <option>Terminated</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Salary</label>
+            <input type="number" class="form-control" value="150000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pay Frequency</label>
+            <select class="form-control form-select">
+              <option>Weekly</option>
+              <option selected>Bi-weekly</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
   <script src="../js/components/company-modal.js"></script>
@@ -414,6 +595,22 @@
   <script src="../js/components/notification-panel.js"></script>
   <script src="../js/components/user-panel.js"></script>
   <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script>
+    // Toggle compensation type in Add Employee modal
+    function toggleCompensationType(radio) {
+      const annualGroup = document.getElementById('annualSalaryGroup');
+      const hourlyGroup = document.getElementById('hourlyRateGroup');
+
+      if (radio.value === 'annual') {
+        annualGroup.style.display = 'block';
+        hourlyGroup.style.display = 'none';
+      } else {
+        annualGroup.style.display = 'none';
+        hourlyGroup.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>

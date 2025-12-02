@@ -11,11 +11,9 @@
   <div class="app-container">
     <!-- Sidebar injected by js/components/sidebar.js -->
 
-
     <!-- Main Content -->
     <main class="main-content">
       <!-- Header injected by js/components/header.js -->
-
 
       <div class="page-content">
         <!-- Stats -->
@@ -59,7 +57,7 @@
           <div class="card-header">
             <h3 class="card-title">Sales Transactions</h3>
             <div class="d-flex gap-2">
-              <button class="btn btn-outline">
+              <button class="btn btn-outline" data-modal="filterRevenueModal">
                 <i class="fas fa-filter"></i>
                 Filter
               </button>
@@ -103,7 +101,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -124,7 +122,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -145,7 +143,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -166,7 +164,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -187,7 +185,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -208,7 +206,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -325,6 +323,172 @@
     </div>
   </div>
 
+  <!-- Filter Revenue Modal -->
+  <div class="modal-overlay" id="filterRevenueModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Sales</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Customer</label>
+          <select class="form-control form-select">
+            <option value="">All Customers</option>
+            <option>Acme Corp</option>
+            <option>TechStart Inc</option>
+            <option>Global Trade</option>
+            <option>Local Shop</option>
+            <option>Metro Services</option>
+            <option>Smart Co.</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-control form-select">
+            <option value="">All Categories</option>
+            <option>Widgets</option>
+            <option>Consulting</option>
+            <option>Software</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Accountant</label>
+          <select class="form-control form-select">
+            <option value="">All Accountants</option>
+            <option>John Doe</option>
+            <option>Jane Smith</option>
+            <option>Mike Brown</option>
+            <option>Emily Wilson</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control form-select">
+            <option value="">All Statuses</option>
+            <option>Paid</option>
+            <option>Pending</option>
+            <option>Overdue</option>
+            <option>Returned</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Min Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Clear Filters</button>
+        <button class="btn btn-primary">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Revenue Modal -->
+  <div class="modal-overlay" id="editRevenueModal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Sale Transaction</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Accountant</label>
+            <select class="form-control form-select">
+              <option>Select accountant</option>
+              <option selected>John Doe</option>
+              <option>Jane Smith</option>
+              <option>Mike Brown</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" value="2024-12-01">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Customer</label>
+          <select class="form-control form-select">
+            <option>Select customer</option>
+            <option selected>Acme Corp</option>
+            <option>TechStart Inc</option>
+            <option>Global Trade</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product</label>
+            <select class="form-control form-select">
+              <option>Select product</option>
+              <option selected>Premium Widget</option>
+              <option>Consulting Service</option>
+              <option>Software License</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination Country</label>
+            <select class="form-control form-select">
+              <option>Select country</option>
+              <option selected>USA</option>
+              <option>Canada</option>
+              <option>UK</option>
+              <option>Germany</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" value="10">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Price Per Unit</label>
+            <input type="number" class="form-control" value="245.00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Shipping</label>
+            <input type="number" class="form-control" value="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tax</label>
+            <input type="number" class="form-control" value="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Discount</label>
+            <input type="number" class="form-control" value="0.00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes (optional)">Quarterly widget order for Acme Corp</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
   <script src="../js/components/company-modal.js"></script>
@@ -332,6 +496,7 @@
   <script src="../js/components/notification-panel.js"></script>
   <script src="../js/components/user-panel.js"></script>
   <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
 </body>
 </html>
