@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rental Inventory - Argo Books</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Revenue - Argo Books</title>
+  <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -27,13 +27,13 @@
         <div class="nav-section">
           <div class="nav-section-title">Transactions</div>
           <a class="nav-item" data-page="expenses.html"><i class="fas fa-arrow-down"></i><span>Expenses</span></a>
-          <a class="nav-item" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
+          <a class="nav-item active" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
           <a class="nav-item" data-page="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a>
           <a class="nav-item" data-page="payments.html"><i class="fas fa-credit-card"></i><span>Payments</span></a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Rentals</div>
-          <a class="nav-item active" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
+          <a class="nav-item" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
           <a class="nav-item" data-page="rental-records.html"><i class="fas fa-clipboard-list"></i><span>Rental Records</span></a>
         </div>
         <div class="nav-section">
@@ -67,12 +67,12 @@
       <header class="header">
         <div class="header-left">
           <button class="menu-toggle btn-icon"><i class="fas fa-bars"></i></button>
-          <h1 class="page-title">Rental Inventory</h1>
+          <h1 class="page-title">Revenue</h1>
         </div>
         <div class="header-right">
           <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search inventory...">
+            <input type="text" placeholder="Search sales...">
           </div>
           <button class="header-icon" id="notification-icon"><i class="fas fa-bell"></i></button>
           <button class="header-icon" id="help-icon"><i class="fas fa-question-circle"></i></button>
@@ -90,47 +90,51 @@
         <!-- Stats -->
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-icon blue"><i class="fas fa-boxes"></i></div>
+            <div class="stat-icon green"><i class="fas fa-dollar-sign"></i></div>
             <div class="stat-content">
-              <div class="stat-value">156</div>
-              <div class="stat-label">Total Items</div>
+              <div class="stat-value">$124,563</div>
+              <div class="stat-label">Total This Month</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>12.5% from last month</span>
+              </div>
             </div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+            <div class="stat-icon blue"><i class="fas fa-file-invoice-dollar"></i></div>
             <div class="stat-content">
-              <div class="stat-value">98</div>
-              <div class="stat-label">Available</div>
+              <div class="stat-value">248</div>
+              <div class="stat-label">Sales</div>
             </div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon purple"><i class="fas fa-handshake"></i></div>
+            <div class="stat-icon purple"><i class="fas fa-users"></i></div>
             <div class="stat-content">
-              <div class="stat-value">45</div>
-              <div class="stat-label">Rented Out</div>
+              <div class="stat-value">189</div>
+              <div class="stat-label">Unique Customers</div>
             </div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon yellow"><i class="fas fa-tools"></i></div>
+            <div class="stat-icon yellow"><i class="fas fa-undo"></i></div>
             <div class="stat-content">
-              <div class="stat-value">13</div>
-              <div class="stat-label">In Maintenance</div>
+              <div class="stat-value">12</div>
+              <div class="stat-label">Returns</div>
             </div>
           </div>
         </div>
 
-        <!-- Inventory Table -->
+        <!-- Revenue Table -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Rental Items</h3>
+            <h3 class="card-title">Sales Transactions</h3>
             <div class="d-flex gap-2">
               <button class="btn btn-outline">
                 <i class="fas fa-filter"></i>
                 Filter
               </button>
-              <button class="btn btn-primary" data-modal="addRentalItemModal">
+              <button class="btn btn-primary" data-modal="addRevenueModal">
                 <i class="fas fa-plus"></i>
-                Add Item
+                Record Sale
               </button>
             </div>
           </div>
@@ -139,136 +143,141 @@
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>Item</th>
-                    <th>Supplier</th>
+                    <th>ID</th>
+                    <th>Accountant</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Total</th>
                     <th>Status</th>
-                    <th>Total Qty</th>
-                    <th>Available</th>
-                    <th>Rented</th>
-                    <th>Daily Rate</th>
-                    <th>Weekly Rate</th>
-                    <th>Deposit</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
+                    <td><span class="fw-600">#REV-001</span></td>
+                    <td>John Doe</td>
                     <td>
-                      <div class="fw-600">Power Drill Set</div>
-                      <div class="text-muted fs-sm">#RNT-ITM-001</div>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">AC</div>
+                        <span>Acme Corp</span>
+                      </div>
                     </td>
-                    <td>Tools Unlimited</td>
-                    <td><span class="badge badge-success">Available</span></td>
-                    <td>10</td>
-                    <td>7</td>
-                    <td>3</td>
-                    <td>$45.00</td>
-                    <td>$250.00</td>
-                    <td>$150.00</td>
+                    <td>Premium Widget</td>
+                    <td>Widgets</td>
+                    <td>Dec 1, 2024</td>
+                    <td class="fw-600 text-success">$2,450.00</td>
+                    <td><span class="badge badge-success">Paid</span></td>
                     <td>
                       <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-handshake"></i></button>
                       </div>
                     </td>
                   </tr>
                   <tr>
+                    <td><span class="fw-600">#REV-002</span></td>
+                    <td>Jane Smith</td>
                     <td>
-                      <div class="fw-600">Pressure Washer</div>
-                      <div class="text-muted fs-sm">#RNT-ITM-002</div>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">TS</div>
+                        <span>TechStart Inc</span>
+                      </div>
                     </td>
-                    <td>CleanTech Pro</td>
-                    <td><span class="badge badge-success">Available</span></td>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>$75.00</td>
-                    <td>$400.00</td>
-                    <td>$200.00</td>
+                    <td>Consulting Service</td>
+                    <td>Consulting</td>
+                    <td>Dec 1, 2024</td>
+                    <td class="fw-600">$1,890.00</td>
+                    <td><span class="badge badge-warning">Pending</span></td>
                     <td>
                       <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-handshake"></i></button>
                       </div>
                     </td>
                   </tr>
                   <tr>
+                    <td><span class="fw-600">#REV-003</span></td>
+                    <td>Mike Brown</td>
                     <td>
-                      <div class="fw-600">Camera Equipment</div>
-                      <div class="text-muted fs-sm">#RNT-ITM-003</div>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">GT</div>
+                        <span>Global Trade</span>
+                      </div>
                     </td>
-                    <td>Photo Supplies Inc.</td>
-                    <td><span class="badge badge-success">Available</span></td>
-                    <td>8</td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>$150.00</td>
-                    <td>$800.00</td>
-                    <td>$500.00</td>
+                    <td>Multiple items (8)</td>
+                    <td>Various</td>
+                    <td>Nov 30, 2024</td>
+                    <td class="fw-600 text-success">$5,200.00</td>
+                    <td><span class="badge badge-success">Paid</span></td>
                     <td>
                       <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-handshake"></i></button>
                       </div>
                     </td>
                   </tr>
                   <tr>
+                    <td><span class="fw-600">#REV-004</span></td>
+                    <td>Emily Wilson</td>
                     <td>
-                      <div class="fw-600">Scaffolding Set</div>
-                      <div class="text-muted fs-sm">#RNT-ITM-004</div>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">LS</div>
+                        <span>Local Shop</span>
+                      </div>
                     </td>
-                    <td>Build Right</td>
-                    <td><span class="badge badge-warning">In Maintenance</span></td>
-                    <td>4</td>
-                    <td>0</td>
-                    <td>2</td>
-                    <td>$120.00</td>
-                    <td>$650.00</td>
-                    <td>$350.00</td>
+                    <td>Software License</td>
+                    <td>Software</td>
+                    <td>Nov 29, 2024</td>
+                    <td class="fw-600">$890.00</td>
+                    <td><span class="badge badge-danger">Overdue</span></td>
                     <td>
                       <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline" disabled><i class="fas fa-handshake"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="background: #ffe6e6;">
+                    <td><span class="fw-600">#REV-005</span></td>
+                    <td>Robert Lee</td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">MS</div>
+                        <span>Metro Services</span>
+                      </div>
+                    </td>
+                    <td>Widget Pro</td>
+                    <td>Widgets</td>
+                    <td>Nov 28, 2024</td>
+                    <td class="fw-600 text-danger" style="text-decoration: line-through;">$3,100.00</td>
+                    <td><span class="badge badge-danger">Returned</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
                   <tr>
+                    <td><span class="fw-600">#REV-006</span></td>
+                    <td>Alice Chen</td>
                     <td>
-                      <div class="fw-600">Generator 5000W</div>
-                      <div class="text-muted fs-sm">#RNT-ITM-005</div>
-                    </td>
-                    <td>Power Systems</td>
-                    <td><span class="badge badge-danger">All Rented</span></td>
-                    <td>3</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>$95.00</td>
-                    <td>$500.00</td>
-                    <td>$300.00</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline" disabled><i class="fas fa-handshake"></i></button>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">SC</div>
+                        <span>Smart Co.</span>
                       </div>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="fw-600">Projector HD</div>
-                      <div class="text-muted fs-sm">#RNT-ITM-006</div>
-                    </td>
-                    <td>AV Equipment Co.</td>
-                    <td><span class="badge badge-success">Available</span></td>
-                    <td>6</td>
-                    <td>4</td>
-                    <td>2</td>
-                    <td>$85.00</td>
-                    <td>$450.00</td>
-                    <td>$250.00</td>
+                    <td>Annual Support</td>
+                    <td>Consulting</td>
+                    <td>Nov 27, 2024</td>
+                    <td class="fw-600 text-success">$12,000.00</td>
+                    <td><span class="badge badge-success">Paid</span></td>
                     <td>
                       <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-handshake"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -278,14 +287,14 @@
           </div>
           <div class="card-footer">
             <div class="d-flex justify-between align-center">
-              <span class="text-muted">Showing 1-6 of 156 items</span>
+              <span class="text-muted">Showing 1-6 of 248 sales</span>
               <div class="pagination">
                 <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
                 <button class="pagination-btn active">1</button>
                 <button class="pagination-btn">2</button>
                 <button class="pagination-btn">3</button>
                 <button class="pagination-btn">...</button>
-                <button class="pagination-btn">26</button>
+                <button class="pagination-btn">42</button>
                 <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
               </div>
             </div>
@@ -295,68 +304,101 @@
     </main>
   </div>
 
-  <!-- Add Rental Item Modal -->
-  <div class="modal-overlay" id="addRentalItemModal">
-    <div class="modal" style="max-width: 600px;">
+  <!-- Add Revenue Modal -->
+  <div class="modal-overlay" id="addRevenueModal">
+    <div class="modal" style="max-width: 700px;">
       <div class="modal-header">
-        <h3 class="modal-title">Add Rental Item</h3>
+        <h3 class="modal-title">Record New Sale</h3>
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label">Product Name</label>
-          <input type="text" class="form-control" placeholder="Enter product name">
-        </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Supplier</label>
+            <label class="form-label">Accountant</label>
             <select class="form-control form-select">
-              <option>Select supplier</option>
-              <option>Tools Unlimited</option>
-              <option>CleanTech Pro</option>
-              <option>Photo Supplies Inc.</option>
+              <option>Select accountant</option>
+              <option>John Doe</option>
+              <option>Jane Smith</option>
+              <option>Mike Brown</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Total Quantity</label>
-            <input type="number" class="form-control" placeholder="0">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Customer</label>
+          <select class="form-control form-select">
+            <option>Select customer</option>
+            <option>Acme Corp</option>
+            <option>TechStart Inc</option>
+            <option>Global Trade</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product</label>
+            <select class="form-control form-select">
+              <option>Select product</option>
+              <option>Premium Widget</option>
+              <option>Consulting Service</option>
+              <option>Software License</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination Country</label>
+            <select class="form-control form-select">
+              <option>Select country</option>
+              <option>USA</option>
+              <option>Canada</option>
+              <option>UK</option>
+              <option>Germany</option>
+            </select>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Daily Rate</label>
-            <input type="number" class="form-control" placeholder="0.00">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" placeholder="1" value="1">
           </div>
           <div class="form-group">
-            <label class="form-label">Weekly Rate</label>
-            <input type="number" class="form-control" placeholder="0.00">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Monthly Rate</label>
+            <label class="form-label">Price Per Unit</label>
             <input type="number" class="form-control" placeholder="0.00">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Security Deposit</label>
-          <input type="number" class="form-control" placeholder="0.00">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Shipping</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tax</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Discount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Notes</label>
-          <textarea class="form-control" placeholder="Item notes, maintenance info, etc."></textarea>
+          <textarea class="form-control" placeholder="Additional notes (optional)"></textarea>
         </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
-        <button class="btn btn-primary">Add Item</button>
+        <button class="btn btn-outline">Add Another Item</button>
+        <button class="btn btn-primary">Save Sale</button>
       </div>
     </div>
   </div>
 
-  <script src="js/components/company-modal.js"></script>
-  <script src="js/components/help-panel.js"></script>
-  <script src="js/components/notification-panel.js"></script>
-  <script src="js/components/user-panel.js"></script>
-  <script src="js/components/account-modals.js"></script>
-  <script src="js/navigation.js"></script>
+  <script src="../js/components/company-modal.js"></script>
+  <script src="../js/components/help-panel.js"></script>
+  <script src="../js/components/notification-panel.js"></script>
+  <script src="../js/components/user-panel.js"></script>
+  <script src="../js/components/account-modals.js"></script>
+  <script src="../js/navigation.js"></script>
 </body>
 </html>
