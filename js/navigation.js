@@ -46,24 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Company modal handling
-  const sidebarHeader = document.querySelector('.sidebar-header.clickable');
-  const companyModal = document.getElementById('company-modal');
-
-  if (sidebarHeader && companyModal) {
-    sidebarHeader.addEventListener('click', function() {
-      companyModal.classList.add('active');
-    });
-  }
-
-  // Company item selection
-  const companyItems = document.querySelectorAll('.company-item');
-  companyItems.forEach(item => {
-    item.addEventListener('click', function() {
-      companyItems.forEach(ci => ci.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
+  // Company modal handling is now in js/components/company-modal.js
 
   // Analytics tab switching
   const analyticsTabs = document.querySelectorAll('.analytics-tab');
