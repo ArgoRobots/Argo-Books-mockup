@@ -158,12 +158,48 @@
           <!-- Left Card: Charts & Templates -->
           <div class="card">
             <div class="card-tabs">
-              <div class="card-tab active" data-card-tab="custom-charts">Custom</div>
-              <div class="card-tab" data-card-tab="templates">Templates</div>
+              <div class="card-tab active" data-card-tab="templates">Templates</div>
+              <div class="card-tab" data-card-tab="custom-charts">Custom</div>
             </div>
             <div class="report-card-body">
+              <!-- Templates Tab -->
+              <div class="card-tab-content active" id="templates">
+                <div class="template-grid">
+                  <div class="template-item selected">
+                    <i class="fas fa-file-invoice-dollar" style="color: var(--primary-color);"></i>
+                    <div class="name">Monthly Summary</div>
+                    <div class="desc">Revenue & expenses overview</div>
+                  </div>
+                  <div class="template-item">
+                    <i class="fas fa-chart-pie" style="color: var(--success-color);"></i>
+                    <div class="name">Financial Report</div>
+                    <div class="desc">Detailed financials</div>
+                  </div>
+                  <div class="template-item">
+                    <i class="fas fa-users" style="color: var(--secondary-color);"></i>
+                    <div class="name">Customer Report</div>
+                    <div class="desc">Customer metrics</div>
+                  </div>
+                  <div class="template-item">
+                    <i class="fas fa-box" style="color: var(--warning-color);"></i>
+                    <div class="name">Rental Performance</div>
+                    <div class="desc">Rental analytics</div>
+                  </div>
+                  <div class="template-item">
+                    <i class="fas fa-user-tie" style="color: var(--info-color);"></i>
+                    <div class="name">Employee Report</div>
+                    <div class="desc">Payroll summary</div>
+                  </div>
+                  <div class="template-item">
+                    <i class="fas fa-plus" style="color: var(--gray-400);"></i>
+                    <div class="name">Blank Template</div>
+                    <div class="desc">Start from scratch</div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Custom Charts Tab -->
-              <div class="card-tab-content active" id="custom-charts">
+              <div class="card-tab-content" id="custom-charts">
                 <div class="form-group mb-2">
                   <label class="form-label fs-sm">Chart Type Filter</label>
                   <select class="form-control form-select">
@@ -257,42 +293,6 @@
                   </label>
                 </div>
               </div>
-
-              <!-- Templates Tab -->
-              <div class="card-tab-content" id="templates">
-                <div class="template-grid">
-                  <div class="template-item selected">
-                    <i class="fas fa-file-invoice-dollar" style="color: var(--primary-color);"></i>
-                    <div class="name">Monthly Summary</div>
-                    <div class="desc">Revenue & expenses overview</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-chart-pie" style="color: var(--success-color);"></i>
-                    <div class="name">Financial Report</div>
-                    <div class="desc">Detailed financials</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-users" style="color: var(--secondary-color);"></i>
-                    <div class="name">Customer Report</div>
-                    <div class="desc">Customer metrics</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-box" style="color: var(--warning-color);"></i>
-                    <div class="name">Rental Performance</div>
-                    <div class="desc">Rental analytics</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-user-tie" style="color: var(--info-color);"></i>
-                    <div class="name">Employee Report</div>
-                    <div class="desc">Payroll summary</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-plus" style="color: var(--gray-400);"></i>
-                    <div class="name">Blank Template</div>
-                    <div class="desc">Start from scratch</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -338,8 +338,16 @@
                   <span class="date-option-label">This Quarter</span>
                 </label>
                 <label class="date-option">
+                  <input type="radio" name="dateRange" value="last-quarter">
+                  <span class="date-option-label">Last Quarter</span>
+                </label>
+                <label class="date-option">
                   <input type="radio" name="dateRange" value="this-year">
                   <span class="date-option-label">This Year</span>
+                </label>
+                <label class="date-option">
+                  <input type="radio" name="dateRange" value="all-time">
+                  <span class="date-option-label">All Time</span>
                 </label>
                 <label class="date-option" id="customDateOption" style="grid-column: span 2;">
                   <input type="radio" name="dateRange" value="custom">
