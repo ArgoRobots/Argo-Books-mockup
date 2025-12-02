@@ -76,13 +76,17 @@
       font-size: 10px;
       color: var(--gray-500);
     }
+    .date-range-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
     .date-option {
       display: flex;
       align-items: center;
       padding: 8px 12px;
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
-      margin-bottom: 8px;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -304,7 +308,7 @@
               </div>
 
               <label class="form-label fs-sm">Date Range</label>
-              <div id="dateRangeOptions">
+              <div id="dateRangeOptions" class="date-range-grid">
                 <label class="date-option">
                   <input type="radio" name="dateRange" value="today">
                   <span class="date-option-label">Today</span>
@@ -337,7 +341,7 @@
                   <input type="radio" name="dateRange" value="this-year">
                   <span class="date-option-label">This Year</span>
                 </label>
-                <label class="date-option" id="customDateOption">
+                <label class="date-option" id="customDateOption" style="grid-column: span 2;">
                   <input type="radio" name="dateRange" value="custom">
                   <span class="date-option-label">Custom Range</span>
                 </label>
