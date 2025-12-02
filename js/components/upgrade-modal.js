@@ -20,7 +20,7 @@
               </div>
               <div class="plan-info">
                 <h4 class="plan-name">Premium</h4>
-                <div class="plan-price">$49 <span>one-time</span></div>
+                <div class="plan-price">$20 CAD <span>one-time</span></div>
               </div>
             </div>
             <ul class="plan-features">
@@ -39,7 +39,7 @@
               </div>
               <div class="plan-info">
                 <h4 class="plan-name">AI Subscription</h4>
-                <div class="plan-price">$9.99 <span>/month</span></div>
+                <div class="plan-price">$5 CAD <span>/month</span></div>
               </div>
             </div>
             <ul class="plan-features">
