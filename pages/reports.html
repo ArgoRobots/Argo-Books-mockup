@@ -7,11 +7,32 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    .reports-page {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 140px);
+    }
+    .reports-page .grid {
+      flex: 1;
+      min-height: 0;
+    }
+    .reports-page .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .reports-page .report-card-body {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .reports-page .card-tab-content {
+      height: 100%;
+    }
     .report-card-body {
       padding: 12px;
     }
     .chart-list {
-      max-height: 280px;
+      max-height: none;
       overflow-y: auto;
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
@@ -45,8 +66,6 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      max-height: 280px;
-      overflow-y: auto;
     }
     .template-item {
       border: 2px solid var(--border-color);
@@ -153,7 +172,7 @@
       <!-- Header injected by js/components/header.js -->
 
 
-      <div class="page-content">
+      <div class="page-content reports-page">
         <div class="grid grid-2">
           <!-- Left Card: Charts & Templates -->
           <div class="card">
@@ -370,7 +389,7 @@
             </div>
           </div>
         </div>
-        <div class="d-flex justify-end mt-3">
+        <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
           <button class="btn btn-primary">
             Next
             <i class="fas fa-arrow-right"></i>
