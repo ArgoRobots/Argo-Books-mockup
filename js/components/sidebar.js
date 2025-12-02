@@ -28,6 +28,10 @@
             <i class="fas fa-chart-line"></i>
             <span>Analytics</span>
           </a>
+          <a class="nav-item" data-page="${pathPrefix}insights.html">
+            <i class="fas fa-lightbulb"></i>
+            <span>Insights</span>
+          </a>
           <a class="nav-item" data-page="${pathPrefix}reports.html">
             <i class="fas fa-file-alt"></i>
             <span>Reports</span>
