@@ -17,11 +17,14 @@
           <h1 class="page-title">${pageTitle}</h1>
         </div>
 
-        <div class="header-right">
+        <div class="header-center">
           <div class="search-box">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search...">
           </div>
+        </div>
+
+        <div class="header-right">
           <button class="header-icon" id="upgrade-icon" title="Upgrades">
             <svg width="20" height="20" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="12" fill="#3b82f6"/>
@@ -30,7 +33,7 @@
           </button>
           <button class="header-icon" id="notification-icon">
             <i class="fas fa-bell"></i>
-            <span class="badge"></span>
+            <span class="badge">3</span>
           </button>
           <button class="header-icon" id="help-icon">
             <i class="fas fa-question-circle"></i>
