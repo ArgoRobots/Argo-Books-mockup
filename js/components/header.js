@@ -23,8 +23,9 @@
             <input type="text" placeholder="Search...">
           </div>
           <button class="header-icon" id="upgrade-icon" title="Upgrades">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="12" fill="#3b82f6"/>
+              <path d="M12 16V8M8 12l4-4 4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </button>
           <button class="header-icon" id="notification-icon">

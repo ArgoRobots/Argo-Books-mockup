@@ -32,7 +32,6 @@
             <button class="btn btn-outline btn-block">Select Premium</button>
           </div>
           <div class="upgrade-plan featured">
-            <div class="plan-badge">Most Popular</div>
             <div class="plan-header">
               <div class="plan-icon ai">
                 <i class="fas fa-robot"></i>
@@ -53,7 +52,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-outline" id="enter-key-btn">
+        <button class="btn btn-primary" id="enter-key-btn">
           <i class="fas fa-key"></i>
           Enter a Key
         </button>
