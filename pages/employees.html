@@ -62,7 +62,7 @@
             <div class="card-header">
               <h3 class="card-title">All Employees</h3>
               <div class="d-flex gap-2">
-                <button class="btn btn-outline">
+                <button class="btn btn-outline" data-modal="filterEmployeesModal">
                   <i class="fas fa-filter"></i>
                   Filter
                 </button>
@@ -106,7 +106,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -129,7 +129,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -152,7 +152,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -175,7 +175,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -198,7 +198,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -221,7 +221,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editEmployeeModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -403,6 +403,66 @@
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-primary">Add Employee</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Employees Modal -->
+  <div class="modal-overlay" id="filterEmployeesModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Employees</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <select class="form-control form-select">
+            <option value="">All Departments</option>
+            <option>Finance</option>
+            <option>Operations</option>
+            <option>Sales</option>
+            <option>IT</option>
+            <option>HR</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control form-select">
+            <option value="">All Statuses</option>
+            <option>Active</option>
+            <option>On Leave</option>
+            <option>Terminated</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Hire Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hire Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Min Salary</label>
+            <input type="number" class="form-control" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Salary</label>
+            <input type="number" class="form-control" placeholder="0">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Search</label>
+          <input type="text" class="form-control" placeholder="Name, email, or position">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Clear Filters</button>
+        <button class="btn btn-primary">Apply Filters</button>
       </div>
     </div>
   </div>

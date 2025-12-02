@@ -59,7 +59,7 @@
           <div class="card-header">
             <h3 class="card-title">Sales Transactions</h3>
             <div class="d-flex gap-2">
-              <button class="btn btn-outline">
+              <button class="btn btn-outline" data-modal="filterRevenueModal">
                 <i class="fas fa-filter"></i>
                 Filter
               </button>
@@ -103,7 +103,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -124,7 +124,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -145,7 +145,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -166,7 +166,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -187,7 +187,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -208,7 +208,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" data-modal="editRevenueModal"><i class="fas fa-edit"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -321,6 +321,83 @@
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-outline">Add Another Item</button>
         <button class="btn btn-primary">Save Sale</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Revenue Modal -->
+  <div class="modal-overlay" id="filterRevenueModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Sales</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Customer</label>
+          <select class="form-control form-select">
+            <option value="">All Customers</option>
+            <option>Acme Corp</option>
+            <option>TechStart Inc</option>
+            <option>Global Trade</option>
+            <option>Local Shop</option>
+            <option>Metro Services</option>
+            <option>Smart Co.</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-control form-select">
+            <option value="">All Categories</option>
+            <option>Widgets</option>
+            <option>Consulting</option>
+            <option>Software</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Accountant</label>
+          <select class="form-control form-select">
+            <option value="">All Accountants</option>
+            <option>John Doe</option>
+            <option>Jane Smith</option>
+            <option>Mike Brown</option>
+            <option>Emily Wilson</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control form-select">
+            <option value="">All Statuses</option>
+            <option>Paid</option>
+            <option>Pending</option>
+            <option>Overdue</option>
+            <option>Returned</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Min Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Clear Filters</button>
+        <button class="btn btn-primary">Apply Filters</button>
       </div>
     </div>
   </div>
