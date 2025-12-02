@@ -29,9 +29,9 @@
               <li><i class="fas fa-check"></i> Priority Support</li>
               <li><i class="fas fa-check"></i> Lifetime Updates</li>
             </ul>
-            <button class="btn btn-outline btn-block">Select Premium</button>
+            <button class="btn btn-primary btn-block">Select Premium</button>
           </div>
-          <div class="upgrade-plan featured">
+          <div class="upgrade-plan">
             <div class="plan-header">
               <div class="plan-icon ai">
                 <i class="fas fa-robot"></i>
@@ -104,11 +104,6 @@
 
     .upgrade-plan:hover {
       border-color: var(--primary-color);
-    }
-
-    .upgrade-plan.featured {
-      border-color: var(--primary-color);
-      background: var(--primary-light);
     }
 
     .plan-badge {
