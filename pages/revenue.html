@@ -9,58 +9,8 @@
 </head>
 <body>
   <div class="app-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header clickable">
-        <div class="sidebar-logo">AB</div>
-        <span class="sidebar-brand">Argo Books</span>
-        <i class="fas fa-chevron-down company-chevron"></i>
-      </div>
+    <!-- Sidebar injected by js/components/sidebar.js -->
 
-      <nav class="sidebar-nav">
-        <div class="nav-section">
-          <div class="nav-section-title">Main</div>
-          <a class="nav-item" data-page="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
-          <a class="nav-item" data-page="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
-          <a class="nav-item" data-page="reports.html"><i class="fas fa-file-alt"></i><span>Reports</span></a>
-        </div>
-        <div class="nav-section">
-          <div class="nav-section-title">Transactions</div>
-          <a class="nav-item" data-page="expenses.html"><i class="fas fa-arrow-down"></i><span>Expenses</span></a>
-          <a class="nav-item active" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
-          <a class="nav-item" data-page="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a>
-          <a class="nav-item" data-page="payments.html"><i class="fas fa-credit-card"></i><span>Payments</span></a>
-        </div>
-        <div class="nav-section">
-          <div class="nav-section-title">Rentals</div>
-          <a class="nav-item" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
-          <a class="nav-item" data-page="rental-records.html"><i class="fas fa-clipboard-list"></i><span>Rental Records</span></a>
-        </div>
-        <div class="nav-section">
-          <div class="nav-section-title">Management</div>
-          <a class="nav-item" data-page="customers.html"><i class="fas fa-users"></i><span>Customers</span></a>
-          <a class="nav-item" data-page="products.html"><i class="fas fa-cube"></i><span>Products</span></a>
-          <a class="nav-item" data-page="categories.html"><i class="fas fa-tags"></i><span>Categories</span></a>
-          <a class="nav-item" data-page="suppliers.html"><i class="fas fa-truck"></i><span>Suppliers</span></a>
-        </div>
-        <div class="nav-section">
-          <div class="nav-section-title">Team</div>
-          <a class="nav-item" data-page="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a>
-          <a class="nav-item" data-page="accountants.html"><i class="fas fa-calculator"></i><span>Accountants</span></a>
-        </div>
-        <div class="nav-section">
-          <div class="nav-section-title">Tracking</div>
-          <a class="nav-item" data-page="returns.html"><i class="fas fa-undo"></i><span>Returns</span></a>
-          <a class="nav-item" data-page="lost-products.html"><i class="fas fa-exclamation-triangle"></i><span>Lost/Damaged</span></a>
-          <a class="nav-item" data-page="receipts.html"><i class="fas fa-receipt"></i><span>Receipts</span></a>
-        </div>
-        <div class="nav-section">
-          <div class="nav-section-title">Tools</div>
-          <a class="nav-item" data-page="import-export.html"><i class="fas fa-exchange-alt"></i><span>Import/Export</span></a>
-          <a class="nav-item" data-page="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
-        </div>
-      </nav>
-    </aside>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -394,6 +344,7 @@
     </div>
   </div>
 
+  <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/company-modal.js"></script>
   <script src="../js/components/help-panel.js"></script>
   <script src="../js/components/notification-panel.js"></script>

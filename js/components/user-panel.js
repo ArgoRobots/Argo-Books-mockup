@@ -4,6 +4,10 @@
 (function() {
   'use strict';
 
+  // Detect if we're in the pages folder or root
+  const isInPagesFolder = window.location.pathname.includes('/pages/');
+  const settingsPath = isInPagesFolder ? 'settings.html' : 'pages/settings.html';
+
   const userPanelHTML = `
   <div class="user-panel" id="user-panel">
     <div class="user-panel-header">
@@ -18,7 +22,7 @@
         <i class="fas fa-user"></i>
         <span>My Profile</span>
       </a>
-      <a href="settings.html" class="user-panel-link">
+      <a href="${settingsPath}" class="user-panel-link">
         <i class="fas fa-cog"></i>
         <span>Settings</span>
       </a>
