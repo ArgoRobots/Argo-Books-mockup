@@ -157,7 +157,6 @@
   function initializePanel() {
     const userMenu = document.querySelector('.user-menu');
     const userPanel = document.getElementById('user-panel');
-    const companyModal = document.getElementById('company-modal');
 
     if (!userMenu || !userPanel) return;
 
@@ -176,15 +175,7 @@
       document.getElementById('notification-icon')?.classList.remove('active');
     });
 
-    // Switch account opens company modal
-    const switchAccountBtn = document.getElementById('switch-account-btn');
-    if (switchAccountBtn && companyModal) {
-      switchAccountBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        userPanel.classList.remove('active');
-        companyModal.classList.add('active');
-      });
-    }
+    // Switch account is handled by account-modals.js
 
     // Close panel when clicking outside
     document.addEventListener('click', function(e) {
