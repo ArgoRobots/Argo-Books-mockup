@@ -12,7 +12,7 @@
     </div>
     <div class="help-panel-body">
       <a href="#" class="help-panel-link">
-        <i class="fas fa-sparkles"></i>
+        <i class="fas fa-gift"></i>
         <span>What's New</span>
       </a>
       <a href="#" class="help-panel-link">
