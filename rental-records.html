@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Records - Argo Books</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">AB</div>
+        <span class="sidebar-brand">Argo Books</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <a class="nav-item" data-page="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+          <a class="nav-item" data-page="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+          <a class="nav-item" data-page="reports.html"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Transactions</div>
+          <a class="nav-item" data-page="expenses.html"><i class="fas fa-arrow-down"></i><span>Expenses</span></a>
+          <a class="nav-item" data-page="revenue.html"><i class="fas fa-arrow-up"></i><span>Revenue</span></a>
+          <a class="nav-item" data-page="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a>
+          <a class="nav-item" data-page="payments.html"><i class="fas fa-credit-card"></i><span>Payments</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Rentals</div>
+          <a class="nav-item" data-page="rentals.html"><i class="fas fa-box"></i><span>Rental Inventory</span></a>
+          <a class="nav-item active" data-page="rental-records.html"><i class="fas fa-clipboard-list"></i><span>Rental Records</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Management</div>
+          <a class="nav-item" data-page="customers.html"><i class="fas fa-users"></i><span>Customers</span></a>
+          <a class="nav-item" data-page="products.html"><i class="fas fa-cube"></i><span>Products</span></a>
+          <a class="nav-item" data-page="categories.html"><i class="fas fa-tags"></i><span>Categories</span></a>
+          <a class="nav-item" data-page="suppliers.html"><i class="fas fa-truck"></i><span>Suppliers</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Team</div>
+          <a class="nav-item" data-page="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a>
+          <a class="nav-item" data-page="accountants.html"><i class="fas fa-calculator"></i><span>Accountants</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tracking</div>
+          <a class="nav-item" data-page="returns.html"><i class="fas fa-undo"></i><span>Returns</span></a>
+          <a class="nav-item" data-page="lost-products.html"><i class="fas fa-exclamation-triangle"></i><span>Lost/Damaged</span></a>
+          <a class="nav-item" data-page="receipts.html"><i class="fas fa-receipt"></i><span>Receipts</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Tools</div>
+          <a class="nav-item" data-page="import-export.html"><i class="fas fa-exchange-alt"></i><span>Import/Export</span></a>
+          <a class="nav-item" data-page="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle btn-icon"><i class="fas fa-bars"></i></button>
+          <h1 class="page-title">Rental Records</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search rentals...">
+          </div>
+          <button class="header-icon"><i class="fas fa-bell"></i><span class="badge"></span></button>
+          <div class="user-menu">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+              <span class="user-name">John Doe</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-clipboard-list"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">342</div>
+              <div class="stat-label">Total Rentals</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-play-circle"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">45</div>
+              <div class="stat-label">Active</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red"><i class="fas fa-exclamation-circle"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">8</div>
+              <div class="stat-label">Overdue</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-dollar-sign"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">$12,450</div>
+              <div class="stat-label">This Month</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <div class="tab active" data-tab="active-rentals">Active Rentals</div>
+          <div class="tab" data-tab="overdue-rentals">Overdue <span class="nav-badge">8</span></div>
+          <div class="tab" data-tab="completed-rentals">Completed</div>
+        </div>
+
+        <!-- Active Rentals Tab -->
+        <div class="tab-content" id="active-rentals">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Active Rental Records</h3>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline">
+                  <i class="fas fa-filter"></i>
+                  Filter
+                </button>
+                <button class="btn btn-primary" data-modal="newRentalModal">
+                  <i class="fas fa-plus"></i>
+                  New Rental
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Rental ID</th>
+                    <th>Customer</th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Start Date</th>
+                    <th>Due Date</th>
+                    <th>Deposit</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fw-600">#RNT-101</span></td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">SJ</div>
+                        <span>Sarah Johnson</span>
+                      </div>
+                    </td>
+                    <td>Power Drill Set</td>
+                    <td>1</td>
+                    <td>$45/day</td>
+                    <td>Nov 25, 2024</td>
+                    <td>Dec 5, 2024</td>
+                    <td>$150.00</td>
+                    <td class="fw-600">$600.00</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-success">Return</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#RNT-103</span></td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">EC</div>
+                        <span>Emily Chen</span>
+                      </div>
+                    </td>
+                    <td>Camera Equipment</td>
+                    <td>1</td>
+                    <td>$150/week</td>
+                    <td>Dec 1, 2024</td>
+                    <td>Dec 8, 2024</td>
+                    <td>$500.00</td>
+                    <td class="fw-600">$650.00</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-success">Return</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#RNT-105</span></td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px;">JM</div>
+                        <span>James Martinez</span>
+                      </div>
+                    </td>
+                    <td>Projector HD</td>
+                    <td>2</td>
+                    <td>$85/day</td>
+                    <td>Nov 30, 2024</td>
+                    <td>Dec 3, 2024</td>
+                    <td>$500.00</td>
+                    <td class="fw-600">$1,010.00</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-success">Return</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overdue Rentals Tab -->
+        <div class="tab-content" id="overdue-rentals" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Overdue Rentals</h3>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Rental ID</th>
+                    <th>Customer</th>
+                    <th>Item</th>
+                    <th>Due Date</th>
+                    <th>Days Overdue</th>
+                    <th>Late Fee</th>
+                    <th>Total Due</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="background: #ffe6e6;">
+                    <td><span class="fw-600">#RNT-102</span></td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px; background: #ffe6e6; color: var(--danger-color);">MW</div>
+                        <span>Mike Wilson</span>
+                      </div>
+                    </td>
+                    <td>Pressure Washer</td>
+                    <td>Dec 1, 2024</td>
+                    <td class="text-danger fw-600">1 day</td>
+                    <td>$37.50</td>
+                    <td class="fw-600 text-danger">$337.50</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">Contact</button>
+                        <button class="btn btn-sm btn-success">Return</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="background: #ffe6e6;">
+                    <td><span class="fw-600">#RNT-098</span></td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar" style="width: 28px; height: 28px; font-size: 11px; background: #ffe6e6; color: var(--danger-color);">RB</div>
+                        <span>Robert Brown</span>
+                      </div>
+                    </td>
+                    <td>Generator 5000W</td>
+                    <td>Nov 28, 2024</td>
+                    <td class="text-danger fw-600">4 days</td>
+                    <td>$190.00</td>
+                    <td class="fw-600 text-danger">$670.00</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">Contact</button>
+                        <button class="btn btn-sm btn-success">Return</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Rentals Tab -->
+        <div class="tab-content" id="completed-rentals" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Completed Rentals</h3>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Rental ID</th>
+                    <th>Customer</th>
+                    <th>Item</th>
+                    <th>Return Date</th>
+                    <th>Total Paid</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#RNT-097</td>
+                    <td>Amanda Davis</td>
+                    <td>Camera Equipment</td>
+                    <td>Nov 25, 2024</td>
+                    <td>$950.00</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td>#RNT-096</td>
+                    <td>Tom Harris</td>
+                    <td>Scaffolding Set</td>
+                    <td>Nov 24, 2024</td>
+                    <td>$1,450.00</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- New Rental Modal -->
+  <div class="modal-overlay" id="newRentalModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Create New Rental</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Customer</label>
+            <select class="form-control form-select">
+              <option>Select customer</option>
+              <option>Sarah Johnson</option>
+              <option>Mike Wilson</option>
+              <option>Emily Chen</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Accountant</label>
+            <select class="form-control form-select">
+              <option>Select accountant</option>
+              <option>John Doe</option>
+              <option>Jane Smith</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Rental Item</label>
+            <select class="form-control form-select">
+              <option>Select item</option>
+              <option>Power Drill Set - $45/day</option>
+              <option>Pressure Washer - $75/day</option>
+              <option>Camera Equipment - $150/day</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" value="1" min="1">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Rate Type</label>
+            <select class="form-control form-select">
+              <option>Daily</option>
+              <option>Weekly</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Security Deposit</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Due Date</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Create Rental</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>
