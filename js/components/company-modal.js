@@ -99,10 +99,13 @@
 
     if (!companyModal || !createCompanyModal) return;
 
-    // Open switch company modal when clicking sidebar header
+    // Open switch company modal when clicking sidebar header (not when collapsed)
     if (sidebarHeader) {
       sidebarHeader.addEventListener('click', function() {
-        companyModal.classList.add('active');
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar && !sidebar.classList.contains('collapsed')) {
+          companyModal.classList.add('active');
+        }
       });
     }
 

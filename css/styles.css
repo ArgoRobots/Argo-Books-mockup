@@ -1165,29 +1165,35 @@ textarea.form-control {
 .sidebar.collapsed .nav-section-title,
 .sidebar.collapsed .nav-item span,
 .sidebar.collapsed .company-chevron {
-  opacity: 0;
-  visibility: hidden;
-  width: 0;
-  overflow: hidden;
+  display: none;
 }
 
 .sidebar.collapsed .sidebar-header {
   justify-content: center;
   padding: 20px 15px;
+  gap: 0;
+}
+
+.sidebar.collapsed .sidebar-logo {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
 }
 
 .sidebar.collapsed .nav-item {
   justify-content: center;
   padding: 12px 0;
+  gap: 0;
 }
 
 .sidebar.collapsed .nav-item i {
+  width: auto;
   margin: 0;
   font-size: 18px;
 }
 
 .sidebar.collapsed .nav-section {
-  padding: 0 10px;
+  padding: 0;
 }
 
 .main-content.sidebar-collapsed {
