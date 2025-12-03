@@ -48,6 +48,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Company modal handling is now in js/components/company-modal.js
 
+  // Custom date range handling for Analytics
+  const dateRangeSelect = document.getElementById('date-range-select');
+  const customDateRange = document.getElementById('custom-date-range');
+
+  if (dateRangeSelect && customDateRange) {
+    dateRangeSelect.addEventListener('change', function() {
+      if (this.value === 'custom') {
+        customDateRange.style.display = 'flex';
+      } else {
+        customDateRange.style.display = 'none';
+      }
+    });
+  }
+
   // Analytics tab switching
   const analyticsTabs = document.querySelectorAll('.analytics-tab');
   const analyticsContents = document.querySelectorAll('.analytics-content');

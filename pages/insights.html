@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights - Argo Books</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar injected by js/components/sidebar.js -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header injected by js/components/header.js -->
+
+      <div class="page-content">
+        <!-- Page Header -->
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <h1 class="page-title">Insights</h1>
+            <p class="text-muted">AI-powered business insights and recommendations</p>
+          </div>
+          <button class="btn btn-primary">
+            <i class="fas fa-sync-alt"></i>
+            Refresh Insights
+          </button>
+        </div>
+
+        <!-- Key Insights Summary -->
+        <div class="stats-grid mb-3">
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-arrow-trend-up"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">+23%</div>
+              <div class="stat-label">Revenue Growth</div>
+              <div class="stat-change positive"><i class="fas fa-arrow-up"></i><span>Above target</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-lightbulb"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">12</div>
+              <div class="stat-label">New Insights</div>
+              <div class="stat-change neutral"><i class="fas fa-circle"></i><span>This week</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon yellow"><i class="fas fa-exclamation-circle"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Anomalies Detected</div>
+              <div class="stat-change negative"><i class="fas fa-arrow-up"></i><span>Needs attention</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-check-circle"></i></div>
+            <div class="stat-content">
+              <div class="stat-value">89%</div>
+              <div class="stat-label">Goals Met</div>
+              <div class="stat-change positive"><i class="fas fa-arrow-up"></i><span>5.2%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights Grid -->
+        <div class="chart-grid chart-grid-2 mb-3">
+          <!-- Revenue Insights -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <span class="chart-card-title"><i class="fas fa-dollar-sign text-green mr-2"></i>Revenue Insights</span>
+              <span class="badge badge-success">Positive</span>
+            </div>
+            <div class="chart-card-body">
+              <div class="insight-item mb-2">
+                <div class="insight-icon green"><i class="fas fa-arrow-up"></i></div>
+                <div class="insight-content">
+                  <strong>Sales peaked on weekends</strong>
+                  <p class="text-muted mb-0">Weekend sales are 34% higher than weekdays. Consider running promotions mid-week.</p>
+                </div>
+              </div>
+              <div class="insight-item mb-2">
+                <div class="insight-icon blue"><i class="fas fa-users"></i></div>
+                <div class="insight-content">
+                  <strong>Top customer segment growing</strong>
+                  <p class="text-muted mb-0">Enterprise customers increased spending by 18% this quarter.</p>
+                </div>
+              </div>
+              <div class="insight-item">
+                <div class="insight-icon purple"><i class="fas fa-star"></i></div>
+                <div class="insight-content">
+                  <strong>Product category performance</strong>
+                  <p class="text-muted mb-0">Premium books category outperforming by 42% vs last quarter.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cost Insights -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <span class="chart-card-title"><i class="fas fa-coins text-yellow mr-2"></i>Cost Insights</span>
+              <span class="badge badge-warning">Review</span>
+            </div>
+            <div class="chart-card-body">
+              <div class="insight-item mb-2">
+                <div class="insight-icon yellow"><i class="fas fa-truck"></i></div>
+                <div class="insight-content">
+                  <strong>Shipping costs increasing</strong>
+                  <p class="text-muted mb-0">Shipping expenses up 12% - consider negotiating with carriers.</p>
+                </div>
+              </div>
+              <div class="insight-item mb-2">
+                <div class="insight-icon green"><i class="fas fa-box"></i></div>
+                <div class="insight-content">
+                  <strong>Inventory optimization opportunity</strong>
+                  <p class="text-muted mb-0">15 products have excess stock. Consider promotional pricing.</p>
+                </div>
+              </div>
+              <div class="insight-item">
+                <div class="insight-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="insight-content">
+                  <strong>Supplier price variance</strong>
+                  <p class="text-muted mb-0">3 suppliers have increased prices above market rate.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anomalies & Recommendations -->
+        <div class="chart-grid chart-grid-2 mb-3">
+          <!-- Anomalies -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <span class="chart-card-title"><i class="fas fa-radar text-red mr-2"></i>Anomalies Detected</span>
+              <span class="badge badge-danger">3 Active</span>
+            </div>
+            <div class="chart-card-body">
+              <div class="anomaly-item mb-2">
+                <div class="anomaly-severity high">HIGH</div>
+                <div class="anomaly-content">
+                  <strong>Unusual refund spike</strong>
+                  <p class="text-muted mb-0">Refunds increased 340% on Nov 28th - investigate potential issue.</p>
+                  <small class="text-muted">Detected 2 days ago</small>
+                </div>
+              </div>
+              <div class="anomaly-item mb-2">
+                <div class="anomaly-severity medium">MED</div>
+                <div class="anomaly-content">
+                  <strong>Payment processing delays</strong>
+                  <p class="text-muted mb-0">Average payment processing time increased from 2s to 8s.</p>
+                  <small class="text-muted">Detected 5 days ago</small>
+                </div>
+              </div>
+              <div class="anomaly-item">
+                <div class="anomaly-severity low">LOW</div>
+                <div class="anomaly-content">
+                  <strong>Inventory discrepancy</strong>
+                  <p class="text-muted mb-0">5 products show count mismatch between system and physical.</p>
+                  <small class="text-muted">Detected 1 week ago</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommendations -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <span class="chart-card-title"><i class="fas fa-magic text-purple mr-2"></i>AI Recommendations</span>
+            </div>
+            <div class="chart-card-body">
+              <div class="recommendation-item mb-2">
+                <div class="recommendation-icon"><i class="fas fa-bullseye"></i></div>
+                <div class="recommendation-content">
+                  <strong>Optimize pricing for Q1</strong>
+                  <p class="text-muted mb-0">Based on demand patterns, increase prices by 5-8% on top sellers.</p>
+                  <div class="recommendation-impact">
+                    <span class="text-green"><i class="fas fa-arrow-up"></i> +$12,400 potential revenue</span>
+                  </div>
+                </div>
+              </div>
+              <div class="recommendation-item mb-2">
+                <div class="recommendation-icon"><i class="fas fa-user-plus"></i></div>
+                <div class="recommendation-content">
+                  <strong>Re-engage dormant customers</strong>
+                  <p class="text-muted mb-0">247 customers haven't purchased in 90+ days. Send win-back campaign.</p>
+                  <div class="recommendation-impact">
+                    <span class="text-green"><i class="fas fa-arrow-up"></i> +$8,200 potential revenue</span>
+                  </div>
+                </div>
+              </div>
+              <div class="recommendation-item">
+                <div class="recommendation-icon"><i class="fas fa-warehouse"></i></div>
+                <div class="recommendation-content">
+                  <strong>Restock popular items</strong>
+                  <p class="text-muted mb-0">8 products will be out of stock within 2 weeks at current rate.</p>
+                  <div class="recommendation-impact">
+                    <span class="text-yellow"><i class="fas fa-exclamation"></i> Prevent $5,600 lost sales</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trends -->
+        <div class="chart-card mb-3">
+          <div class="chart-card-header">
+            <span class="chart-card-title"><i class="fas fa-chart-line text-blue mr-2"></i>Trend Analysis</span>
+            <select class="form-control form-select">
+              <option>Last 30 Days</option>
+              <option>Last 90 Days</option>
+              <option>Last 12 Months</option>
+            </select>
+          </div>
+          <div class="chart-card-body">
+            <div class="chart-placeholder" style="height: 250px;">
+              <i class="fas fa-chart-area"></i>
+              <span>Revenue, Costs, and Profit trends with AI predictions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Predictions -->
+        <div class="chart-grid chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <span class="chart-card-title">Revenue Forecast</span>
+            </div>
+            <div class="chart-card-body">
+              <div class="forecast-value">$142,500</div>
+              <div class="forecast-label">Predicted next month</div>
+              <div class="forecast-confidence">
+                <span class="text-muted">Confidence:</span>
+                <div class="confidence-bar">
+                  <div class="confidence-fill" style="width: 87%;"></div>
+                </div>
+                <span>87%</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <span class="chart-card-title">Customer Growth</span>
+            </div>
+            <div class="chart-card-body">
+              <div class="forecast-value">+156</div>
+              <div class="forecast-label">New customers expected</div>
+              <div class="forecast-confidence">
+                <span class="text-muted">Confidence:</span>
+                <div class="confidence-bar">
+                  <div class="confidence-fill" style="width: 72%;"></div>
+                </div>
+                <span>72%</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <span class="chart-card-title">Profit Margin</span>
+            </div>
+            <div class="chart-card-body">
+              <div class="forecast-value">64.2%</div>
+              <div class="forecast-label">Projected margin</div>
+              <div class="forecast-confidence">
+                <span class="text-muted">Confidence:</span>
+                <div class="confidence-bar">
+                  <div class="confidence-fill" style="width: 91%;"></div>
+                </div>
+                <span>91%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/components/sidebar.js"></script>
+  <script src="../js/components/header.js"></script>
+  <script src="../js/components/company-modal.js"></script>
+  <script src="../js/components/help-panel.js"></script>
+  <script src="../js/components/notification-panel.js"></script>
+  <script src="../js/components/user-panel.js"></script>
+  <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
+  <script src="../js/navigation.js"></script>
+</body>
+</html>

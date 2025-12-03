@@ -1566,6 +1566,139 @@ textarea.form-control {
   opacity: 0.5;
 }
 
+/* Insights Page Styles */
+.insight-item,
+.anomaly-item,
+.recommendation-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+  align-items: flex-start;
+}
+
+.insight-icon,
+.recommendation-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--gray-200);
+  color: var(--text-secondary);
+}
+
+.insight-icon.green { background: rgba(16, 185, 129, 0.1); color: var(--green); }
+.insight-icon.blue { background: rgba(59, 130, 246, 0.1); color: var(--blue); }
+.insight-icon.purple { background: rgba(139, 92, 246, 0.1); color: var(--purple); }
+.insight-icon.yellow { background: rgba(245, 158, 11, 0.1); color: var(--yellow); }
+.insight-icon.red { background: rgba(239, 68, 68, 0.1); color: var(--red); }
+
+.insight-content,
+.anomaly-content,
+.recommendation-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.insight-content strong,
+.anomaly-content strong,
+.recommendation-content strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.insight-content p,
+.anomaly-content p,
+.recommendation-content p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Anomaly Severity Badges */
+.anomaly-severity {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.anomaly-severity.high { background: rgba(239, 68, 68, 0.1); color: var(--red); }
+.anomaly-severity.medium { background: rgba(245, 158, 11, 0.1); color: var(--yellow); }
+.anomaly-severity.low { background: rgba(59, 130, 246, 0.1); color: var(--blue); }
+
+/* Recommendation Impact */
+.recommendation-impact {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.recommendation-icon {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--purple);
+}
+
+/* Forecast Cards */
+.forecast-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.forecast-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.forecast-confidence {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.confidence-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--gray-200);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Badge Variants */
+.badge-success { background: rgba(16, 185, 129, 0.1); color: var(--green); }
+.badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--yellow); }
+.badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--red); }
+
+/* Utility Classes */
+.mr-2 { margin-right: 8px; }
+.text-green { color: var(--green); }
+.text-yellow { color: var(--yellow); }
+.text-red { color: var(--red); }
+.text-blue { color: var(--blue); }
+.text-purple { color: var(--purple); }
+
+.stat-change.neutral {
+  color: var(--text-secondary);
+}
+
 @media (max-width: 1200px) {
   .chart-grid-3 {
     grid-template-columns: repeat(2, 1fr);
