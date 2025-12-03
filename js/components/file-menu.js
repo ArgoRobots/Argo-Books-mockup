@@ -101,7 +101,7 @@
     .file-menu-panel {
       position: fixed;
       top: 60px;
-      left: 70px;
+      left: 320px;
       width: 260px;
       background: var(--white);
       border-radius: 8px;
@@ -110,7 +110,11 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(-10px);
-      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease, left 0.2s ease;
+    }
+
+    .file-menu-panel.sidebar-collapsed {
+      left: 140px;
     }
 
     .file-menu-panel.active {
@@ -216,6 +220,10 @@
         left: 16px;
         right: 16px;
         width: auto;
+      }
+
+      .file-menu-panel.sidebar-collapsed {
+        left: 16px;
       }
 
       .file-submenu {
@@ -331,6 +339,21 @@
         handleMenuAction('file-save-as');
       }
     });
+
+    // Listen for sidebar toggle to adjust panel position
+    window.addEventListener('sidebarToggle', function(e) {
+      if (e.detail.collapsed) {
+        filePanel.classList.add('sidebar-collapsed');
+      } else {
+        filePanel.classList.remove('sidebar-collapsed');
+      }
+    });
+
+    // Check initial sidebar state
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar && sidebar.classList.contains('collapsed')) {
+      filePanel.classList.add('sidebar-collapsed');
+    }
   }
 
   function closeAllPanels() {

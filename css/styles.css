@@ -1156,6 +1156,44 @@ textarea.form-control {
   }
 }
 
+/* Sidebar Collapsed State (Desktop) */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed .sidebar-brand,
+.sidebar.collapsed .nav-section-title,
+.sidebar.collapsed .nav-item span,
+.sidebar.collapsed .company-chevron {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar.collapsed .sidebar-header {
+  justify-content: center;
+  padding: 20px 15px;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.sidebar.collapsed .nav-item i {
+  margin: 0;
+  font-size: 18px;
+}
+
+.sidebar.collapsed .nav-section {
+  padding: 0 10px;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 70px;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;

@@ -170,13 +170,28 @@
       });
     });
 
-    // Mobile sidebar toggle
+    // Sidebar toggle (works on both mobile and desktop)
     const menuToggle = document.querySelector('.menu-toggle');
     const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
 
     if (menuToggle && sidebar) {
-      menuToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('open');
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+
+        if (window.innerWidth <= 768) {
+          // Mobile: slide in/out
+          sidebar.classList.toggle('open');
+        } else {
+          // Desktop: collapse/expand
+          sidebar.classList.toggle('collapsed');
+          mainContent?.classList.toggle('sidebar-collapsed');
+
+          // Dispatch custom event for other components to listen
+          window.dispatchEvent(new CustomEvent('sidebarToggle', {
+            detail: { collapsed: sidebar.classList.contains('collapsed') }
+          }));
+        }
       });
 
       // Close sidebar when clicking outside on mobile
