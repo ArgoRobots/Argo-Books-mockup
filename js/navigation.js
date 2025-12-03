@@ -27,24 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Mobile sidebar toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const sidebar = document.querySelector('.sidebar');
-
-  if (menuToggle) {
-    menuToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('open');
-    });
-  }
-
-  // Close sidebar when clicking outside on mobile
-  document.addEventListener('click', function(e) {
-    if (window.innerWidth <= 768) {
-      if (!sidebar.contains(e.target) && !menuToggle?.contains(e.target)) {
-        sidebar.classList.remove('open');
-      }
-    }
-  });
+  // Sidebar toggle is now handled by js/components/sidebar.js
 
   // Company modal handling is now in js/components/company-modal.js
 
