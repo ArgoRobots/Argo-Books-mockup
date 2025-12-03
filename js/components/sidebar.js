@@ -170,24 +170,36 @@
       });
     });
 
-    // Mobile sidebar toggle
-    const menuToggle = document.querySelector('.menu-toggle');
+    // Sidebar toggle setup - use event delegation since header loads after sidebar
     const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
 
-    if (menuToggle && sidebar) {
-      menuToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('open');
-      });
+    document.addEventListener('click', function(e) {
+      const menuToggle = e.target.closest('.menu-toggle');
 
-      // Close sidebar when clicking outside on mobile
-      document.addEventListener('click', function(e) {
+      if (menuToggle && sidebar) {
+        e.stopPropagation();
+
         if (window.innerWidth <= 768) {
-          if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-            sidebar.classList.remove('open');
-          }
+          // Mobile: slide in/out
+          sidebar.classList.toggle('open');
+        } else {
+          // Desktop: collapse/expand
+          sidebar.classList.toggle('collapsed');
+          mainContent?.classList.toggle('sidebar-collapsed');
+
+          // Dispatch custom event for other components to listen
+          window.dispatchEvent(new CustomEvent('sidebarToggle', {
+            detail: { collapsed: sidebar.classList.contains('collapsed') }
+          }));
         }
-      });
-    }
+      } else if (window.innerWidth <= 768 && sidebar) {
+        // Close sidebar when clicking outside on mobile
+        if (!sidebar.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
+      }
+    });
   }
 
   // Initialize when DOM is ready
