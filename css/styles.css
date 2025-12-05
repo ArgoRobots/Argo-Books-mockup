@@ -1099,6 +1099,46 @@ textarea.form-control {
 .fs-lg { font-size: 16px; }
 .fs-xl { font-size: 20px; }
 
+/* View Toggle Separator */
+.view-toggle-group {
+  margin-left: 8px;
+  border-left: 1px solid var(--border-color);
+  padding-left: 8px;
+}
+
+/* Receipt Card Styles */
+.receipt-card {
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.receipt-card-preview {
+  background: var(--gray-100);
+  padding: 40px;
+  text-align: center;
+  border-radius: var(--radius) var(--radius) 0 0;
+  position: relative;
+}
+
+.receipt-card-preview i {
+  font-size: 48px;
+  color: var(--gray-400);
+}
+
+.receipt-card-preview i.fa-file-pdf {
+  color: var(--danger-color);
+}
+
+.receipt-card-preview .ai-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.receipt-card-body {
+  padding: 12px;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .grid-4 {
