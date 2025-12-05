@@ -6,7 +6,6 @@
 
   // Get page title from the document title (before " - Argo Books")
   const fullTitle = document.title;
-  const pageTitle = fullTitle.includes(' - ') ? fullTitle.split(' - ')[0] : fullTitle;
 
   const headerHTML = `
       <header class="header">
@@ -14,18 +13,15 @@
           <button class="menu-toggle btn-icon">
             <i class="fas fa-bars"></i>
           </button>
-          <div class="header-actions">
-            <button class="header-action-btn" id="undo-btn" title="Undo">
-              <i class="fas fa-undo"></i>
-            </button>
-            <button class="header-action-btn" id="redo-btn" title="Redo">
-              <i class="fas fa-redo"></i>
-            </button>
-            <button class="header-action-btn" id="save-btn" title="Save">
-              <i class="fas fa-save"></i>
-            </button>
-          </div>
-          <h1 class="page-title">${pageTitle}</h1>
+          <button class="header-action-btn" id="undo-btn" title="Undo">
+            <i class="fas fa-undo"></i>
+          </button>
+          <button class="header-action-btn" id="redo-btn" title="Redo">
+            <i class="fas fa-redo"></i>
+          </button>
+          <button class="header-action-btn" id="save-btn" title="Save">
+            <i class="fas fa-save"></i>
+          </button>
         </div>
 
         <div class="header-center">
@@ -64,15 +60,6 @@
   <style id="header-component-styles">
     .header-icon i {
       font-size: 18px;
-    }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-left: 8px;
-      padding-right: 12px;
-      border-right: 1px solid var(--border-color);
-      margin-right: 12px;
     }
     .header-action-btn {
       display: flex;

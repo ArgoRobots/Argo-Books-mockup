@@ -238,14 +238,7 @@ img {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 20px;
   flex-shrink: 0;
-}
-
-.page-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text-primary);
 }
 
 .header-center {
@@ -1509,7 +1502,6 @@ textarea.form-control {
   gap: 0;
   border-bottom: 2px solid var(--border-color);
   margin-bottom: 24px;
-  overflow-x: auto;
 }
 
 .analytics-tab {
