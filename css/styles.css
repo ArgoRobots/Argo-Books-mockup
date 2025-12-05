@@ -1101,9 +1101,7 @@ textarea.form-control {
 
 /* View Toggle Separator */
 .view-toggle-group {
-  margin-left: 8px;
   border-left: 1px solid var(--border-color);
-  padding-left: 8px;
 }
 
 /* Receipt Card Styles */
