@@ -14,6 +14,17 @@
           <button class="menu-toggle btn-icon">
             <i class="fas fa-bars"></i>
           </button>
+          <div class="header-actions">
+            <button class="header-action-btn" id="undo-btn" title="Undo">
+              <i class="fas fa-undo"></i>
+            </button>
+            <button class="header-action-btn" id="redo-btn" title="Redo">
+              <i class="fas fa-redo"></i>
+            </button>
+            <button class="header-action-btn" id="save-btn" title="Save">
+              <i class="fas fa-save"></i>
+            </button>
+          </div>
           <h1 class="page-title">${pageTitle}</h1>
         </div>
 
@@ -53,6 +64,38 @@
   <style id="header-component-styles">
     .header-icon i {
       font-size: 18px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 8px;
+      padding-right: 12px;
+      border-right: 1px solid var(--border-color);
+      margin-right: 12px;
+    }
+    .header-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .header-action-btn:hover {
+      background: var(--hover-color);
+      color: var(--text-primary);
+    }
+    .header-action-btn:active {
+      background: var(--border-color);
+    }
+    .header-action-btn i {
+      font-size: 14px;
     }
   </style>
   `;
