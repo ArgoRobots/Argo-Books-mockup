@@ -1129,7 +1129,7 @@ textarea.form-control {
   color: var(--danger-color);
 }
 
-.receipt-card-preview .ai-badge {
+.receipt-card-preview .badge {
   position: absolute;
   top: 10px;
   right: 10px;
