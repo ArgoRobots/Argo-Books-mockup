@@ -19,6 +19,7 @@
         <!-- Tabs -->
         <div class="tabs">
           <div class="tab active" data-tab="general-settings">General</div>
+          <div class="tab" data-tab="features-settings">Features</div>
           <div class="tab" data-tab="appearance-settings">Appearance</div>
           <div class="tab" data-tab="security-settings">Security</div>
           <div class="tab" data-tab="ai-settings">AI Features</div>
@@ -69,6 +70,68 @@
                     <button class="btn btn-outline">Browse</button>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features Settings Tab -->
+        <div class="tab-content" id="features-settings" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Feature Modules</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-muted mb-3">Enable or disable feature modules based on your business needs. Disabled features will be hidden from the sidebar and throughout the application.</p>
+              <div class="d-flex justify-between align-center p-3 mb-2" style="background: var(--gray-100); border-radius: var(--radius);">
+                <div>
+                  <div class="fw-600">Invoices</div>
+                  <div class="text-muted fs-sm">Create and manage customer invoices</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="d-flex justify-between align-center p-3 mb-2" style="background: var(--gray-100); border-radius: var(--radius);">
+                <div>
+                  <div class="fw-600">Payments</div>
+                  <div class="text-muted fs-sm">Track and process customer payments</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="d-flex justify-between align-center p-3 mb-2" style="background: var(--gray-100); border-radius: var(--radius);">
+                <div>
+                  <div class="fw-600">Rentals</div>
+                  <div class="text-muted fs-sm">Manage equipment and item rentals</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="d-flex justify-between align-center p-3 mb-2" style="background: var(--gray-100); border-radius: var(--radius);">
+                <div>
+                  <div class="fw-600">Employees</div>
+                  <div class="text-muted fs-sm">Manage employee records and information</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="d-flex justify-between align-center p-3" style="background: var(--gray-100); border-radius: var(--radius);">
+                <div>
+                  <div class="fw-600">Departments</div>
+                  <div class="text-muted fs-sm">Organize employees into departments</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
               </div>
             </div>
           </div>

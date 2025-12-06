@@ -238,14 +238,7 @@ img {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 20px;
   flex-shrink: 0;
-}
-
-.page-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text-primary);
 }
 
 .header-center {
@@ -1089,6 +1082,7 @@ textarea.form-control {
 .d-flex { display: flex; }
 .align-center { align-items: center; }
 .justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
 .gap-1 { gap: 8px; }
 .gap-2 { gap: 16px; }
 .gap-3 { gap: 24px; }
@@ -1104,6 +1098,44 @@ textarea.form-control {
 .fs-md { font-size: 14px; }
 .fs-lg { font-size: 16px; }
 .fs-xl { font-size: 20px; }
+
+/* View Toggle Separator */
+.view-toggle-group {
+  border-left: 1px solid var(--border-color);
+}
+
+/* Receipt Card Styles */
+.receipt-card {
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.receipt-card-preview {
+  background: var(--gray-100);
+  padding: 40px;
+  text-align: center;
+  border-radius: var(--radius) var(--radius) 0 0;
+  position: relative;
+}
+
+.receipt-card-preview i {
+  font-size: 48px;
+  color: var(--gray-400);
+}
+
+.receipt-card-preview i.fa-file-pdf {
+  color: var(--danger-color);
+}
+
+.receipt-card-preview .badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.receipt-card-body {
+  padding: 12px;
+}
 
 /* Responsive */
 @media (max-width: 1200px) {
@@ -1509,7 +1541,6 @@ textarea.form-control {
   gap: 0;
   border-bottom: 2px solid var(--border-color);
   margin-bottom: 24px;
-  overflow-x: auto;
 }
 
 .analytics-tab {

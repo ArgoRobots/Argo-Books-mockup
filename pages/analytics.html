@@ -27,6 +27,7 @@
               <option value="last-quarter">Last Quarter</option>
               <option value="this-year">This Year</option>
               <option value="last-year">Last Year</option>
+              <option value="all-time">All Time</option>
               <option value="custom">Custom Range</option>
             </select>
             <div class="date-range-custom" id="custom-date-range" style="display: none;">
@@ -43,7 +44,7 @@
 
         <!-- Analytics Tabs -->
         <div class="analytics-tabs">
-          <div class="analytics-tab active" data-analytics-tab="main-charts">Main Charts</div>
+          <div class="analytics-tab active" data-analytics-tab="dashboard">Dashboard</div>
           <div class="analytics-tab" data-analytics-tab="geographic">Geographic</div>
           <div class="analytics-tab" data-analytics-tab="operational">Operational</div>
           <div class="analytics-tab" data-analytics-tab="performance">Performance</div>
@@ -52,8 +53,8 @@
           <div class="analytics-tab" data-analytics-tab="losses">Losses</div>
         </div>
 
-        <!-- Main Charts Tab -->
-        <div class="analytics-content" id="main-charts">
+        <!-- Dashboard Tab -->
+        <div class="analytics-content" id="dashboard">
           <!-- Summary Stats -->
           <div class="stats-grid mb-3">
             <div class="stat-card">
@@ -712,6 +713,7 @@
 
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
+  <script src="../js/components/stats-date-range.js"></script>
   <script src="../js/components/file-menu.js"></script>
   <script src="../js/components/company-modal.js"></script>
   <script src="../js/components/help-panel.js"></script>

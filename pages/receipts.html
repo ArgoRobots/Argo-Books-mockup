@@ -48,46 +48,26 @@
           </div>
         </div>
 
-        <!-- Filter Bar -->
-        <div class="card mb-3">
-          <div class="card-body">
-            <div class="d-flex gap-2 align-center" style="flex-wrap: wrap;">
-              <div class="form-group mb-0" style="min-width: 150px;">
-                <select class="form-control form-select">
-                  <option>All Types</option>
-                  <option>Expense Receipts</option>
-                  <option>Revenue Receipts</option>
-                </select>
-              </div>
-              <div class="form-group mb-0" style="min-width: 150px;">
-                <input type="date" class="form-control" placeholder="From Date">
-              </div>
-              <div class="form-group mb-0" style="min-width: 150px;">
-                <input type="date" class="form-control" placeholder="To Date">
-              </div>
-              <button class="btn btn-primary">
-                <i class="fas fa-filter"></i>
-                Apply Filter
-              </button>
-              <div style="margin-left: auto;" class="d-flex gap-2">
-                <button class="btn btn-outline">
-                  <i class="fas fa-camera"></i>
-                  AI Scan Receipt
-                </button>
-                <button class="btn btn-outline">
-                  <i class="fas fa-download"></i>
-                  Export Selected
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Receipts Grid -->
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Receipt Archive</h3>
             <div class="d-flex gap-2">
+              <button class="btn btn-outline" data-modal="filterReceiptsModal">
+                <i class="fas fa-filter"></i>
+                Filter
+              </button>
+              <button class="btn btn-outline">
+                <i class="fas fa-camera"></i>
+                AI Scan Receipt
+              </button>
+              <button class="btn btn-outline">
+                <i class="fas fa-download"></i>
+                Export Selected
+              </button>
+              
+              <div class="view-toggle-group"></div>
+
               <button class="btn btn-outline btn-sm">
                 <i class="fas fa-th"></i>
               </button>
@@ -98,11 +78,11 @@
           </div>
           <div class="card-body">
             <div class="grid grid-4">
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
-                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-image"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -117,11 +97,11 @@
                 </div>
               </div>
 
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
-                  <i class="fas fa-file-pdf" style="font-size: 48px; color: var(--danger-color);"></i>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-pdf"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -136,11 +116,11 @@
                 </div>
               </div>
 
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
-                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-image"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -155,12 +135,11 @@
                 </div>
               </div>
 
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0; position: relative;">
-                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
-                  <span class="badge badge-info" style="position: absolute; top: 10px; right: 10px;"><i class="fas fa-robot"></i> AI</span>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-image"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -175,11 +154,11 @@
                 </div>
               </div>
 
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
-                  <i class="fas fa-file-pdf" style="font-size: 48px; color: var(--danger-color);"></i>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-pdf"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -194,11 +173,11 @@
                 </div>
               </div>
 
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
-                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-image"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -213,12 +192,11 @@
                 </div>
               </div>
 
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0; position: relative;">
-                  <i class="fas fa-file-image" style="font-size: 48px; color: var(--gray-400);"></i>
-                  <span class="badge badge-info" style="position: absolute; top: 10px; right: 10px;"><i class="fas fa-robot"></i> AI</span>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-image"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -233,11 +211,11 @@
                 </div>
               </div>
 
-              <div class="card" style="box-shadow: var(--shadow-sm); cursor: pointer;">
-                <div style="background: var(--gray-100); padding: 40px; text-align: center; border-radius: var(--radius) var(--radius) 0 0;">
-                  <i class="fas fa-file-pdf" style="font-size: 48px; color: var(--danger-color);"></i>
+              <div class="card receipt-card">
+                <div class="receipt-card-preview">
+                  <i class="fas fa-file-pdf"></i>
                 </div>
-                <div class="card-body" style="padding: 12px;">
+                <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
                     <input type="checkbox" class="form-check-input">
                     <div>
@@ -272,8 +250,69 @@
     </main>
   </div>
 
+  <!-- Filter Receipts Modal -->
+  <div class="modal-overlay" id="filterReceiptsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Receipts</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Receipt Type</label>
+          <select class="form-control form-select">
+            <option value="">All Types</option>
+            <option value="expense">Expense Receipts</option>
+            <option value="revenue">Revenue Receipts</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date From</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date To</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Min Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Source</label>
+          <select class="form-control form-select">
+            <option value="">All Sources</option>
+            <option value="manual">Manual Upload</option>
+            <option value="ai">AI Scanned</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">File Type</label>
+          <select class="form-control form-select">
+            <option value="">All File Types</option>
+            <option value="image">Image (JPG, PNG)</option>
+            <option value="pdf">PDF</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Clear Filters</button>
+        <button class="btn btn-primary">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
+  <script src="../js/components/stats-date-range.js"></script>
   <script src="../js/components/file-menu.js"></script>
   <script src="../js/components/company-modal.js"></script>
   <script src="../js/components/help-panel.js"></script>

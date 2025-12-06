@@ -52,48 +52,25 @@
           </div>
         </div>
 
-        <!-- Payment Providers -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <h3 class="card-title">Connected Payment Providers</h3>
-            <button class="btn btn-outline">
-              <i class="fas fa-plus"></i>
-              Add Provider
-            </button>
-          </div>
-          <div class="card-body">
-            <div class="grid grid-3">
-              <div class="p-3 d-flex align-center gap-3" style="border: 1px solid var(--border-color); border-radius: var(--radius);">
-                <div style="width: 48px; height: 48px; background: #635bff; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                  S
-                </div>
-                <div style="flex: 1;">
-                  <div class="fw-600">Stripe</div>
-                  <div class="text-muted fs-sm">Connected</div>
-                </div>
-                <span class="badge badge-success">Active</span>
-              </div>
-              <div class="p-3 d-flex align-center gap-3" style="border: 1px solid var(--border-color); border-radius: var(--radius);">
-                <div style="width: 48px; height: 48px; background: #003087; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                  P
-                </div>
-                <div style="flex: 1;">
-                  <div class="fw-600">PayPal</div>
-                  <div class="text-muted fs-sm">Connected</div>
-                </div>
-                <span class="badge badge-success">Active</span>
-              </div>
-              <div class="p-3 d-flex align-center gap-3" style="border: 1px solid var(--border-color); border-radius: var(--radius); opacity: 0.6;">
-                <div style="width: 48px; height: 48px; background: #000; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                  Sq
-                </div>
-                <div style="flex: 1;">
-                  <div class="fw-600">Square</div>
-                  <div class="text-muted fs-sm">Not connected</div>
-                </div>
-                <button class="btn btn-sm btn-outline">Connect</button>
-              </div>
+        <!-- Payment Portal Info -->
+        <div class="d-flex align-center justify-between p-3 mb-3" style="background: var(--gray-100); border-radius: var(--radius); border: 1px solid var(--border-color);">
+          <div class="d-flex align-center gap-3">
+            <i class="fas fa-globe" style="color: var(--primary-color);"></i>
+            <div>
+              <span class="fw-600">Payment Portal</span>
+              <span class="text-muted fs-sm" style="margin-left: 8px;">Synced 2 min ago</span>
+              <div class="text-muted fs-sm">When customers receive invoices, they can pay on your online payment portal. Payments sync automatically to this page.</div>
             </div>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm btn-outline">
+              <i class="fas fa-sync-alt"></i>
+              Sync
+            </button>
+            <button class="btn btn-sm btn-primary">
+              <i class="fas fa-external-link-alt"></i>
+              Open Portal
+            </button>
           </div>
         </div>
 
@@ -159,26 +136,6 @@
                     </span>
                   </td>
                   <td class="fw-600 text-success">$5,200.00</td>
-                  <td><span class="badge badge-success">Completed</span></td>
-                  <td>
-                    <div class="d-flex gap-1">
-                      <button class="btn btn-icon btn-outline"><i class="fas fa-eye"></i></button>
-                      <button class="btn btn-icon btn-outline"><i class="fas fa-receipt"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><span class="fw-600">#PAY-003</span></td>
-                  <td>#INV-2024-005</td>
-                  <td>Metro Services</td>
-                  <td>Nov 28, 2024</td>
-                  <td>
-                    <span class="d-flex align-center gap-1">
-                      <i class="fas fa-university" style="color: var(--gray-600);"></i>
-                      Bank Transfer
-                    </span>
-                  </td>
-                  <td class="fw-600 text-success">$3,100.00</td>
                   <td><span class="badge badge-success">Completed</span></td>
                   <td>
                     <div class="d-flex gap-1">
@@ -297,9 +254,7 @@
         <div class="form-group">
           <label class="form-label">Payment Method</label>
           <select class="form-control form-select">
-            <option>Stripe</option>
-            <option>PayPal</option>
-            <option>Bank Transfer</option>
+            <option>Online Portal</option>
             <option>Cash</option>
             <option>Check</option>
           </select>
@@ -355,9 +310,7 @@
             <label class="form-label">Payment Method</label>
             <select class="form-control form-select">
               <option value="">All Methods</option>
-              <option>Stripe</option>
-              <option>PayPal</option>
-              <option>Bank Transfer</option>
+              <option>Online Portal</option>
               <option>Cash</option>
               <option>Check</option>
             </select>
@@ -393,6 +346,7 @@
 
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
+  <script src="../js/components/stats-date-range.js"></script>
   <script src="../js/components/file-menu.js"></script>
   <script src="../js/components/company-modal.js"></script>
   <script src="../js/components/help-panel.js"></script>

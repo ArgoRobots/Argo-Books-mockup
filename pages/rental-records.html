@@ -105,7 +105,7 @@
                     <td class="fw-600">$600.00</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-sm btn-success">Return</button>
+                        <button class="btn btn-sm btn-success" data-modal="returnItemModal">Return</button>
                       </div>
                     </td>
                   </tr>
@@ -126,7 +126,7 @@
                     <td class="fw-600">$650.00</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-sm btn-success">Return</button>
+                        <button class="btn btn-sm btn-success" data-modal="returnItemModal">Return</button>
                       </div>
                     </td>
                   </tr>
@@ -147,7 +147,7 @@
                     <td class="fw-600">$1,010.00</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-sm btn-success">Return</button>
+                        <button class="btn btn-sm btn-success" data-modal="returnItemModal">Return</button>
                       </div>
                     </td>
                   </tr>
@@ -194,7 +194,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-sm btn-outline">Contact</button>
-                        <button class="btn btn-sm btn-success">Return</button>
+                        <button class="btn btn-sm btn-success" data-modal="returnItemModal">Return</button>
                       </div>
                     </td>
                   </tr>
@@ -214,7 +214,7 @@
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-sm btn-outline">Contact</button>
-                        <button class="btn btn-sm btn-success">Return</button>
+                        <button class="btn btn-sm btn-success" data-modal="returnItemModal">Return</button>
                       </div>
                     </td>
                   </tr>
@@ -411,8 +411,119 @@
     </div>
   </div>
 
+  <!-- Return Item Modal -->
+  <div class="modal-overlay" id="returnItemModal">
+    <div class="modal" style="max-width: 550px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Process Return</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <!-- Rental Summary -->
+        <div style="background: var(--hover-color); padding: 16px; border-radius: var(--radius-md); margin-bottom: 20px;">
+          <div class="d-flex justify-between align-center mb-2">
+            <span class="fw-600" style="font-size: 16px;">#RNT-101</span>
+            <span class="badge badge-success">Active</span>
+          </div>
+          <div class="d-flex gap-3" style="font-size: 14px;">
+            <div>
+              <span class="text-muted">Customer:</span>
+              <span class="fw-600">Sarah Johnson</span>
+            </div>
+            <div>
+              <span class="text-muted">Item:</span>
+              <span class="fw-600">Power Drill Set</span>
+            </div>
+          </div>
+          <div class="d-flex gap-3 mt-2" style="font-size: 14px;">
+            <div>
+              <span class="text-muted">Start:</span>
+              <span>Nov 25, 2024</span>
+            </div>
+            <div>
+              <span class="text-muted">Due:</span>
+              <span>Dec 5, 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Return Date</label>
+            <input type="date" class="form-control" value="2024-12-03">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Quantity Returned</label>
+            <input type="number" class="form-control" value="1" min="1" max="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Item Condition</label>
+          <select class="form-control form-select">
+            <option value="excellent">Excellent - No issues</option>
+            <option value="good">Good - Minor wear</option>
+            <option value="fair">Fair - Noticeable wear</option>
+            <option value="damaged">Damaged - Requires repair</option>
+            <option value="lost">Lost/Missing</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Damage/Issue Description</label>
+          <textarea class="form-control" placeholder="Describe any damage or issues with the returned item..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Additional Charges</label>
+            <input type="number" class="form-control" placeholder="0.00" value="0">
+            <small class="text-muted">For damages, late fees, etc.</small>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deposit Deduction</label>
+            <input type="number" class="form-control" placeholder="0.00" value="0">
+            <small class="text-muted">Amount to deduct from deposit</small>
+          </div>
+        </div>
+
+        <!-- Financial Summary -->
+        <div style="background: var(--hover-color); padding: 12px; border-radius: var(--radius-md); margin-top: 16px;">
+          <div class="d-flex justify-between mb-1">
+            <span class="text-muted">Rental Total:</span>
+            <span class="fw-600">$450.00</span>
+          </div>
+          <div class="d-flex justify-between mb-1">
+            <span class="text-muted">Security Deposit:</span>
+            <span class="fw-600">$150.00</span>
+          </div>
+          <div class="d-flex justify-between mb-1">
+            <span class="text-muted">Additional Charges:</span>
+            <span class="fw-600">$0.00</span>
+          </div>
+          <div class="d-flex justify-between mb-1">
+            <span class="text-muted">Deposit Deduction:</span>
+            <span class="fw-600">$0.00</span>
+          </div>
+          <div class="d-flex justify-between" style="border-top: 1px solid var(--border-color); margin-top: 8px; padding-top: 8px;">
+            <span class="fw-600">Deposit to Refund:</span>
+            <span class="fw-600" style="color: var(--success-color);">$150.00</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-success">
+          <i class="fas fa-check"></i>
+          Complete Return
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/components/sidebar.js"></script>
   <script src="../js/components/header.js"></script>
+  <script src="../js/components/stats-date-range.js"></script>
   <script src="../js/components/file-menu.js"></script>
   <script src="../js/components/company-modal.js"></script>
   <script src="../js/components/help-panel.js"></script>
