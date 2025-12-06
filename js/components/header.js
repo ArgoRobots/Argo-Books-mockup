@@ -32,6 +32,18 @@
         </div>
 
         <div class="header-right">
+          <div class="header-date-range">
+            <i class="fas fa-calendar-alt"></i>
+            <select id="global-date-range">
+              <option value="this-month">This Month</option>
+              <option value="last-month">Last Month</option>
+              <option value="this-quarter">This Quarter</option>
+              <option value="last-quarter">Last Quarter</option>
+              <option value="this-year">This Year</option>
+              <option value="last-year">Last Year</option>
+              <option value="all-time">All Time</option>
+            </select>
+          </div>
           <button class="header-icon" id="upgrade-icon" title="Upgrades">
             <svg width="20" height="20" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="12" fill="#3b82f6"/>
@@ -83,6 +95,31 @@
     }
     .header-action-btn i {
       font-size: 14px;
+    }
+    .header-date-range {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: var(--hover-color);
+      border-radius: var(--radius-md);
+      margin-right: 8px;
+    }
+    .header-date-range i {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    .header-date-range select {
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      padding-right: 4px;
+    }
+    .header-date-range select:focus {
+      outline: none;
     }
   </style>
   `;
