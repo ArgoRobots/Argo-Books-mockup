@@ -33,6 +33,7 @@
 
         <div class="header-right">
           <div class="header-date-range">
+            <span class="header-date-range-label">Stats:</span>
             <i class="fas fa-calendar-alt"></i>
             <select id="global-date-range">
               <option value="this-month">This Month</option>
@@ -104,6 +105,11 @@
       background: var(--hover-color);
       border-radius: var(--radius-md);
       margin-right: 8px;
+    }
+    .header-date-range-label {
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
     }
     .header-date-range i {
       color: var(--text-secondary);
