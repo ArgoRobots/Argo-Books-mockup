@@ -56,6 +56,9 @@
     const statsGrid = document.querySelector('.stats-grid');
     if (!statsGrid) return;
 
+    // Skip if page already has a date-range control (e.g., analytics page)
+    if (document.querySelector('.date-range-control')) return;
+
     // Inject styles
     document.head.insertAdjacentHTML('beforeend', dateRangeStyles);
 
