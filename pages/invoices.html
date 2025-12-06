@@ -243,7 +243,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Recurring Invoices</h3>
-              <button class="btn btn-primary">
+              <button class="btn btn-primary" data-modal="setupRecurringModal">
                 <i class="fas fa-plus"></i>
                 Set Up Recurring
               </button>
@@ -365,6 +365,83 @@
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-outline">Save as Draft</button>
         <button class="btn btn-primary">Create & Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Set Up Recurring Invoice Modal -->
+  <div class="modal-overlay" id="setupRecurringModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Set Up Recurring Invoice</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Customer</label>
+          <select class="form-control form-select">
+            <option>Select customer</option>
+            <option>Acme Corp</option>
+            <option>TechStart Inc</option>
+            <option>Global Trade</option>
+            <option>Local Shop</option>
+            <option>Metro Services</option>
+            <option>Smart Co.</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Amount</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Frequency</label>
+            <select class="form-control form-select">
+              <option>Weekly</option>
+              <option selected>Monthly</option>
+              <option>Quarterly</option>
+              <option>Yearly</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">End Date (Optional)</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Invoice Description</label>
+          <input type="text" class="form-control" placeholder="e.g., Monthly retainer, Subscription fee">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Terms</label>
+          <select class="form-control form-select">
+            <option>Due on Receipt</option>
+            <option>Net 15</option>
+            <option selected>Net 30</option>
+            <option>Net 45</option>
+            <option>Net 60</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes to include on the invoice..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="d-flex align-center gap-2">
+            <input type="checkbox" class="form-check-input" checked>
+            <span>Automatically send invoice when generated</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Create Recurring Invoice</button>
       </div>
     </div>
   </div>
