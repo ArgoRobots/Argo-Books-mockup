@@ -7,23 +7,40 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    html, body {
+      overflow: hidden;
+    }
     .reports-page {
       display: flex;
       flex-direction: column;
       height: calc(100vh - 140px);
+      overflow: hidden;
+    }
+    .wizard-step {
+      display: none;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .wizard-step.active {
+      display: flex;
+      flex-direction: column;
     }
     .reports-page .grid {
       flex: 1;
       min-height: 0;
+      overflow: hidden;
     }
     .reports-page .card {
       display: flex;
       flex-direction: column;
       height: 100%;
+      overflow: hidden;
     }
     .reports-page .report-card-body {
       flex: 1;
       overflow-y: auto;
+      min-height: 0;
     }
     .reports-page .card-tab-content {
       height: 100%;
@@ -136,6 +153,7 @@
       display: flex;
       border-bottom: 1px solid var(--border-color);
       padding: 0 12px;
+      flex-shrink: 0;
     }
     .card-tab {
       padding: 10px 16px;
@@ -160,6 +178,936 @@
     .card-tab-content.active {
       display: block;
     }
+
+    /* Step indicator styling */
+    .step-indicator-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .step-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      background: var(--gray-200);
+      color: var(--gray-500);
+      transition: all 0.3s;
+    }
+    .step-dot.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    .step-dot.completed {
+      background: var(--primary-color);
+      color: white;
+    }
+    .step-line {
+      width: 40px;
+      height: 3px;
+      background: var(--gray-200);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .step-line.completed {
+      background: var(--primary-color);
+    }
+
+    /* Navigation buttons */
+    .wizard-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      flex-shrink: 0;
+    }
+    .wizard-nav .nav-left {
+      display: flex;
+      gap: 8px;
+    }
+    .wizard-nav .nav-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Step 2: Layout Designer */
+    .layout-designer {
+      display: flex;
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .element-toolbox {
+      width: 160px;
+      flex-shrink: 0;
+    }
+    .canvas-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .canvas-toolbar {
+      display: flex;
+      gap: 6px;
+      padding: 6px 10px;
+      background: var(--gray-100);
+      border-radius: var(--radius) var(--radius) 0 0;
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+      align-items: center;
+    }
+    .toolbar-group {
+      display: flex;
+      gap: 2px;
+      padding-right: 10px;
+      border-right: 1px solid var(--border-color);
+      align-items: center;
+    }
+    .toolbar-group:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+    .toolbar-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 12px;
+      color: var(--gray-600);
+      position: relative;
+    }
+    .toolbar-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .toolbar-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .toolbar-btn:disabled:hover {
+      border-color: var(--border-color);
+      color: var(--gray-600);
+      background: white;
+    }
+    .toolbar-btn-dropdown {
+      width: 38px;
+      padding-right: 12px;
+    }
+    .toolbar-btn-dropdown::after {
+      content: '';
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid currentColor;
+    }
+    .toolbar-separator {
+      width: 1px;
+      height: 20px;
+      background: var(--border-color);
+      margin: 0 4px;
+    }
+    .design-canvas {
+      flex: 1;
+      background: var(--gray-200);
+      border: 1px solid var(--border-color);
+      border-radius: 0 0 var(--radius) var(--radius);
+      overflow: auto;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .canvas-page {
+      width: 595px;
+      height: 842px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+      flex-shrink: 0;
+      transform-origin: top center;
+    }
+    .canvas-element {
+      position: absolute;
+      border: 2px dashed var(--border-color);
+      background: white;
+      cursor: move;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--gray-500);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+    .canvas-element:hover {
+      border-color: var(--primary-color);
+    }
+    .canvas-element.selected {
+      border-color: var(--primary-color);
+      border-style: solid;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    .canvas-element .element-label {
+      text-align: center;
+      padding: 6px;
+    }
+    .canvas-element .element-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .resize-handle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--primary-color);
+      border: 1px solid white;
+      border-radius: 2px;
+      display: none;
+    }
+    .canvas-element.selected .resize-handle {
+      display: block;
+    }
+    .resize-handle.nw { top: -4px; left: -4px; cursor: nw-resize; }
+    .resize-handle.ne { top: -4px; right: -4px; cursor: ne-resize; }
+    .resize-handle.sw { bottom: -4px; left: -4px; cursor: sw-resize; }
+    .resize-handle.se { bottom: -4px; right: -4px; cursor: se-resize; }
+    .properties-panel {
+      width: 260px;
+      flex-shrink: 0;
+    }
+    .element-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .element-btn:hover {
+      border-color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .element-btn i {
+      width: 20px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .properties-empty {
+      text-align: center;
+      padding: 20px 12px;
+      color: var(--gray-500);
+      font-size: 12px;
+    }
+    .property-group {
+      margin-bottom: 12px;
+    }
+    .property-group-title {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .property-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .property-label {
+      width: 50px;
+      font-size: 11px;
+      color: var(--gray-600);
+      flex-shrink: 0;
+    }
+    .property-input {
+      flex: 1;
+      padding: 4px 6px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 11px;
+    }
+    .property-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .property-select {
+      flex: 1;
+      padding: 4px 6px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 11px;
+      background: white;
+      cursor: pointer;
+    }
+    .property-select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .property-color {
+      width: 28px;
+      height: 22px;
+      padding: 2px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: white;
+    }
+    .property-color::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    .property-color::-webkit-color-swatch {
+      border: none;
+      border-radius: 2px;
+    }
+    .property-color-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .property-color-value {
+      flex: 1;
+      font-size: 10px;
+      color: var(--gray-500);
+      font-family: monospace;
+    }
+    .property-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--gray-700);
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
+    .property-checkbox input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      cursor: pointer;
+      accent-color: var(--primary-color);
+    }
+    .property-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 10px;
+      margin: -8px -12px 10px -12px;
+      padding: 0 8px;
+      background: var(--gray-50);
+    }
+    .property-tab {
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.2s;
+    }
+    .property-tab:hover {
+      color: var(--gray-700);
+    }
+    .property-tab.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+    }
+    .property-tab-content {
+      display: none;
+    }
+    .property-tab-content.active {
+      display: block;
+    }
+    .property-section {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .property-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      background: var(--gray-50);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-600);
+      cursor: pointer;
+    }
+    .property-section-header i {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .property-section.collapsed .property-section-header i {
+      transform: rotate(-90deg);
+    }
+    .property-section-body {
+      padding: 8px;
+    }
+    .property-section.collapsed .property-section-body {
+      display: none;
+    }
+    .property-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .property-grid-2 .property-row {
+      margin-bottom: 0;
+    }
+    .property-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .property-header-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      font-size: 12px;
+    }
+    .property-header-info {
+      flex: 1;
+    }
+    .property-header-type {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+    .property-header-id {
+      font-size: 10px;
+      color: var(--gray-400);
+    }
+    .property-input-small {
+      width: 55px;
+      padding: 4px 6px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 11px;
+      text-align: center;
+    }
+    .property-input-small:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .columns-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    /* Dropdown panels for undo/redo */
+    .dropdown-panel {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 4px;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 200px;
+      max-height: 250px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    .dropdown-panel.open {
+      display: block;
+    }
+    .dropdown-panel-header {
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--gray-50);
+    }
+    .dropdown-item {
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .dropdown-item:hover {
+      background: var(--primary-light);
+    }
+    .dropdown-item i {
+      width: 16px;
+      color: var(--gray-400);
+      font-size: 11px;
+    }
+    .dropdown-item.current {
+      background: var(--gray-100);
+      font-weight: 600;
+    }
+    .dropdown-empty {
+      padding: 16px 12px;
+      text-align: center;
+      color: var(--gray-400);
+      font-size: 12px;
+    }
+
+    /* Step 3: Preview & Export */
+    .preview-export {
+      display: flex;
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .preview-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .preview-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      background: var(--gray-100);
+      border-radius: var(--radius) var(--radius) 0 0;
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+      flex-shrink: 0;
+    }
+    .zoom-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .zoom-btn {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .zoom-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    .zoom-level {
+      font-size: 11px;
+      color: var(--gray-600);
+      min-width: 40px;
+      text-align: center;
+    }
+    .preview-area {
+      flex: 1;
+      background: var(--gray-200);
+      border: 1px solid var(--border-color);
+      border-radius: 0 0 var(--radius) var(--radius);
+      overflow: auto;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .preview-page {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      transform-origin: top center;
+      flex-shrink: 0;
+    }
+    .preview-page img {
+      display: block;
+      max-width: 100%;
+    }
+    .export-panel {
+      width: 260px;
+      flex-shrink: 0;
+    }
+    .export-section {
+      margin-bottom: 16px;
+    }
+    .export-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .format-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .format-option {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .format-option:hover {
+      border-color: var(--primary-color);
+    }
+    .format-option.selected {
+      border-color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .format-option input {
+      margin-right: 8px;
+    }
+    .format-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      margin-right: 8px;
+      font-size: 12px;
+    }
+    .format-details {
+      flex: 1;
+    }
+    .format-name {
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .format-desc {
+      font-size: 10px;
+      color: var(--gray-500);
+    }
+    .quality-slider {
+      margin-top: 10px;
+    }
+    .quality-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .quality-label {
+      font-size: 11px;
+      color: var(--gray-600);
+    }
+    .quality-value {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    .quality-track {
+      width: 100%;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--gray-200);
+      border-radius: 3px;
+      outline: none;
+    }
+    .quality-track::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .export-path {
+      display: flex;
+      gap: 6px;
+    }
+    .export-path input {
+      flex: 1;
+    }
+    .export-options {
+      margin-top: 10px;
+    }
+    .export-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+    .export-option input {
+      margin: 0;
+    }
+    .export-btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .export-btn:hover {
+      background: var(--primary-dark);
+    }
+    .export-btn i {
+      font-size: 14px;
+    }
+
+    /* Report preview content */
+    .preview-report {
+      width: 595px;
+      min-height: 842px;
+      padding: 32px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .preview-report-header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    .preview-report-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .preview-report-date {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+    .preview-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .preview-chart {
+      background: var(--gray-50);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 12px;
+    }
+    .preview-chart-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 10px;
+    }
+    .preview-chart-placeholder {
+      height: 100px;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--gray-100) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-size: 28px;
+    }
+    .preview-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .preview-summary-item {
+      background: var(--gray-50);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 10px;
+      text-align: center;
+    }
+    .preview-summary-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .preview-summary-label {
+      font-size: 10px;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+    .preview-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    .preview-table th {
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .preview-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .preview-table tr:nth-child(even) {
+      background: var(--gray-50);
+    }
+
+    /* Settings Modal */
+    .settings-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .settings-modal-overlay.open {
+      display: flex;
+    }
+    .settings-modal {
+      background: white;
+      border-radius: var(--radius);
+      width: 480px;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .settings-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .settings-modal-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .settings-modal-close {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: var(--radius);
+      color: var(--gray-500);
+      font-size: 16px;
+    }
+    .settings-modal-close:hover {
+      background: var(--gray-100);
+      color: var(--gray-700);
+    }
+    .settings-modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      max-height: calc(90vh - 140px);
+    }
+    .settings-section {
+      margin-bottom: 20px;
+    }
+    .settings-section:last-child {
+      margin-bottom: 0;
+    }
+    .settings-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .settings-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .settings-label {
+      width: 120px;
+      font-size: 13px;
+      color: var(--gray-700);
+    }
+    .settings-input {
+      flex: 1;
+      display: flex;
+      gap: 8px;
+    }
+    .settings-input input,
+    .settings-input select {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 13px;
+    }
+    .settings-input input:focus,
+    .settings-input select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .settings-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-color);
+      background: var(--gray-50);
+    }
   </style>
 </head>
 <body>
@@ -171,233 +1119,736 @@
       <!-- Header injected by js/components/header.js -->
 
       <div class="page-content reports-page">
-        <div class="step-indicator" style="font-size: 18px; margin-bottom: 16px;">
-          <span style="color: var(--primary-color); font-weight: 600;">Step 1 of 3</span> <span style="color: var(--text-primary); font-weight: 500;">&mdash; Select Template & Settings</span>
+        <!-- Step Indicator -->
+        <div class="step-indicator-container">
+          <div class="step-progress">
+            <div class="step-dot active" data-step="1">1</div>
+            <div class="step-line" data-line="1"></div>
+            <div class="step-dot" data-step="2">2</div>
+            <div class="step-line" data-line="2"></div>
+            <div class="step-dot" data-step="3">3</div>
+          </div>
+          <div class="step-indicator">
+            <span id="stepNumber" style="color: var(--primary-color); font-weight: 600;">Step 1 of 3</span>
+            <span id="stepTitle" style="color: var(--text-primary); font-weight: 500;">&mdash; Select Template & Settings</span>
+          </div>
         </div>
-        <div class="grid grid-2">
-          <!-- Left Card: Charts & Templates -->
-          <div class="card">
-            <div class="card-tabs">
-              <div class="card-tab active" data-card-tab="templates">Templates</div>
-              <div class="card-tab" data-card-tab="custom-charts">Custom</div>
-            </div>
-            <div class="report-card-body">
-              <!-- Templates Tab -->
-              <div class="card-tab-content active" id="templates">
-                <div class="template-grid">
-                  <div class="template-item selected">
-                    <i class="fas fa-file-invoice-dollar" style="color: var(--primary-color);"></i>
-                    <div class="name">Monthly Summary</div>
-                    <div class="desc">Revenue & expenses overview</div>
+
+        <!-- Step 1: Template & Settings -->
+        <div class="wizard-step active" id="step1">
+          <div class="grid grid-2" style="flex: 1; min-height: 0;">
+            <!-- Left Card: Charts & Templates -->
+            <div class="card">
+              <div class="card-tabs">
+                <div class="card-tab active" data-card-tab="templates">Templates</div>
+                <div class="card-tab" data-card-tab="custom-charts">Custom</div>
+              </div>
+              <div class="report-card-body">
+                <!-- Templates Tab -->
+                <div class="card-tab-content active" id="templates">
+                  <div class="template-grid">
+                    <div class="template-item selected" data-template="monthly-summary">
+                      <i class="fas fa-file-invoice-dollar" style="color: var(--primary-color);"></i>
+                      <div class="name">Monthly Summary</div>
+                      <div class="desc">Revenue & expenses overview</div>
+                    </div>
+                    <div class="template-item" data-template="financial-report">
+                      <i class="fas fa-chart-pie" style="color: var(--success-color);"></i>
+                      <div class="name">Financial Report</div>
+                      <div class="desc">Detailed financials</div>
+                    </div>
+                    <div class="template-item" data-template="customer-report">
+                      <i class="fas fa-users" style="color: var(--secondary-color);"></i>
+                      <div class="name">Customer Report</div>
+                      <div class="desc">Customer metrics</div>
+                    </div>
+                    <div class="template-item" data-template="rental-performance">
+                      <i class="fas fa-box" style="color: var(--warning-color);"></i>
+                      <div class="name">Rental Performance</div>
+                      <div class="desc">Rental analytics</div>
+                    </div>
+                    <div class="template-item" data-template="employee-report">
+                      <i class="fas fa-user-tie" style="color: var(--info-color);"></i>
+                      <div class="name">Employee Report</div>
+                      <div class="desc">Payroll summary</div>
+                    </div>
+                    <div class="template-item" data-template="blank">
+                      <i class="fas fa-plus" style="color: var(--gray-400);"></i>
+                      <div class="name">Blank Template</div>
+                      <div class="desc">Start from scratch</div>
+                    </div>
                   </div>
-                  <div class="template-item">
-                    <i class="fas fa-chart-pie" style="color: var(--success-color);"></i>
-                    <div class="name">Financial Report</div>
-                    <div class="desc">Detailed financials</div>
+                </div>
+
+                <!-- Custom Charts Tab -->
+                <div class="card-tab-content" id="custom-charts">
+                  <div class="form-group mb-2">
+                    <label class="form-label fs-sm">Chart Type Filter</label>
+                    <select class="form-control form-select" id="chartFilter">
+                      <option value="all">All Charts</option>
+                      <option value="revenue">Revenue Charts</option>
+                      <option value="expense">Expense Charts</option>
+                      <option value="rental">Rental Charts</option>
+                    </select>
                   </div>
-                  <div class="template-item">
-                    <i class="fas fa-users" style="color: var(--secondary-color);"></i>
-                    <div class="name">Customer Report</div>
-                    <div class="desc">Customer metrics</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-box" style="color: var(--warning-color);"></i>
-                    <div class="name">Rental Performance</div>
-                    <div class="desc">Rental analytics</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-user-tie" style="color: var(--info-color);"></i>
-                    <div class="name">Employee Report</div>
-                    <div class="desc">Payroll summary</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-plus" style="color: var(--gray-400);"></i>
-                    <div class="name">Blank Template</div>
-                    <div class="desc">Start from scratch</div>
+                  <label class="form-label fs-sm">Available Charts</label>
+                  <div class="chart-list">
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" checked data-chart="revenue-vs-expenses">
+                      <div class="chart-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                        <i class="fas fa-chart-line"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Revenue vs Expenses</div>
+                        <div class="text-muted" style="font-size: 11px;">Line Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="expense">
+                      <input type="checkbox" class="form-check-input chart-checkbox" checked data-chart="expense-breakdown">
+                      <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                        <i class="fas fa-chart-pie"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Expense Breakdown</div>
+                        <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="revenue-by-category">
+                      <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Revenue by Category</div>
+                        <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="sales-by-region">
+                      <div class="chart-item-icon" style="background: #fff8e6; color: #e6a700;">
+                        <i class="fas fa-globe"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Sales by Region</div>
+                        <div class="text-muted" style="font-size: 11px;">Geo Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" checked data-chart="monthly-trends">
+                      <div class="chart-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
+                        <i class="fas fa-chart-area"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Monthly Trends</div>
+                        <div class="text-muted" style="font-size: 11px;">Area Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="rental">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="rental-performance">
+                      <div class="chart-item-icon" style="background: #e6f0ff; color: var(--info-color);">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Rental Performance</div>
+                        <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="profit-margins">
+                      <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
+                        <i class="fas fa-chart-line"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Profit Margins</div>
+                        <div class="text-muted" style="font-size: 11px;">Line Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="expense">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="top-suppliers">
+                      <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                        <i class="fas fa-chart-pie"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Top Suppliers</div>
+                        <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
+                      </div>
+                    </label>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Custom Charts Tab -->
-              <div class="card-tab-content" id="custom-charts">
-                <div class="form-group mb-2">
-                  <label class="form-label fs-sm">Chart Type Filter</label>
-                  <select class="form-control form-select">
-                    <option>All Charts</option>
-                    <option>Revenue Charts</option>
-                    <option>Expense Charts</option>
-                    <option>Rental Charts</option>
-                  </select>
+            <!-- Right Card: Report Settings -->
+            <div class="card">
+              <div class="card-header" style="padding: 12px 16px;">
+                <h3 class="card-title" style="font-size: 14px;">Report Settings</h3>
+              </div>
+              <div class="report-card-body">
+                <div class="form-group mb-3">
+                  <label class="form-label fs-sm">Report Name</label>
+                  <input type="text" class="form-control" id="reportName" placeholder="Enter report name..." value="Monthly Summary Report">
                 </div>
-                <label class="form-label fs-sm">Available Charts</label>
-                <div class="chart-list">
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input" checked>
-                    <div class="chart-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
-                      <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Revenue vs Expenses</div>
-                      <div class="text-muted" style="font-size: 11px;">Line Chart</div>
-                    </div>
+
+                <label class="form-label fs-sm">Date Range</label>
+                <div id="dateRangeOptions" class="date-range-grid">
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="today">
+                    <span class="date-option-label">Today</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input" checked>
-                    <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
-                      <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Expense Breakdown</div>
-                      <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="yesterday">
+                    <span class="date-option-label">Yesterday</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
-                      <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Revenue by Category</div>
-                      <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="this-week">
+                    <span class="date-option-label">This Week</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #fff8e6; color: #e6a700;">
-                      <i class="fas fa-globe"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Sales by Region</div>
-                      <div class="text-muted" style="font-size: 11px;">Geo Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="last-week">
+                    <span class="date-option-label">Last Week</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input" checked>
-                    <div class="chart-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
-                      <i class="fas fa-chart-area"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Monthly Trends</div>
-                      <div class="text-muted" style="font-size: 11px;">Area Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="this-month">
+                    <span class="date-option-label">This Month</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #e6f0ff; color: var(--info-color);">
-                      <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Rental Performance</div>
-                      <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="last-month">
+                    <span class="date-option-label">Last Month</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
-                      <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Profit Margins</div>
-                      <div class="text-muted" style="font-size: 11px;">Line Chart</div>
-                    </div>
+                  <label class="date-option selected">
+                    <input type="radio" name="dateRange" value="this-quarter" checked>
+                    <span class="date-option-label">This Quarter</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
-                      <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Top Suppliers</div>
-                      <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="last-quarter">
+                    <span class="date-option-label">Last Quarter</span>
                   </label>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="this-year">
+                    <span class="date-option-label">This Year</span>
+                  </label>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="all-time">
+                    <span class="date-option-label">All Time</span>
+                  </label>
+                  <label class="date-option" id="customDateOption" style="grid-column: span 2;">
+                    <input type="radio" name="dateRange" value="custom">
+                    <span class="date-option-label">Custom Range</span>
+                  </label>
+                </div>
+
+                <div class="custom-date-pickers" id="customDatePickers">
+                  <div class="form-row">
+                    <div class="form-group mb-0">
+                      <label class="form-label fs-sm">Start Date</label>
+                      <input type="date" class="form-control" id="startDate">
+                    </div>
+                    <div class="form-group mb-0">
+                      <label class="form-label fs-sm">End Date</label>
+                      <input type="date" class="form-control" id="endDate">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Right Card: Report Settings -->
-          <div class="card">
-            <div class="card-header" style="padding: 12px 16px;">
-              <h3 class="card-title" style="font-size: 14px;">Report Settings</h3>
+        <!-- Step 2: Layout Designer -->
+        <div class="wizard-step" id="step2">
+          <div class="layout-designer">
+            <!-- Element Toolbox -->
+            <div class="element-toolbox">
+              <div class="card" style="height: 100%;">
+                <div class="card-header" style="padding: 10px 12px;">
+                  <h3 class="card-title" style="font-size: 13px;">Elements</h3>
+                </div>
+                <div class="report-card-body">
+                  <button class="element-btn" data-element="chart">
+                    <i class="fas fa-chart-bar" style="color: var(--primary-color);"></i>
+                    <span>Chart</span>
+                  </button>
+                  <button class="element-btn" data-element="label">
+                    <i class="fas fa-font" style="color: var(--secondary-color);"></i>
+                    <span>Label</span>
+                  </button>
+                  <button class="element-btn" data-element="date">
+                    <i class="fas fa-calendar" style="color: var(--info-color);"></i>
+                    <span>Date Range</span>
+                  </button>
+                  <button class="element-btn" data-element="summary">
+                    <i class="fas fa-calculator" style="color: var(--success-color);"></i>
+                    <span>Summary</span>
+                  </button>
+                  <button class="element-btn" data-element="table">
+                    <i class="fas fa-table" style="color: var(--warning-color);"></i>
+                    <span>Table</span>
+                  </button>
+                  <button class="element-btn" data-element="image">
+                    <i class="fas fa-image" style="color: var(--danger-color);"></i>
+                    <span>Image</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="report-card-body">
-              <div class="form-group mb-3">
-                <label class="form-label fs-sm">Report Name</label>
-                <input type="text" class="form-control" placeholder="Enter report name...">
-              </div>
 
-              <label class="form-label fs-sm">Date Range</label>
-              <div id="dateRangeOptions" class="date-range-grid">
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="today">
-                  <span class="date-option-label">Today</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="yesterday">
-                  <span class="date-option-label">Yesterday</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="this-week">
-                  <span class="date-option-label">This Week</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="last-week">
-                  <span class="date-option-label">Last Week</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="this-month">
-                  <span class="date-option-label">This Month</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="last-month">
-                  <span class="date-option-label">Last Month</span>
-                </label>
-                <label class="date-option selected">
-                  <input type="radio" name="dateRange" value="this-quarter" checked>
-                  <span class="date-option-label">This Quarter</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="last-quarter">
-                  <span class="date-option-label">Last Quarter</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="this-year">
-                  <span class="date-option-label">This Year</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="all-time">
-                  <span class="date-option-label">All Time</span>
-                </label>
-                <label class="date-option" id="customDateOption" style="grid-column: span 2;">
-                  <input type="radio" name="dateRange" value="custom">
-                  <span class="date-option-label">Custom Range</span>
-                </label>
-              </div>
-
-              <div class="custom-date-pickers" id="customDatePickers">
-                <div class="form-row">
-                  <div class="form-group mb-0">
-                    <label class="form-label fs-sm">Start Date</label>
-                    <input type="date" class="form-control">
+            <!-- Canvas Area -->
+            <div class="canvas-container">
+              <div class="canvas-toolbar">
+                <!-- Undo/Redo with dropdowns -->
+                <div class="toolbar-group" style="position: relative;">
+                  <button class="toolbar-btn toolbar-btn-dropdown" id="undoBtn" title="Undo (Ctrl+Z)" disabled>
+                    <i class="fas fa-undo"></i>
+                  </button>
+                  <div class="dropdown-panel" id="undoDropdown">
+                    <div class="dropdown-panel-header">Undo History</div>
+                    <div id="undoList"></div>
                   </div>
-                  <div class="form-group mb-0">
-                    <label class="form-label fs-sm">End Date</label>
-                    <input type="date" class="form-control">
+                  <button class="toolbar-btn toolbar-btn-dropdown" id="redoBtn" title="Redo (Ctrl+Y)" disabled>
+                    <i class="fas fa-redo"></i>
+                  </button>
+                  <div class="dropdown-panel" id="redoDropdown">
+                    <div class="dropdown-panel-header">Redo History</div>
+                    <div id="redoList"></div>
+                  </div>
+                </div>
+
+                <!-- Horizontal Alignment -->
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="alignLeftBtn" title="Align Left" disabled>
+                    <i class="fas fa-align-left"></i>
+                  </button>
+                  <button class="toolbar-btn" id="alignCenterHBtn" title="Align Center Horizontally" disabled>
+                    <i class="fas fa-align-center"></i>
+                  </button>
+                  <button class="toolbar-btn" id="alignRightBtn" title="Align Right" disabled>
+                    <i class="fas fa-align-right"></i>
+                  </button>
+                </div>
+
+                <!-- Vertical Alignment -->
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="alignTopBtn" title="Align Top" disabled>
+                    <i class="fas fa-arrow-up"></i>
+                  </button>
+                  <button class="toolbar-btn" id="alignCenterVBtn" title="Align Center Vertically" disabled>
+                    <i class="fas fa-arrows-alt-v"></i>
+                  </button>
+                  <button class="toolbar-btn" id="alignBottomBtn" title="Align Bottom" disabled>
+                    <i class="fas fa-arrow-down"></i>
+                  </button>
+                </div>
+
+                <!-- Distribution -->
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="distributeHBtn" title="Distribute Horizontally" disabled>
+                    <i class="fas fa-arrows-alt-h"></i>
+                  </button>
+                  <button class="toolbar-btn" id="distributeVBtn" title="Distribute Vertically" disabled>
+                    <i class="fas fa-arrows-alt-v"></i>
+                  </button>
+                </div>
+
+                <!-- Same Size -->
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="sameWidthBtn" title="Same Width" disabled>
+                    <i class="fas fa-arrows-alt-h" style="font-size: 10px;"></i>
+                  </button>
+                  <button class="toolbar-btn" id="sameHeightBtn" title="Same Height" disabled>
+                    <i class="fas fa-arrows-alt-v" style="font-size: 10px;"></i>
+                  </button>
+                  <button class="toolbar-btn" id="sameSizeBtn" title="Same Size" disabled>
+                    <i class="fas fa-expand-arrows-alt" style="font-size: 10px;"></i>
+                  </button>
+                </div>
+
+                <!-- Z-Order -->
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="bringFrontBtn" title="Bring to Front" disabled>
+                    <i class="fas fa-layer-group"></i>
+                  </button>
+                  <button class="toolbar-btn" id="sendBackBtn" title="Send to Back" disabled>
+                    <i class="fas fa-layer-group" style="transform: scaleY(-1);"></i>
+                  </button>
+                </div>
+
+                <!-- Delete -->
+                <div class="toolbar-group" style="border-right: none;">
+                  <button class="toolbar-btn" id="deleteBtn" title="Delete (Del)" disabled>
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+
+                <!-- Spacer -->
+                <div style="flex: 1;"></div>
+
+                <!-- Grid & Settings (right aligned) -->
+                <div class="toolbar-group" style="border-right: none; padding-right: 0;">
+                  <button class="toolbar-btn" id="gridToggle" title="Toggle Grid (Ctrl+G)">
+                    <i class="fas fa-th"></i>
+                  </button>
+                  <button class="toolbar-btn" id="settingsBtn" title="Page Settings">
+                    <i class="fas fa-cog"></i>
+                  </button>
+                  <button class="toolbar-btn" id="saveTemplateBtn" title="Save as Template">
+                    <i class="fas fa-save"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="design-canvas" id="designCanvas">
+                <div class="canvas-page" id="canvasPage">
+                  <!-- Elements will be added here dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Properties Panel -->
+            <div class="properties-panel">
+              <div class="card" style="height: 100%;">
+                <div class="card-header" style="padding: 10px 12px;">
+                  <h3 class="card-title" style="font-size: 13px;">Properties</h3>
+                </div>
+                <div class="report-card-body" id="propertiesContent">
+                  <div class="properties-empty">
+                    <i class="fas fa-mouse-pointer" style="font-size: 28px; color: var(--gray-300); margin-bottom: 10px; display: block;"></i>
+                    <p>Select an element to edit its properties</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
-          <button class="btn btn-primary">
-            Next
-            <i class="fas fa-arrow-right"></i>
-          </button>
+
+        <!-- Step 3: Preview & Export -->
+        <div class="wizard-step" id="step3">
+          <div class="preview-export">
+            <!-- Preview Area -->
+            <div class="preview-container">
+              <div class="preview-toolbar">
+                <div class="zoom-controls">
+                  <button class="zoom-btn" id="zoomOutBtn">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span class="zoom-level" id="zoomLevel">100%</span>
+                  <button class="zoom-btn" id="zoomInBtn">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                  <button class="zoom-btn" id="zoomFitBtn" title="Fit to Window">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="preview-area" id="previewArea">
+                <div class="preview-page" id="previewPage">
+                  <div class="preview-report">
+                    <div class="preview-report-header">
+                      <div class="preview-report-title" id="previewTitle">Monthly Summary Report</div>
+                      <div class="preview-report-date" id="previewDate">Q4 2024 (Oct 1 - Dec 31, 2024)</div>
+                    </div>
+
+                    <div class="preview-summary-grid">
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value" style="color: var(--success-color);">$124,500</div>
+                        <div class="preview-summary-label">Total Revenue</div>
+                      </div>
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value" style="color: var(--danger-color);">$67,200</div>
+                        <div class="preview-summary-label">Total Expenses</div>
+                      </div>
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value" style="color: var(--primary-color);">$57,300</div>
+                        <div class="preview-summary-label">Net Profit</div>
+                      </div>
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value">46%</div>
+                        <div class="preview-summary-label">Profit Margin</div>
+                      </div>
+                    </div>
+
+                    <div class="preview-chart-grid">
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Revenue vs Expenses</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-line"></i>
+                        </div>
+                      </div>
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Expense Breakdown</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Monthly Trends</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-area"></i>
+                        </div>
+                      </div>
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Revenue by Category</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-bar"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <table class="preview-table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Description</th>
+                          <th>Category</th>
+                          <th style="text-align: right;">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Dec 15, 2024</td>
+                          <td>Product Sales - Electronics</td>
+                          <td>Revenue</td>
+                          <td style="text-align: right; color: var(--success-color);">+$12,450</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 14, 2024</td>
+                          <td>Office Supplies</td>
+                          <td>Expense</td>
+                          <td style="text-align: right; color: var(--danger-color);">-$890</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 13, 2024</td>
+                          <td>Consulting Services</td>
+                          <td>Revenue</td>
+                          <td style="text-align: right; color: var(--success-color);">+$5,200</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 12, 2024</td>
+                          <td>Marketing Campaign</td>
+                          <td>Expense</td>
+                          <td style="text-align: right; color: var(--danger-color);">-$3,400</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 11, 2024</td>
+                          <td>Product Sales - Software</td>
+                          <td>Revenue</td>
+                          <td style="text-align: right; color: var(--success-color);">+$8,750</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Export Settings -->
+            <div class="export-panel">
+              <div class="card" style="height: 100%;">
+                <div class="card-header" style="padding: 10px 12px;">
+                  <h3 class="card-title" style="font-size: 13px;">Export Settings</h3>
+                </div>
+                <div class="report-card-body">
+                  <div class="export-section">
+                    <div class="export-section-title">Export Format</div>
+                    <div class="format-options">
+                      <label class="format-option selected">
+                        <input type="radio" name="exportFormat" value="pdf" checked>
+                        <div class="format-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                          <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="format-details">
+                          <div class="format-name">PDF Document</div>
+                          <div class="format-desc">Best for printing & sharing</div>
+                        </div>
+                      </label>
+                      <label class="format-option">
+                        <input type="radio" name="exportFormat" value="png">
+                        <div class="format-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                          <i class="fas fa-file-image"></i>
+                        </div>
+                        <div class="format-details">
+                          <div class="format-name">PNG Image</div>
+                          <div class="format-desc">High quality, lossless</div>
+                        </div>
+                      </label>
+                      <label class="format-option">
+                        <input type="radio" name="exportFormat" value="jpg">
+                        <div class="format-icon" style="background: #e6f7e6; color: var(--success-color);">
+                          <i class="fas fa-file-image"></i>
+                        </div>
+                        <div class="format-details">
+                          <div class="format-name">JPEG Image</div>
+                          <div class="format-desc">Smaller file size</div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="quality-slider" id="qualitySlider">
+                      <div class="quality-header">
+                        <span class="quality-label">Quality</span>
+                        <span class="quality-value" id="qualityValue">95%</span>
+                      </div>
+                      <input type="range" class="quality-track" id="qualityTrack" min="50" max="100" value="95">
+                    </div>
+                  </div>
+
+                  <div class="export-section">
+                    <div class="export-section-title">Export Location</div>
+                    <div class="export-path">
+                      <input type="text" class="form-control" id="exportPath" value="Monthly_Summary_Report.pdf" style="font-size: 11px;">
+                      <button class="btn btn-secondary" style="padding: 5px 10px;">
+                        <i class="fas fa-folder-open"></i>
+                      </button>
+                    </div>
+                    <div class="export-options">
+                      <label class="export-option">
+                        <input type="checkbox" id="openAfterExport" checked>
+                        <span>Open after export</span>
+                      </label>
+                      <label class="export-option">
+                        <input type="checkbox" id="includeMetadata">
+                        <span>Include metadata</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <button class="export-btn" id="exportBtn">
+                    <i class="fas fa-download"></i>
+                    Export Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="wizard-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" id="prevBtn" style="display: none;">
+              <i class="fas fa-arrow-left"></i>
+              Previous
+            </button>
+          </div>
+          <div class="nav-right">
+            <button class="btn btn-secondary" id="cancelBtn">
+              Cancel
+            </button>
+            <button class="btn btn-primary" id="nextBtn">
+              Next
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     </main>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="settings-modal-overlay" id="settingsModal">
+    <div class="settings-modal">
+      <div class="settings-modal-header">
+        <h3 class="settings-modal-title">Page Settings</h3>
+        <button class="settings-modal-close" id="settingsModalClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="settings-modal-body">
+        <div class="settings-section">
+          <div class="settings-section-title">Page Size</div>
+          <div class="settings-row">
+            <span class="settings-label">Size</span>
+            <div class="settings-input">
+              <select id="pageSize">
+                <option value="a4" selected>A4 (210 x 297 mm)</option>
+                <option value="letter">Letter (8.5 x 11 in)</option>
+                <option value="legal">Legal (8.5 x 14 in)</option>
+                <option value="a3">A3 (297 x 420 mm)</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label">Orientation</span>
+            <div class="settings-input">
+              <select id="pageOrientation">
+                <option value="portrait" selected>Portrait</option>
+                <option value="landscape">Landscape</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Margins</div>
+          <div class="settings-row">
+            <span class="settings-label">Top</span>
+            <div class="settings-input">
+              <input type="number" id="marginTop" value="20" min="0" max="100">
+              <span style="padding: 8px; color: var(--gray-500);">mm</span>
+            </div>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label">Bottom</span>
+            <div class="settings-input">
+              <input type="number" id="marginBottom" value="20" min="0" max="100">
+              <span style="padding: 8px; color: var(--gray-500);">mm</span>
+            </div>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label">Left</span>
+            <div class="settings-input">
+              <input type="number" id="marginLeft" value="20" min="0" max="100">
+              <span style="padding: 8px; color: var(--gray-500);">mm</span>
+            </div>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label">Right</span>
+            <div class="settings-input">
+              <input type="number" id="marginRight" value="20" min="0" max="100">
+              <span style="padding: 8px; color: var(--gray-500);">mm</span>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Display Options</div>
+          <div class="settings-row">
+            <span class="settings-label">Background</span>
+            <div class="settings-input">
+              <input type="color" id="pageBgColor" value="#ffffff" style="width: 50px; height: 32px; padding: 2px;">
+            </div>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label"></span>
+            <div class="settings-input">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="showHeader" checked>
+                <span style="font-size: 13px;">Show header</span>
+              </label>
+            </div>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label"></span>
+            <div class="settings-input">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="showFooter" checked>
+                <span style="font-size: 13px;">Show footer</span>
+              </label>
+            </div>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label"></span>
+            <div class="settings-input">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="showPageNumbers">
+                <span style="font-size: 13px;">Show page numbers</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-modal-footer">
+        <button class="btn btn-secondary" id="settingsModalCancel">Cancel</button>
+        <button class="btn btn-primary" id="settingsModalApply">Apply</button>
+      </div>
+    </div>
   </div>
 
   <script src="../js/components/sidebar.js"></script>
@@ -411,47 +1862,1632 @@
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
   <script>
-    // Card tabs functionality
-    document.querySelectorAll('.card-tab').forEach(tab => {
-      tab.addEventListener('click', function() {
-        const tabId = this.getAttribute('data-card-tab');
+    // Report Wizard State
+    const reportWizard = {
+      currentStep: 1,
+      totalSteps: 3,
+      config: {
+        template: 'monthly-summary',
+        reportName: 'Monthly Summary Report',
+        dateRange: 'this-quarter',
+        charts: ['revenue-vs-expenses', 'expense-breakdown', 'monthly-trends'],
+        elements: [],
+        exportFormat: 'pdf',
+        exportQuality: 95,
+        pageSize: 'a4',
+        pageOrientation: 'portrait',
+        margins: { top: 20, bottom: 20, left: 20, right: 20 },
+        showHeader: true,
+        showFooter: true,
+        showPageNumbers: false,
+        bgColor: '#ffffff'
+      },
+      canvasElements: [],
+      selectedElements: [],
+      elementIdCounter: 0,
+      undoStack: [],
+      redoStack: [],
+      undoDescriptions: [],
+      redoDescriptions: [],
+      zoom: 100,
+      canvasZoom: 1
+    };
 
-        // Update tab active states
-        this.closest('.card-tabs').querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
+    const stepTitles = {
+      1: 'Select Template & Settings',
+      2: 'Design Layout',
+      3: 'Preview & Export'
+    };
 
-        // Update content visibility
-        this.closest('.card').querySelectorAll('.card-tab-content').forEach(content => {
-          content.classList.remove('active');
-        });
-        document.getElementById(tabId).classList.add('active');
+    // Initialize wizard
+    function initWizard() {
+      updateStepIndicator();
+      initStep1();
+      initStep2();
+      initStep3();
+      setupNavigation();
+      initSettingsModal();
+      initDropdowns();
+    }
+
+    // Dropdown panels
+    function initDropdowns() {
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.toolbar-group')) {
+          document.querySelectorAll('.dropdown-panel').forEach(d => d.classList.remove('open'));
+        }
       });
-    });
 
-    // Date range radio buttons
-    document.querySelectorAll('input[name="dateRange"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        // Update selected styling
-        document.querySelectorAll('.date-option').forEach(opt => opt.classList.remove('selected'));
-        this.closest('.date-option').classList.add('selected');
-
-        // Show/hide custom date pickers
-        const customPickers = document.getElementById('customDatePickers');
-        if (this.value === 'custom') {
-          customPickers.classList.add('visible');
+      // Undo dropdown
+      document.getElementById('undoBtn').addEventListener('click', (e) => {
+        if (e.offsetX > 24) {
+          // Clicked on arrow
+          e.stopPropagation();
+          toggleDropdown('undoDropdown');
         } else {
-          customPickers.classList.remove('visible');
+          // Clicked on icon
+          undo();
+        }
+      });
+
+      // Redo dropdown
+      document.getElementById('redoBtn').addEventListener('click', (e) => {
+        if (e.offsetX > 24) {
+          // Clicked on arrow
+          e.stopPropagation();
+          toggleDropdown('redoDropdown');
+        } else {
+          // Clicked on icon
+          redo();
+        }
+      });
+    }
+
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      const isOpen = dropdown.classList.contains('open');
+      document.querySelectorAll('.dropdown-panel').forEach(d => d.classList.remove('open'));
+      if (!isOpen) {
+        dropdown.classList.add('open');
+        updateDropdownLists();
+      }
+    }
+
+    function updateDropdownLists() {
+      const undoList = document.getElementById('undoList');
+      const redoList = document.getElementById('redoList');
+
+      if (reportWizard.undoDescriptions.length === 0) {
+        undoList.innerHTML = '<div class="dropdown-empty">No actions to undo</div>';
+      } else {
+        undoList.innerHTML = reportWizard.undoDescriptions.slice().reverse().map((desc, i) => `
+          <div class="dropdown-item" data-index="${reportWizard.undoDescriptions.length - 1 - i}" onclick="undoTo(${reportWizard.undoDescriptions.length - 1 - i})">
+            <i class="fas fa-history"></i>
+            <span>${desc}</span>
+          </div>
+        `).join('');
+      }
+
+      if (reportWizard.redoDescriptions.length === 0) {
+        redoList.innerHTML = '<div class="dropdown-empty">No actions to redo</div>';
+      } else {
+        redoList.innerHTML = reportWizard.redoDescriptions.slice().reverse().map((desc, i) => `
+          <div class="dropdown-item" data-index="${i}" onclick="redoTo(${i})">
+            <i class="fas fa-redo"></i>
+            <span>${desc}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    function undoTo(index) {
+      while (reportWizard.undoStack.length > index + 1) {
+        undo();
+      }
+      document.querySelectorAll('.dropdown-panel').forEach(d => d.classList.remove('open'));
+    }
+
+    function redoTo(index) {
+      const count = reportWizard.redoDescriptions.length - index;
+      for (let i = 0; i < count; i++) {
+        redo();
+      }
+      document.querySelectorAll('.dropdown-panel').forEach(d => d.classList.remove('open'));
+    }
+
+    // Settings Modal
+    function initSettingsModal() {
+      document.getElementById('settingsBtn').addEventListener('click', () => {
+        document.getElementById('settingsModal').classList.add('open');
+        loadSettingsToModal();
+      });
+
+      document.getElementById('settingsModalClose').addEventListener('click', closeSettingsModal);
+      document.getElementById('settingsModalCancel').addEventListener('click', closeSettingsModal);
+      document.getElementById('settingsModalApply').addEventListener('click', applySettings);
+
+      document.getElementById('settingsModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('settingsModal')) {
+          closeSettingsModal();
+        }
+      });
+    }
+
+    function loadSettingsToModal() {
+      document.getElementById('pageSize').value = reportWizard.config.pageSize;
+      document.getElementById('pageOrientation').value = reportWizard.config.pageOrientation;
+      document.getElementById('marginTop').value = reportWizard.config.margins.top;
+      document.getElementById('marginBottom').value = reportWizard.config.margins.bottom;
+      document.getElementById('marginLeft').value = reportWizard.config.margins.left;
+      document.getElementById('marginRight').value = reportWizard.config.margins.right;
+      document.getElementById('pageBgColor').value = reportWizard.config.bgColor;
+      document.getElementById('showHeader').checked = reportWizard.config.showHeader;
+      document.getElementById('showFooter').checked = reportWizard.config.showFooter;
+      document.getElementById('showPageNumbers').checked = reportWizard.config.showPageNumbers;
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').classList.remove('open');
+    }
+
+    function applySettings() {
+      reportWizard.config.pageSize = document.getElementById('pageSize').value;
+      reportWizard.config.pageOrientation = document.getElementById('pageOrientation').value;
+      reportWizard.config.margins = {
+        top: parseInt(document.getElementById('marginTop').value),
+        bottom: parseInt(document.getElementById('marginBottom').value),
+        left: parseInt(document.getElementById('marginLeft').value),
+        right: parseInt(document.getElementById('marginRight').value)
+      };
+      reportWizard.config.bgColor = document.getElementById('pageBgColor').value;
+      reportWizard.config.showHeader = document.getElementById('showHeader').checked;
+      reportWizard.config.showFooter = document.getElementById('showFooter').checked;
+      reportWizard.config.showPageNumbers = document.getElementById('showPageNumbers').checked;
+
+      // Apply to canvas
+      const canvas = document.getElementById('canvasPage');
+      canvas.style.backgroundColor = reportWizard.config.bgColor;
+
+      closeSettingsModal();
+    }
+
+    // Save Template
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('saveTemplateBtn')?.addEventListener('click', () => {
+        const name = prompt('Enter template name:', reportWizard.config.reportName + ' Template');
+        if (name) {
+          alert(`Template "${name}" saved successfully!\n\nIn a real application, this would be saved to your templates library.`);
         }
       });
     });
 
-    // Template selection
-    document.querySelectorAll('.template-item').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.template-item').forEach(t => t.classList.remove('selected'));
-        this.classList.add('selected');
+    // Navigation
+    function setupNavigation() {
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        if (reportWizard.currentStep < reportWizard.totalSteps) {
+          goToStep(reportWizard.currentStep + 1);
+        } else {
+          exportReport();
+        }
       });
-    });
+
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        if (reportWizard.currentStep > 1) {
+          goToStep(reportWizard.currentStep - 1);
+        }
+      });
+
+      document.getElementById('cancelBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to cancel? All progress will be lost.')) {
+          window.location.href = 'dashboard.html';
+        }
+      });
+    }
+
+    function goToStep(step) {
+      document.getElementById(`step${reportWizard.currentStep}`).classList.remove('active');
+      reportWizard.currentStep = step;
+      document.getElementById(`step${step}`).classList.add('active');
+
+      updateStepIndicator();
+      updateNavigationButtons();
+
+      if (step === 2) {
+        initCanvasFromConfig();
+        adjustCanvasZoom();
+      } else if (step === 3) {
+        updatePreview();
+      }
+    }
+
+    function adjustCanvasZoom() {
+      const container = document.getElementById('designCanvas');
+      const canvas = document.getElementById('canvasPage');
+      const containerHeight = container.clientHeight - 40;
+      const canvasHeight = 842;
+
+      if (containerHeight < canvasHeight) {
+        reportWizard.canvasZoom = containerHeight / canvasHeight;
+        canvas.style.transform = `scale(${reportWizard.canvasZoom})`;
+      }
+    }
+
+    function updateStepIndicator() {
+      document.querySelectorAll('.step-dot').forEach((dot, index) => {
+        const stepNum = index + 1;
+        dot.classList.remove('active', 'completed');
+        if (stepNum === reportWizard.currentStep) {
+          dot.classList.add('active');
+        } else if (stepNum < reportWizard.currentStep) {
+          dot.classList.add('completed');
+          dot.innerHTML = '<i class="fas fa-check"></i>';
+        } else {
+          dot.textContent = stepNum;
+        }
+      });
+
+      document.querySelectorAll('.step-line').forEach((line, index) => {
+        line.classList.toggle('completed', index + 1 < reportWizard.currentStep);
+      });
+
+      document.getElementById('stepNumber').textContent = `Step ${reportWizard.currentStep} of ${reportWizard.totalSteps}`;
+      document.getElementById('stepTitle').textContent = `— ${stepTitles[reportWizard.currentStep]}`;
+    }
+
+    function updateNavigationButtons() {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      prevBtn.style.display = reportWizard.currentStep > 1 ? 'flex' : 'none';
+
+      if (reportWizard.currentStep === reportWizard.totalSteps) {
+        nextBtn.innerHTML = '<i class="fas fa-download"></i> Export';
+      } else {
+        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+      }
+    }
+
+    // Step 1: Template & Settings
+    function initStep1() {
+      document.querySelectorAll('.card-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          const tabId = this.getAttribute('data-card-tab');
+          this.closest('.card-tabs').querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          this.closest('.card').querySelectorAll('.card-tab-content').forEach(content => content.classList.remove('active'));
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+
+      document.querySelectorAll('input[name="dateRange"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          document.querySelectorAll('.date-option').forEach(opt => opt.classList.remove('selected'));
+          this.closest('.date-option').classList.add('selected');
+          reportWizard.config.dateRange = this.value;
+          document.getElementById('customDatePickers').classList.toggle('visible', this.value === 'custom');
+        });
+      });
+
+      document.querySelectorAll('.template-item').forEach(item => {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.template-item').forEach(t => t.classList.remove('selected'));
+          this.classList.add('selected');
+          reportWizard.config.template = this.dataset.template;
+          updateChartsForTemplate(this.dataset.template);
+        });
+      });
+
+      document.getElementById('chartFilter').addEventListener('change', function() {
+        const filter = this.value;
+        document.querySelectorAll('.chart-item').forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'flex' : 'none';
+        });
+      });
+
+      document.querySelectorAll('.chart-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const chartId = this.dataset.chart;
+          if (this.checked) {
+            if (!reportWizard.config.charts.includes(chartId)) {
+              reportWizard.config.charts.push(chartId);
+            }
+          } else {
+            reportWizard.config.charts = reportWizard.config.charts.filter(c => c !== chartId);
+          }
+        });
+      });
+
+      document.getElementById('reportName').addEventListener('input', function() {
+        reportWizard.config.reportName = this.value;
+      });
+    }
+
+    function updateChartsForTemplate(template) {
+      document.querySelectorAll('.chart-checkbox').forEach(cb => cb.checked = false);
+      const chartMap = {
+        'monthly-summary': ['revenue-vs-expenses', 'expense-breakdown', 'monthly-trends'],
+        'financial-report': ['revenue-vs-expenses', 'expense-breakdown', 'profit-margins', 'revenue-by-category'],
+        'customer-report': ['sales-by-region', 'monthly-trends'],
+        'rental-performance': ['rental-performance', 'monthly-trends'],
+        'employee-report': ['expense-breakdown', 'monthly-trends'],
+        'blank': []
+      };
+      const charts = chartMap[template] || [];
+      reportWizard.config.charts = charts;
+      charts.forEach(chartId => {
+        const checkbox = document.querySelector(`.chart-checkbox[data-chart="${chartId}"]`);
+        if (checkbox) checkbox.checked = true;
+      });
+    }
+
+    // Step 2: Layout Designer
+    function initStep2() {
+      document.querySelectorAll('.element-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          addElement(this.dataset.element);
+        });
+      });
+
+      document.getElementById('deleteBtn').addEventListener('click', deleteSelectedElements);
+      document.getElementById('gridToggle').addEventListener('click', toggleGrid);
+
+      // Alignment buttons
+      document.getElementById('alignLeftBtn').addEventListener('click', () => alignElements('left'));
+      document.getElementById('alignCenterHBtn').addEventListener('click', () => alignElements('centerH'));
+      document.getElementById('alignRightBtn').addEventListener('click', () => alignElements('right'));
+      document.getElementById('alignTopBtn').addEventListener('click', () => alignElements('top'));
+      document.getElementById('alignCenterVBtn').addEventListener('click', () => alignElements('centerV'));
+      document.getElementById('alignBottomBtn').addEventListener('click', () => alignElements('bottom'));
+      document.getElementById('distributeHBtn').addEventListener('click', () => distributeElements('horizontal'));
+      document.getElementById('distributeVBtn').addEventListener('click', () => distributeElements('vertical'));
+      document.getElementById('sameWidthBtn').addEventListener('click', () => makeSameSize('width'));
+      document.getElementById('sameHeightBtn').addEventListener('click', () => makeSameSize('height'));
+      document.getElementById('sameSizeBtn').addEventListener('click', () => makeSameSize('both'));
+      document.getElementById('bringFrontBtn').addEventListener('click', bringToFront);
+      document.getElementById('sendBackBtn').addEventListener('click', sendToBack);
+
+      document.getElementById('canvasPage').addEventListener('click', function(e) {
+        if (e.target === this) selectElement(null);
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (reportWizard.currentStep !== 2) return;
+        if (e.key === 'Delete' && reportWizard.selectedElements.length) deleteSelectedElements();
+        if (e.ctrlKey && e.key === 'z') { e.preventDefault(); undo(); }
+        if (e.ctrlKey && e.key === 'y') { e.preventDefault(); redo(); }
+        if (e.ctrlKey && e.key === 'g') { e.preventDefault(); toggleGrid(); }
+        if (e.ctrlKey && e.key === 'a') { e.preventDefault(); selectAllElements(); }
+      });
+    }
+
+    function selectAllElements() {
+      reportWizard.selectedElements = [];
+      document.querySelectorAll('.canvas-element').forEach(el => {
+        el.classList.add('selected');
+        reportWizard.selectedElements.push(el);
+      });
+      updateToolbarState();
+      showMultiSelectProperties();
+    }
+
+    function alignElements(direction) {
+      if (reportWizard.selectedElements.length < 2) return;
+      saveState('Align elements');
+
+      const elements = reportWizard.selectedElements;
+      let ref;
+
+      switch(direction) {
+        case 'left':
+          ref = Math.min(...elements.map(el => parseInt(el.style.left)));
+          elements.forEach(el => el.style.left = ref + 'px');
+          break;
+        case 'right':
+          ref = Math.max(...elements.map(el => parseInt(el.style.left) + parseInt(el.style.width)));
+          elements.forEach(el => el.style.left = (ref - parseInt(el.style.width)) + 'px');
+          break;
+        case 'centerH':
+          const centers = elements.map(el => parseInt(el.style.left) + parseInt(el.style.width) / 2);
+          ref = centers.reduce((a, b) => a + b) / centers.length;
+          elements.forEach(el => el.style.left = (ref - parseInt(el.style.width) / 2) + 'px');
+          break;
+        case 'top':
+          ref = Math.min(...elements.map(el => parseInt(el.style.top)));
+          elements.forEach(el => el.style.top = ref + 'px');
+          break;
+        case 'bottom':
+          ref = Math.max(...elements.map(el => parseInt(el.style.top) + parseInt(el.style.height)));
+          elements.forEach(el => el.style.top = (ref - parseInt(el.style.height)) + 'px');
+          break;
+        case 'centerV':
+          const vcenters = elements.map(el => parseInt(el.style.top) + parseInt(el.style.height) / 2);
+          ref = vcenters.reduce((a, b) => a + b) / vcenters.length;
+          elements.forEach(el => el.style.top = (ref - parseInt(el.style.height) / 2) + 'px');
+          break;
+      }
+    }
+
+    function distributeElements(direction) {
+      if (reportWizard.selectedElements.length < 3) return;
+      saveState('Distribute elements');
+
+      const elements = [...reportWizard.selectedElements];
+
+      if (direction === 'horizontal') {
+        elements.sort((a, b) => parseInt(a.style.left) - parseInt(b.style.left));
+        const first = parseInt(elements[0].style.left);
+        const last = parseInt(elements[elements.length - 1].style.left);
+        const totalWidth = elements.reduce((sum, el) => sum + parseInt(el.style.width), 0);
+        const gap = (last + parseInt(elements[elements.length - 1].style.width) - first - totalWidth) / (elements.length - 1);
+        let x = first;
+        elements.forEach(el => {
+          el.style.left = x + 'px';
+          x += parseInt(el.style.width) + gap;
+        });
+      } else {
+        elements.sort((a, b) => parseInt(a.style.top) - parseInt(b.style.top));
+        const first = parseInt(elements[0].style.top);
+        const last = parseInt(elements[elements.length - 1].style.top);
+        const totalHeight = elements.reduce((sum, el) => sum + parseInt(el.style.height), 0);
+        const gap = (last + parseInt(elements[elements.length - 1].style.height) - first - totalHeight) / (elements.length - 1);
+        let y = first;
+        elements.forEach(el => {
+          el.style.top = y + 'px';
+          y += parseInt(el.style.height) + gap;
+        });
+      }
+    }
+
+    function makeSameSize(dimension) {
+      if (reportWizard.selectedElements.length < 2) return;
+      saveState('Make same size');
+
+      const first = reportWizard.selectedElements[0];
+      const width = parseInt(first.style.width);
+      const height = parseInt(first.style.height);
+
+      reportWizard.selectedElements.forEach(el => {
+        if (dimension === 'width' || dimension === 'both') el.style.width = width + 'px';
+        if (dimension === 'height' || dimension === 'both') el.style.height = height + 'px';
+      });
+    }
+
+    function bringToFront() {
+      if (reportWizard.selectedElements.length === 0) return;
+      saveState('Bring to front');
+      const canvas = document.getElementById('canvasPage');
+      reportWizard.selectedElements.forEach(el => canvas.appendChild(el));
+    }
+
+    function sendToBack() {
+      if (reportWizard.selectedElements.length === 0) return;
+      saveState('Send to back');
+      const canvas = document.getElementById('canvasPage');
+      reportWizard.selectedElements.forEach(el => canvas.insertBefore(el, canvas.firstChild));
+    }
+
+    function initCanvasFromConfig() {
+      const canvas = document.getElementById('canvasPage');
+      canvas.innerHTML = '';
+      reportWizard.canvasElements = [];
+      reportWizard.elementIdCounter = 0;
+      reportWizard.undoStack = [];
+      reportWizard.redoStack = [];
+      reportWizard.undoDescriptions = [];
+      reportWizard.redoDescriptions = [];
+
+      addElement('label', { x: 30, y: 30, width: 535, height: 35, text: reportWizard.config.reportName }, false);
+      addElement('date', { x: 30, y: 70, width: 180, height: 25 }, false);
+      addElement('summary', { x: 30, y: 110, width: 535, height: 70 }, false);
+
+      const charts = reportWizard.config.charts;
+      const chartWidth = 255;
+      const chartHeight = 150;
+      const startY = 195;
+      const gap = 25;
+
+      charts.forEach((chartId, index) => {
+        const col = index % 2;
+        const row = Math.floor(index / 2);
+        const x = 30 + col * (chartWidth + gap);
+        const y = startY + row * (chartHeight + gap);
+        addElement('chart', { x, y, width: chartWidth, height: chartHeight, chartType: chartId }, false);
+      });
+
+      const tableY = startY + Math.ceil(charts.length / 2) * (chartHeight + gap) + 15;
+      addElement('table', { x: 30, y: tableY, width: 535, height: 180 }, false);
+
+      saveState('Initial layout');
+      selectElement(null);
+    }
+
+    function addElement(type, options = {}, track = true) {
+      const id = `element-${++reportWizard.elementIdCounter}`;
+      const defaults = { x: 30 + Math.random() * 80, y: 80 + Math.random() * 80, width: 180, height: 120 };
+      const config = { ...defaults, ...options, type, id };
+
+      const element = document.createElement('div');
+      element.className = 'canvas-element';
+      element.id = id;
+      element.style.left = config.x + 'px';
+      element.style.top = config.y + 'px';
+      element.style.width = config.width + 'px';
+      element.style.height = config.height + 'px';
+
+      const icon = getElementIcon(type);
+      const label = getElementLabel(type, config);
+      element.innerHTML = `
+        <div class="element-label">
+          <i class="fas ${icon} element-icon"></i>
+          <span>${label}</span>
+        </div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle sw"></div>
+        <div class="resize-handle se"></div>
+      `;
+
+      element.addEventListener('mousedown', (e) => startDrag(e, element));
+      element.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (e.ctrlKey) {
+          toggleElementSelection(element);
+        } else {
+          selectElement(element);
+        }
+      });
+
+      element.querySelectorAll('.resize-handle').forEach(handle => {
+        handle.addEventListener('mousedown', (e) => startResize(e, element, handle));
+      });
+
+      document.getElementById('canvasPage').appendChild(element);
+      reportWizard.canvasElements.push(config);
+
+      if (track) {
+        saveState('Add ' + type);
+        selectElement(element);
+      }
+    }
+
+    function getElementIcon(type) {
+      return { chart: 'fa-chart-bar', label: 'fa-font', date: 'fa-calendar', summary: 'fa-calculator', table: 'fa-table', image: 'fa-image' }[type] || 'fa-square';
+    }
+
+    function getElementLabel(type, config) {
+      if (type === 'chart' && config.chartType) return formatChartName(config.chartType);
+      if (type === 'label' && config.text) return config.text.substring(0, 20);
+      return { chart: 'Chart', label: 'Label', date: 'Date Range', summary: 'Summary', table: 'Table', image: 'Image' }[type] || type;
+    }
+
+    function formatChartName(chartId) {
+      return chartId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    function toggleElementSelection(element) {
+      const index = reportWizard.selectedElements.indexOf(element);
+      if (index > -1) {
+        reportWizard.selectedElements.splice(index, 1);
+        element.classList.remove('selected');
+      } else {
+        reportWizard.selectedElements.push(element);
+        element.classList.add('selected');
+      }
+      updateToolbarState();
+      if (reportWizard.selectedElements.length === 1) {
+        showElementProperties(reportWizard.selectedElements[0]);
+      } else if (reportWizard.selectedElements.length > 1) {
+        showMultiSelectProperties();
+      } else {
+        showEmptyProperties();
+      }
+    }
+
+    function selectElement(element) {
+      document.querySelectorAll('.canvas-element.selected').forEach(el => el.classList.remove('selected'));
+      reportWizard.selectedElements = [];
+
+      if (element) {
+        element.classList.add('selected');
+        reportWizard.selectedElements = [element];
+        showElementProperties(element);
+      } else {
+        showEmptyProperties();
+      }
+      updateToolbarState();
+    }
+
+    function updateToolbarState() {
+      const hasSelection = reportWizard.selectedElements.length > 0;
+      const hasMultiple = reportWizard.selectedElements.length >= 2;
+      const hasThree = reportWizard.selectedElements.length >= 3;
+
+      document.getElementById('deleteBtn').disabled = !hasSelection;
+      document.getElementById('bringFrontBtn').disabled = !hasSelection;
+      document.getElementById('sendBackBtn').disabled = !hasSelection;
+
+      document.getElementById('alignLeftBtn').disabled = !hasMultiple;
+      document.getElementById('alignCenterHBtn').disabled = !hasMultiple;
+      document.getElementById('alignRightBtn').disabled = !hasMultiple;
+      document.getElementById('alignTopBtn').disabled = !hasMultiple;
+      document.getElementById('alignCenterVBtn').disabled = !hasMultiple;
+      document.getElementById('alignBottomBtn').disabled = !hasMultiple;
+      document.getElementById('sameWidthBtn').disabled = !hasMultiple;
+      document.getElementById('sameHeightBtn').disabled = !hasMultiple;
+      document.getElementById('sameSizeBtn').disabled = !hasMultiple;
+
+      document.getElementById('distributeHBtn').disabled = !hasThree;
+      document.getElementById('distributeVBtn').disabled = !hasThree;
+    }
+
+    const elementTypeConfig = {
+      chart: { icon: 'fa-chart-bar', color: 'var(--primary-color)', label: 'Chart' },
+      label: { icon: 'fa-font', color: 'var(--secondary-color)', label: 'Label' },
+      date: { icon: 'fa-calendar', color: 'var(--info-color)', label: 'Date Range' },
+      summary: { icon: 'fa-calculator', color: 'var(--success-color)', label: 'Summary' },
+      table: { icon: 'fa-table', color: 'var(--warning-color)', label: 'Table' },
+      image: { icon: 'fa-image', color: 'var(--danger-color)', label: 'Image' }
+    };
+
+    const defaultElementProps = {
+      chart: { chartType: 'bar', showLegend: true, showTitle: true, fontFamily: 'Arial', titleFontSize: 14, legendFontSize: 11, borderColor: '#e0e0e0', borderThickness: 1 },
+      label: { text: 'Label Text', fontFamily: 'Arial', fontSize: 14, fontStyle: 'normal', textColor: '#333333', hAlign: 'left', vAlign: 'top' },
+      date: { dateFormat: 'MM/DD/YYYY', textColor: '#333333', fontSize: 12, fontStyle: 'normal', fontFamily: 'Arial', hAlign: 'left', vAlign: 'center' },
+      summary: { transactionType: 'revenue', includeReturns: true, includeLosses: false, showTotalSales: true, showTotalTransactions: true, showAverageValue: true, showGrowthRate: false, backgroundColor: '#f8f9fa', borderThickness: 1, borderColor: '#e0e0e0', fontFamily: 'Arial', fontSize: 12, fontStyle: 'normal', textColor: '#333333', hAlign: 'left', vAlign: 'top' },
+      table: { transactionType: 'revenue', includeReturns: true, includeLosses: false, sortOrder: 'date-desc', maxRows: 50, showHeaders: true, showGridLines: true, showTotalsRow: true, alternateRowColors: true, autoSizeColumns: true, showDateColumn: true, showTransactionIdColumn: false, showCompanyColumn: true, showProductColumn: true, showQuantityColumn: true, showUnitPriceColumn: true, showTotalColumn: true, showStatusColumn: false, showAccountantColumn: false, showShippingColumn: false, fontSize: 11, fontFamily: 'Arial', dataRowHeight: 28, headerRowHeight: 32, cellPadding: 8, headerBackgroundColor: '#f1f3f4', headerTextColor: '#333333', dataRowTextColor: '#666666', gridLineColor: '#e0e0e0', baseRowColor: '#ffffff', alternateRowColor: '#f8f9fa' },
+      image: { imagePath: '', scaleMode: 'fit', backgroundColor: '#ffffff', borderColor: '#e0e0e0', borderThickness: 1, cornerRadius: 0, opacity: 100 }
+    };
+
+    function showElementProperties(element) {
+      const config = reportWizard.canvasElements.find(el => el.id === element.id);
+      if (!config) return;
+
+      // Ensure element has properties
+      if (!config.props) {
+        config.props = { ...defaultElementProps[config.type] };
+      }
+
+      const typeConfig = elementTypeConfig[config.type] || { icon: 'fa-cube', color: 'var(--gray-500)', label: 'Element' };
+      const content = document.getElementById('propertiesContent');
+
+      let html = `
+        <div class="property-header">
+          <div class="property-header-icon" style="background: ${typeConfig.color}15; color: ${typeConfig.color};">
+            <i class="fas ${typeConfig.icon}"></i>
+          </div>
+          <div class="property-header-info">
+            <div class="property-header-type">${typeConfig.label}</div>
+            <div class="property-header-id">${element.id}</div>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Position & Size</div>
+          <div class="property-grid-2">
+            <div class="property-row">
+              <span class="property-label">X</span>
+              <input type="number" class="property-input-small" id="propX" value="${parseInt(element.style.left)}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Y</span>
+              <input type="number" class="property-input-small" id="propY" value="${parseInt(element.style.top)}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">W</span>
+              <input type="number" class="property-input-small" id="propWidth" value="${parseInt(element.style.width)}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">H</span>
+              <input type="number" class="property-input-small" id="propHeight" value="${parseInt(element.style.height)}">
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Add type-specific properties
+      html += getTypeSpecificProperties(config);
+
+      content.innerHTML = html;
+
+      // Bind position/size events
+      ['propX', 'propY', 'propWidth', 'propHeight'].forEach(id => {
+        document.getElementById(id)?.addEventListener('change', () => updateElementFromProperties(element));
+      });
+
+      // Bind type-specific events
+      bindTypeSpecificEvents(config, element);
+
+      // Setup collapsible sections
+      content.querySelectorAll('.property-section-header').forEach(header => {
+        header.addEventListener('click', () => {
+          header.parentElement.classList.toggle('collapsed');
+        });
+      });
+
+      // Setup tabs for table element
+      if (config.type === 'table') {
+        content.querySelectorAll('.property-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            content.querySelectorAll('.property-tab').forEach(t => t.classList.remove('active'));
+            content.querySelectorAll('.property-tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+          });
+        });
+      }
+    }
+
+    function getTypeSpecificProperties(config) {
+      const props = config.props;
+      switch(config.type) {
+        case 'label': return getLabelProperties(props);
+        case 'chart': return getChartProperties(props);
+        case 'table': return getTableProperties(props);
+        case 'image': return getImageProperties(props);
+        case 'summary': return getSummaryProperties(props);
+        case 'date': return getDateRangeProperties(props);
+        default: return '';
+      }
+    }
+
+    function getLabelProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Text</div>
+          <div class="property-row">
+            <textarea class="property-input" id="propText" rows="2" style="resize: vertical;">${props.text || ''}</textarea>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Times New Roman' ? 'selected' : ''}>Times New Roman</option>
+              <option ${props.fontFamily === 'Georgia' ? 'selected' : ''}>Georgia</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+              <option ${props.fontFamily === 'Courier New' ? 'selected' : ''}>Courier New</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Size</span>
+            <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 14}" min="6" max="72">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Style</span>
+            <select class="property-select" id="propFontStyle">
+              <option value="normal" ${props.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
+              <option value="bold" ${props.fontStyle === 'bold' ? 'selected' : ''}>Bold</option>
+              <option value="italic" ${props.fontStyle === 'italic' ? 'selected' : ''}>Italic</option>
+              <option value="bold italic" ${props.fontStyle === 'bold italic' ? 'selected' : ''}>Bold Italic</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propTextColor" value="${props.textColor || '#333333'}">
+              <span class="property-color-value" id="propTextColorValue">${props.textColor || '#333333'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">H Align</span>
+            <select class="property-select" id="propHAlign">
+              <option value="left" ${props.hAlign === 'left' ? 'selected' : ''}>Left</option>
+              <option value="center" ${props.hAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="right" ${props.hAlign === 'right' ? 'selected' : ''}>Right</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">V Align</span>
+            <select class="property-select" id="propVAlign">
+              <option value="top" ${props.vAlign === 'top' ? 'selected' : ''}>Top</option>
+              <option value="center" ${props.vAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="bottom" ${props.vAlign === 'bottom' ? 'selected' : ''}>Bottom</option>
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+    function getChartProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Chart Configuration</div>
+          <div class="property-row">
+            <span class="property-label">Type</span>
+            <select class="property-select" id="propChartType">
+              <option value="bar" ${props.chartType === 'bar' ? 'selected' : ''}>Bar</option>
+              <option value="line" ${props.chartType === 'line' ? 'selected' : ''}>Line</option>
+              <option value="pie" ${props.chartType === 'pie' ? 'selected' : ''}>Pie</option>
+              <option value="area" ${props.chartType === 'area' ? 'selected' : ''}>Area</option>
+              <option value="doughnut" ${props.chartType === 'doughnut' ? 'selected' : ''}>Doughnut</option>
+            </select>
+          </div>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowLegend" ${props.showLegend ? 'checked' : ''}>
+            Show Legend
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowTitle" ${props.showTitle ? 'checked' : ''}>
+            Show Title
+          </label>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Title Size</span>
+            <input type="number" class="property-input" id="propTitleFontSize" value="${props.titleFontSize || 14}" min="8" max="36">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Legend Size</span>
+            <input type="number" class="property-input" id="propLegendFontSize" value="${props.legendFontSize || 11}" min="8" max="24">
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Border</div>
+          <div class="property-row">
+            <span class="property-label">Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propBorderColor" value="${props.borderColor || '#e0e0e0'}">
+              <span class="property-color-value">${props.borderColor || '#e0e0e0'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Width</span>
+            <input type="number" class="property-input" id="propBorderThickness" value="${props.borderThickness || 1}" min="0" max="10">
+          </div>
+        </div>
+      `;
+    }
+
+    function getTableProperties(props) {
+      return `
+        <div class="property-tabs">
+          <div class="property-tab active" data-tab="tableGeneral">General</div>
+          <div class="property-tab" data-tab="tableStyle">Style</div>
+          <div class="property-tab" data-tab="tableColumns">Columns</div>
+        </div>
+        <div class="property-tab-content active" id="tableGeneral">
+          <div class="property-group">
+            <div class="property-group-title">Data Selection</div>
+            <div class="property-row">
+              <span class="property-label">Type</span>
+              <select class="property-select" id="propTransactionType">
+                <option value="revenue" ${props.transactionType === 'revenue' ? 'selected' : ''}>Revenue</option>
+                <option value="expenses" ${props.transactionType === 'expenses' ? 'selected' : ''}>Expenses</option>
+              </select>
+            </div>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propIncludeReturns" ${props.includeReturns ? 'checked' : ''}>
+              Include Returns
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propIncludeLosses" ${props.includeLosses ? 'checked' : ''}>
+              Include Losses
+            </label>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Sorting & Limits</div>
+            <div class="property-row">
+              <span class="property-label">Sort</span>
+              <select class="property-select" id="propSortOrder">
+                <option value="date-desc" ${props.sortOrder === 'date-desc' ? 'selected' : ''}>Date (Newest)</option>
+                <option value="date-asc" ${props.sortOrder === 'date-asc' ? 'selected' : ''}>Date (Oldest)</option>
+                <option value="total-desc" ${props.sortOrder === 'total-desc' ? 'selected' : ''}>Total (High-Low)</option>
+                <option value="total-asc" ${props.sortOrder === 'total-asc' ? 'selected' : ''}>Total (Low-High)</option>
+              </select>
+            </div>
+            <div class="property-row">
+              <span class="property-label">Max Rows</span>
+              <input type="number" class="property-input" id="propMaxRows" value="${props.maxRows || 50}" min="1" max="500">
+            </div>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Display Options</div>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propShowHeaders" ${props.showHeaders ? 'checked' : ''}>
+              Show Headers
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propShowGridLines" ${props.showGridLines ? 'checked' : ''}>
+              Show Grid Lines
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propShowTotalsRow" ${props.showTotalsRow ? 'checked' : ''}>
+              Show Totals Row
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propAlternateRowColors" ${props.alternateRowColors ? 'checked' : ''}>
+              Alternate Row Colors
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propAutoSizeColumns" ${props.autoSizeColumns ? 'checked' : ''}>
+              Auto-Size Columns
+            </label>
+          </div>
+        </div>
+        <div class="property-tab-content" id="tableStyle">
+          <div class="property-group">
+            <div class="property-group-title">Font</div>
+            <div class="property-row">
+              <span class="property-label">Family</span>
+              <select class="property-select" id="propFontFamily">
+                <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+                <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+                <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+              </select>
+            </div>
+            <div class="property-row">
+              <span class="property-label">Size</span>
+              <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 11}" min="8" max="24">
+            </div>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Row Heights</div>
+            <div class="property-row">
+              <span class="property-label">Header</span>
+              <input type="number" class="property-input" id="propHeaderRowHeight" value="${props.headerRowHeight || 32}" min="20" max="60">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Data Row</span>
+              <input type="number" class="property-input" id="propDataRowHeight" value="${props.dataRowHeight || 28}" min="18" max="50">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Padding</span>
+              <input type="number" class="property-input" id="propCellPadding" value="${props.cellPadding || 8}" min="2" max="20">
+            </div>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Colors</div>
+            <div class="property-row">
+              <span class="property-label">Header BG</span>
+              <input type="color" class="property-color" id="propHeaderBackgroundColor" value="${props.headerBackgroundColor || '#f1f3f4'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Header Text</span>
+              <input type="color" class="property-color" id="propHeaderTextColor" value="${props.headerTextColor || '#333333'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Data Text</span>
+              <input type="color" class="property-color" id="propDataRowTextColor" value="${props.dataRowTextColor || '#666666'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Grid Lines</span>
+              <input type="color" class="property-color" id="propGridLineColor" value="${props.gridLineColor || '#e0e0e0'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Row BG</span>
+              <input type="color" class="property-color" id="propBaseRowColor" value="${props.baseRowColor || '#ffffff'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Alt Row BG</span>
+              <input type="color" class="property-color" id="propAlternateRowColor" value="${props.alternateRowColor || '#f8f9fa'}">
+            </div>
+          </div>
+        </div>
+        <div class="property-tab-content" id="tableColumns">
+          <div class="property-group">
+            <div class="property-group-title">Visible Columns</div>
+            <div class="columns-grid">
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowDateColumn" ${props.showDateColumn ? 'checked' : ''}>
+                Date
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowTransactionIdColumn" ${props.showTransactionIdColumn ? 'checked' : ''}>
+                Trans. ID
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowCompanyColumn" ${props.showCompanyColumn ? 'checked' : ''}>
+                Company
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowProductColumn" ${props.showProductColumn ? 'checked' : ''}>
+                Product
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowQuantityColumn" ${props.showQuantityColumn ? 'checked' : ''}>
+                Quantity
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowUnitPriceColumn" ${props.showUnitPriceColumn ? 'checked' : ''}>
+                Unit Price
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowTotalColumn" ${props.showTotalColumn ? 'checked' : ''}>
+                Total
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowStatusColumn" ${props.showStatusColumn ? 'checked' : ''}>
+                Status
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowAccountantColumn" ${props.showAccountantColumn ? 'checked' : ''}>
+                Accountant
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowShippingColumn" ${props.showShippingColumn ? 'checked' : ''}>
+                Shipping
+              </label>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getImageProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Image Source</div>
+          <div class="property-row">
+            <input type="text" class="property-input" id="propImagePath" value="${props.imagePath || ''}" placeholder="Image path or URL">
+          </div>
+          <button class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 4px;" onclick="alert('Browse functionality would open file picker')">
+            <i class="fas fa-folder-open"></i> Browse...
+          </button>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Layout</div>
+          <div class="property-row">
+            <span class="property-label">Scale</span>
+            <select class="property-select" id="propScaleMode">
+              <option value="fit" ${props.scaleMode === 'fit' ? 'selected' : ''}>Fit</option>
+              <option value="fill" ${props.scaleMode === 'fill' ? 'selected' : ''}>Fill</option>
+              <option value="stretch" ${props.scaleMode === 'stretch' ? 'selected' : ''}>Stretch</option>
+              <option value="tile" ${props.scaleMode === 'tile' ? 'selected' : ''}>Tile</option>
+              <option value="center" ${props.scaleMode === 'center' ? 'selected' : ''}>Center</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Corners</span>
+            <input type="number" class="property-input" id="propCornerRadius" value="${props.cornerRadius || 0}" min="0" max="50">
+            <span style="font-size: 10px; color: var(--gray-400); margin-left: 4px;">%</span>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Opacity</span>
+            <input type="number" class="property-input" id="propOpacity" value="${props.opacity || 100}" min="0" max="100">
+            <span style="font-size: 10px; color: var(--gray-400); margin-left: 4px;">%</span>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">BG Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propBackgroundColor" value="${props.backgroundColor || '#ffffff'}">
+              <span class="property-color-value">${props.backgroundColor || '#ffffff'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propBorderColor" value="${props.borderColor || '#e0e0e0'}">
+              <span class="property-color-value">${props.borderColor || '#e0e0e0'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border W</span>
+            <input type="number" class="property-input" id="propBorderThickness" value="${props.borderThickness || 1}" min="0" max="10">
+          </div>
+        </div>
+      `;
+    }
+
+    function getSummaryProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Data Selection</div>
+          <div class="property-row">
+            <span class="property-label">Type</span>
+            <select class="property-select" id="propTransactionType">
+              <option value="revenue" ${props.transactionType === 'revenue' ? 'selected' : ''}>Revenue</option>
+              <option value="expenses" ${props.transactionType === 'expenses' ? 'selected' : ''}>Expenses</option>
+            </select>
+          </div>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propIncludeReturns" ${props.includeReturns ? 'checked' : ''}>
+            Include Returns
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propIncludeLosses" ${props.includeLosses ? 'checked' : ''}>
+            Include Losses
+          </label>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Display Options</div>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowTotalSales" ${props.showTotalSales ? 'checked' : ''}>
+            Show Total Sales
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowTotalTransactions" ${props.showTotalTransactions ? 'checked' : ''}>
+            Show Total Transactions
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowAverageValue" ${props.showAverageValue ? 'checked' : ''}>
+            Show Average Value
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowGrowthRate" ${props.showGrowthRate ? 'checked' : ''}>
+            Show Growth Rate
+          </label>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Size</span>
+            <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 12}" min="8" max="24">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Style</span>
+            <select class="property-select" id="propFontStyle">
+              <option value="normal" ${props.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
+              <option value="bold" ${props.fontStyle === 'bold' ? 'selected' : ''}>Bold</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">Text</span>
+            <input type="color" class="property-color" id="propTextColor" value="${props.textColor || '#333333'}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">BG</span>
+            <input type="color" class="property-color" id="propBackgroundColor" value="${props.backgroundColor || '#f8f9fa'}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border</span>
+            <input type="color" class="property-color" id="propBorderColor" value="${props.borderColor || '#e0e0e0'}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border W</span>
+            <input type="number" class="property-input" id="propBorderThickness" value="${props.borderThickness || 1}" min="0" max="10">
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Alignment</div>
+          <div class="property-row">
+            <span class="property-label">H Align</span>
+            <select class="property-select" id="propHAlign">
+              <option value="left" ${props.hAlign === 'left' ? 'selected' : ''}>Left</option>
+              <option value="center" ${props.hAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="right" ${props.hAlign === 'right' ? 'selected' : ''}>Right</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">V Align</span>
+            <select class="property-select" id="propVAlign">
+              <option value="top" ${props.vAlign === 'top' ? 'selected' : ''}>Top</option>
+              <option value="center" ${props.vAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="bottom" ${props.vAlign === 'bottom' ? 'selected' : ''}>Bottom</option>
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+    function getDateRangeProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Date Format</div>
+          <div class="property-row">
+            <span class="property-label">Format</span>
+            <select class="property-select" id="propDateFormat">
+              <option value="MM/DD/YYYY" ${props.dateFormat === 'MM/DD/YYYY' ? 'selected' : ''}>MM/DD/YYYY</option>
+              <option value="DD/MM/YYYY" ${props.dateFormat === 'DD/MM/YYYY' ? 'selected' : ''}>DD/MM/YYYY</option>
+              <option value="YYYY-MM-DD" ${props.dateFormat === 'YYYY-MM-DD' ? 'selected' : ''}>YYYY-MM-DD</option>
+              <option value="MMM DD, YYYY" ${props.dateFormat === 'MMM DD, YYYY' ? 'selected' : ''}>MMM DD, YYYY</option>
+              <option value="MMMM DD, YYYY" ${props.dateFormat === 'MMMM DD, YYYY' ? 'selected' : ''}>MMMM DD, YYYY</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Size</span>
+            <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 12}" min="8" max="24">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Style</span>
+            <select class="property-select" id="propFontStyle">
+              <option value="normal" ${props.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
+              <option value="bold" ${props.fontStyle === 'bold' ? 'selected' : ''}>Bold</option>
+              <option value="italic" ${props.fontStyle === 'italic' ? 'selected' : ''}>Italic</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propTextColor" value="${props.textColor || '#333333'}">
+              <span class="property-color-value">${props.textColor || '#333333'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Alignment</div>
+          <div class="property-row">
+            <span class="property-label">H Align</span>
+            <select class="property-select" id="propHAlign">
+              <option value="left" ${props.hAlign === 'left' ? 'selected' : ''}>Left</option>
+              <option value="center" ${props.hAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="right" ${props.hAlign === 'right' ? 'selected' : ''}>Right</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">V Align</span>
+            <select class="property-select" id="propVAlign">
+              <option value="top" ${props.vAlign === 'top' ? 'selected' : ''}>Top</option>
+              <option value="center" ${props.vAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="bottom" ${props.vAlign === 'bottom' ? 'selected' : ''}>Bottom</option>
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+    function bindTypeSpecificEvents(config, element) {
+      const props = config.props;
+
+      // Color picker value display updates
+      document.querySelectorAll('.property-color').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const valueSpan = e.target.parentElement.querySelector('.property-color-value');
+          if (valueSpan) valueSpan.textContent = e.target.value;
+        });
+      });
+
+      // Generic property binding - collect all property inputs
+      const propertyInputs = document.querySelectorAll('#propertiesContent input, #propertiesContent select, #propertiesContent textarea');
+      propertyInputs.forEach(input => {
+        const propName = input.id?.replace('prop', '');
+        if (!propName || ['X', 'Y', 'Width', 'Height'].includes(propName)) return;
+
+        const eventType = input.type === 'checkbox' ? 'change' : 'input';
+        input.addEventListener(eventType, () => {
+          const key = propName.charAt(0).toLowerCase() + propName.slice(1);
+          if (input.type === 'checkbox') {
+            props[key] = input.checked;
+          } else if (input.type === 'number') {
+            props[key] = parseFloat(input.value);
+          } else {
+            props[key] = input.value;
+          }
+          saveState('Edit ' + config.type + ' property');
+        });
+      });
+    }
+
+    function showMultiSelectProperties() {
+      document.getElementById('propertiesContent').innerHTML = `
+        <div class="properties-empty">
+          <i class="fas fa-object-group" style="font-size: 28px; color: var(--primary-color); margin-bottom: 10px; display: block;"></i>
+          <p><strong>${reportWizard.selectedElements.length} elements</strong> selected</p>
+          <p style="font-size: 11px; color: var(--gray-400); margin-top: 8px;">Use toolbar to align or resize</p>
+        </div>
+      `;
+    }
+
+    function showEmptyProperties() {
+      document.getElementById('propertiesContent').innerHTML = `
+        <div class="properties-empty">
+          <i class="fas fa-mouse-pointer" style="font-size: 28px; color: var(--gray-300); margin-bottom: 10px; display: block;"></i>
+          <p>Select an element to edit its properties</p>
+        </div>
+      `;
+    }
+
+    function updateElementFromProperties(element) {
+      element.style.left = document.getElementById('propX').value + 'px';
+      element.style.top = document.getElementById('propY').value + 'px';
+      element.style.width = document.getElementById('propWidth').value + 'px';
+      element.style.height = document.getElementById('propHeight').value + 'px';
+      saveState('Edit properties');
+    }
+
+    let dragState = { isDragging: false };
+
+    function startDrag(e, element) {
+      if (e.target.classList.contains('resize-handle')) return;
+
+      if (!e.ctrlKey && !reportWizard.selectedElements.includes(element)) {
+        selectElement(element);
+      }
+
+      dragState.isDragging = true;
+      dragState.startX = e.clientX;
+      dragState.startY = e.clientY;
+      dragState.elements = reportWizard.selectedElements.map(el => ({
+        element: el,
+        startLeft: parseInt(el.style.left),
+        startTop: parseInt(el.style.top)
+      }));
+
+      document.addEventListener('mousemove', onDrag);
+      document.addEventListener('mouseup', stopDrag);
+    }
+
+    function onDrag(e) {
+      if (!dragState.isDragging) return;
+      const dx = (e.clientX - dragState.startX) / reportWizard.canvasZoom;
+      const dy = (e.clientY - dragState.startY) / reportWizard.canvasZoom;
+
+      dragState.elements.forEach(({ element, startLeft, startTop }) => {
+        element.style.left = Math.max(0, startLeft + dx) + 'px';
+        element.style.top = Math.max(0, startTop + dy) + 'px';
+      });
+    }
+
+    function stopDrag() {
+      if (dragState.isDragging) {
+        dragState.isDragging = false;
+        saveState('Move element');
+        if (reportWizard.selectedElements.length === 1) {
+          showElementProperties(reportWizard.selectedElements[0]);
+        }
+      }
+      document.removeEventListener('mousemove', onDrag);
+      document.removeEventListener('mouseup', stopDrag);
+    }
+
+    let resizeState = { isResizing: false };
+
+    function startResize(e, element, handle) {
+      e.stopPropagation();
+      resizeState = {
+        isResizing: true,
+        startX: e.clientX,
+        startY: e.clientY,
+        startWidth: parseInt(element.style.width),
+        startHeight: parseInt(element.style.height),
+        startLeft: parseInt(element.style.left),
+        startTop: parseInt(element.style.top),
+        element,
+        handle: handle.className.replace('resize-handle ', '')
+      };
+      document.addEventListener('mousemove', onResize);
+      document.addEventListener('mouseup', stopResize);
+    }
+
+    function onResize(e) {
+      if (!resizeState.isResizing) return;
+      const dx = (e.clientX - resizeState.startX) / reportWizard.canvasZoom;
+      const dy = (e.clientY - resizeState.startY) / reportWizard.canvasZoom;
+      const el = resizeState.element;
+
+      switch(resizeState.handle) {
+        case 'se':
+          el.style.width = Math.max(40, resizeState.startWidth + dx) + 'px';
+          el.style.height = Math.max(25, resizeState.startHeight + dy) + 'px';
+          break;
+        case 'sw':
+          el.style.width = Math.max(40, resizeState.startWidth - dx) + 'px';
+          el.style.left = Math.max(0, resizeState.startLeft + dx) + 'px';
+          el.style.height = Math.max(25, resizeState.startHeight + dy) + 'px';
+          break;
+        case 'ne':
+          el.style.width = Math.max(40, resizeState.startWidth + dx) + 'px';
+          el.style.height = Math.max(25, resizeState.startHeight - dy) + 'px';
+          el.style.top = Math.max(0, resizeState.startTop + dy) + 'px';
+          break;
+        case 'nw':
+          el.style.width = Math.max(40, resizeState.startWidth - dx) + 'px';
+          el.style.left = Math.max(0, resizeState.startLeft + dx) + 'px';
+          el.style.height = Math.max(25, resizeState.startHeight - dy) + 'px';
+          el.style.top = Math.max(0, resizeState.startTop + dy) + 'px';
+          break;
+      }
+    }
+
+    function stopResize() {
+      if (resizeState.isResizing) {
+        resizeState.isResizing = false;
+        saveState('Resize element');
+        if (reportWizard.selectedElements.length === 1) {
+          showElementProperties(reportWizard.selectedElements[0]);
+        }
+      }
+      document.removeEventListener('mousemove', onResize);
+      document.removeEventListener('mouseup', stopResize);
+    }
+
+    function deleteSelectedElements() {
+      if (reportWizard.selectedElements.length === 0) return;
+      saveState('Delete elements');
+
+      reportWizard.selectedElements.forEach(el => {
+        el.remove();
+        reportWizard.canvasElements = reportWizard.canvasElements.filter(c => c.id !== el.id);
+      });
+      reportWizard.selectedElements = [];
+      updateToolbarState();
+      showEmptyProperties();
+    }
+
+    function toggleGrid() {
+      const canvas = document.getElementById('canvasPage');
+      canvas.style.backgroundImage = canvas.style.backgroundImage === 'none' ?
+        'linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)' : 'none';
+    }
+
+    function saveState(description) {
+      const state = Array.from(document.querySelectorAll('.canvas-element')).map(el => ({
+        id: el.id,
+        left: el.style.left,
+        top: el.style.top,
+        width: el.style.width,
+        height: el.style.height,
+        innerHTML: el.innerHTML
+      }));
+      reportWizard.undoStack.push(JSON.stringify(state));
+      reportWizard.undoDescriptions.push(description);
+      reportWizard.redoStack = [];
+      reportWizard.redoDescriptions = [];
+      updateUndoRedoButtons();
+    }
+
+    function undo() {
+      if (reportWizard.undoStack.length > 1) {
+        const current = reportWizard.undoStack.pop();
+        const currentDesc = reportWizard.undoDescriptions.pop();
+        reportWizard.redoStack.push(current);
+        reportWizard.redoDescriptions.push(currentDesc);
+        restoreState(reportWizard.undoStack[reportWizard.undoStack.length - 1]);
+        updateUndoRedoButtons();
+      }
+    }
+
+    function redo() {
+      if (reportWizard.redoStack.length > 0) {
+        const state = reportWizard.redoStack.pop();
+        const desc = reportWizard.redoDescriptions.pop();
+        reportWizard.undoStack.push(state);
+        reportWizard.undoDescriptions.push(desc);
+        restoreState(state);
+        updateUndoRedoButtons();
+      }
+    }
+
+    function restoreState(stateJson) {
+      const state = JSON.parse(stateJson);
+      const canvas = document.getElementById('canvasPage');
+      canvas.innerHTML = '';
+
+      state.forEach(config => {
+        const element = document.createElement('div');
+        element.className = 'canvas-element';
+        element.id = config.id;
+        element.style.left = config.left;
+        element.style.top = config.top;
+        element.style.width = config.width;
+        element.style.height = config.height;
+        element.innerHTML = config.innerHTML;
+
+        element.addEventListener('mousedown', (e) => startDrag(e, element));
+        element.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (e.ctrlKey) toggleElementSelection(element);
+          else selectElement(element);
+        });
+        element.querySelectorAll('.resize-handle').forEach(handle => {
+          handle.addEventListener('mousedown', (e) => startResize(e, element, handle));
+        });
+
+        canvas.appendChild(element);
+      });
+
+      selectElement(null);
+    }
+
+    function updateUndoRedoButtons() {
+      document.getElementById('undoBtn').disabled = reportWizard.undoStack.length <= 1;
+      document.getElementById('redoBtn').disabled = reportWizard.redoStack.length === 0;
+    }
+
+    // Step 3
+    function initStep3() {
+      document.querySelectorAll('input[name="exportFormat"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          document.querySelectorAll('.format-option').forEach(opt => opt.classList.remove('selected'));
+          this.closest('.format-option').classList.add('selected');
+          reportWizard.config.exportFormat = this.value;
+          updateExportPath();
+          document.getElementById('qualitySlider').style.display = this.value === 'jpg' ? 'block' : 'none';
+        });
+      });
+
+      document.getElementById('qualityTrack').addEventListener('input', function() {
+        reportWizard.config.exportQuality = this.value;
+        document.getElementById('qualityValue').textContent = this.value + '%';
+      });
+
+      document.getElementById('zoomInBtn').addEventListener('click', () => setZoom(reportWizard.zoom + 25));
+      document.getElementById('zoomOutBtn').addEventListener('click', () => setZoom(reportWizard.zoom - 25));
+      document.getElementById('zoomFitBtn').addEventListener('click', fitToWindow);
+      document.getElementById('exportBtn').addEventListener('click', exportReport);
+    }
+
+    function updatePreview() {
+      document.getElementById('previewTitle').textContent = reportWizard.config.reportName;
+      document.getElementById('previewDate').textContent = getDateRangeText();
+      updateExportPath();
+    }
+
+    function getDateRangeText() {
+      const ranges = {
+        'today': 'Today', 'yesterday': 'Yesterday', 'this-week': 'This Week', 'last-week': 'Last Week',
+        'this-month': 'This Month', 'last-month': 'Last Month', 'this-quarter': 'Q4 2024 (Oct 1 - Dec 31, 2024)',
+        'last-quarter': 'Q3 2024 (Jul 1 - Sep 30, 2024)', 'this-year': 'Year 2024', 'all-time': 'All Time', 'custom': 'Custom Range'
+      };
+      return ranges[reportWizard.config.dateRange] || reportWizard.config.dateRange;
+    }
+
+    function updateExportPath() {
+      const name = reportWizard.config.reportName.replace(/[^a-zA-Z0-9]/g, '_');
+      document.getElementById('exportPath').value = `${name}.${reportWizard.config.exportFormat}`;
+    }
+
+    function setZoom(level) {
+      reportWizard.zoom = Math.max(25, Math.min(200, level));
+      document.getElementById('previewPage').style.transform = `scale(${reportWizard.zoom / 100})`;
+      document.getElementById('zoomLevel').textContent = reportWizard.zoom + '%';
+    }
+
+    function fitToWindow() {
+      const container = document.getElementById('previewArea');
+      const scale = Math.min((container.clientWidth - 40) / 595, (container.clientHeight - 40) / 842, 1);
+      setZoom(Math.round(scale * 100));
+    }
+
+    function exportReport() {
+      const btn = document.getElementById('exportBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exporting...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> Exported!';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          alert(`Report exported successfully!\n\nFilename: ${document.getElementById('exportPath').value}\nFormat: ${reportWizard.config.exportFormat.toUpperCase()}`);
+        }, 1500);
+      }, 2000);
+    }
+
+    document.addEventListener('DOMContentLoaded', initWizard);
   </script>
 </body>
 </html>

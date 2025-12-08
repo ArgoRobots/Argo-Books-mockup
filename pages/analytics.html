@@ -6,6 +6,59 @@
   <title>Analytics - Argo Books</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Toggle Switch */
+    .analytics-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 8px;
+    }
+    .toggle-label {
+      font-size: 13px;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--gray-300);
+      transition: 0.3s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--primary-color);
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+  </style>
 </head>
 <body>
   <div class="app-container">
@@ -51,6 +104,14 @@
           <div class="analytics-tab" data-analytics-tab="customers">Customers</div>
           <div class="analytics-tab" data-analytics-tab="returns">Returns</div>
           <div class="analytics-tab" data-analytics-tab="losses">Losses</div>
+          <div style="flex: 1;"></div>
+          <div class="analytics-toggle">
+            <span class="toggle-label">Live Data</span>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
         </div>
 
         <!-- Dashboard Tab -->
@@ -96,11 +157,6 @@
             <div class="chart-card">
               <div class="chart-card-header">
                 <span class="chart-card-title">Total Purchases Over Time</span>
-                <select class="form-control form-select">
-                  <option>Line</option>
-                  <option>Bar</option>
-                  <option>Area</option>
-                </select>
               </div>
               <div class="chart-card-body">
                 <div class="chart-placeholder">
@@ -126,11 +182,6 @@
             <div class="chart-card">
               <div class="chart-card-header">
                 <span class="chart-card-title">Total Sales Over Time</span>
-                <select class="form-control form-select">
-                  <option>Line</option>
-                  <option>Bar</option>
-                  <option>Area</option>
-                </select>
               </div>
               <div class="chart-card-body">
                 <div class="chart-placeholder">
