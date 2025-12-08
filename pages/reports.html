@@ -402,7 +402,7 @@
     .resize-handle.sw { bottom: -4px; left: -4px; cursor: sw-resize; }
     .resize-handle.se { bottom: -4px; right: -4px; cursor: se-resize; }
     .properties-panel {
-      width: 200px;
+      width: 260px;
       flex-shrink: 0;
     }
     .element-btn {
@@ -466,6 +466,177 @@
     .property-input:focus {
       outline: none;
       border-color: var(--primary-color);
+    }
+    .property-select {
+      flex: 1;
+      padding: 4px 6px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 11px;
+      background: white;
+      cursor: pointer;
+    }
+    .property-select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .property-color {
+      width: 28px;
+      height: 22px;
+      padding: 2px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: white;
+    }
+    .property-color::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    .property-color::-webkit-color-swatch {
+      border: none;
+      border-radius: 2px;
+    }
+    .property-color-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .property-color-value {
+      flex: 1;
+      font-size: 10px;
+      color: var(--gray-500);
+      font-family: monospace;
+    }
+    .property-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--gray-700);
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
+    .property-checkbox input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      cursor: pointer;
+      accent-color: var(--primary-color);
+    }
+    .property-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 10px;
+      margin: -8px -12px 10px -12px;
+      padding: 0 8px;
+      background: var(--gray-50);
+    }
+    .property-tab {
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.2s;
+    }
+    .property-tab:hover {
+      color: var(--gray-700);
+    }
+    .property-tab.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+    }
+    .property-tab-content {
+      display: none;
+    }
+    .property-tab-content.active {
+      display: block;
+    }
+    .property-section {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .property-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      background: var(--gray-50);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-600);
+      cursor: pointer;
+    }
+    .property-section-header i {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .property-section.collapsed .property-section-header i {
+      transform: rotate(-90deg);
+    }
+    .property-section-body {
+      padding: 8px;
+    }
+    .property-section.collapsed .property-section-body {
+      display: none;
+    }
+    .property-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .property-grid-2 .property-row {
+      margin-bottom: 0;
+    }
+    .property-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .property-header-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      font-size: 12px;
+    }
+    .property-header-info {
+      flex: 1;
+    }
+    .property-header-type {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+    .property-header-id {
+      font-size: 10px;
+      color: var(--gray-400);
+    }
+    .property-input-small {
+      width: 55px;
+      padding: 4px 6px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 11px;
+      text-align: center;
+    }
+    .property-input-small:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .columns-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
     }
 
     /* Dropdown panels for undo/redo */
@@ -2350,43 +2521,672 @@
       document.getElementById('distributeVBtn').disabled = !hasThree;
     }
 
+    const elementTypeConfig = {
+      chart: { icon: 'fa-chart-bar', color: 'var(--primary-color)', label: 'Chart' },
+      label: { icon: 'fa-font', color: 'var(--secondary-color)', label: 'Label' },
+      date: { icon: 'fa-calendar', color: 'var(--info-color)', label: 'Date Range' },
+      summary: { icon: 'fa-calculator', color: 'var(--success-color)', label: 'Summary' },
+      table: { icon: 'fa-table', color: 'var(--warning-color)', label: 'Table' },
+      image: { icon: 'fa-image', color: 'var(--danger-color)', label: 'Image' }
+    };
+
+    const defaultElementProps = {
+      chart: { chartType: 'bar', showLegend: true, showTitle: true, fontFamily: 'Arial', titleFontSize: 14, legendFontSize: 11, borderColor: '#e0e0e0', borderThickness: 1 },
+      label: { text: 'Label Text', fontFamily: 'Arial', fontSize: 14, fontStyle: 'normal', textColor: '#333333', hAlign: 'left', vAlign: 'top' },
+      date: { dateFormat: 'MM/DD/YYYY', textColor: '#333333', fontSize: 12, fontStyle: 'normal', fontFamily: 'Arial', hAlign: 'left', vAlign: 'center' },
+      summary: { transactionType: 'revenue', includeReturns: true, includeLosses: false, showTotalSales: true, showTotalTransactions: true, showAverageValue: true, showGrowthRate: false, backgroundColor: '#f8f9fa', borderThickness: 1, borderColor: '#e0e0e0', fontFamily: 'Arial', fontSize: 12, fontStyle: 'normal', textColor: '#333333', hAlign: 'left', vAlign: 'top' },
+      table: { transactionType: 'revenue', includeReturns: true, includeLosses: false, sortOrder: 'date-desc', maxRows: 50, showHeaders: true, showGridLines: true, showTotalsRow: true, alternateRowColors: true, autoSizeColumns: true, showDateColumn: true, showTransactionIdColumn: false, showCompanyColumn: true, showProductColumn: true, showQuantityColumn: true, showUnitPriceColumn: true, showTotalColumn: true, showStatusColumn: false, showAccountantColumn: false, showShippingColumn: false, fontSize: 11, fontFamily: 'Arial', dataRowHeight: 28, headerRowHeight: 32, cellPadding: 8, headerBackgroundColor: '#f1f3f4', headerTextColor: '#333333', dataRowTextColor: '#666666', gridLineColor: '#e0e0e0', baseRowColor: '#ffffff', alternateRowColor: '#f8f9fa' },
+      image: { imagePath: '', scaleMode: 'fit', backgroundColor: '#ffffff', borderColor: '#e0e0e0', borderThickness: 1, cornerRadius: 0, opacity: 100 }
+    };
+
     function showElementProperties(element) {
       const config = reportWizard.canvasElements.find(el => el.id === element.id);
+      if (!config) return;
+
+      // Ensure element has properties
+      if (!config.props) {
+        config.props = { ...defaultElementProps[config.type] };
+      }
+
+      const typeConfig = elementTypeConfig[config.type] || { icon: 'fa-cube', color: 'var(--gray-500)', label: 'Element' };
       const content = document.getElementById('propertiesContent');
-      content.innerHTML = `
-        <div class="property-group">
-          <div class="property-group-title">Position</div>
-          <div class="property-row">
-            <span class="property-label">X</span>
-            <input type="number" class="property-input" id="propX" value="${parseInt(element.style.left)}">
+
+      let html = `
+        <div class="property-header">
+          <div class="property-header-icon" style="background: ${typeConfig.color}15; color: ${typeConfig.color};">
+            <i class="fas ${typeConfig.icon}"></i>
           </div>
-          <div class="property-row">
-            <span class="property-label">Y</span>
-            <input type="number" class="property-input" id="propY" value="${parseInt(element.style.top)}">
-          </div>
-        </div>
-        <div class="property-group">
-          <div class="property-group-title">Size</div>
-          <div class="property-row">
-            <span class="property-label">Width</span>
-            <input type="number" class="property-input" id="propWidth" value="${parseInt(element.style.width)}">
-          </div>
-          <div class="property-row">
-            <span class="property-label">Height</span>
-            <input type="number" class="property-input" id="propHeight" value="${parseInt(element.style.height)}">
+          <div class="property-header-info">
+            <div class="property-header-type">${typeConfig.label}</div>
+            <div class="property-header-id">${element.id}</div>
           </div>
         </div>
         <div class="property-group">
-          <div class="property-group-title">Element</div>
-          <div class="property-row">
-            <span class="property-label">Type</span>
-            <input type="text" class="property-input" value="${config?.type || 'unknown'}" disabled>
+          <div class="property-group-title">Position & Size</div>
+          <div class="property-grid-2">
+            <div class="property-row">
+              <span class="property-label">X</span>
+              <input type="number" class="property-input-small" id="propX" value="${parseInt(element.style.left)}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Y</span>
+              <input type="number" class="property-input-small" id="propY" value="${parseInt(element.style.top)}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">W</span>
+              <input type="number" class="property-input-small" id="propWidth" value="${parseInt(element.style.width)}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">H</span>
+              <input type="number" class="property-input-small" id="propHeight" value="${parseInt(element.style.height)}">
+            </div>
           </div>
         </div>
       `;
 
+      // Add type-specific properties
+      html += getTypeSpecificProperties(config);
+
+      content.innerHTML = html;
+
+      // Bind position/size events
       ['propX', 'propY', 'propWidth', 'propHeight'].forEach(id => {
         document.getElementById(id)?.addEventListener('change', () => updateElementFromProperties(element));
+      });
+
+      // Bind type-specific events
+      bindTypeSpecificEvents(config, element);
+
+      // Setup collapsible sections
+      content.querySelectorAll('.property-section-header').forEach(header => {
+        header.addEventListener('click', () => {
+          header.parentElement.classList.toggle('collapsed');
+        });
+      });
+
+      // Setup tabs for table element
+      if (config.type === 'table') {
+        content.querySelectorAll('.property-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            content.querySelectorAll('.property-tab').forEach(t => t.classList.remove('active'));
+            content.querySelectorAll('.property-tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+          });
+        });
+      }
+    }
+
+    function getTypeSpecificProperties(config) {
+      const props = config.props;
+      switch(config.type) {
+        case 'label': return getLabelProperties(props);
+        case 'chart': return getChartProperties(props);
+        case 'table': return getTableProperties(props);
+        case 'image': return getImageProperties(props);
+        case 'summary': return getSummaryProperties(props);
+        case 'date': return getDateRangeProperties(props);
+        default: return '';
+      }
+    }
+
+    function getLabelProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Text</div>
+          <div class="property-row">
+            <textarea class="property-input" id="propText" rows="2" style="resize: vertical;">${props.text || ''}</textarea>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Times New Roman' ? 'selected' : ''}>Times New Roman</option>
+              <option ${props.fontFamily === 'Georgia' ? 'selected' : ''}>Georgia</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+              <option ${props.fontFamily === 'Courier New' ? 'selected' : ''}>Courier New</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Size</span>
+            <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 14}" min="6" max="72">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Style</span>
+            <select class="property-select" id="propFontStyle">
+              <option value="normal" ${props.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
+              <option value="bold" ${props.fontStyle === 'bold' ? 'selected' : ''}>Bold</option>
+              <option value="italic" ${props.fontStyle === 'italic' ? 'selected' : ''}>Italic</option>
+              <option value="bold italic" ${props.fontStyle === 'bold italic' ? 'selected' : ''}>Bold Italic</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propTextColor" value="${props.textColor || '#333333'}">
+              <span class="property-color-value" id="propTextColorValue">${props.textColor || '#333333'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">H Align</span>
+            <select class="property-select" id="propHAlign">
+              <option value="left" ${props.hAlign === 'left' ? 'selected' : ''}>Left</option>
+              <option value="center" ${props.hAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="right" ${props.hAlign === 'right' ? 'selected' : ''}>Right</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">V Align</span>
+            <select class="property-select" id="propVAlign">
+              <option value="top" ${props.vAlign === 'top' ? 'selected' : ''}>Top</option>
+              <option value="center" ${props.vAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="bottom" ${props.vAlign === 'bottom' ? 'selected' : ''}>Bottom</option>
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+    function getChartProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Chart Configuration</div>
+          <div class="property-row">
+            <span class="property-label">Type</span>
+            <select class="property-select" id="propChartType">
+              <option value="bar" ${props.chartType === 'bar' ? 'selected' : ''}>Bar</option>
+              <option value="line" ${props.chartType === 'line' ? 'selected' : ''}>Line</option>
+              <option value="pie" ${props.chartType === 'pie' ? 'selected' : ''}>Pie</option>
+              <option value="area" ${props.chartType === 'area' ? 'selected' : ''}>Area</option>
+              <option value="doughnut" ${props.chartType === 'doughnut' ? 'selected' : ''}>Doughnut</option>
+            </select>
+          </div>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowLegend" ${props.showLegend ? 'checked' : ''}>
+            Show Legend
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowTitle" ${props.showTitle ? 'checked' : ''}>
+            Show Title
+          </label>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Title Size</span>
+            <input type="number" class="property-input" id="propTitleFontSize" value="${props.titleFontSize || 14}" min="8" max="36">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Legend Size</span>
+            <input type="number" class="property-input" id="propLegendFontSize" value="${props.legendFontSize || 11}" min="8" max="24">
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Border</div>
+          <div class="property-row">
+            <span class="property-label">Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propBorderColor" value="${props.borderColor || '#e0e0e0'}">
+              <span class="property-color-value">${props.borderColor || '#e0e0e0'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Width</span>
+            <input type="number" class="property-input" id="propBorderThickness" value="${props.borderThickness || 1}" min="0" max="10">
+          </div>
+        </div>
+      `;
+    }
+
+    function getTableProperties(props) {
+      return `
+        <div class="property-tabs">
+          <div class="property-tab active" data-tab="tableGeneral">General</div>
+          <div class="property-tab" data-tab="tableStyle">Style</div>
+          <div class="property-tab" data-tab="tableColumns">Columns</div>
+        </div>
+        <div class="property-tab-content active" id="tableGeneral">
+          <div class="property-group">
+            <div class="property-group-title">Data Selection</div>
+            <div class="property-row">
+              <span class="property-label">Type</span>
+              <select class="property-select" id="propTransactionType">
+                <option value="revenue" ${props.transactionType === 'revenue' ? 'selected' : ''}>Revenue</option>
+                <option value="expenses" ${props.transactionType === 'expenses' ? 'selected' : ''}>Expenses</option>
+              </select>
+            </div>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propIncludeReturns" ${props.includeReturns ? 'checked' : ''}>
+              Include Returns
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propIncludeLosses" ${props.includeLosses ? 'checked' : ''}>
+              Include Losses
+            </label>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Sorting & Limits</div>
+            <div class="property-row">
+              <span class="property-label">Sort</span>
+              <select class="property-select" id="propSortOrder">
+                <option value="date-desc" ${props.sortOrder === 'date-desc' ? 'selected' : ''}>Date (Newest)</option>
+                <option value="date-asc" ${props.sortOrder === 'date-asc' ? 'selected' : ''}>Date (Oldest)</option>
+                <option value="total-desc" ${props.sortOrder === 'total-desc' ? 'selected' : ''}>Total (High-Low)</option>
+                <option value="total-asc" ${props.sortOrder === 'total-asc' ? 'selected' : ''}>Total (Low-High)</option>
+              </select>
+            </div>
+            <div class="property-row">
+              <span class="property-label">Max Rows</span>
+              <input type="number" class="property-input" id="propMaxRows" value="${props.maxRows || 50}" min="1" max="500">
+            </div>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Display Options</div>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propShowHeaders" ${props.showHeaders ? 'checked' : ''}>
+              Show Headers
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propShowGridLines" ${props.showGridLines ? 'checked' : ''}>
+              Show Grid Lines
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propShowTotalsRow" ${props.showTotalsRow ? 'checked' : ''}>
+              Show Totals Row
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propAlternateRowColors" ${props.alternateRowColors ? 'checked' : ''}>
+              Alternate Row Colors
+            </label>
+            <label class="property-checkbox">
+              <input type="checkbox" id="propAutoSizeColumns" ${props.autoSizeColumns ? 'checked' : ''}>
+              Auto-Size Columns
+            </label>
+          </div>
+        </div>
+        <div class="property-tab-content" id="tableStyle">
+          <div class="property-group">
+            <div class="property-group-title">Font</div>
+            <div class="property-row">
+              <span class="property-label">Family</span>
+              <select class="property-select" id="propFontFamily">
+                <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+                <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+                <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+              </select>
+            </div>
+            <div class="property-row">
+              <span class="property-label">Size</span>
+              <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 11}" min="8" max="24">
+            </div>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Row Heights</div>
+            <div class="property-row">
+              <span class="property-label">Header</span>
+              <input type="number" class="property-input" id="propHeaderRowHeight" value="${props.headerRowHeight || 32}" min="20" max="60">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Data Row</span>
+              <input type="number" class="property-input" id="propDataRowHeight" value="${props.dataRowHeight || 28}" min="18" max="50">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Padding</span>
+              <input type="number" class="property-input" id="propCellPadding" value="${props.cellPadding || 8}" min="2" max="20">
+            </div>
+          </div>
+          <div class="property-group">
+            <div class="property-group-title">Colors</div>
+            <div class="property-row">
+              <span class="property-label">Header BG</span>
+              <input type="color" class="property-color" id="propHeaderBackgroundColor" value="${props.headerBackgroundColor || '#f1f3f4'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Header Text</span>
+              <input type="color" class="property-color" id="propHeaderTextColor" value="${props.headerTextColor || '#333333'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Data Text</span>
+              <input type="color" class="property-color" id="propDataRowTextColor" value="${props.dataRowTextColor || '#666666'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Grid Lines</span>
+              <input type="color" class="property-color" id="propGridLineColor" value="${props.gridLineColor || '#e0e0e0'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Row BG</span>
+              <input type="color" class="property-color" id="propBaseRowColor" value="${props.baseRowColor || '#ffffff'}">
+            </div>
+            <div class="property-row">
+              <span class="property-label">Alt Row BG</span>
+              <input type="color" class="property-color" id="propAlternateRowColor" value="${props.alternateRowColor || '#f8f9fa'}">
+            </div>
+          </div>
+        </div>
+        <div class="property-tab-content" id="tableColumns">
+          <div class="property-group">
+            <div class="property-group-title">Visible Columns</div>
+            <div class="columns-grid">
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowDateColumn" ${props.showDateColumn ? 'checked' : ''}>
+                Date
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowTransactionIdColumn" ${props.showTransactionIdColumn ? 'checked' : ''}>
+                Trans. ID
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowCompanyColumn" ${props.showCompanyColumn ? 'checked' : ''}>
+                Company
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowProductColumn" ${props.showProductColumn ? 'checked' : ''}>
+                Product
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowQuantityColumn" ${props.showQuantityColumn ? 'checked' : ''}>
+                Quantity
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowUnitPriceColumn" ${props.showUnitPriceColumn ? 'checked' : ''}>
+                Unit Price
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowTotalColumn" ${props.showTotalColumn ? 'checked' : ''}>
+                Total
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowStatusColumn" ${props.showStatusColumn ? 'checked' : ''}>
+                Status
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowAccountantColumn" ${props.showAccountantColumn ? 'checked' : ''}>
+                Accountant
+              </label>
+              <label class="property-checkbox">
+                <input type="checkbox" id="propShowShippingColumn" ${props.showShippingColumn ? 'checked' : ''}>
+                Shipping
+              </label>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getImageProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Image Source</div>
+          <div class="property-row">
+            <input type="text" class="property-input" id="propImagePath" value="${props.imagePath || ''}" placeholder="Image path or URL">
+          </div>
+          <button class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 4px;" onclick="alert('Browse functionality would open file picker')">
+            <i class="fas fa-folder-open"></i> Browse...
+          </button>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Layout</div>
+          <div class="property-row">
+            <span class="property-label">Scale</span>
+            <select class="property-select" id="propScaleMode">
+              <option value="fit" ${props.scaleMode === 'fit' ? 'selected' : ''}>Fit</option>
+              <option value="fill" ${props.scaleMode === 'fill' ? 'selected' : ''}>Fill</option>
+              <option value="stretch" ${props.scaleMode === 'stretch' ? 'selected' : ''}>Stretch</option>
+              <option value="tile" ${props.scaleMode === 'tile' ? 'selected' : ''}>Tile</option>
+              <option value="center" ${props.scaleMode === 'center' ? 'selected' : ''}>Center</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Corners</span>
+            <input type="number" class="property-input" id="propCornerRadius" value="${props.cornerRadius || 0}" min="0" max="50">
+            <span style="font-size: 10px; color: var(--gray-400); margin-left: 4px;">%</span>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Opacity</span>
+            <input type="number" class="property-input" id="propOpacity" value="${props.opacity || 100}" min="0" max="100">
+            <span style="font-size: 10px; color: var(--gray-400); margin-left: 4px;">%</span>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">BG Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propBackgroundColor" value="${props.backgroundColor || '#ffffff'}">
+              <span class="property-color-value">${props.backgroundColor || '#ffffff'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propBorderColor" value="${props.borderColor || '#e0e0e0'}">
+              <span class="property-color-value">${props.borderColor || '#e0e0e0'}</span>
+            </div>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border W</span>
+            <input type="number" class="property-input" id="propBorderThickness" value="${props.borderThickness || 1}" min="0" max="10">
+          </div>
+        </div>
+      `;
+    }
+
+    function getSummaryProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Data Selection</div>
+          <div class="property-row">
+            <span class="property-label">Type</span>
+            <select class="property-select" id="propTransactionType">
+              <option value="revenue" ${props.transactionType === 'revenue' ? 'selected' : ''}>Revenue</option>
+              <option value="expenses" ${props.transactionType === 'expenses' ? 'selected' : ''}>Expenses</option>
+            </select>
+          </div>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propIncludeReturns" ${props.includeReturns ? 'checked' : ''}>
+            Include Returns
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propIncludeLosses" ${props.includeLosses ? 'checked' : ''}>
+            Include Losses
+          </label>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Display Options</div>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowTotalSales" ${props.showTotalSales ? 'checked' : ''}>
+            Show Total Sales
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowTotalTransactions" ${props.showTotalTransactions ? 'checked' : ''}>
+            Show Total Transactions
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowAverageValue" ${props.showAverageValue ? 'checked' : ''}>
+            Show Average Value
+          </label>
+          <label class="property-checkbox">
+            <input type="checkbox" id="propShowGrowthRate" ${props.showGrowthRate ? 'checked' : ''}>
+            Show Growth Rate
+          </label>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Size</span>
+            <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 12}" min="8" max="24">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Style</span>
+            <select class="property-select" id="propFontStyle">
+              <option value="normal" ${props.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
+              <option value="bold" ${props.fontStyle === 'bold' ? 'selected' : ''}>Bold</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">Text</span>
+            <input type="color" class="property-color" id="propTextColor" value="${props.textColor || '#333333'}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">BG</span>
+            <input type="color" class="property-color" id="propBackgroundColor" value="${props.backgroundColor || '#f8f9fa'}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border</span>
+            <input type="color" class="property-color" id="propBorderColor" value="${props.borderColor || '#e0e0e0'}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Border W</span>
+            <input type="number" class="property-input" id="propBorderThickness" value="${props.borderThickness || 1}" min="0" max="10">
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Alignment</div>
+          <div class="property-row">
+            <span class="property-label">H Align</span>
+            <select class="property-select" id="propHAlign">
+              <option value="left" ${props.hAlign === 'left' ? 'selected' : ''}>Left</option>
+              <option value="center" ${props.hAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="right" ${props.hAlign === 'right' ? 'selected' : ''}>Right</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">V Align</span>
+            <select class="property-select" id="propVAlign">
+              <option value="top" ${props.vAlign === 'top' ? 'selected' : ''}>Top</option>
+              <option value="center" ${props.vAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="bottom" ${props.vAlign === 'bottom' ? 'selected' : ''}>Bottom</option>
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+    function getDateRangeProperties(props) {
+      return `
+        <div class="property-group">
+          <div class="property-group-title">Date Format</div>
+          <div class="property-row">
+            <span class="property-label">Format</span>
+            <select class="property-select" id="propDateFormat">
+              <option value="MM/DD/YYYY" ${props.dateFormat === 'MM/DD/YYYY' ? 'selected' : ''}>MM/DD/YYYY</option>
+              <option value="DD/MM/YYYY" ${props.dateFormat === 'DD/MM/YYYY' ? 'selected' : ''}>DD/MM/YYYY</option>
+              <option value="YYYY-MM-DD" ${props.dateFormat === 'YYYY-MM-DD' ? 'selected' : ''}>YYYY-MM-DD</option>
+              <option value="MMM DD, YYYY" ${props.dateFormat === 'MMM DD, YYYY' ? 'selected' : ''}>MMM DD, YYYY</option>
+              <option value="MMMM DD, YYYY" ${props.dateFormat === 'MMMM DD, YYYY' ? 'selected' : ''}>MMMM DD, YYYY</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Font</div>
+          <div class="property-row">
+            <span class="property-label">Family</span>
+            <select class="property-select" id="propFontFamily">
+              <option ${props.fontFamily === 'Arial' ? 'selected' : ''}>Arial</option>
+              <option ${props.fontFamily === 'Helvetica' ? 'selected' : ''}>Helvetica</option>
+              <option ${props.fontFamily === 'Verdana' ? 'selected' : ''}>Verdana</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">Size</span>
+            <input type="number" class="property-input" id="propFontSize" value="${props.fontSize || 12}" min="8" max="24">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Style</span>
+            <select class="property-select" id="propFontStyle">
+              <option value="normal" ${props.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
+              <option value="bold" ${props.fontStyle === 'bold' ? 'selected' : ''}>Bold</option>
+              <option value="italic" ${props.fontStyle === 'italic' ? 'selected' : ''}>Italic</option>
+            </select>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Appearance</div>
+          <div class="property-row">
+            <span class="property-label">Color</span>
+            <div class="property-color-row">
+              <input type="color" class="property-color" id="propTextColor" value="${props.textColor || '#333333'}">
+              <span class="property-color-value">${props.textColor || '#333333'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Alignment</div>
+          <div class="property-row">
+            <span class="property-label">H Align</span>
+            <select class="property-select" id="propHAlign">
+              <option value="left" ${props.hAlign === 'left' ? 'selected' : ''}>Left</option>
+              <option value="center" ${props.hAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="right" ${props.hAlign === 'right' ? 'selected' : ''}>Right</option>
+            </select>
+          </div>
+          <div class="property-row">
+            <span class="property-label">V Align</span>
+            <select class="property-select" id="propVAlign">
+              <option value="top" ${props.vAlign === 'top' ? 'selected' : ''}>Top</option>
+              <option value="center" ${props.vAlign === 'center' ? 'selected' : ''}>Center</option>
+              <option value="bottom" ${props.vAlign === 'bottom' ? 'selected' : ''}>Bottom</option>
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+    function bindTypeSpecificEvents(config, element) {
+      const props = config.props;
+
+      // Color picker value display updates
+      document.querySelectorAll('.property-color').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const valueSpan = e.target.parentElement.querySelector('.property-color-value');
+          if (valueSpan) valueSpan.textContent = e.target.value;
+        });
+      });
+
+      // Generic property binding - collect all property inputs
+      const propertyInputs = document.querySelectorAll('#propertiesContent input, #propertiesContent select, #propertiesContent textarea');
+      propertyInputs.forEach(input => {
+        const propName = input.id?.replace('prop', '');
+        if (!propName || ['X', 'Y', 'Width', 'Height'].includes(propName)) return;
+
+        const eventType = input.type === 'checkbox' ? 'change' : 'input';
+        input.addEventListener(eventType, () => {
+          const key = propName.charAt(0).toLowerCase() + propName.slice(1);
+          if (input.type === 'checkbox') {
+            props[key] = input.checked;
+          } else if (input.type === 'number') {
+            props[key] = parseFloat(input.value);
+          } else {
+            props[key] = input.value;
+          }
+          saveState('Edit ' + config.type + ' property');
+        });
       });
     }
 
