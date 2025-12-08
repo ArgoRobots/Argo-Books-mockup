@@ -186,9 +186,12 @@
       gap: 12px;
       margin-bottom: 12px;
       flex-shrink: 0;
+      position: relative;
     }
     .step-title-center {
-      flex: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       text-align: center;
     }
     .step-title-center #stepTitle {
@@ -1709,7 +1712,7 @@
                         <span>Open after export</span>
                       </label>
                       <label class="export-option">
-                        <input type="checkbox" id="includeMetadata">
+                        <input type="checkbox" id="includeMetadata" checked>
                         <span>Include metadata</span>
                       </label>
                     </div>
