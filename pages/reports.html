@@ -160,6 +160,571 @@
     .card-tab-content.active {
       display: block;
     }
+
+    /* Step visibility */
+    .wizard-step {
+      display: none;
+    }
+    .wizard-step.active {
+      display: block;
+    }
+
+    /* Step indicator styling */
+    .step-indicator-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .step-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      background: var(--gray-200);
+      color: var(--gray-500);
+      transition: all 0.3s;
+    }
+    .step-dot.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    .step-dot.completed {
+      background: var(--success-color);
+      color: white;
+    }
+    .step-line {
+      width: 40px;
+      height: 3px;
+      background: var(--gray-200);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .step-line.completed {
+      background: var(--success-color);
+    }
+
+    /* Navigation buttons */
+    .wizard-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+    .wizard-nav .nav-left {
+      display: flex;
+      gap: 8px;
+    }
+    .wizard-nav .nav-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Step 2: Layout Designer */
+    .layout-designer {
+      display: flex;
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+    .element-toolbox {
+      width: 200px;
+      flex-shrink: 0;
+    }
+    .canvas-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .canvas-toolbar {
+      display: flex;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--gray-100);
+      border-radius: var(--radius) var(--radius) 0 0;
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+      flex-wrap: wrap;
+    }
+    .toolbar-group {
+      display: flex;
+      gap: 4px;
+      padding-right: 12px;
+      border-right: 1px solid var(--border-color);
+    }
+    .toolbar-group:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+    .toolbar-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+    .toolbar-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .toolbar-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .toolbar-btn:disabled:hover {
+      border-color: var(--border-color);
+      color: var(--gray-600);
+      background: white;
+    }
+    .design-canvas {
+      flex: 1;
+      background: var(--gray-200);
+      border: 1px solid var(--border-color);
+      border-radius: 0 0 var(--radius) var(--radius);
+      overflow: auto;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .canvas-page {
+      width: 595px;
+      min-height: 842px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .canvas-element {
+      position: absolute;
+      border: 2px dashed var(--border-color);
+      background: white;
+      cursor: move;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--gray-500);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+    .canvas-element:hover {
+      border-color: var(--primary-color);
+    }
+    .canvas-element.selected {
+      border-color: var(--primary-color);
+      border-style: solid;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    .canvas-element .element-label {
+      text-align: center;
+      padding: 8px;
+    }
+    .canvas-element .element-icon {
+      font-size: 24px;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .resize-handle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--primary-color);
+      border: 2px solid white;
+      border-radius: 2px;
+    }
+    .resize-handle.nw { top: -5px; left: -5px; cursor: nw-resize; }
+    .resize-handle.ne { top: -5px; right: -5px; cursor: ne-resize; }
+    .resize-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+    .resize-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
+    .properties-panel {
+      width: 240px;
+      flex-shrink: 0;
+    }
+    .element-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .element-btn:hover {
+      border-color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .element-btn i {
+      width: 24px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .properties-empty {
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--gray-500);
+      font-size: 13px;
+    }
+    .property-group {
+      margin-bottom: 16px;
+    }
+    .property-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .property-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .property-label {
+      width: 70px;
+      font-size: 12px;
+      color: var(--gray-600);
+      flex-shrink: 0;
+    }
+    .property-input {
+      flex: 1;
+      padding: 6px 8px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 12px;
+    }
+    .property-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    /* Step 3: Preview & Export */
+    .preview-export {
+      display: flex;
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+    .preview-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .preview-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      background: var(--gray-100);
+      border-radius: var(--radius) var(--radius) 0 0;
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+    }
+    .zoom-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .zoom-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .zoom-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    .zoom-level {
+      font-size: 12px;
+      color: var(--gray-600);
+      min-width: 50px;
+      text-align: center;
+    }
+    .preview-area {
+      flex: 1;
+      background: var(--gray-200);
+      border: 1px solid var(--border-color);
+      border-radius: 0 0 var(--radius) var(--radius);
+      overflow: auto;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .preview-page {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      transform-origin: top center;
+    }
+    .preview-page img {
+      display: block;
+      max-width: 100%;
+    }
+    .export-panel {
+      width: 280px;
+      flex-shrink: 0;
+    }
+    .export-section {
+      margin-bottom: 20px;
+    }
+    .export-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .format-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .format-option {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .format-option:hover {
+      border-color: var(--primary-color);
+    }
+    .format-option.selected {
+      border-color: var(--primary-color);
+      background: var(--primary-light);
+    }
+    .format-option input {
+      margin-right: 10px;
+    }
+    .format-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      margin-right: 10px;
+      font-size: 14px;
+    }
+    .format-details {
+      flex: 1;
+    }
+    .format-name {
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .format-desc {
+      font-size: 11px;
+      color: var(--gray-500);
+    }
+    .quality-slider {
+      margin-top: 12px;
+    }
+    .quality-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .quality-label {
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+    .quality-value {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    .quality-track {
+      width: 100%;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--gray-200);
+      border-radius: 3px;
+      outline: none;
+    }
+    .quality-track::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .export-path {
+      display: flex;
+      gap: 8px;
+    }
+    .export-path input {
+      flex: 1;
+    }
+    .export-options {
+      margin-top: 12px;
+    }
+    .export-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .export-option input {
+      margin: 0;
+    }
+    .export-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .export-btn:hover {
+      background: var(--primary-dark);
+    }
+    .export-btn i {
+      font-size: 16px;
+    }
+
+    /* Report preview content */
+    .preview-report {
+      width: 595px;
+      min-height: 842px;
+      padding: 40px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .preview-report-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    .preview-report-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .preview-report-date {
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+    .preview-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .preview-chart {
+      background: var(--gray-50);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .preview-chart-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+    }
+    .preview-chart-placeholder {
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--gray-100) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-size: 32px;
+    }
+    .preview-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .preview-summary-item {
+      background: var(--gray-50);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 12px;
+      text-align: center;
+    }
+    .preview-summary-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .preview-summary-label {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+    .preview-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .preview-table th {
+      background: var(--primary-color);
+      color: white;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .preview-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .preview-table tr:nth-child(even) {
+      background: var(--gray-50);
+    }
   </style>
 </head>
 <body>
@@ -171,230 +736,566 @@
       <!-- Header injected by js/components/header.js -->
 
       <div class="page-content reports-page">
-        <div class="step-indicator" style="font-size: 18px; margin-bottom: 16px;">
-          <span style="color: var(--primary-color); font-weight: 600;">Step 1 of 3</span> <span style="color: var(--text-primary); font-weight: 500;">&mdash; Select Template & Settings</span>
+        <!-- Step Indicator -->
+        <div class="step-indicator-container">
+          <div class="step-progress">
+            <div class="step-dot active" data-step="1">1</div>
+            <div class="step-line" data-line="1"></div>
+            <div class="step-dot" data-step="2">2</div>
+            <div class="step-line" data-line="2"></div>
+            <div class="step-dot" data-step="3">3</div>
+          </div>
+          <div class="step-indicator">
+            <span id="stepNumber" style="color: var(--primary-color); font-weight: 600;">Step 1 of 3</span>
+            <span id="stepTitle" style="color: var(--text-primary); font-weight: 500;">&mdash; Select Template & Settings</span>
+          </div>
         </div>
-        <div class="grid grid-2">
-          <!-- Left Card: Charts & Templates -->
-          <div class="card">
-            <div class="card-tabs">
-              <div class="card-tab active" data-card-tab="templates">Templates</div>
-              <div class="card-tab" data-card-tab="custom-charts">Custom</div>
-            </div>
-            <div class="report-card-body">
-              <!-- Templates Tab -->
-              <div class="card-tab-content active" id="templates">
-                <div class="template-grid">
-                  <div class="template-item selected">
-                    <i class="fas fa-file-invoice-dollar" style="color: var(--primary-color);"></i>
-                    <div class="name">Monthly Summary</div>
-                    <div class="desc">Revenue & expenses overview</div>
+
+        <!-- Step 1: Template & Settings -->
+        <div class="wizard-step active" id="step1">
+          <div class="grid grid-2" style="flex: 1; min-height: 0;">
+            <!-- Left Card: Charts & Templates -->
+            <div class="card">
+              <div class="card-tabs">
+                <div class="card-tab active" data-card-tab="templates">Templates</div>
+                <div class="card-tab" data-card-tab="custom-charts">Custom</div>
+              </div>
+              <div class="report-card-body">
+                <!-- Templates Tab -->
+                <div class="card-tab-content active" id="templates">
+                  <div class="template-grid">
+                    <div class="template-item selected" data-template="monthly-summary">
+                      <i class="fas fa-file-invoice-dollar" style="color: var(--primary-color);"></i>
+                      <div class="name">Monthly Summary</div>
+                      <div class="desc">Revenue & expenses overview</div>
+                    </div>
+                    <div class="template-item" data-template="financial-report">
+                      <i class="fas fa-chart-pie" style="color: var(--success-color);"></i>
+                      <div class="name">Financial Report</div>
+                      <div class="desc">Detailed financials</div>
+                    </div>
+                    <div class="template-item" data-template="customer-report">
+                      <i class="fas fa-users" style="color: var(--secondary-color);"></i>
+                      <div class="name">Customer Report</div>
+                      <div class="desc">Customer metrics</div>
+                    </div>
+                    <div class="template-item" data-template="rental-performance">
+                      <i class="fas fa-box" style="color: var(--warning-color);"></i>
+                      <div class="name">Rental Performance</div>
+                      <div class="desc">Rental analytics</div>
+                    </div>
+                    <div class="template-item" data-template="employee-report">
+                      <i class="fas fa-user-tie" style="color: var(--info-color);"></i>
+                      <div class="name">Employee Report</div>
+                      <div class="desc">Payroll summary</div>
+                    </div>
+                    <div class="template-item" data-template="blank">
+                      <i class="fas fa-plus" style="color: var(--gray-400);"></i>
+                      <div class="name">Blank Template</div>
+                      <div class="desc">Start from scratch</div>
+                    </div>
                   </div>
-                  <div class="template-item">
-                    <i class="fas fa-chart-pie" style="color: var(--success-color);"></i>
-                    <div class="name">Financial Report</div>
-                    <div class="desc">Detailed financials</div>
+                </div>
+
+                <!-- Custom Charts Tab -->
+                <div class="card-tab-content" id="custom-charts">
+                  <div class="form-group mb-2">
+                    <label class="form-label fs-sm">Chart Type Filter</label>
+                    <select class="form-control form-select" id="chartFilter">
+                      <option value="all">All Charts</option>
+                      <option value="revenue">Revenue Charts</option>
+                      <option value="expense">Expense Charts</option>
+                      <option value="rental">Rental Charts</option>
+                    </select>
                   </div>
-                  <div class="template-item">
-                    <i class="fas fa-users" style="color: var(--secondary-color);"></i>
-                    <div class="name">Customer Report</div>
-                    <div class="desc">Customer metrics</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-box" style="color: var(--warning-color);"></i>
-                    <div class="name">Rental Performance</div>
-                    <div class="desc">Rental analytics</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-user-tie" style="color: var(--info-color);"></i>
-                    <div class="name">Employee Report</div>
-                    <div class="desc">Payroll summary</div>
-                  </div>
-                  <div class="template-item">
-                    <i class="fas fa-plus" style="color: var(--gray-400);"></i>
-                    <div class="name">Blank Template</div>
-                    <div class="desc">Start from scratch</div>
+                  <label class="form-label fs-sm">Available Charts</label>
+                  <div class="chart-list">
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" checked data-chart="revenue-vs-expenses">
+                      <div class="chart-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                        <i class="fas fa-chart-line"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Revenue vs Expenses</div>
+                        <div class="text-muted" style="font-size: 11px;">Line Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="expense">
+                      <input type="checkbox" class="form-check-input chart-checkbox" checked data-chart="expense-breakdown">
+                      <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                        <i class="fas fa-chart-pie"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Expense Breakdown</div>
+                        <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="revenue-by-category">
+                      <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Revenue by Category</div>
+                        <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="sales-by-region">
+                      <div class="chart-item-icon" style="background: #fff8e6; color: #e6a700;">
+                        <i class="fas fa-globe"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Sales by Region</div>
+                        <div class="text-muted" style="font-size: 11px;">Geo Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" checked data-chart="monthly-trends">
+                      <div class="chart-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
+                        <i class="fas fa-chart-area"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Monthly Trends</div>
+                        <div class="text-muted" style="font-size: 11px;">Area Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="rental">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="rental-performance">
+                      <div class="chart-item-icon" style="background: #e6f0ff; color: var(--info-color);">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Rental Performance</div>
+                        <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="revenue">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="profit-margins">
+                      <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
+                        <i class="fas fa-chart-line"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Profit Margins</div>
+                        <div class="text-muted" style="font-size: 11px;">Line Chart</div>
+                      </div>
+                    </label>
+                    <label class="chart-item" data-category="expense">
+                      <input type="checkbox" class="form-check-input chart-checkbox" data-chart="top-suppliers">
+                      <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                        <i class="fas fa-chart-pie"></i>
+                      </div>
+                      <div>
+                        <div class="fw-600 fs-sm">Top Suppliers</div>
+                        <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
+                      </div>
+                    </label>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Custom Charts Tab -->
-              <div class="card-tab-content" id="custom-charts">
-                <div class="form-group mb-2">
-                  <label class="form-label fs-sm">Chart Type Filter</label>
-                  <select class="form-control form-select">
-                    <option>All Charts</option>
-                    <option>Revenue Charts</option>
-                    <option>Expense Charts</option>
-                    <option>Rental Charts</option>
-                  </select>
+            <!-- Right Card: Report Settings -->
+            <div class="card">
+              <div class="card-header" style="padding: 12px 16px;">
+                <h3 class="card-title" style="font-size: 14px;">Report Settings</h3>
+              </div>
+              <div class="report-card-body">
+                <div class="form-group mb-3">
+                  <label class="form-label fs-sm">Report Name</label>
+                  <input type="text" class="form-control" id="reportName" placeholder="Enter report name..." value="Monthly Summary Report">
                 </div>
-                <label class="form-label fs-sm">Available Charts</label>
-                <div class="chart-list">
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input" checked>
-                    <div class="chart-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
-                      <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Revenue vs Expenses</div>
-                      <div class="text-muted" style="font-size: 11px;">Line Chart</div>
-                    </div>
+
+                <label class="form-label fs-sm">Date Range</label>
+                <div id="dateRangeOptions" class="date-range-grid">
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="today">
+                    <span class="date-option-label">Today</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input" checked>
-                    <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
-                      <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Expense Breakdown</div>
-                      <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="yesterday">
+                    <span class="date-option-label">Yesterday</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
-                      <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Revenue by Category</div>
-                      <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="this-week">
+                    <span class="date-option-label">This Week</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #fff8e6; color: #e6a700;">
-                      <i class="fas fa-globe"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Sales by Region</div>
-                      <div class="text-muted" style="font-size: 11px;">Geo Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="last-week">
+                    <span class="date-option-label">Last Week</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input" checked>
-                    <div class="chart-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
-                      <i class="fas fa-chart-area"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Monthly Trends</div>
-                      <div class="text-muted" style="font-size: 11px;">Area Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="this-month">
+                    <span class="date-option-label">This Month</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #e6f0ff; color: var(--info-color);">
-                      <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Rental Performance</div>
-                      <div class="text-muted" style="font-size: 11px;">Bar Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="last-month">
+                    <span class="date-option-label">Last Month</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #e6f7e6; color: var(--success-color);">
-                      <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Profit Margins</div>
-                      <div class="text-muted" style="font-size: 11px;">Line Chart</div>
-                    </div>
+                  <label class="date-option selected">
+                    <input type="radio" name="dateRange" value="this-quarter" checked>
+                    <span class="date-option-label">This Quarter</span>
                   </label>
-                  <label class="chart-item">
-                    <input type="checkbox" class="form-check-input">
-                    <div class="chart-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
-                      <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600 fs-sm">Top Suppliers</div>
-                      <div class="text-muted" style="font-size: 11px;">Pie Chart</div>
-                    </div>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="last-quarter">
+                    <span class="date-option-label">Last Quarter</span>
                   </label>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="this-year">
+                    <span class="date-option-label">This Year</span>
+                  </label>
+                  <label class="date-option">
+                    <input type="radio" name="dateRange" value="all-time">
+                    <span class="date-option-label">All Time</span>
+                  </label>
+                  <label class="date-option" id="customDateOption" style="grid-column: span 2;">
+                    <input type="radio" name="dateRange" value="custom">
+                    <span class="date-option-label">Custom Range</span>
+                  </label>
+                </div>
+
+                <div class="custom-date-pickers" id="customDatePickers">
+                  <div class="form-row">
+                    <div class="form-group mb-0">
+                      <label class="form-label fs-sm">Start Date</label>
+                      <input type="date" class="form-control" id="startDate">
+                    </div>
+                    <div class="form-group mb-0">
+                      <label class="form-label fs-sm">End Date</label>
+                      <input type="date" class="form-control" id="endDate">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Right Card: Report Settings -->
-          <div class="card">
-            <div class="card-header" style="padding: 12px 16px;">
-              <h3 class="card-title" style="font-size: 14px;">Report Settings</h3>
+        <!-- Step 2: Layout Designer -->
+        <div class="wizard-step" id="step2">
+          <div class="layout-designer" style="flex: 1; min-height: 0;">
+            <!-- Element Toolbox -->
+            <div class="element-toolbox">
+              <div class="card" style="height: 100%;">
+                <div class="card-header" style="padding: 12px 16px;">
+                  <h3 class="card-title" style="font-size: 14px;">Elements</h3>
+                </div>
+                <div class="report-card-body">
+                  <button class="element-btn" data-element="chart">
+                    <i class="fas fa-chart-bar" style="color: var(--primary-color);"></i>
+                    <span>Chart</span>
+                  </button>
+                  <button class="element-btn" data-element="label">
+                    <i class="fas fa-font" style="color: var(--secondary-color);"></i>
+                    <span>Label</span>
+                  </button>
+                  <button class="element-btn" data-element="date">
+                    <i class="fas fa-calendar" style="color: var(--info-color);"></i>
+                    <span>Date Range</span>
+                  </button>
+                  <button class="element-btn" data-element="summary">
+                    <i class="fas fa-calculator" style="color: var(--success-color);"></i>
+                    <span>Summary</span>
+                  </button>
+                  <button class="element-btn" data-element="table">
+                    <i class="fas fa-table" style="color: var(--warning-color);"></i>
+                    <span>Table</span>
+                  </button>
+                  <button class="element-btn" data-element="image">
+                    <i class="fas fa-image" style="color: var(--danger-color);"></i>
+                    <span>Image</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="report-card-body">
-              <div class="form-group mb-3">
-                <label class="form-label fs-sm">Report Name</label>
-                <input type="text" class="form-control" placeholder="Enter report name...">
-              </div>
 
-              <label class="form-label fs-sm">Date Range</label>
-              <div id="dateRangeOptions" class="date-range-grid">
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="today">
-                  <span class="date-option-label">Today</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="yesterday">
-                  <span class="date-option-label">Yesterday</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="this-week">
-                  <span class="date-option-label">This Week</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="last-week">
-                  <span class="date-option-label">Last Week</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="this-month">
-                  <span class="date-option-label">This Month</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="last-month">
-                  <span class="date-option-label">Last Month</span>
-                </label>
-                <label class="date-option selected">
-                  <input type="radio" name="dateRange" value="this-quarter" checked>
-                  <span class="date-option-label">This Quarter</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="last-quarter">
-                  <span class="date-option-label">Last Quarter</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="this-year">
-                  <span class="date-option-label">This Year</span>
-                </label>
-                <label class="date-option">
-                  <input type="radio" name="dateRange" value="all-time">
-                  <span class="date-option-label">All Time</span>
-                </label>
-                <label class="date-option" id="customDateOption" style="grid-column: span 2;">
-                  <input type="radio" name="dateRange" value="custom">
-                  <span class="date-option-label">Custom Range</span>
-                </label>
+            <!-- Canvas Area -->
+            <div class="canvas-container">
+              <div class="canvas-toolbar">
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="undoBtn" title="Undo (Ctrl+Z)" disabled>
+                    <i class="fas fa-undo"></i>
+                  </button>
+                  <button class="toolbar-btn" id="redoBtn" title="Redo (Ctrl+Y)" disabled>
+                    <i class="fas fa-redo"></i>
+                  </button>
+                </div>
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="alignLeftBtn" title="Align Left" disabled>
+                    <i class="fas fa-align-left"></i>
+                  </button>
+                  <button class="toolbar-btn" id="alignCenterBtn" title="Align Center" disabled>
+                    <i class="fas fa-align-center"></i>
+                  </button>
+                  <button class="toolbar-btn" id="alignRightBtn" title="Align Right" disabled>
+                    <i class="fas fa-align-right"></i>
+                  </button>
+                </div>
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="bringFrontBtn" title="Bring to Front" disabled>
+                    <i class="fas fa-layer-group"></i>
+                  </button>
+                  <button class="toolbar-btn" id="sendBackBtn" title="Send to Back" disabled>
+                    <i class="fas fa-layer-group" style="transform: rotate(180deg);"></i>
+                  </button>
+                </div>
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="deleteBtn" title="Delete (Del)" disabled>
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+                <div class="toolbar-group">
+                  <button class="toolbar-btn" id="gridToggle" title="Toggle Grid (Ctrl+G)">
+                    <i class="fas fa-th"></i>
+                  </button>
+                </div>
               </div>
+              <div class="design-canvas" id="designCanvas">
+                <div class="canvas-page" id="canvasPage">
+                  <!-- Elements will be added here dynamically -->
+                </div>
+              </div>
+            </div>
 
-              <div class="custom-date-pickers" id="customDatePickers">
-                <div class="form-row">
-                  <div class="form-group mb-0">
-                    <label class="form-label fs-sm">Start Date</label>
-                    <input type="date" class="form-control">
-                  </div>
-                  <div class="form-group mb-0">
-                    <label class="form-label fs-sm">End Date</label>
-                    <input type="date" class="form-control">
+            <!-- Properties Panel -->
+            <div class="properties-panel">
+              <div class="card" style="height: 100%;">
+                <div class="card-header" style="padding: 12px 16px;">
+                  <h3 class="card-title" style="font-size: 14px;">Properties</h3>
+                </div>
+                <div class="report-card-body" id="propertiesContent">
+                  <div class="properties-empty">
+                    <i class="fas fa-mouse-pointer" style="font-size: 32px; color: var(--gray-300); margin-bottom: 12px; display: block;"></i>
+                    <p>Select an element to edit its properties</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
-          <button class="btn btn-primary">
-            Next
-            <i class="fas fa-arrow-right"></i>
-          </button>
+
+        <!-- Step 3: Preview & Export -->
+        <div class="wizard-step" id="step3">
+          <div class="preview-export" style="flex: 1; min-height: 0;">
+            <!-- Preview Area -->
+            <div class="preview-container">
+              <div class="preview-toolbar">
+                <div class="zoom-controls">
+                  <button class="zoom-btn" id="zoomOutBtn">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span class="zoom-level" id="zoomLevel">100%</span>
+                  <button class="zoom-btn" id="zoomInBtn">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                  <button class="zoom-btn" id="zoomFitBtn" title="Fit to Window">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div style="flex: 1;"></div>
+                <span style="font-size: 12px; color: var(--gray-500);">
+                  <i class="fas fa-info-circle"></i> Preview may differ slightly from final export
+                </span>
+              </div>
+              <div class="preview-area" id="previewArea">
+                <div class="preview-page" id="previewPage">
+                  <div class="preview-report">
+                    <div class="preview-report-header">
+                      <div class="preview-report-title" id="previewTitle">Monthly Summary Report</div>
+                      <div class="preview-report-date" id="previewDate">Q4 2024 (Oct 1 - Dec 31, 2024)</div>
+                    </div>
+
+                    <div class="preview-summary-grid">
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value" style="color: var(--success-color);">$124,500</div>
+                        <div class="preview-summary-label">Total Revenue</div>
+                      </div>
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value" style="color: var(--danger-color);">$67,200</div>
+                        <div class="preview-summary-label">Total Expenses</div>
+                      </div>
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value" style="color: var(--primary-color);">$57,300</div>
+                        <div class="preview-summary-label">Net Profit</div>
+                      </div>
+                      <div class="preview-summary-item">
+                        <div class="preview-summary-value">46%</div>
+                        <div class="preview-summary-label">Profit Margin</div>
+                      </div>
+                    </div>
+
+                    <div class="preview-chart-grid">
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Revenue vs Expenses</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-line"></i>
+                        </div>
+                      </div>
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Expense Breakdown</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Monthly Trends</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-area"></i>
+                        </div>
+                      </div>
+                      <div class="preview-chart">
+                        <div class="preview-chart-title">Revenue by Category</div>
+                        <div class="preview-chart-placeholder">
+                          <i class="fas fa-chart-bar"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <table class="preview-table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Description</th>
+                          <th>Category</th>
+                          <th style="text-align: right;">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Dec 15, 2024</td>
+                          <td>Product Sales - Electronics</td>
+                          <td>Revenue</td>
+                          <td style="text-align: right; color: var(--success-color);">+$12,450</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 14, 2024</td>
+                          <td>Office Supplies</td>
+                          <td>Expense</td>
+                          <td style="text-align: right; color: var(--danger-color);">-$890</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 13, 2024</td>
+                          <td>Consulting Services</td>
+                          <td>Revenue</td>
+                          <td style="text-align: right; color: var(--success-color);">+$5,200</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 12, 2024</td>
+                          <td>Marketing Campaign</td>
+                          <td>Expense</td>
+                          <td style="text-align: right; color: var(--danger-color);">-$3,400</td>
+                        </tr>
+                        <tr>
+                          <td>Dec 11, 2024</td>
+                          <td>Product Sales - Software</td>
+                          <td>Revenue</td>
+                          <td style="text-align: right; color: var(--success-color);">+$8,750</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Export Settings -->
+            <div class="export-panel">
+              <div class="card" style="height: 100%;">
+                <div class="card-header" style="padding: 12px 16px;">
+                  <h3 class="card-title" style="font-size: 14px;">Export Settings</h3>
+                </div>
+                <div class="report-card-body">
+                  <div class="export-section">
+                    <div class="export-section-title">Export Format</div>
+                    <div class="format-options">
+                      <label class="format-option selected">
+                        <input type="radio" name="exportFormat" value="pdf" checked>
+                        <div class="format-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                          <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="format-details">
+                          <div class="format-name">PDF Document</div>
+                          <div class="format-desc">Best for printing & sharing</div>
+                        </div>
+                      </label>
+                      <label class="format-option">
+                        <input type="radio" name="exportFormat" value="png">
+                        <div class="format-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                          <i class="fas fa-file-image"></i>
+                        </div>
+                        <div class="format-details">
+                          <div class="format-name">PNG Image</div>
+                          <div class="format-desc">High quality, lossless</div>
+                        </div>
+                      </label>
+                      <label class="format-option">
+                        <input type="radio" name="exportFormat" value="jpg">
+                        <div class="format-icon" style="background: #e6f7e6; color: var(--success-color);">
+                          <i class="fas fa-file-image"></i>
+                        </div>
+                        <div class="format-details">
+                          <div class="format-name">JPEG Image</div>
+                          <div class="format-desc">Smaller file size</div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="quality-slider" id="qualitySlider">
+                      <div class="quality-header">
+                        <span class="quality-label">Quality</span>
+                        <span class="quality-value" id="qualityValue">95%</span>
+                      </div>
+                      <input type="range" class="quality-track" id="qualityTrack" min="50" max="100" value="95">
+                    </div>
+                  </div>
+
+                  <div class="export-section">
+                    <div class="export-section-title">Export Location</div>
+                    <div class="export-path">
+                      <input type="text" class="form-control" id="exportPath" value="Monthly_Summary_Report.pdf" style="font-size: 12px;">
+                      <button class="btn btn-secondary" style="padding: 6px 12px;">
+                        <i class="fas fa-folder-open"></i>
+                      </button>
+                    </div>
+                    <div class="export-options">
+                      <label class="export-option">
+                        <input type="checkbox" id="openAfterExport" checked>
+                        <span>Open after export</span>
+                      </label>
+                      <label class="export-option">
+                        <input type="checkbox" id="includeMetadata">
+                        <span>Include metadata</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <button class="export-btn" id="exportBtn">
+                    <i class="fas fa-download"></i>
+                    Export Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="wizard-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" id="prevBtn" style="display: none;">
+              <i class="fas fa-arrow-left"></i>
+              Previous
+            </button>
+          </div>
+          <div class="nav-right">
+            <button class="btn btn-secondary" id="cancelBtn">
+              Cancel
+            </button>
+            <button class="btn btn-primary" id="nextBtn">
+              Next
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     </main>
@@ -411,47 +1312,781 @@
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
   <script>
-    // Card tabs functionality
-    document.querySelectorAll('.card-tab').forEach(tab => {
-      tab.addEventListener('click', function() {
-        const tabId = this.getAttribute('data-card-tab');
+    // Report Wizard State
+    const reportWizard = {
+      currentStep: 1,
+      totalSteps: 3,
+      config: {
+        template: 'monthly-summary',
+        reportName: 'Monthly Summary Report',
+        dateRange: 'this-quarter',
+        charts: ['revenue-vs-expenses', 'expense-breakdown', 'monthly-trends'],
+        elements: [],
+        exportFormat: 'pdf',
+        exportQuality: 95
+      },
+      canvasElements: [],
+      selectedElement: null,
+      elementIdCounter: 0,
+      undoStack: [],
+      redoStack: [],
+      zoom: 100
+    };
 
-        // Update tab active states
-        this.closest('.card-tabs').querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
+    const stepTitles = {
+      1: 'Select Template & Settings',
+      2: 'Design Layout',
+      3: 'Preview & Export'
+    };
 
-        // Update content visibility
-        this.closest('.card').querySelectorAll('.card-tab-content').forEach(content => {
-          content.classList.remove('active');
-        });
-        document.getElementById(tabId).classList.add('active');
-      });
-    });
+    // Initialize wizard
+    function initWizard() {
+      updateStepIndicator();
+      initStep1();
+      initStep2();
+      initStep3();
+      setupNavigation();
+    }
 
-    // Date range radio buttons
-    document.querySelectorAll('input[name="dateRange"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        // Update selected styling
-        document.querySelectorAll('.date-option').forEach(opt => opt.classList.remove('selected'));
-        this.closest('.date-option').classList.add('selected');
-
-        // Show/hide custom date pickers
-        const customPickers = document.getElementById('customDatePickers');
-        if (this.value === 'custom') {
-          customPickers.classList.add('visible');
+    // Navigation
+    function setupNavigation() {
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        if (reportWizard.currentStep < reportWizard.totalSteps) {
+          goToStep(reportWizard.currentStep + 1);
         } else {
-          customPickers.classList.remove('visible');
+          exportReport();
         }
       });
-    });
 
-    // Template selection
-    document.querySelectorAll('.template-item').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.template-item').forEach(t => t.classList.remove('selected'));
-        this.classList.add('selected');
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        if (reportWizard.currentStep > 1) {
+          goToStep(reportWizard.currentStep - 1);
+        }
       });
-    });
+
+      document.getElementById('cancelBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to cancel? All progress will be lost.')) {
+          window.location.href = 'dashboard.html';
+        }
+      });
+    }
+
+    function goToStep(step) {
+      // Hide current step
+      document.getElementById(`step${reportWizard.currentStep}`).classList.remove('active');
+
+      // Show new step
+      reportWizard.currentStep = step;
+      document.getElementById(`step${step}`).classList.add('active');
+
+      updateStepIndicator();
+      updateNavigationButtons();
+
+      // Step-specific actions
+      if (step === 2) {
+        initCanvasFromConfig();
+      } else if (step === 3) {
+        updatePreview();
+      }
+    }
+
+    function updateStepIndicator() {
+      // Update dots
+      document.querySelectorAll('.step-dot').forEach((dot, index) => {
+        const stepNum = index + 1;
+        dot.classList.remove('active', 'completed');
+        if (stepNum === reportWizard.currentStep) {
+          dot.classList.add('active');
+        } else if (stepNum < reportWizard.currentStep) {
+          dot.classList.add('completed');
+          dot.innerHTML = '<i class="fas fa-check"></i>';
+        } else {
+          dot.textContent = stepNum;
+        }
+      });
+
+      // Update lines
+      document.querySelectorAll('.step-line').forEach((line, index) => {
+        const lineNum = index + 1;
+        line.classList.toggle('completed', lineNum < reportWizard.currentStep);
+      });
+
+      // Update text
+      document.getElementById('stepNumber').textContent = `Step ${reportWizard.currentStep} of ${reportWizard.totalSteps}`;
+      document.getElementById('stepTitle').textContent = `— ${stepTitles[reportWizard.currentStep]}`;
+    }
+
+    function updateNavigationButtons() {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      prevBtn.style.display = reportWizard.currentStep > 1 ? 'flex' : 'none';
+
+      if (reportWizard.currentStep === reportWizard.totalSteps) {
+        nextBtn.innerHTML = '<i class="fas fa-download"></i> Export';
+      } else {
+        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+      }
+    }
+
+    // Step 1: Template & Settings
+    function initStep1() {
+      // Card tabs functionality
+      document.querySelectorAll('.card-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          const tabId = this.getAttribute('data-card-tab');
+          this.closest('.card-tabs').querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          this.closest('.card').querySelectorAll('.card-tab-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+
+      // Date range radio buttons
+      document.querySelectorAll('input[name="dateRange"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          document.querySelectorAll('.date-option').forEach(opt => opt.classList.remove('selected'));
+          this.closest('.date-option').classList.add('selected');
+          reportWizard.config.dateRange = this.value;
+
+          const customPickers = document.getElementById('customDatePickers');
+          if (this.value === 'custom') {
+            customPickers.classList.add('visible');
+          } else {
+            customPickers.classList.remove('visible');
+          }
+        });
+      });
+
+      // Template selection
+      document.querySelectorAll('.template-item').forEach(item => {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.template-item').forEach(t => t.classList.remove('selected'));
+          this.classList.add('selected');
+          reportWizard.config.template = this.dataset.template;
+
+          // Update default charts based on template
+          updateChartsForTemplate(this.dataset.template);
+        });
+      });
+
+      // Chart filter
+      document.getElementById('chartFilter').addEventListener('change', function() {
+        const filter = this.value;
+        document.querySelectorAll('.chart-item').forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+
+      // Chart checkboxes
+      document.querySelectorAll('.chart-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const chartId = this.dataset.chart;
+          if (this.checked) {
+            if (!reportWizard.config.charts.includes(chartId)) {
+              reportWizard.config.charts.push(chartId);
+            }
+          } else {
+            reportWizard.config.charts = reportWizard.config.charts.filter(c => c !== chartId);
+          }
+        });
+      });
+
+      // Report name
+      document.getElementById('reportName').addEventListener('input', function() {
+        reportWizard.config.reportName = this.value;
+      });
+    }
+
+    function updateChartsForTemplate(template) {
+      // Reset all checkboxes
+      document.querySelectorAll('.chart-checkbox').forEach(cb => cb.checked = false);
+
+      // Set charts based on template
+      let charts = [];
+      switch(template) {
+        case 'monthly-summary':
+          charts = ['revenue-vs-expenses', 'expense-breakdown', 'monthly-trends'];
+          break;
+        case 'financial-report':
+          charts = ['revenue-vs-expenses', 'expense-breakdown', 'profit-margins', 'revenue-by-category'];
+          break;
+        case 'customer-report':
+          charts = ['sales-by-region', 'monthly-trends'];
+          break;
+        case 'rental-performance':
+          charts = ['rental-performance', 'monthly-trends'];
+          break;
+        case 'employee-report':
+          charts = ['expense-breakdown', 'monthly-trends'];
+          break;
+        case 'blank':
+          charts = [];
+          break;
+      }
+
+      reportWizard.config.charts = charts;
+      charts.forEach(chartId => {
+        const checkbox = document.querySelector(`.chart-checkbox[data-chart="${chartId}"]`);
+        if (checkbox) checkbox.checked = true;
+      });
+    }
+
+    // Step 2: Layout Designer
+    function initStep2() {
+      // Element buttons
+      document.querySelectorAll('.element-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          addElement(this.dataset.element);
+        });
+      });
+
+      // Toolbar buttons
+      document.getElementById('deleteBtn').addEventListener('click', deleteSelectedElement);
+      document.getElementById('undoBtn').addEventListener('click', undo);
+      document.getElementById('redoBtn').addEventListener('click', redo);
+      document.getElementById('gridToggle').addEventListener('click', toggleGrid);
+
+      // Canvas click to deselect
+      document.getElementById('canvasPage').addEventListener('click', function(e) {
+        if (e.target === this) {
+          selectElement(null);
+        }
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (reportWizard.currentStep !== 2) return;
+
+        if (e.key === 'Delete' && reportWizard.selectedElement) {
+          deleteSelectedElement();
+        }
+        if (e.ctrlKey && e.key === 'z') {
+          e.preventDefault();
+          undo();
+        }
+        if (e.ctrlKey && e.key === 'y') {
+          e.preventDefault();
+          redo();
+        }
+        if (e.ctrlKey && e.key === 'g') {
+          e.preventDefault();
+          toggleGrid();
+        }
+      });
+    }
+
+    function initCanvasFromConfig() {
+      const canvas = document.getElementById('canvasPage');
+      canvas.innerHTML = '';
+      reportWizard.canvasElements = [];
+      reportWizard.elementIdCounter = 0;
+
+      // Add title element
+      addElement('label', { x: 40, y: 40, width: 515, height: 40, text: reportWizard.config.reportName });
+
+      // Add date range element
+      addElement('date', { x: 40, y: 90, width: 200, height: 30 });
+
+      // Add summary element
+      addElement('summary', { x: 40, y: 140, width: 515, height: 80 });
+
+      // Add charts from config
+      const charts = reportWizard.config.charts;
+      const chartWidth = 245;
+      const chartHeight = 180;
+      const startY = 240;
+      const gap = 25;
+
+      charts.forEach((chartId, index) => {
+        const col = index % 2;
+        const row = Math.floor(index / 2);
+        const x = 40 + col * (chartWidth + gap);
+        const y = startY + row * (chartHeight + gap);
+        addElement('chart', { x, y, width: chartWidth, height: chartHeight, chartType: chartId });
+      });
+
+      // Add table at bottom
+      const tableY = startY + Math.ceil(charts.length / 2) * (chartHeight + gap) + 20;
+      addElement('table', { x: 40, y: tableY, width: 515, height: 200 });
+    }
+
+    function addElement(type, options = {}) {
+      const id = `element-${++reportWizard.elementIdCounter}`;
+      const defaults = {
+        x: 40 + Math.random() * 100,
+        y: 100 + Math.random() * 100,
+        width: 200,
+        height: 150
+      };
+
+      const config = { ...defaults, ...options, type, id };
+
+      const element = document.createElement('div');
+      element.className = 'canvas-element';
+      element.id = id;
+      element.style.left = config.x + 'px';
+      element.style.top = config.y + 'px';
+      element.style.width = config.width + 'px';
+      element.style.height = config.height + 'px';
+
+      const icon = getElementIcon(type);
+      const label = getElementLabel(type, config);
+      element.innerHTML = `
+        <div class="element-label">
+          <i class="fas ${icon} element-icon"></i>
+          <span>${label}</span>
+        </div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle sw"></div>
+        <div class="resize-handle se"></div>
+      `;
+
+      element.addEventListener('mousedown', (e) => startDrag(e, element));
+      element.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectElement(element);
+      });
+
+      // Resize handles
+      element.querySelectorAll('.resize-handle').forEach(handle => {
+        handle.addEventListener('mousedown', (e) => startResize(e, element, handle));
+      });
+
+      document.getElementById('canvasPage').appendChild(element);
+      reportWizard.canvasElements.push(config);
+
+      saveState();
+      selectElement(element);
+    }
+
+    function getElementIcon(type) {
+      const icons = {
+        chart: 'fa-chart-bar',
+        label: 'fa-font',
+        date: 'fa-calendar',
+        summary: 'fa-calculator',
+        table: 'fa-table',
+        image: 'fa-image'
+      };
+      return icons[type] || 'fa-square';
+    }
+
+    function getElementLabel(type, config) {
+      const labels = {
+        chart: config.chartType ? formatChartName(config.chartType) : 'Chart',
+        label: config.text || 'Label',
+        date: 'Date Range',
+        summary: 'Summary',
+        table: 'Transaction Table',
+        image: 'Image'
+      };
+      return labels[type] || type;
+    }
+
+    function formatChartName(chartId) {
+      return chartId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    function selectElement(element) {
+      // Deselect previous
+      document.querySelectorAll('.canvas-element.selected').forEach(el => {
+        el.classList.remove('selected');
+      });
+
+      reportWizard.selectedElement = element;
+
+      if (element) {
+        element.classList.add('selected');
+        updateToolbarState(true);
+        showElementProperties(element);
+      } else {
+        updateToolbarState(false);
+        showEmptyProperties();
+      }
+    }
+
+    function updateToolbarState(hasSelection) {
+      document.getElementById('deleteBtn').disabled = !hasSelection;
+      document.getElementById('alignLeftBtn').disabled = !hasSelection;
+      document.getElementById('alignCenterBtn').disabled = !hasSelection;
+      document.getElementById('alignRightBtn').disabled = !hasSelection;
+      document.getElementById('bringFrontBtn').disabled = !hasSelection;
+      document.getElementById('sendBackBtn').disabled = !hasSelection;
+    }
+
+    function showElementProperties(element) {
+      const config = reportWizard.canvasElements.find(el => el.id === element.id);
+      if (!config) return;
+
+      const content = document.getElementById('propertiesContent');
+      content.innerHTML = `
+        <div class="property-group">
+          <div class="property-group-title">Position</div>
+          <div class="property-row">
+            <span class="property-label">X</span>
+            <input type="number" class="property-input" id="propX" value="${parseInt(element.style.left)}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Y</span>
+            <input type="number" class="property-input" id="propY" value="${parseInt(element.style.top)}">
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Size</div>
+          <div class="property-row">
+            <span class="property-label">Width</span>
+            <input type="number" class="property-input" id="propWidth" value="${parseInt(element.style.width)}">
+          </div>
+          <div class="property-row">
+            <span class="property-label">Height</span>
+            <input type="number" class="property-input" id="propHeight" value="${parseInt(element.style.height)}">
+          </div>
+        </div>
+        <div class="property-group">
+          <div class="property-group-title">Element</div>
+          <div class="property-row">
+            <span class="property-label">Type</span>
+            <input type="text" class="property-input" value="${config.type}" disabled>
+          </div>
+        </div>
+      `;
+
+      // Add event listeners for property changes
+      ['propX', 'propY', 'propWidth', 'propHeight'].forEach(id => {
+        document.getElementById(id).addEventListener('change', function() {
+          updateElementFromProperties(element);
+        });
+      });
+    }
+
+    function showEmptyProperties() {
+      document.getElementById('propertiesContent').innerHTML = `
+        <div class="properties-empty">
+          <i class="fas fa-mouse-pointer" style="font-size: 32px; color: var(--gray-300); margin-bottom: 12px; display: block;"></i>
+          <p>Select an element to edit its properties</p>
+        </div>
+      `;
+    }
+
+    function updateElementFromProperties(element) {
+      element.style.left = document.getElementById('propX').value + 'px';
+      element.style.top = document.getElementById('propY').value + 'px';
+      element.style.width = document.getElementById('propWidth').value + 'px';
+      element.style.height = document.getElementById('propHeight').value + 'px';
+      saveState();
+    }
+
+    // Drag functionality
+    let dragState = { isDragging: false, startX: 0, startY: 0, elementX: 0, elementY: 0 };
+
+    function startDrag(e, element) {
+      if (e.target.classList.contains('resize-handle')) return;
+
+      dragState.isDragging = true;
+      dragState.startX = e.clientX;
+      dragState.startY = e.clientY;
+      dragState.elementX = parseInt(element.style.left);
+      dragState.elementY = parseInt(element.style.top);
+      dragState.element = element;
+
+      document.addEventListener('mousemove', onDrag);
+      document.addEventListener('mouseup', stopDrag);
+    }
+
+    function onDrag(e) {
+      if (!dragState.isDragging) return;
+
+      const dx = e.clientX - dragState.startX;
+      const dy = e.clientY - dragState.startY;
+
+      dragState.element.style.left = Math.max(0, dragState.elementX + dx) + 'px';
+      dragState.element.style.top = Math.max(0, dragState.elementY + dy) + 'px';
+    }
+
+    function stopDrag() {
+      if (dragState.isDragging) {
+        dragState.isDragging = false;
+        saveState();
+        if (reportWizard.selectedElement) {
+          showElementProperties(reportWizard.selectedElement);
+        }
+      }
+      document.removeEventListener('mousemove', onDrag);
+      document.removeEventListener('mouseup', stopDrag);
+    }
+
+    // Resize functionality
+    let resizeState = { isResizing: false };
+
+    function startResize(e, element, handle) {
+      e.stopPropagation();
+
+      resizeState.isResizing = true;
+      resizeState.startX = e.clientX;
+      resizeState.startY = e.clientY;
+      resizeState.startWidth = parseInt(element.style.width);
+      resizeState.startHeight = parseInt(element.style.height);
+      resizeState.startLeft = parseInt(element.style.left);
+      resizeState.startTop = parseInt(element.style.top);
+      resizeState.element = element;
+      resizeState.handle = handle.className.replace('resize-handle ', '');
+
+      document.addEventListener('mousemove', onResize);
+      document.addEventListener('mouseup', stopResize);
+    }
+
+    function onResize(e) {
+      if (!resizeState.isResizing) return;
+
+      const dx = e.clientX - resizeState.startX;
+      const dy = e.clientY - resizeState.startY;
+      const el = resizeState.element;
+
+      switch(resizeState.handle) {
+        case 'se':
+          el.style.width = Math.max(50, resizeState.startWidth + dx) + 'px';
+          el.style.height = Math.max(30, resizeState.startHeight + dy) + 'px';
+          break;
+        case 'sw':
+          el.style.width = Math.max(50, resizeState.startWidth - dx) + 'px';
+          el.style.left = Math.max(0, resizeState.startLeft + dx) + 'px';
+          el.style.height = Math.max(30, resizeState.startHeight + dy) + 'px';
+          break;
+        case 'ne':
+          el.style.width = Math.max(50, resizeState.startWidth + dx) + 'px';
+          el.style.height = Math.max(30, resizeState.startHeight - dy) + 'px';
+          el.style.top = Math.max(0, resizeState.startTop + dy) + 'px';
+          break;
+        case 'nw':
+          el.style.width = Math.max(50, resizeState.startWidth - dx) + 'px';
+          el.style.left = Math.max(0, resizeState.startLeft + dx) + 'px';
+          el.style.height = Math.max(30, resizeState.startHeight - dy) + 'px';
+          el.style.top = Math.max(0, resizeState.startTop + dy) + 'px';
+          break;
+      }
+    }
+
+    function stopResize() {
+      if (resizeState.isResizing) {
+        resizeState.isResizing = false;
+        saveState();
+        if (reportWizard.selectedElement) {
+          showElementProperties(reportWizard.selectedElement);
+        }
+      }
+      document.removeEventListener('mousemove', onResize);
+      document.removeEventListener('mouseup', stopResize);
+    }
+
+    function deleteSelectedElement() {
+      if (!reportWizard.selectedElement) return;
+
+      const id = reportWizard.selectedElement.id;
+      reportWizard.selectedElement.remove();
+      reportWizard.canvasElements = reportWizard.canvasElements.filter(el => el.id !== id);
+      reportWizard.selectedElement = null;
+
+      updateToolbarState(false);
+      showEmptyProperties();
+      saveState();
+    }
+
+    function toggleGrid() {
+      const canvas = document.getElementById('canvasPage');
+      if (canvas.style.backgroundImage === 'none') {
+        canvas.style.backgroundImage = 'linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)';
+      } else {
+        canvas.style.backgroundImage = 'none';
+      }
+    }
+
+    // Undo/Redo
+    function saveState() {
+      const state = JSON.stringify(reportWizard.canvasElements);
+      reportWizard.undoStack.push(state);
+      reportWizard.redoStack = [];
+      updateUndoRedoButtons();
+    }
+
+    function undo() {
+      if (reportWizard.undoStack.length > 1) {
+        const current = reportWizard.undoStack.pop();
+        reportWizard.redoStack.push(current);
+        restoreState(reportWizard.undoStack[reportWizard.undoStack.length - 1]);
+      }
+    }
+
+    function redo() {
+      if (reportWizard.redoStack.length > 0) {
+        const state = reportWizard.redoStack.pop();
+        reportWizard.undoStack.push(state);
+        restoreState(state);
+      }
+    }
+
+    function restoreState(state) {
+      reportWizard.canvasElements = JSON.parse(state);
+      // Rebuild canvas from state
+      const canvas = document.getElementById('canvasPage');
+      canvas.innerHTML = '';
+
+      reportWizard.canvasElements.forEach(config => {
+        const element = document.createElement('div');
+        element.className = 'canvas-element';
+        element.id = config.id;
+        element.style.left = config.x + 'px';
+        element.style.top = config.y + 'px';
+        element.style.width = config.width + 'px';
+        element.style.height = config.height + 'px';
+
+        const icon = getElementIcon(config.type);
+        const label = getElementLabel(config.type, config);
+        element.innerHTML = `
+          <div class="element-label">
+            <i class="fas ${icon} element-icon"></i>
+            <span>${label}</span>
+          </div>
+          <div class="resize-handle nw"></div>
+          <div class="resize-handle ne"></div>
+          <div class="resize-handle sw"></div>
+          <div class="resize-handle se"></div>
+        `;
+
+        element.addEventListener('mousedown', (e) => startDrag(e, element));
+        element.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectElement(element);
+        });
+
+        element.querySelectorAll('.resize-handle').forEach(handle => {
+          handle.addEventListener('mousedown', (e) => startResize(e, element, handle));
+        });
+
+        canvas.appendChild(element);
+      });
+
+      selectElement(null);
+      updateUndoRedoButtons();
+    }
+
+    function updateUndoRedoButtons() {
+      document.getElementById('undoBtn').disabled = reportWizard.undoStack.length <= 1;
+      document.getElementById('redoBtn').disabled = reportWizard.redoStack.length === 0;
+    }
+
+    // Step 3: Preview & Export
+    function initStep3() {
+      // Export format selection
+      document.querySelectorAll('input[name="exportFormat"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          document.querySelectorAll('.format-option').forEach(opt => opt.classList.remove('selected'));
+          this.closest('.format-option').classList.add('selected');
+          reportWizard.config.exportFormat = this.value;
+          updateExportPath();
+
+          // Show/hide quality slider for JPEG
+          const qualitySlider = document.getElementById('qualitySlider');
+          qualitySlider.style.display = this.value === 'jpg' ? 'block' : 'none';
+        });
+      });
+
+      // Quality slider
+      document.getElementById('qualityTrack').addEventListener('input', function() {
+        reportWizard.config.exportQuality = this.value;
+        document.getElementById('qualityValue').textContent = this.value + '%';
+      });
+
+      // Zoom controls
+      document.getElementById('zoomInBtn').addEventListener('click', () => setZoom(reportWizard.zoom + 25));
+      document.getElementById('zoomOutBtn').addEventListener('click', () => setZoom(reportWizard.zoom - 25));
+      document.getElementById('zoomFitBtn').addEventListener('click', fitToWindow);
+
+      // Export button
+      document.getElementById('exportBtn').addEventListener('click', exportReport);
+    }
+
+    function updatePreview() {
+      document.getElementById('previewTitle').textContent = reportWizard.config.reportName;
+      document.getElementById('previewDate').textContent = getDateRangeText();
+      updateExportPath();
+    }
+
+    function getDateRangeText() {
+      const ranges = {
+        'today': 'Today',
+        'yesterday': 'Yesterday',
+        'this-week': 'This Week',
+        'last-week': 'Last Week',
+        'this-month': 'This Month',
+        'last-month': 'Last Month',
+        'this-quarter': 'Q4 2024 (Oct 1 - Dec 31, 2024)',
+        'last-quarter': 'Q3 2024 (Jul 1 - Sep 30, 2024)',
+        'this-year': 'Year 2024',
+        'all-time': 'All Time',
+        'custom': 'Custom Range'
+      };
+      return ranges[reportWizard.config.dateRange] || reportWizard.config.dateRange;
+    }
+
+    function updateExportPath() {
+      const name = reportWizard.config.reportName.replace(/[^a-zA-Z0-9]/g, '_');
+      const ext = reportWizard.config.exportFormat;
+      document.getElementById('exportPath').value = `${name}.${ext}`;
+    }
+
+    function setZoom(level) {
+      reportWizard.zoom = Math.max(25, Math.min(200, level));
+      document.getElementById('previewPage').style.transform = `scale(${reportWizard.zoom / 100})`;
+      document.getElementById('zoomLevel').textContent = reportWizard.zoom + '%';
+    }
+
+    function fitToWindow() {
+      const container = document.getElementById('previewArea');
+      const page = document.getElementById('previewPage');
+      const containerWidth = container.clientWidth - 40;
+      const containerHeight = container.clientHeight - 40;
+      const pageWidth = 595;
+      const pageHeight = 842;
+
+      const scaleX = containerWidth / pageWidth;
+      const scaleY = containerHeight / pageHeight;
+      const scale = Math.min(scaleX, scaleY, 1);
+
+      setZoom(Math.round(scale * 100));
+    }
+
+    function exportReport() {
+      const filename = document.getElementById('exportPath').value;
+      const openAfter = document.getElementById('openAfterExport').checked;
+
+      // Simulate export
+      const btn = document.getElementById('exportBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exporting...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> Exported!';
+
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+
+          alert(`Report exported successfully!\n\nFilename: ${filename}\nFormat: ${reportWizard.config.exportFormat.toUpperCase()}\n\nIn a real application, the file would be downloaded to your computer.`);
+        }, 1500);
+      }, 2000);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initWizard);
   </script>
 </body>
 </html>
