@@ -187,6 +187,15 @@
       margin-bottom: 12px;
       flex-shrink: 0;
     }
+    .step-title-center {
+      flex: 1;
+      text-align: center;
+    }
+    .step-title-center #stepTitle {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
     .step-progress {
       display: flex;
       align-items: center;
@@ -710,21 +719,16 @@
       min-width: 0;
       overflow: hidden;
     }
-    .preview-toolbar {
+    .zoom-controls-bottom {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 12px;
-      background: var(--gray-100);
-      border-radius: var(--radius) var(--radius) 0 0;
-      border: 1px solid var(--border-color);
-      border-bottom: none;
-      flex-shrink: 0;
-    }
-    .zoom-controls {
-      display: flex;
-      align-items: center;
+      justify-content: center;
       gap: 6px;
+      padding: 10px;
+      background: var(--gray-100);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
     }
     .zoom-btn {
       width: 26px;
@@ -752,7 +756,8 @@
       flex: 1;
       background: var(--gray-200);
       border: 1px solid var(--border-color);
-      border-radius: 0 0 var(--radius) var(--radius);
+      border-radius: var(--radius) var(--radius) 0 0;
+      border-bottom: none;
       overflow: auto;
       padding: 16px;
       display: flex;
@@ -1130,7 +1135,9 @@
           </div>
           <div class="step-indicator">
             <span id="stepNumber" style="color: var(--primary-color); font-weight: 600;">Step 1 of 3</span>
-            <span id="stepTitle" style="color: var(--text-primary); font-weight: 500;">&mdash; Select Template & Settings</span>
+          </div>
+          <div class="step-title-center">
+            <span id="stepTitle">Select Template & Settings</span>
           </div>
         </div>
 
@@ -1524,20 +1531,6 @@
           <div class="preview-export">
             <!-- Preview Area -->
             <div class="preview-container">
-              <div class="preview-toolbar">
-                <div class="zoom-controls">
-                  <button class="zoom-btn" id="zoomOutBtn">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <span class="zoom-level" id="zoomLevel">100%</span>
-                  <button class="zoom-btn" id="zoomInBtn">
-                    <i class="fas fa-plus"></i>
-                  </button>
-                  <button class="zoom-btn" id="zoomFitBtn" title="Fit to Window">
-                    <i class="fas fa-expand"></i>
-                  </button>
-                </div>
-              </div>
               <div class="preview-area" id="previewArea">
                 <div class="preview-page" id="previewPage">
                   <div class="preview-report">
@@ -1636,6 +1629,18 @@
                     </table>
                   </div>
                 </div>
+              </div>
+              <div class="zoom-controls-bottom">
+                <button class="zoom-btn" id="zoomOutBtn">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button class="zoom-btn" id="zoomInBtn">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button class="zoom-btn" id="zoomFitBtn" title="Fit to Window">
+                  <i class="fas fa-expand"></i>
+                </button>
               </div>
             </div>
 
@@ -2132,7 +2137,7 @@
       });
 
       document.getElementById('stepNumber').textContent = `Step ${reportWizard.currentStep} of ${reportWizard.totalSteps}`;
-      document.getElementById('stepTitle').textContent = `— ${stepTitles[reportWizard.currentStep]}`;
+      document.getElementById('stepTitle').textContent = stepTitles[reportWizard.currentStep];
     }
 
     function updateNavigationButtons() {
@@ -3424,7 +3429,7 @@
           this.closest('.format-option').classList.add('selected');
           reportWizard.config.exportFormat = this.value;
           updateExportPath();
-          document.getElementById('qualitySlider').style.display = this.value === 'jpg' ? 'block' : 'none';
+          document.getElementById('qualitySlider').style.display = this.value !== 'pdf' ? 'block' : 'none';
         });
       });
 
