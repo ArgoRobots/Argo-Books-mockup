@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Adjustments - Argo Books</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar injected by js/components/sidebar.js -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header injected by js/components/header.js -->
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Page Header -->
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <h1 class="page-title">Stock Adjustments</h1>
+            <p class="text-muted">Track and manage inventory adjustments, corrections, and stock movements</p>
+          </div>
+          <button class="btn btn-primary" data-modal="newAdjustmentModal">
+            <i class="fas fa-plus"></i>
+            New Adjustment
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <i class="fas fa-clipboard-check"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">156</div>
+              <div class="stat-label">Total Adjustments</div>
+              <div class="stat-change">
+                <span class="text-muted">This month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">+2,450</div>
+              <div class="stat-label">Stock Added</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>From receipts</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon red">
+              <i class="fas fa-minus-circle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">-1,890</div>
+              <div class="stat-label">Stock Removed</div>
+              <div class="stat-change">
+                <span class="text-muted">Sales & usage</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon yellow">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">23</div>
+              <div class="stat-label">Corrections</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-down"></i>
+                <span>15% from last month</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <div class="tab active" data-tab="all-adjustments">All Adjustments</div>
+          <div class="tab" data-tab="additions">Additions</div>
+          <div class="tab" data-tab="removals">Removals</div>
+          <div class="tab" data-tab="corrections">Corrections</div>
+        </div>
+
+        <!-- All Adjustments Tab -->
+        <div class="tab-content" id="all-adjustments">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Adjustment History</h3>
+              <div class="d-flex gap-2">
+                <div class="search-box" style="width: 250px;">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search adjustments...">
+                </div>
+                <button class="btn btn-outline" data-modal="filterAdjustmentsModal">
+                  <i class="fas fa-filter"></i>
+                  Filter
+                </button>
+                <button class="btn btn-outline">
+                  <i class="fas fa-file-export"></i>
+                  Export
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Adjustment ID</th>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Before</th>
+                    <th>After</th>
+                    <th>Reason</th>
+                    <th>By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-001</span></td>
+                    <td>Dec 8, 2024</td>
+                    <td>
+                      <div class="fw-600">Office Supplies Bundle</div>
+                      <div class="text-muted fs-sm">#SKU-001</div>
+                    </td>
+                    <td><span class="badge badge-success">Received</span></td>
+                    <td class="fw-600 text-success">+50</td>
+                    <td>195</td>
+                    <td>245</td>
+                    <td>PO-12345 delivery</td>
+                    <td>John Smith</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-002</span></td>
+                    <td>Dec 7, 2024</td>
+                    <td>
+                      <div class="fw-600">Computer Monitor 24"</div>
+                      <div class="text-muted fs-sm">#SKU-002</div>
+                    </td>
+                    <td><span class="badge badge-danger">Sold</span></td>
+                    <td class="fw-600 text-danger">-5</td>
+                    <td>23</td>
+                    <td>18</td>
+                    <td>INV-67890</td>
+                    <td>Sarah Johnson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-003</span></td>
+                    <td>Dec 7, 2024</td>
+                    <td>
+                      <div class="fw-600">Wireless Keyboard</div>
+                      <div class="text-muted fs-sm">#SKU-003</div>
+                    </td>
+                    <td><span class="badge badge-warning">Damaged</span></td>
+                    <td class="fw-600 text-danger">-3</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>Water damage in storage</td>
+                    <td>Mike Wilson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-004</span></td>
+                    <td>Dec 6, 2024</td>
+                    <td>
+                      <div class="fw-600">Steel Raw Material</div>
+                      <div class="text-muted fs-sm">#SKU-004</div>
+                    </td>
+                    <td><span class="badge badge-info">Correction</span></td>
+                    <td class="fw-600 text-success">+25</td>
+                    <td>1,225</td>
+                    <td>1,250</td>
+                    <td>Physical count correction</td>
+                    <td>John Smith</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-005</span></td>
+                    <td>Dec 6, 2024</td>
+                    <td>
+                      <div class="fw-600">Printer Paper A4</div>
+                      <div class="text-muted fs-sm">#SKU-005</div>
+                    </td>
+                    <td><span class="badge badge-success">Received</span></td>
+                    <td class="fw-600 text-success">+200</td>
+                    <td>656</td>
+                    <td>856</td>
+                    <td>PO-12340 delivery</td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-006</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>
+                      <div class="fw-600">USB-C Cables (6ft)</div>
+                      <div class="text-muted fs-sm">#SKU-006</div>
+                    </td>
+                    <td><span class="badge badge-secondary">Return</span></td>
+                    <td class="fw-600 text-success">+2</td>
+                    <td>6</td>
+                    <td>8</td>
+                    <td>Customer return - RMA-1234</td>
+                    <td>Sarah Johnson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-007</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>
+                      <div class="fw-600">Desk Chair - Executive</div>
+                      <div class="text-muted fs-sm">#SKU-007</div>
+                    </td>
+                    <td><span class="badge badge-danger">Sold</span></td>
+                    <td class="fw-600 text-danger">-3</td>
+                    <td>48</td>
+                    <td>45</td>
+                    <td>INV-67885</td>
+                    <td>Mike Wilson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-008</span></td>
+                    <td>Dec 4, 2024</td>
+                    <td>
+                      <div class="fw-600">Cleaning Supplies Kit</div>
+                      <div class="text-muted fs-sm">#SKU-008</div>
+                    </td>
+                    <td><span class="badge badge-danger">Used</span></td>
+                    <td class="fw-600 text-danger">-15</td>
+                    <td>15</td>
+                    <td>0</td>
+                    <td>Internal consumption</td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-8 of 156 adjustments</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">...</button>
+                  <button class="pagination-btn">20</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additions Tab -->
+        <div class="tab-content" id="additions" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Stock Additions</h3>
+              <button class="btn btn-primary" data-modal="newAdjustmentModal">
+                <i class="fas fa-plus"></i>
+                Record Addition
+              </button>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Adjustment ID</th>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Source</th>
+                    <th>Quantity</th>
+                    <th>Reference</th>
+                    <th>By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-001</span></td>
+                    <td>Dec 8, 2024</td>
+                    <td>
+                      <div class="fw-600">Office Supplies Bundle</div>
+                      <div class="text-muted fs-sm">#SKU-001</div>
+                    </td>
+                    <td><span class="badge badge-success">Purchase Order</span></td>
+                    <td class="fw-600 text-success">+50</td>
+                    <td>PO-12345</td>
+                    <td>John Smith</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-005</span></td>
+                    <td>Dec 6, 2024</td>
+                    <td>
+                      <div class="fw-600">Printer Paper A4</div>
+                      <div class="text-muted fs-sm">#SKU-005</div>
+                    </td>
+                    <td><span class="badge badge-success">Purchase Order</span></td>
+                    <td class="fw-600 text-success">+200</td>
+                    <td>PO-12340</td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-006</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>
+                      <div class="fw-600">USB-C Cables (6ft)</div>
+                      <div class="text-muted fs-sm">#SKU-006</div>
+                    </td>
+                    <td><span class="badge badge-secondary">Customer Return</span></td>
+                    <td class="fw-600 text-success">+2</td>
+                    <td>RMA-1234</td>
+                    <td>Sarah Johnson</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-3 of 68 additions</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">...</button>
+                  <button class="pagination-btn">9</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Removals Tab -->
+        <div class="tab-content" id="removals" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Stock Removals</h3>
+              <button class="btn btn-primary" data-modal="newAdjustmentModal">
+                <i class="fas fa-minus"></i>
+                Record Removal
+              </button>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Adjustment ID</th>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Reason</th>
+                    <th>Quantity</th>
+                    <th>Reference</th>
+                    <th>By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-002</span></td>
+                    <td>Dec 7, 2024</td>
+                    <td>
+                      <div class="fw-600">Computer Monitor 24"</div>
+                      <div class="text-muted fs-sm">#SKU-002</div>
+                    </td>
+                    <td><span class="badge badge-danger">Sale</span></td>
+                    <td class="fw-600 text-danger">-5</td>
+                    <td>INV-67890</td>
+                    <td>Sarah Johnson</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-003</span></td>
+                    <td>Dec 7, 2024</td>
+                    <td>
+                      <div class="fw-600">Wireless Keyboard</div>
+                      <div class="text-muted fs-sm">#SKU-003</div>
+                    </td>
+                    <td><span class="badge badge-warning">Damaged</span></td>
+                    <td class="fw-600 text-danger">-3</td>
+                    <td>DMG-0023</td>
+                    <td>Mike Wilson</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-007</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>
+                      <div class="fw-600">Desk Chair - Executive</div>
+                      <div class="text-muted fs-sm">#SKU-007</div>
+                    </td>
+                    <td><span class="badge badge-danger">Sale</span></td>
+                    <td class="fw-600 text-danger">-3</td>
+                    <td>INV-67885</td>
+                    <td>Mike Wilson</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-008</span></td>
+                    <td>Dec 4, 2024</td>
+                    <td>
+                      <div class="fw-600">Cleaning Supplies Kit</div>
+                      <div class="text-muted fs-sm">#SKU-008</div>
+                    </td>
+                    <td><span class="badge badge-secondary">Internal Use</span></td>
+                    <td class="fw-600 text-danger">-15</td>
+                    <td>INT-0089</td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-4 of 65 removals</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">...</button>
+                  <button class="pagination-btn">9</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corrections Tab -->
+        <div class="tab-content" id="corrections" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Inventory Corrections</h3>
+              <button class="btn btn-primary" data-modal="newAdjustmentModal">
+                <i class="fas fa-sync"></i>
+                Record Correction
+              </button>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Adjustment ID</th>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Type</th>
+                    <th>Change</th>
+                    <th>Reason</th>
+                    <th>By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-004</span></td>
+                    <td>Dec 6, 2024</td>
+                    <td>
+                      <div class="fw-600">Steel Raw Material</div>
+                      <div class="text-muted fs-sm">#SKU-004</div>
+                    </td>
+                    <td><span class="badge badge-info">Count Correction</span></td>
+                    <td class="fw-600 text-success">+25</td>
+                    <td>Physical count discrepancy</td>
+                    <td>John Smith</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-012</span></td>
+                    <td>Dec 3, 2024</td>
+                    <td>
+                      <div class="fw-600">Packing Tape</div>
+                      <div class="text-muted fs-sm">#SKU-031</div>
+                    </td>
+                    <td><span class="badge badge-info">System Adjustment</span></td>
+                    <td class="fw-600 text-danger">-10</td>
+                    <td>Audit adjustment</td>
+                    <td>Admin</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="text-muted">#ADJ-018</span></td>
+                    <td>Dec 1, 2024</td>
+                    <td>
+                      <div class="fw-600">Safety Gloves</div>
+                      <div class="text-muted fs-sm">#SKU-022</div>
+                    </td>
+                    <td><span class="badge badge-info">Recount</span></td>
+                    <td class="fw-600 text-success">+5</td>
+                    <td>Cycle count correction</td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewAdjustmentModal"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-3 of 23 corrections</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- New Adjustment Modal -->
+  <div class="modal-overlay" id="newAdjustmentModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">New Stock Adjustment</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Product *</label>
+          <select class="form-control form-select">
+            <option value="">Select product</option>
+            <option>Office Supplies Bundle (SKU-001)</option>
+            <option>Computer Monitor 24" (SKU-002)</option>
+            <option>Wireless Keyboard (SKU-003)</option>
+            <option>Steel Raw Material (SKU-004)</option>
+            <option>Printer Paper A4 (SKU-005)</option>
+            <option>USB-C Cables (SKU-006)</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Adjustment Type *</label>
+            <select class="form-control form-select">
+              <option value="">Select type</option>
+              <option value="received">Received (Purchase Order)</option>
+              <option value="sold">Sold (Invoice)</option>
+              <option value="return_in">Customer Return (In)</option>
+              <option value="return_out">Supplier Return (Out)</option>
+              <option value="damaged">Damaged/Defective</option>
+              <option value="lost">Lost/Stolen</option>
+              <option value="internal">Internal Use</option>
+              <option value="correction">Inventory Correction</option>
+              <option value="transfer">Transfer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Quantity *</label>
+            <input type="number" class="form-control" placeholder="Enter quantity" min="1">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Current Stock</label>
+            <input type="text" class="form-control" value="—" disabled>
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Stock Level</label>
+            <input type="text" class="form-control" value="—" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reference Number</label>
+          <input type="text" class="form-control" placeholder="e.g., PO-12345, INV-67890, RMA-1234">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reason / Notes *</label>
+          <textarea class="form-control" placeholder="Enter reason for this adjustment" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input type="date" class="form-control" value="2024-12-08">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Adjustment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Adjustment Modal -->
+  <div class="modal-overlay" id="viewAdjustmentModal">
+    <div class="modal" style="max-width: 550px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Adjustment Details</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <span class="text-muted fs-sm">Adjustment ID</span>
+            <h4 class="fw-600">#ADJ-001</h4>
+          </div>
+          <span class="badge badge-success">Received</span>
+        </div>
+
+        <div class="grid grid-2 gap-3 mb-3">
+          <div>
+            <div class="text-muted fs-sm">Product</div>
+            <div class="fw-500">Office Supplies Bundle</div>
+            <div class="text-muted fs-sm">#SKU-001</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Date</div>
+            <div class="fw-500">Dec 8, 2024</div>
+            <div class="text-muted fs-sm">10:30 AM</div>
+          </div>
+        </div>
+
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+          <div class="card-body">
+            <h5 class="fw-600 mb-2">Quantity Change</h5>
+            <div class="grid grid-3 gap-2">
+              <div class="text-center">
+                <div class="text-muted fs-sm">Before</div>
+                <div class="fw-600" style="font-size: 20px;">195</div>
+              </div>
+              <div class="text-center">
+                <div class="text-muted fs-sm">Change</div>
+                <div class="fw-600 text-success" style="font-size: 20px;">+50</div>
+              </div>
+              <div class="text-center">
+                <div class="text-muted fs-sm">After</div>
+                <div class="fw-600" style="font-size: 20px;">245</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2 gap-3 mt-3">
+          <div>
+            <div class="text-muted fs-sm">Reference</div>
+            <div class="fw-500">PO-12345</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Adjusted By</div>
+            <div class="fw-500">John Smith</div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="text-muted fs-sm">Reason / Notes</div>
+          <div class="fw-500">Purchase order delivery - Received full shipment from Staples Inc.</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Close</button>
+        <button class="btn btn-outline">
+          <i class="fas fa-print"></i>
+          Print
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Adjustments Modal -->
+  <div class="modal-overlay" id="filterAdjustmentsModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Adjustments</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Search</label>
+          <input type="text" class="form-control" placeholder="Search by product, SKU, or reference...">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Adjustment Type</label>
+            <select class="form-control form-select">
+              <option value="">All Types</option>
+              <option>Received</option>
+              <option>Sold</option>
+              <option>Return</option>
+              <option>Damaged</option>
+              <option>Lost</option>
+              <option>Internal Use</option>
+              <option>Correction</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Adjusted By</label>
+            <select class="form-control form-select">
+              <option value="">All Users</option>
+              <option>John Smith</option>
+              <option>Sarah Johnson</option>
+              <option>Mike Wilson</option>
+              <option>Emily Davis</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">From Date</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">To Date</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Product Category</label>
+          <select class="form-control form-select">
+            <option value="">All Categories</option>
+            <option>Office Supplies</option>
+            <option>Electronics</option>
+            <option>Raw Materials</option>
+            <option>Furniture</option>
+            <option>Maintenance</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary">Reset</button>
+        <button class="btn btn-primary">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/components/sidebar.js"></script>
+  <script src="../js/components/header.js"></script>
+  <script src="../js/components/stats-date-range.js"></script>
+  <script src="../js/components/file-menu.js"></script>
+  <script src="../js/components/company-modal.js"></script>
+  <script src="../js/components/help-panel.js"></script>
+  <script src="../js/components/notification-panel.js"></script>
+  <script src="../js/components/user-panel.js"></script>
+  <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
+  <script src="../js/navigation.js"></script>
+</body>
+</html>

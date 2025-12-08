@@ -91,6 +91,30 @@
         </div>
 
         <div class="nav-section">
+          <div class="nav-section-title">Inventory</div>
+          <a class="nav-item" data-page="${pathPrefix}inventory.html">
+            <i class="fas fa-warehouse"></i>
+            <span>Stock Levels</span>
+          </a>
+          <a class="nav-item" data-page="${pathPrefix}stock-adjustments.html">
+            <i class="fas fa-sliders-h"></i>
+            <span>Adjustments</span>
+          </a>
+          <a class="nav-item" data-page="${pathPrefix}stock-locations.html">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Locations</span>
+          </a>
+          <a class="nav-item" data-page="${pathPrefix}stock-transfers.html">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Transfers</span>
+          </a>
+          <a class="nav-item" data-page="${pathPrefix}purchase-orders.html">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Purchase Orders</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
           <div class="nav-section-title">Team</div>
           <a class="nav-item" data-page="${pathPrefix}employees.html">
             <i class="fas fa-user-tie"></i>

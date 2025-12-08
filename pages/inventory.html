@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory - Argo Books</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar injected by js/components/sidebar.js -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header injected by js/components/header.js -->
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Page Header -->
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <h1 class="page-title">Inventory Management</h1>
+            <p class="text-muted">Track and manage stock levels across all products and locations</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline" data-modal="importStockModal">
+              <i class="fas fa-file-import"></i>
+              Import
+            </button>
+            <button class="btn btn-outline" data-modal="exportStockModal">
+              <i class="fas fa-file-export"></i>
+              Export
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <i class="fas fa-boxes"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">2,847</div>
+              <div class="stat-label">Total Items</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>12% from last month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">2,156</div>
+              <div class="stat-label">In Stock</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>8% from last month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon yellow">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">89</div>
+              <div class="stat-label">Low Stock</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-up"></i>
+                <span>23% increase</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon red">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">34</div>
+              <div class="stat-label">Out of Stock</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-up"></i>
+                <span>5 new items</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">568</div>
+              <div class="stat-label">Overstock</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-down"></i>
+                <span>15% decrease</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <div class="tab active" data-tab="all-items">All Items</div>
+          <div class="tab" data-tab="low-stock">Low Stock <span class="badge badge-warning">89</span></div>
+          <div class="tab" data-tab="out-of-stock">Out of Stock <span class="badge badge-danger">34</span></div>
+          <div class="tab" data-tab="overstock">Overstock <span class="badge badge-info">568</span></div>
+        </div>
+
+        <!-- All Items Tab -->
+        <div class="tab-content" id="all-items">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Stock Levels</h3>
+              <div class="d-flex gap-2">
+                <div class="search-box" style="width: 250px;">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search inventory...">
+                </div>
+                <button class="btn btn-outline" data-modal="filterInventoryModal">
+                  <i class="fas fa-filter"></i>
+                  Filter
+                </button>
+                <button class="btn btn-outline" data-modal="adjustStockModal">
+                  <i class="fas fa-sliders-h"></i>
+                  Adjust Stock
+                </button>
+                <button class="btn btn-primary" data-modal="addInventoryItemModal">
+                  <i class="fas fa-plus"></i>
+                  Add Item
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>SKU</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>In Stock</th>
+                    <th>Reserved</th>
+                    <th>Available</th>
+                    <th>Reorder Point</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Office Supplies Bundle</div>
+                      <div class="text-muted fs-sm">Pens, paper, folders</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-001</span></td>
+                    <td>Office Supplies</td>
+                    <td>Main Warehouse</td>
+                    <td class="fw-600">245</td>
+                    <td>12</td>
+                    <td>233</td>
+                    <td>50</td>
+                    <td><span class="badge badge-success">In Stock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Computer Monitor 24"</div>
+                      <div class="text-muted fs-sm">LED Display, 1080p</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-002</span></td>
+                    <td>Electronics</td>
+                    <td>Main Warehouse</td>
+                    <td class="fw-600">18</td>
+                    <td>5</td>
+                    <td>13</td>
+                    <td>20</td>
+                    <td><span class="badge badge-warning">Low Stock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Wireless Keyboard</div>
+                      <div class="text-muted fs-sm">Bluetooth, ergonomic</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-003</span></td>
+                    <td>Electronics</td>
+                    <td>Secondary Storage</td>
+                    <td class="fw-600">0</td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td>15</td>
+                    <td><span class="badge badge-danger">Out of Stock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Steel Raw Material</div>
+                      <div class="text-muted fs-sm">Grade A, 10mm sheets</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-004</span></td>
+                    <td>Raw Materials</td>
+                    <td>Factory Floor</td>
+                    <td class="fw-600">1,250</td>
+                    <td>200</td>
+                    <td>1,050</td>
+                    <td>100</td>
+                    <td><span class="badge badge-info">Overstock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Printer Paper A4</div>
+                      <div class="text-muted fs-sm">500 sheets/ream, white</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-005</span></td>
+                    <td>Office Supplies</td>
+                    <td>Main Warehouse</td>
+                    <td class="fw-600">856</td>
+                    <td>50</td>
+                    <td>806</td>
+                    <td>100</td>
+                    <td><span class="badge badge-success">In Stock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">USB-C Cables (6ft)</div>
+                      <div class="text-muted fs-sm">Fast charging, braided</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-006</span></td>
+                    <td>Electronics</td>
+                    <td>Secondary Storage</td>
+                    <td class="fw-600">8</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>25</td>
+                    <td><span class="badge badge-warning">Low Stock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Desk Chair - Executive</div>
+                      <div class="text-muted fs-sm">Leather, adjustable</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-007</span></td>
+                    <td>Furniture</td>
+                    <td>Main Warehouse</td>
+                    <td class="fw-600">45</td>
+                    <td>2</td>
+                    <td>43</td>
+                    <td>10</td>
+                    <td><span class="badge badge-success">In Stock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Cleaning Supplies Kit</div>
+                      <div class="text-muted fs-sm">All-purpose cleaner set</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-008</span></td>
+                    <td>Maintenance</td>
+                    <td>Main Warehouse</td>
+                    <td class="fw-600">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>20</td>
+                    <td><span class="badge badge-danger">Out of Stock</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View Details" data-modal="viewItemModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Adjust Stock" data-modal="adjustStockModal"><i class="fas fa-sliders-h"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editInventoryItemModal"><i class="fas fa-edit"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-8 of 2,847 items</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">...</button>
+                  <button class="pagination-btn">356</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Low Stock Tab -->
+        <div class="tab-content" id="low-stock" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Low Stock Items</h3>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline" data-modal="bulkReorderModal">
+                  <i class="fas fa-shopping-cart"></i>
+                  Bulk Reorder
+                </button>
+                <button class="btn btn-primary">
+                  <i class="fas fa-bell"></i>
+                  Set Alerts
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>SKU</th>
+                    <th>Category</th>
+                    <th>Current Stock</th>
+                    <th>Reorder Point</th>
+                    <th>Shortfall</th>
+                    <th>Supplier</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Computer Monitor 24"</div>
+                      <div class="text-muted fs-sm">LED Display, 1080p</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-002</span></td>
+                    <td>Electronics</td>
+                    <td class="fw-600 text-warning">18</td>
+                    <td>20</td>
+                    <td class="text-danger">-2</td>
+                    <td>Tech Distributors</td>
+                    <td>
+                      <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Reorder
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">USB-C Cables (6ft)</div>
+                      <div class="text-muted fs-sm">Fast charging, braided</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-006</span></td>
+                    <td>Electronics</td>
+                    <td class="fw-600 text-warning">8</td>
+                    <td>25</td>
+                    <td class="text-danger">-17</td>
+                    <td>Tech Distributors</td>
+                    <td>
+                      <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Reorder
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Printer Ink Cartridge</div>
+                      <div class="text-muted fs-sm">Black, compatible</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-015</span></td>
+                    <td>Office Supplies</td>
+                    <td class="fw-600 text-warning">12</td>
+                    <td>30</td>
+                    <td class="text-danger">-18</td>
+                    <td>Staples Inc.</td>
+                    <td>
+                      <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Reorder
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Safety Gloves</div>
+                      <div class="text-muted fs-sm">Heavy duty, medium</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-022</span></td>
+                    <td>Safety Equipment</td>
+                    <td class="fw-600 text-warning">15</td>
+                    <td>50</td>
+                    <td class="text-danger">-35</td>
+                    <td>SafetyFirst Inc.</td>
+                    <td>
+                      <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Reorder
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-4 of 89 low stock items</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">...</button>
+                  <button class="pagination-btn">12</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Out of Stock Tab -->
+        <div class="tab-content" id="out-of-stock" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Out of Stock Items</h3>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline" data-modal="bulkReorderModal">
+                  <i class="fas fa-shopping-cart"></i>
+                  Bulk Reorder All
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>SKU</th>
+                    <th>Category</th>
+                    <th>Days Out</th>
+                    <th>Reserved Orders</th>
+                    <th>Supplier</th>
+                    <th>Expected Restock</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Wireless Keyboard</div>
+                      <div class="text-muted fs-sm">Bluetooth, ergonomic</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-003</span></td>
+                    <td>Electronics</td>
+                    <td class="text-danger fw-600">5 days</td>
+                    <td>8 pending</td>
+                    <td>Tech Distributors</td>
+                    <td>Dec 12, 2024</td>
+                    <td>
+                      <button class="btn btn-sm btn-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Urgent Reorder
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Cleaning Supplies Kit</div>
+                      <div class="text-muted fs-sm">All-purpose cleaner set</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-008</span></td>
+                    <td>Maintenance</td>
+                    <td class="text-danger fw-600">3 days</td>
+                    <td>0 pending</td>
+                    <td>CleanCo Services</td>
+                    <td>Dec 10, 2024</td>
+                    <td>
+                      <button class="btn btn-sm btn-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Urgent Reorder
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Stapler - Heavy Duty</div>
+                      <div class="text-muted fs-sm">100 sheet capacity</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-019</span></td>
+                    <td>Office Supplies</td>
+                    <td class="text-danger fw-600">12 days</td>
+                    <td>3 pending</td>
+                    <td>Staples Inc.</td>
+                    <td>On Order</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline">
+                        <i class="fas fa-truck"></i>
+                        Track Order
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-3 of 34 out of stock items</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">4</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overstock Tab -->
+        <div class="tab-content" id="overstock" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Overstock Items</h3>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline">
+                  <i class="fas fa-percentage"></i>
+                  Create Promotion
+                </button>
+                <button class="btn btn-outline">
+                  <i class="fas fa-exchange-alt"></i>
+                  Transfer Stock
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>SKU</th>
+                    <th>Category</th>
+                    <th>Current Stock</th>
+                    <th>Overstock Threshold</th>
+                    <th>Excess</th>
+                    <th>Value</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Steel Raw Material</div>
+                      <div class="text-muted fs-sm">Grade A, 10mm sheets</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-004</span></td>
+                    <td>Raw Materials</td>
+                    <td class="fw-600">1,250</td>
+                    <td>500</td>
+                    <td class="text-info fw-600">+750</td>
+                    <td>$37,500.00</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">
+                          <i class="fas fa-exchange-alt"></i>
+                          Transfer
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Printer Paper A4</div>
+                      <div class="text-muted fs-sm">500 sheets/ream</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-005</span></td>
+                    <td>Office Supplies</td>
+                    <td class="fw-600">856</td>
+                    <td>500</td>
+                    <td class="text-info fw-600">+356</td>
+                    <td>$1,780.00</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">
+                          <i class="fas fa-exchange-alt"></i>
+                          Transfer
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="fw-600">Packing Tape</div>
+                      <div class="text-muted fs-sm">Heavy duty, 100m rolls</div>
+                    </td>
+                    <td><span class="text-muted">#SKU-031</span></td>
+                    <td>Packaging</td>
+                    <td class="fw-600">420</td>
+                    <td>200</td>
+                    <td class="text-info fw-600">+220</td>
+                    <td>$1,320.00</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">
+                          <i class="fas fa-exchange-alt"></i>
+                          Transfer
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-3 of 568 overstock items</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">...</button>
+                  <button class="pagination-btn">71</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Inventory Item Modal -->
+  <div class="modal-overlay" id="addInventoryItemModal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Inventory Item</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product Name *</label>
+            <input type="text" class="form-control" placeholder="Enter product name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">SKU *</label>
+            <input type="text" class="form-control" placeholder="e.g., SKU-001">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" placeholder="Enter product description" rows="2"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category *</label>
+            <select class="form-control form-select">
+              <option value="">Select category</option>
+              <option>Office Supplies</option>
+              <option>Electronics</option>
+              <option>Raw Materials</option>
+              <option>Furniture</option>
+              <option>Maintenance</option>
+              <option>Safety Equipment</option>
+              <option>Packaging</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location *</label>
+            <select class="form-control form-select">
+              <option value="">Select location</option>
+              <option>Main Warehouse</option>
+              <option>Secondary Storage</option>
+              <option>Factory Floor</option>
+              <option>Retail Store</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option value="">Select supplier</option>
+              <option>Staples Inc.</option>
+              <option>Tech Distributors</option>
+              <option>CleanCo Services</option>
+              <option>Steel Works Inc.</option>
+              <option>SafetyFirst Inc.</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Unit of Measure</label>
+            <select class="form-control form-select">
+              <option>Each</option>
+              <option>Box</option>
+              <option>Pack</option>
+              <option>Carton</option>
+              <option>Pallet</option>
+              <option>Kg</option>
+              <option>Liter</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Initial Quantity *</label>
+            <input type="number" class="form-control" placeholder="0" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Unit Cost</label>
+            <div class="input-group">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Reorder Point</label>
+            <input type="number" class="form-control" placeholder="Minimum stock level" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Overstock Threshold</label>
+            <input type="number" class="form-control" placeholder="Maximum stock level" min="0">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Add Item</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Inventory Item Modal -->
+  <div class="modal-overlay" id="editInventoryItemModal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Inventory Item</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product Name *</label>
+            <input type="text" class="form-control" value="Office Supplies Bundle">
+          </div>
+          <div class="form-group">
+            <label class="form-label">SKU *</label>
+            <input type="text" class="form-control" value="SKU-001" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="2">Pens, paper, folders</textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category *</label>
+            <select class="form-control form-select">
+              <option value="">Select category</option>
+              <option selected>Office Supplies</option>
+              <option>Electronics</option>
+              <option>Raw Materials</option>
+              <option>Furniture</option>
+              <option>Maintenance</option>
+              <option>Safety Equipment</option>
+              <option>Packaging</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location *</label>
+            <select class="form-control form-select">
+              <option value="">Select location</option>
+              <option selected>Main Warehouse</option>
+              <option>Secondary Storage</option>
+              <option>Factory Floor</option>
+              <option>Retail Store</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option value="">Select supplier</option>
+              <option selected>Staples Inc.</option>
+              <option>Tech Distributors</option>
+              <option>CleanCo Services</option>
+              <option>Steel Works Inc.</option>
+              <option>SafetyFirst Inc.</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Unit of Measure</label>
+            <select class="form-control form-select">
+              <option selected>Each</option>
+              <option>Box</option>
+              <option>Pack</option>
+              <option>Carton</option>
+              <option>Pallet</option>
+              <option>Kg</option>
+              <option>Liter</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Reorder Point</label>
+            <input type="number" class="form-control" value="50" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Overstock Threshold</label>
+            <input type="number" class="form-control" value="500" min="0">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adjust Stock Modal -->
+  <div class="modal-overlay" id="adjustStockModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Adjust Stock</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Product</label>
+          <select class="form-control form-select">
+            <option value="">Select product</option>
+            <option>Office Supplies Bundle (SKU-001)</option>
+            <option>Computer Monitor 24" (SKU-002)</option>
+            <option>Wireless Keyboard (SKU-003)</option>
+            <option>Steel Raw Material (SKU-004)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Adjustment Type</label>
+          <select class="form-control form-select">
+            <option value="add">Add Stock (Received)</option>
+            <option value="remove">Remove Stock (Sold/Used)</option>
+            <option value="damaged">Damaged/Lost</option>
+            <option value="correction">Inventory Correction</option>
+            <option value="return">Customer Return</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Current Stock</label>
+            <input type="text" class="form-control" value="245" disabled>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Adjustment Quantity</label>
+            <input type="number" class="form-control" placeholder="Enter quantity" min="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">New Stock Level</label>
+          <input type="text" class="form-control" value="—" disabled>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reason / Notes</label>
+          <textarea class="form-control" placeholder="Enter reason for adjustment" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reference Number</label>
+          <input type="text" class="form-control" placeholder="e.g., PO-12345, INV-67890">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Apply Adjustment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Item Modal -->
+  <div class="modal-overlay" id="viewItemModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Item Details</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <h4 class="fw-600 mb-1">Office Supplies Bundle</h4>
+            <span class="text-muted">#SKU-001</span>
+          </div>
+          <span class="badge badge-success">In Stock</span>
+        </div>
+
+        <div class="grid grid-2 gap-3 mb-3">
+          <div>
+            <div class="text-muted fs-sm">Category</div>
+            <div class="fw-500">Office Supplies</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Location</div>
+            <div class="fw-500">Main Warehouse</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Supplier</div>
+            <div class="fw-500">Staples Inc.</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Unit of Measure</div>
+            <div class="fw-500">Each</div>
+          </div>
+        </div>
+
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+          <div class="card-body">
+            <h5 class="fw-600 mb-2">Stock Information</h5>
+            <div class="grid grid-3 gap-2">
+              <div class="text-center">
+                <div class="stat-value" style="font-size: 24px;">245</div>
+                <div class="text-muted fs-sm">In Stock</div>
+              </div>
+              <div class="text-center">
+                <div class="stat-value" style="font-size: 24px;">12</div>
+                <div class="text-muted fs-sm">Reserved</div>
+              </div>
+              <div class="text-center">
+                <div class="stat-value" style="font-size: 24px;">233</div>
+                <div class="text-muted fs-sm">Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2 gap-3 mt-3">
+          <div>
+            <div class="text-muted fs-sm">Reorder Point</div>
+            <div class="fw-500">50 units</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Overstock Threshold</div>
+            <div class="fw-500">500 units</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Unit Cost</div>
+            <div class="fw-500">$12.50</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Total Value</div>
+            <div class="fw-500">$3,062.50</div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="text-muted fs-sm">Last Updated</div>
+          <div class="fw-500">Dec 5, 2024 at 2:30 PM</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Close</button>
+        <button class="btn btn-outline" data-modal="adjustStockModal">
+          <i class="fas fa-sliders-h"></i>
+          Adjust Stock
+        </button>
+        <button class="btn btn-primary" data-modal="editInventoryItemModal">
+          <i class="fas fa-edit"></i>
+          Edit Item
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Inventory Modal -->
+  <div class="modal-overlay" id="filterInventoryModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Inventory</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Search</label>
+          <input type="text" class="form-control" placeholder="Search by name or SKU...">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-control form-select">
+              <option value="">All Categories</option>
+              <option>Office Supplies</option>
+              <option>Electronics</option>
+              <option>Raw Materials</option>
+              <option>Furniture</option>
+              <option>Maintenance</option>
+              <option>Safety Equipment</option>
+              <option>Packaging</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <select class="form-control form-select">
+              <option value="">All Locations</option>
+              <option>Main Warehouse</option>
+              <option>Secondary Storage</option>
+              <option>Factory Floor</option>
+              <option>Retail Store</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Stock Status</label>
+            <select class="form-control form-select">
+              <option value="">All Status</option>
+              <option>In Stock</option>
+              <option>Low Stock</option>
+              <option>Out of Stock</option>
+              <option>Overstock</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Supplier</label>
+            <select class="form-control form-select">
+              <option value="">All Suppliers</option>
+              <option>Staples Inc.</option>
+              <option>Tech Distributors</option>
+              <option>CleanCo Services</option>
+              <option>Steel Works Inc.</option>
+              <option>SafetyFirst Inc.</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Min Stock Level</label>
+            <input type="number" class="form-control" placeholder="0" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Stock Level</label>
+            <input type="number" class="form-control" placeholder="Any" min="0">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary">Reset Filters</button>
+        <button class="btn btn-primary">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bulk Reorder Modal -->
+  <div class="modal-overlay" id="bulkReorderModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Bulk Reorder</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted mb-3">Select items to include in bulk reorder:</p>
+        <div class="form-group">
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Computer Monitor 24" (18 in stock, reorder 20 more)</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>USB-C Cables (8 in stock, reorder 50 more)</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Printer Ink Cartridge (12 in stock, reorder 40 more)</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Safety Gloves (15 in stock, reorder 75 more)</span>
+          </label>
+        </div>
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+          <div class="card-body">
+            <div class="d-flex justify-between">
+              <span>Selected Items:</span>
+              <span class="fw-600">4 items</span>
+            </div>
+            <div class="d-flex justify-between">
+              <span>Estimated Total:</span>
+              <span class="fw-600">$2,450.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Create Purchase Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Stock Modal -->
+  <div class="modal-overlay" id="importStockModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Import Stock Data</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">File Format</label>
+          <select class="form-control form-select">
+            <option>CSV (.csv)</option>
+            <option>Excel (.xlsx)</option>
+            <option>JSON (.json)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Upload File</label>
+          <div class="file-upload-area" style="border: 2px dashed var(--gray-300); border-radius: 8px; padding: 30px; text-align: center; cursor: pointer;">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: var(--gray-400); margin-bottom: 10px;"></i>
+            <p class="text-muted">Drag and drop file here or click to browse</p>
+            <input type="file" style="display: none;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Import Options</label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Update existing items by SKU</span>
+          </label>
+          <label class="d-flex align-center gap-2">
+            <input type="checkbox">
+            <span>Create new items if not found</span>
+          </label>
+        </div>
+        <a href="#" class="text-primary fs-sm">
+          <i class="fas fa-download"></i>
+          Download template file
+        </a>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Stock Modal -->
+  <div class="modal-overlay" id="exportStockModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Export Stock Data</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Export Format</label>
+          <select class="form-control form-select">
+            <option>CSV (.csv)</option>
+            <option>Excel (.xlsx)</option>
+            <option>PDF Report (.pdf)</option>
+            <option>JSON (.json)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Data to Export</label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>All Items</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox">
+            <span>Low Stock Only</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox">
+            <span>Out of Stock Only</span>
+          </label>
+          <label class="d-flex align-center gap-2">
+            <input type="checkbox">
+            <span>Overstock Only</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Include Fields</label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Stock Levels</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Supplier Information</span>
+          </label>
+          <label class="d-flex align-center gap-2">
+            <input type="checkbox" checked>
+            <span>Cost & Value</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">
+          <i class="fas fa-download"></i>
+          Export
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/components/sidebar.js"></script>
+  <script src="../js/components/header.js"></script>
+  <script src="../js/components/stats-date-range.js"></script>
+  <script src="../js/components/file-menu.js"></script>
+  <script src="../js/components/company-modal.js"></script>
+  <script src="../js/components/help-panel.js"></script>
+  <script src="../js/components/notification-panel.js"></script>
+  <script src="../js/components/user-panel.js"></script>
+  <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
+  <script src="../js/navigation.js"></script>
+</body>
+</html>

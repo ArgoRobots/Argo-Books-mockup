@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Transfers - Argo Books</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar injected by js/components/sidebar.js -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header injected by js/components/header.js -->
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Page Header -->
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <h1 class="page-title">Stock Transfers</h1>
+            <p class="text-muted">Move inventory between locations and track transfer history</p>
+          </div>
+          <button class="btn btn-primary" data-modal="newTransferModal">
+            <i class="fas fa-exchange-alt"></i>
+            New Transfer
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">47</div>
+              <div class="stat-label">Total Transfers</div>
+              <div class="stat-change">
+                <span class="text-muted">This month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon yellow">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">8</div>
+              <div class="stat-label">Pending</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-up"></i>
+                <span>2 new today</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <i class="fas fa-truck"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">5</div>
+              <div class="stat-label">In Transit</div>
+              <div class="stat-change">
+                <span class="text-muted">Est. arrival: 2 days</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">34</div>
+              <div class="stat-label">Completed</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>12% from last month</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <div class="tab active" data-tab="all-transfers">All Transfers</div>
+          <div class="tab" data-tab="pending-transfers">Pending <span class="badge badge-warning">8</span></div>
+          <div class="tab" data-tab="in-transit">In Transit <span class="badge badge-info">5</span></div>
+          <div class="tab" data-tab="completed-transfers">Completed</div>
+        </div>
+
+        <!-- All Transfers Tab -->
+        <div class="tab-content" id="all-transfers">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Transfer History</h3>
+              <div class="d-flex gap-2">
+                <div class="search-box" style="width: 250px;">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search transfers...">
+                </div>
+                <button class="btn btn-outline" data-modal="filterTransfersModal">
+                  <i class="fas fa-filter"></i>
+                  Filter
+                </button>
+                <button class="btn btn-outline">
+                  <i class="fas fa-file-export"></i>
+                  Export
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Transfer ID</th>
+                    <th>Date</th>
+                    <th>From Location</th>
+                    <th>To Location</th>
+                    <th>Items</th>
+                    <th>Total Qty</th>
+                    <th>Status</th>
+                    <th>Created By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fw-600">#TRF-047</span></td>
+                    <td>Dec 8, 2024</td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-warehouse text-primary"></i>
+                        <span>Main Warehouse</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-store text-warning"></i>
+                        <span>Retail Store</span>
+                      </div>
+                    </td>
+                    <td>3 items</td>
+                    <td class="fw-600">45</td>
+                    <td><span class="badge badge-warning">Pending</span></td>
+                    <td>John Smith</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View" data-modal="viewTransferModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Edit" data-modal="editTransferModal"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Approve"><i class="fas fa-check"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#TRF-046</span></td>
+                    <td>Dec 7, 2024</td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-building text-success"></i>
+                        <span>Secondary Storage</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-industry text-purple"></i>
+                        <span>Factory Floor</span>
+                      </div>
+                    </td>
+                    <td>5 items</td>
+                    <td class="fw-600">120</td>
+                    <td><span class="badge badge-info">In Transit</span></td>
+                    <td>Sarah Johnson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View" data-modal="viewTransferModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Track"><i class="fas fa-truck"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Receive"><i class="fas fa-check-double"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#TRF-045</span></td>
+                    <td>Dec 6, 2024</td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-warehouse text-primary"></i>
+                        <span>Main Warehouse</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-building text-success"></i>
+                        <span>Secondary Storage</span>
+                      </div>
+                    </td>
+                    <td>8 items</td>
+                    <td class="fw-600">350</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                    <td>Mike Wilson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View" data-modal="viewTransferModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#TRF-044</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-industry text-purple"></i>
+                        <span>Factory Floor</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-warehouse text-primary"></i>
+                        <span>Main Warehouse</span>
+                      </div>
+                    </td>
+                    <td>2 items</td>
+                    <td class="fw-600">75</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View" data-modal="viewTransferModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#TRF-043</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-warehouse text-primary"></i>
+                        <span>Main Warehouse</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-store text-warning"></i>
+                        <span>Retail Store</span>
+                      </div>
+                    </td>
+                    <td>4 items</td>
+                    <td class="fw-600">60</td>
+                    <td><span class="badge badge-info">In Transit</span></td>
+                    <td>John Smith</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View" data-modal="viewTransferModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Track"><i class="fas fa-truck"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Receive"><i class="fas fa-check-double"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#TRF-042</span></td>
+                    <td>Dec 4, 2024</td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-building text-success"></i>
+                        <span>Secondary Storage</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <i class="fas fa-store text-warning"></i>
+                        <span>Retail Store</span>
+                      </div>
+                    </td>
+                    <td>6 items</td>
+                    <td class="fw-600">85</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                    <td>Sarah Johnson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline" title="View" data-modal="viewTransferModal"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline" title="Print"><i class="fas fa-print"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-between align-center">
+                <span class="text-muted">Showing 1-6 of 47 transfers</span>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+                  <button class="pagination-btn">...</button>
+                  <button class="pagination-btn">8</button>
+                  <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Transfers Tab -->
+        <div class="tab-content" id="pending-transfers" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pending Transfers</h3>
+              <button class="btn btn-primary">
+                <i class="fas fa-check"></i>
+                Approve Selected
+              </button>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Transfer ID</th>
+                    <th>Created</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Items</th>
+                    <th>Created By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><span class="fw-600">#TRF-047</span></td>
+                    <td>Dec 8, 2024</td>
+                    <td>Main Warehouse</td>
+                    <td>Retail Store</td>
+                    <td>3 items (45 units)</td>
+                    <td>John Smith</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-success">Approve</button>
+                        <button class="btn btn-sm btn-outline">Edit</button>
+                        <button class="btn btn-sm btn-outline text-danger">Cancel</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><span class="fw-600">#TRF-048</span></td>
+                    <td>Dec 8, 2024</td>
+                    <td>Secondary Storage</td>
+                    <td>Main Warehouse</td>
+                    <td>2 items (30 units)</td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-success">Approve</button>
+                        <button class="btn btn-sm btn-outline">Edit</button>
+                        <button class="btn btn-sm btn-outline text-danger">Cancel</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <span class="text-muted">Showing 1-2 of 8 pending transfers</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- In Transit Tab -->
+        <div class="tab-content" id="in-transit" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">In Transit</h3>
+              <button class="btn btn-primary">
+                <i class="fas fa-check-double"></i>
+                Receive Selected
+              </button>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Transfer ID</th>
+                    <th>Shipped</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Items</th>
+                    <th>Est. Arrival</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><span class="fw-600">#TRF-046</span></td>
+                    <td>Dec 7, 2024</td>
+                    <td>Secondary Storage</td>
+                    <td>Factory Floor</td>
+                    <td>5 items (120 units)</td>
+                    <td>Dec 9, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-primary">Receive</button>
+                        <button class="btn btn-sm btn-outline">Track</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><span class="fw-600">#TRF-043</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>Main Warehouse</td>
+                    <td>Retail Store</td>
+                    <td>4 items (60 units)</td>
+                    <td>Dec 8, 2024</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-primary">Receive</button>
+                        <button class="btn btn-sm btn-outline">Track</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <span class="text-muted">Showing 1-2 of 5 in-transit transfers</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Transfers Tab -->
+        <div class="tab-content" id="completed-transfers" style="display: none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Completed Transfers</h3>
+              <button class="btn btn-outline">
+                <i class="fas fa-file-export"></i>
+                Export Report
+              </button>
+            </div>
+            <div class="card-body p-0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Transfer ID</th>
+                    <th>Date Completed</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Items</th>
+                    <th>Received By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fw-600">#TRF-045</span></td>
+                    <td>Dec 6, 2024</td>
+                    <td>Main Warehouse</td>
+                    <td>Secondary Storage</td>
+                    <td>8 items (350 units)</td>
+                    <td>Mike Wilson</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">View</button>
+                        <button class="btn btn-sm btn-outline">Print</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#TRF-044</span></td>
+                    <td>Dec 5, 2024</td>
+                    <td>Factory Floor</td>
+                    <td>Main Warehouse</td>
+                    <td>2 items (75 units)</td>
+                    <td>John Smith</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">View</button>
+                        <button class="btn btn-sm btn-outline">Print</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-600">#TRF-042</span></td>
+                    <td>Dec 4, 2024</td>
+                    <td>Secondary Storage</td>
+                    <td>Retail Store</td>
+                    <td>6 items (85 units)</td>
+                    <td>Emily Davis</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline">View</button>
+                        <button class="btn btn-sm btn-outline">Print</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <span class="text-muted">Showing 1-3 of 34 completed transfers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- New Transfer Modal -->
+  <div class="modal-overlay" id="newTransferModal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Create Stock Transfer</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">From Location *</label>
+            <select class="form-control form-select">
+              <option value="">Select source location</option>
+              <option>Main Warehouse (LOC-001)</option>
+              <option>Secondary Storage (LOC-002)</option>
+              <option>Factory Floor (LOC-003)</option>
+              <option>Retail Store (LOC-004)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">To Location *</label>
+            <select class="form-control form-select">
+              <option value="">Select destination</option>
+              <option>Main Warehouse (LOC-001)</option>
+              <option>Secondary Storage (LOC-002)</option>
+              <option>Factory Floor (LOC-003)</option>
+              <option>Retail Store (LOC-004)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Transfer Items *</label>
+          <div class="card" style="border: 1px solid var(--gray-200);">
+            <div class="card-body p-0">
+              <table class="data-table" style="margin: 0;">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Available</th>
+                    <th>Transfer Qty</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <select class="form-control form-select" style="min-width: 200px;">
+                        <option value="">Select product</option>
+                        <option>Office Supplies Bundle (SKU-001)</option>
+                        <option>Computer Monitor 24" (SKU-002)</option>
+                        <option>Printer Paper A4 (SKU-005)</option>
+                      </select>
+                    </td>
+                    <td><span class="text-muted">—</span></td>
+                    <td><input type="number" class="form-control" style="width: 100px;" placeholder="0" min="1"></td>
+                    <td><button class="btn btn-icon btn-outline text-danger"><i class="fas fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline mt-2">
+            <i class="fas fa-plus"></i>
+            Add Item
+          </button>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Priority</label>
+            <select class="form-control form-select">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Expected Transfer Date</label>
+            <input type="date" class="form-control" value="2024-12-10">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Reason for Transfer</label>
+          <select class="form-control form-select">
+            <option value="">Select reason</option>
+            <option>Stock Replenishment</option>
+            <option>Rebalancing Inventory</option>
+            <option>Customer Request</option>
+            <option>Storage Optimization</option>
+            <option>Return to Warehouse</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Additional notes about this transfer" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-outline">Save as Draft</button>
+        <button class="btn btn-primary">Create Transfer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Transfer Modal -->
+  <div class="modal-overlay" id="viewTransferModal">
+    <div class="modal" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Transfer Details</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <span class="text-muted fs-sm">Transfer ID</span>
+            <h4 class="fw-600">#TRF-047</h4>
+          </div>
+          <span class="badge badge-warning">Pending</span>
+        </div>
+
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200); margin-bottom: 16px;">
+          <div class="card-body">
+            <div class="d-flex align-center justify-between">
+              <div class="text-center">
+                <i class="fas fa-warehouse text-primary" style="font-size: 24px; margin-bottom: 8px;"></i>
+                <div class="fw-600">Main Warehouse</div>
+                <div class="text-muted fs-sm">LOC-001</div>
+              </div>
+              <div class="text-center">
+                <i class="fas fa-arrow-right text-muted" style="font-size: 24px;"></i>
+              </div>
+              <div class="text-center">
+                <i class="fas fa-store text-warning" style="font-size: 24px; margin-bottom: 8px;"></i>
+                <div class="fw-600">Retail Store</div>
+                <div class="text-muted fs-sm">LOC-004</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="fw-600 mb-2">Transfer Items</h5>
+        <div class="card" style="border: 1px solid var(--gray-200); margin-bottom: 16px;">
+          <div class="card-body p-0">
+            <table class="data-table" style="margin: 0;">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-500">Office Supplies Bundle</td>
+                  <td class="text-muted">#SKU-001</td>
+                  <td class="fw-600">20</td>
+                </tr>
+                <tr>
+                  <td class="fw-500">Printer Paper A4</td>
+                  <td class="text-muted">#SKU-005</td>
+                  <td class="fw-600">15</td>
+                </tr>
+                <tr>
+                  <td class="fw-500">USB-C Cables (6ft)</td>
+                  <td class="text-muted">#SKU-006</td>
+                  <td class="fw-600">10</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2" class="fw-600 text-right">Total:</td>
+                  <td class="fw-600">45 units</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid grid-2 gap-3">
+          <div>
+            <div class="text-muted fs-sm">Created By</div>
+            <div class="fw-500">John Smith</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Created Date</div>
+            <div class="fw-500">Dec 8, 2024</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Priority</div>
+            <div class="fw-500">Normal</div>
+          </div>
+          <div>
+            <div class="text-muted fs-sm">Expected Transfer</div>
+            <div class="fw-500">Dec 10, 2024</div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="text-muted fs-sm">Reason</div>
+          <div class="fw-500">Stock Replenishment - Retail store running low on office supplies</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Close</button>
+        <button class="btn btn-outline">
+          <i class="fas fa-print"></i>
+          Print
+        </button>
+        <button class="btn btn-success">
+          <i class="fas fa-check"></i>
+          Approve Transfer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Transfer Modal -->
+  <div class="modal-overlay" id="editTransferModal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Transfer #TRF-047</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">From Location *</label>
+            <select class="form-control form-select">
+              <option value="">Select source location</option>
+              <option selected>Main Warehouse (LOC-001)</option>
+              <option>Secondary Storage (LOC-002)</option>
+              <option>Factory Floor (LOC-003)</option>
+              <option>Retail Store (LOC-004)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">To Location *</label>
+            <select class="form-control form-select">
+              <option value="">Select destination</option>
+              <option>Main Warehouse (LOC-001)</option>
+              <option>Secondary Storage (LOC-002)</option>
+              <option>Factory Floor (LOC-003)</option>
+              <option selected>Retail Store (LOC-004)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Transfer Items *</label>
+          <div class="card" style="border: 1px solid var(--gray-200);">
+            <div class="card-body p-0">
+              <table class="data-table" style="margin: 0;">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Available</th>
+                    <th>Transfer Qty</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Office Supplies Bundle (SKU-001)</td>
+                    <td>233</td>
+                    <td><input type="number" class="form-control" style="width: 100px;" value="20" min="1"></td>
+                    <td><button class="btn btn-icon btn-outline text-danger"><i class="fas fa-trash"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>Printer Paper A4 (SKU-005)</td>
+                    <td>806</td>
+                    <td><input type="number" class="form-control" style="width: 100px;" value="15" min="1"></td>
+                    <td><button class="btn btn-icon btn-outline text-danger"><i class="fas fa-trash"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>USB-C Cables (SKU-006)</td>
+                    <td>5</td>
+                    <td><input type="number" class="form-control" style="width: 100px;" value="10" min="1"></td>
+                    <td><button class="btn btn-icon btn-outline text-danger"><i class="fas fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline mt-2">
+            <i class="fas fa-plus"></i>
+            Add Item
+          </button>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Priority</label>
+            <select class="form-control form-select">
+              <option value="normal" selected>Normal</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Expected Transfer Date</label>
+            <input type="date" class="form-control" value="2024-12-10">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" rows="2">Stock Replenishment - Retail store running low on office supplies</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Transfers Modal -->
+  <div class="modal-overlay" id="filterTransfersModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Filter Transfers</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Search</label>
+          <input type="text" class="form-control" placeholder="Search by transfer ID or product...">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">From Location</label>
+            <select class="form-control form-select">
+              <option value="">All Locations</option>
+              <option>Main Warehouse</option>
+              <option>Secondary Storage</option>
+              <option>Factory Floor</option>
+              <option>Retail Store</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">To Location</label>
+            <select class="form-control form-select">
+              <option value="">All Locations</option>
+              <option>Main Warehouse</option>
+              <option>Secondary Storage</option>
+              <option>Factory Floor</option>
+              <option>Retail Store</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-control form-select">
+              <option value="">All Status</option>
+              <option>Pending</option>
+              <option>In Transit</option>
+              <option>Completed</option>
+              <option>Cancelled</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Created By</label>
+            <select class="form-control form-select">
+              <option value="">All Users</option>
+              <option>John Smith</option>
+              <option>Sarah Johnson</option>
+              <option>Mike Wilson</option>
+              <option>Emily Davis</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">From Date</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">To Date</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary">Reset</button>
+        <button class="btn btn-primary">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/components/sidebar.js"></script>
+  <script src="../js/components/header.js"></script>
+  <script src="../js/components/stats-date-range.js"></script>
+  <script src="../js/components/file-menu.js"></script>
+  <script src="../js/components/company-modal.js"></script>
+  <script src="../js/components/help-panel.js"></script>
+  <script src="../js/components/notification-panel.js"></script>
+  <script src="../js/components/user-panel.js"></script>
+  <script src="../js/components/account-modals.js"></script>
+  <script src="../js/components/upgrade-modal.js"></script>
+  <script src="../js/navigation.js"></script>
+</body>
+</html>
