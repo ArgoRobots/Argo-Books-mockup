@@ -210,7 +210,7 @@
       color: white;
     }
     .step-dot.completed {
-      background: var(--success-color);
+      background: var(--primary-color);
       color: white;
     }
     .step-line {
@@ -221,7 +221,7 @@
       transition: all 0.3s;
     }
     .step-line.completed {
-      background: var(--success-color);
+      background: var(--primary-color);
     }
 
     /* Navigation buttons */
@@ -1302,14 +1302,17 @@
                 </div>
 
                 <!-- Delete -->
-                <div class="toolbar-group">
+                <div class="toolbar-group" style="border-right: none;">
                   <button class="toolbar-btn" id="deleteBtn" title="Delete (Del)" disabled>
                     <i class="fas fa-trash"></i>
                   </button>
                 </div>
 
-                <!-- Grid & Settings -->
-                <div class="toolbar-group">
+                <!-- Spacer -->
+                <div style="flex: 1;"></div>
+
+                <!-- Grid & Settings (right aligned) -->
+                <div class="toolbar-group" style="border-right: none; padding-right: 0;">
                   <button class="toolbar-btn" id="gridToggle" title="Toggle Grid (Ctrl+G)">
                     <i class="fas fa-th"></i>
                   </button>
@@ -1363,10 +1366,6 @@
                     <i class="fas fa-expand"></i>
                   </button>
                 </div>
-                <div style="flex: 1;"></div>
-                <span style="font-size: 11px; color: var(--gray-500);">
-                  <i class="fas fa-info-circle"></i> Preview may differ slightly from final export
-                </span>
               </div>
               <div class="preview-area" id="previewArea">
                 <div class="preview-page" id="previewPage">
