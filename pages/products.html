@@ -74,6 +74,10 @@
             <div class="card-header">
               <h3 class="card-title">Expense Products</h3>
               <div class="d-flex gap-2">
+                <div class="search-box" style="width: 250px;">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search products...">
+                </div>
                 <button class="btn btn-outline" data-modal="filterProductsModal">
                   <i class="fas fa-filter"></i>
                   Filter
@@ -214,10 +218,20 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Revenue Products</h3>
-              <button class="btn btn-primary" data-modal="addProductModal">
-                <i class="fas fa-plus"></i>
-                Add Product
-              </button>
+              <div class="d-flex gap-2">
+                <div class="search-box" style="width: 250px;">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search products...">
+                </div>
+                <button class="btn btn-outline" data-modal="filterProductsModal">
+                  <i class="fas fa-filter"></i>
+                  Filter
+                </button>
+                <button class="btn btn-primary" data-modal="addProductModal">
+                  <i class="fas fa-plus"></i>
+                  Add Product
+                </button>
+              </div>
             </div>
             <div class="card-body p-0">
               <table class="data-table">
