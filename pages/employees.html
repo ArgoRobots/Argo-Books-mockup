@@ -519,19 +519,6 @@
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
-        <!-- Profile Picture Section -->
-        <div class="form-group" style="text-align: center; margin-bottom: 20px;">
-          <label class="form-label">Profile Picture</label>
-          <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
-            <div class="avatar" style="width: 64px; height: 64px; font-size: 24px; background: var(--primary-light); color: var(--primary-color);">JD</div>
-            <div style="text-align: left;">
-              <button type="button" class="btn btn-outline btn-sm" style="margin-bottom: 4px;">
-                <i class="fas fa-upload"></i> Upload Photo
-              </button>
-              <p style="margin: 0; font-size: 11px; color: var(--gray-400);">JPG, PNG up to 5MB</p>
-            </div>
-          </div>
-        </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First Name</label>
@@ -552,12 +539,6 @@
             <input type="tel" class="form-control" value="(555) 123-4567">
           </div>
           <div class="form-group">
-            <label class="form-label">Emergency Contact</label>
-            <input type="tel" class="form-control" value="(555) 987-6543" placeholder="Emergency contact number">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
             <label class="form-label">Department</label>
             <select class="form-control form-select">
               <option>Select department</option>
@@ -566,8 +547,11 @@
               <option>Sales</option>
               <option>IT</option>
               <option>HR</option>
+              <option>Customer Support</option>
             </select>
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Location</label>
             <select class="form-control form-select">
@@ -578,29 +562,43 @@
               <option>Retail Store</option>
             </select>
           </div>
-        </div>
-        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Position</label>
             <input type="text" class="form-control" value="CFO">
           </div>
-          <div class="form-group">
-            <label class="form-label">Hire Date</label>
-            <input type="date" class="form-control" value="2020-01-15">
-          </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Status</label>
-          <select class="form-control form-select">
-            <option selected>Active</option>
-            <option>On Leave</option>
-            <option>Terminated</option>
-          </select>
+          <label class="form-label">Hire Date</label>
+          <input type="date" class="form-control" value="2020-01-15">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Compensation Type</label>
+          <div class="d-flex gap-3" style="margin-top: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="editCompensationType" value="annual" checked onchange="toggleEditCompensationType(this)">
+              <span>Annual Salary</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="editCompensationType" value="hourly" onchange="toggleEditCompensationType(this)">
+              <span>Hourly Rate</span>
+            </label>
+          </div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Salary</label>
-            <input type="number" class="form-control" value="150000">
+          <div class="form-group" id="editAnnualSalaryGroup">
+            <label class="form-label">Annual Salary</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+              <input type="number" class="form-control" value="150000" style="padding-left: 28px;">
+            </div>
+          </div>
+          <div class="form-group" id="editHourlyRateGroup" style="display: none;">
+            <label class="form-label">Hourly Rate</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Pay Frequency</label>
@@ -635,6 +633,20 @@
     function toggleCompensationType(radio) {
       const annualGroup = document.getElementById('annualSalaryGroup');
       const hourlyGroup = document.getElementById('hourlyRateGroup');
+
+      if (radio.value === 'annual') {
+        annualGroup.style.display = 'block';
+        hourlyGroup.style.display = 'none';
+      } else {
+        annualGroup.style.display = 'none';
+        hourlyGroup.style.display = 'block';
+      }
+    }
+
+    // Toggle compensation type in Edit Employee modal
+    function toggleEditCompensationType(radio) {
+      const annualGroup = document.getElementById('editAnnualSalaryGroup');
+      const hourlyGroup = document.getElementById('editHourlyRateGroup');
 
       if (radio.value === 'annual') {
         annualGroup.style.display = 'block';
