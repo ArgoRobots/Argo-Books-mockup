@@ -209,12 +209,12 @@
       <div class="modal-body">
         <div class="form-group">
           <label class="form-label">Invoice</label>
-          <select class="form-control form-select">
-            <option>Select invoice</option>
-            <option>#INV-2024-001 - Acme Corp ($2,450.00)</option>
-            <option>#INV-2024-004 - Local Shop ($890.00)</option>
-            <option>#INV-2024-006 - Smart Co. ($6,000.00 remaining)</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"inv-2024-001","label":"#INV-2024-001 - Acme Corp ($2,450.00)"},{"value":"inv-2024-004","label":"#INV-2024-004 - Local Shop ($890.00)"},{"value":"inv-2024-006","label":"#INV-2024-006 - Smart Co. ($6,000.00 remaining)"},{"value":"inv-2024-007","label":"#INV-2024-007 - TechStart Inc ($1,200.00)"},{"value":"inv-2024-008","label":"#INV-2024-008 - Global Trade ($3,500.00)"}]'>
+            <input type="text" class="search-input" placeholder="Search invoices...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="invoice">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -270,15 +270,12 @@
         </div>
         <div class="form-group">
           <label class="form-label">Customer</label>
-          <select class="form-control form-select">
-            <option value="">All Customers</option>
-            <option>TechStart Inc</option>
-            <option>Global Trade</option>
-            <option>Metro Services</option>
-            <option>Smart Co.</option>
-            <option>Local Shop</option>
-            <option>Acme Corp</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Customers"},{"value":"techstart","label":"TechStart Inc"},{"value":"global-trade","label":"Global Trade"},{"value":"metro-services","label":"Metro Services"},{"value":"smart-co","label":"Smart Co."},{"value":"local-shop","label":"Local Shop"},{"value":"acme-corp","label":"Acme Corp"}]'>
+            <input type="text" class="search-input" placeholder="Search customers...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="customer">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -330,5 +327,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>

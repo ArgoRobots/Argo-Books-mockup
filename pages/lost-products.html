@@ -272,14 +272,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Recorded By</label>
-            <select class="form-control form-select">
-              <option value="">All Employees</option>
-              <option>John Doe</option>
-              <option>Jane Smith</option>
-              <option>Mike Brown</option>
-              <option>Emily Wilson</option>
-              <option>Robert Lee</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Employees"},{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"mike-brown","label":"Mike Brown"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"robert-lee","label":"Robert Lee"}]'>
+              <input type="text" class="search-input" placeholder="Search employees...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="recorded_by">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -311,5 +309,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>

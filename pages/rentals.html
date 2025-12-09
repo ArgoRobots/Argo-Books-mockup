@@ -243,12 +243,12 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option>Select supplier</option>
-              <option>Tools Unlimited</option>
-              <option>CleanTech Pro</option>
-              <option>Photo Supplies Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"tools-unlimited","label":"Tools Unlimited"},{"value":"cleantech-pro","label":"CleanTech Pro"},{"value":"photo-supplies","label":"Photo Supplies Inc."},{"value":"build-right","label":"Build Right"},{"value":"power-systems","label":"Power Systems"},{"value":"av-equipment","label":"AV Equipment Co."}]'>
+              <input type="text" class="search-input" placeholder="Search suppliers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Total Quantity</label>
@@ -295,15 +295,12 @@
       <div class="modal-body">
         <div class="form-group">
           <label class="form-label">Supplier</label>
-          <select class="form-control form-select">
-            <option value="">All Suppliers</option>
-            <option>Tools Unlimited</option>
-            <option>CleanTech Pro</option>
-            <option>Photo Supplies Inc.</option>
-            <option>Build Right</option>
-            <option>Power Systems</option>
-            <option>AV Equipment Co.</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Suppliers"},{"value":"tools-unlimited","label":"Tools Unlimited"},{"value":"cleantech-pro","label":"CleanTech Pro"},{"value":"photo-supplies","label":"Photo Supplies Inc."},{"value":"build-right","label":"Build Right"},{"value":"power-systems","label":"Power Systems"},{"value":"av-equipment","label":"AV Equipment Co."}]'>
+            <input type="text" class="search-input" placeholder="Search suppliers...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="supplier">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Status</label>
@@ -355,12 +352,12 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option>Select supplier</option>
-              <option selected>Tools Unlimited</option>
-              <option>CleanTech Pro</option>
-              <option>Photo Supplies Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"tools-unlimited","label":"Tools Unlimited"},{"value":"cleantech-pro","label":"CleanTech Pro"},{"value":"photo-supplies","label":"Photo Supplies Inc."},{"value":"build-right","label":"Build Right"},{"value":"power-systems","label":"Power Systems"},{"value":"av-equipment","label":"AV Equipment Co."}]' data-selected="tools-unlimited">
+              <input type="text" class="search-input" placeholder="Search suppliers..." value="Tools Unlimited">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier" value="tools-unlimited">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Total Quantity</label>
@@ -420,13 +417,12 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Customer</label>
-            <select class="form-control form-select">
-              <option>Select customer</option>
-              <option>Sarah Johnson</option>
-              <option>Mike Wilson</option>
-              <option>Emily Chen</option>
-              <option>James Martinez</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"sarah-johnson","label":"Sarah Johnson"},{"value":"mike-wilson","label":"Mike Wilson"},{"value":"emily-chen","label":"Emily Chen"},{"value":"james-martinez","label":"James Martinez"},{"value":"techstart-inc","label":"TechStart Inc"},{"value":"global-trade","label":"Global Trade"}]'>
+              <input type="text" class="search-input" placeholder="Search customers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="customer">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Quantity</label>
@@ -460,11 +456,12 @@
         </div>
         <div class="form-group">
           <label class="form-label">Assigned Accountant</label>
-          <select class="form-control form-select">
-            <option>Select accountant</option>
-            <option>John Doe</option>
-            <option>Jane Smith</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"robert-wilson","label":"Robert Wilson"},{"value":"maria-garcia","label":"Maria Garcia"}]'>
+            <input type="text" class="search-input" placeholder="Search accountants...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="accountant">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Notes</label>
@@ -503,5 +500,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>

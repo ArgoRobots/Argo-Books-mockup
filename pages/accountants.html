@@ -178,17 +178,12 @@
       <div class="modal-body">
         <div class="form-group">
           <label class="form-label">Select Employee</label>
-          <select class="form-control form-select">
-            <option value="">Choose an employee...</option>
-            <option value="john-doe">John Doe - CFO (Finance)</option>
-            <option value="jane-smith">Jane Smith - Operations Manager (Operations)</option>
-            <option value="mike-brown">Mike Brown - Junior Accountant (Finance)</option>
-            <option value="emily-wilson">Emily Wilson - Senior Developer (IT)</option>
-            <option value="robert-lee">Robert Lee - Sales Representative (Sales)</option>
-            <option value="alice-chen">Alice Chen - HR Specialist (HR)</option>
-            <option value="david-martinez">David Martinez - Accountant (Finance)</option>
-            <option value="sarah-kim">Sarah Kim - Marketing Coordinator (Sales)</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"john-doe","label":"John Doe - CFO (Finance)"},{"value":"jane-smith","label":"Jane Smith - Operations Manager (Operations)"},{"value":"mike-brown","label":"Mike Brown - Junior Accountant (Finance)"},{"value":"emily-wilson","label":"Emily Wilson - Senior Developer (IT)"},{"value":"robert-lee","label":"Robert Lee - Sales Representative (Sales)"},{"value":"alice-chen","label":"Alice Chen - HR Specialist (HR)"},{"value":"david-martinez","label":"David Martinez - Accountant (Finance)"},{"value":"sarah-kim","label":"Sarah Kim - Marketing Coordinator (Sales)"}]'>
+            <input type="text" class="search-input" placeholder="Search employees...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="employee">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Accountant Role</label>
@@ -218,5 +213,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>
