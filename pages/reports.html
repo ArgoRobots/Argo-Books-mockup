@@ -1737,9 +1737,6 @@
             </button>
           </div>
           <div class="nav-right">
-            <button class="btn btn-secondary" id="cancelBtn">
-              Cancel
-            </button>
             <button class="btn btn-primary" id="nextBtn">
               Next
               <i class="fas fa-arrow-right"></i>
@@ -2086,11 +2083,6 @@
         }
       });
 
-      document.getElementById('cancelBtn').addEventListener('click', () => {
-        if (confirm('Are you sure you want to cancel? All progress will be lost.')) {
-          window.location.href = 'dashboard.html';
-        }
-      });
     }
 
     function goToStep(step) {
