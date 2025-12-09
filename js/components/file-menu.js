@@ -4,6 +4,69 @@
 (function() {
   'use strict';
 
+  const importModalHTML = `
+  <!-- Import Modal -->
+  <div class="modal-overlay" id="importModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Import Data</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="import-upload-area" style="border: 2px dashed var(--border-color); border-radius: var(--radius-lg); padding: 40px 20px; text-align: center; cursor: pointer; transition: var(--transition); margin-bottom: 20px;">
+          <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: var(--gray-400); margin-bottom: 16px;"></i>
+          <h4 class="fw-600 mb-2">Drag and drop your file here</h4>
+          <p class="text-muted mb-3">or click to browse</p>
+          <button class="btn btn-outline">
+            <i class="fas fa-folder-open"></i>
+            Browse Files
+          </button>
+          <p class="text-muted fs-sm mt-3">Supported formats: Excel (.xlsx), CSV (.csv)</p>
+          <input type="file" accept=".xlsx,.csv" style="display: none;">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Import Type</label>
+            <select class="form-control form-select">
+              <option>Select data type</option>
+              <option>Expense Transactions</option>
+              <option>Revenue Transactions</option>
+              <option>Products</option>
+              <option>Customers</option>
+              <option>Suppliers</option>
+              <option>Employees</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date Format</label>
+            <select class="form-control form-select">
+              <option>MM/DD/YYYY</option>
+              <option>DD/MM/YYYY</option>
+              <option>YYYY-MM-DD</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-check mb-2">
+          <input type="checkbox" class="form-check-input" checked>
+          <label>Skip header row</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input">
+          <label>Validate data before import</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="import-btn">
+          <i class="fas fa-upload"></i>
+          Start Import
+        </button>
+      </div>
+    </div>
+  </div>
+  `;
+
   const exportModalHTML = `
   <!-- Export As Modal -->
   <div class="modal-overlay" id="exportAsModal">
@@ -257,6 +320,10 @@
         <span>Close Company</span>
       </a>
       <div class="file-menu-divider"></div>
+      <a href="#" class="file-menu-item" id="file-import">
+        <i class="fas fa-file-arrow-up"></i>
+        <span>Import...</span>
+      </a>
       <a href="#" class="file-menu-item" id="file-export-as">
         <i class="fas fa-file-arrow-down"></i>
         <span>Export As...</span>
@@ -461,6 +528,7 @@
     // Inject panel and export modal into body
     document.body.insertAdjacentHTML('beforeend', fileMenuHTML);
     document.body.insertAdjacentHTML('beforeend', exportModalHTML);
+    document.body.insertAdjacentHTML('beforeend', importModalHTML);
 
     // Add file button to header-left after menu toggle
     const headerLeft = document.querySelector('.header-left');
@@ -602,6 +670,14 @@
 
       case 'file-close-company':
         showToast('Company closed');
+        break;
+
+      case 'file-import':
+        const importModal = document.getElementById('importModal');
+        if (importModal) {
+          importModal.classList.add('active');
+          initImportModal();
+        }
         break;
 
       case 'file-export-as':
@@ -761,6 +837,73 @@
           const checkedCount = Array.from(dataCheckboxes).filter(c => c.checked).length;
           showToast(`Exporting ${checkedCount} data sets...`, 'success');
         }
+      });
+    }
+  }
+
+  function initImportModal() {
+    const importModal = document.getElementById('importModal');
+    if (!importModal) return;
+
+    const uploadArea = importModal.querySelector('.import-upload-area');
+    const fileInput = importModal.querySelector('input[type="file"]');
+    const importBtn = document.getElementById('import-btn');
+
+    // Upload area click handler
+    if (uploadArea && fileInput) {
+      uploadArea.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'BUTTON') {
+          fileInput.click();
+        }
+      });
+
+      const browseBtn = uploadArea.querySelector('.btn');
+      if (browseBtn) {
+        browseBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          fileInput.click();
+        });
+      }
+
+      fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          const fileName = this.files[0].name;
+          uploadArea.innerHTML = `
+            <i class="fas fa-file-excel" style="font-size: 48px; color: var(--success-color); margin-bottom: 16px;"></i>
+            <h4 class="fw-600 mb-2">${fileName}</h4>
+            <p class="text-muted mb-3">File selected</p>
+            <button class="btn btn-outline">
+              <i class="fas fa-folder-open"></i>
+              Choose Different File
+            </button>
+          `;
+        }
+      });
+    }
+
+    // Close modal handlers
+    const closeBtn = importModal.querySelector('.modal-close');
+    const cancelBtn = importModal.querySelector('.modal-cancel');
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => importModal.classList.remove('active'));
+    }
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', () => importModal.classList.remove('active'));
+    }
+
+    // Close on overlay click
+    importModal.addEventListener('click', function(e) {
+      if (e.target === importModal) {
+        importModal.classList.remove('active');
+      }
+    });
+
+    // Import button action
+    if (importBtn) {
+      importBtn.addEventListener('click', function() {
+        importModal.classList.remove('active');
+        showToast('Starting import...', 'success');
       });
     }
   }

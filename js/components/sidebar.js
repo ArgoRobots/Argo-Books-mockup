@@ -146,17 +146,6 @@
           </a>
         </div>
 
-        <div class="nav-section">
-          <div class="nav-section-title">Tools</div>
-          <a class="nav-item" data-page="${pathPrefix}import-export.html">
-            <i class="fas fa-exchange-alt"></i>
-            <span>Import/Export</span>
-          </a>
-          <a class="nav-item" data-page="${pathPrefix}settings.html">
-            <i class="fas fa-cog"></i>
-            <span>Settings</span>
-          </a>
-        </div>
       </nav>
     </aside>
   `;
