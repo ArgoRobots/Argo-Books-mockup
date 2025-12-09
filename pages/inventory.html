@@ -709,26 +709,23 @@
           </div>
           <div class="form-group">
             <label class="form-label">Location *</label>
-            <select class="form-control form-select">
-              <option value="">Select location</option>
-              <option>Main Warehouse</option>
-              <option>Secondary Storage</option>
-              <option>Factory Floor</option>
-              <option>Retail Store</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"main-warehouse","label":"Main Warehouse"},{"value":"secondary-storage","label":"Secondary Storage"},{"value":"factory-floor","label":"Factory Floor"},{"value":"retail-store","label":"Retail Store"}]'>
+              <input type="text" class="search-input" placeholder="Search locations...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="location">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option value="">Select supplier</option>
-              <option>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-              <option>Steel Works Inc.</option>
-              <option>SafetyFirst Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"safetyfirst","label":"SafetyFirst Inc."}]'>
+              <input type="text" class="search-input" placeholder="Search suppliers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Unit of Measure</label>
@@ -812,26 +809,23 @@
           </div>
           <div class="form-group">
             <label class="form-label">Location *</label>
-            <select class="form-control form-select">
-              <option value="">Select location</option>
-              <option selected>Main Warehouse</option>
-              <option>Secondary Storage</option>
-              <option>Factory Floor</option>
-              <option>Retail Store</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"main-warehouse","label":"Main Warehouse"},{"value":"secondary-storage","label":"Secondary Storage"},{"value":"factory-floor","label":"Factory Floor"},{"value":"retail-store","label":"Retail Store"}]' data-selected="main-warehouse">
+              <input type="text" class="search-input" placeholder="Search locations..." value="Main Warehouse">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="location" value="main-warehouse">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option value="">Select supplier</option>
-              <option selected>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-              <option>Steel Works Inc.</option>
-              <option>SafetyFirst Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"safetyfirst","label":"SafetyFirst Inc."}]' data-selected="staples">
+              <input type="text" class="search-input" placeholder="Search suppliers..." value="Staples Inc.">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier" value="staples">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Unit of Measure</label>
@@ -1196,6 +1190,7 @@
   <script src="../js/components/user-panel.js"></script>
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
   <script src="../js/navigation.js"></script>
 </body>
 </html>
