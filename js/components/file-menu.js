@@ -21,8 +21,8 @@
             <i class="fas fa-folder-open"></i>
             Browse Files
           </button>
-          <p class="text-muted fs-sm mt-3">Supported formats: Excel (.xlsx), CSV (.csv)</p>
-          <input type="file" accept=".xlsx,.csv" style="display: none;">
+          <p class="text-muted fs-sm mt-3">Supported format: Excel (.xlsx)</p>
+          <input type="file" accept=".xlsx" style="display: none;">
         </div>
 
         <div class="form-row">
@@ -47,13 +47,9 @@
             </select>
           </div>
         </div>
-        <div class="form-check mb-2">
+        <div class="form-check">
           <input type="checkbox" class="form-check-input" checked>
           <label>Skip header row</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input">
-          <label>Validate data before import</label>
         </div>
       </div>
       <div class="modal-footer">
