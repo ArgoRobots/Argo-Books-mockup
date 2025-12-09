@@ -30,10 +30,95 @@
         </div>
 
         <div class="header-center">
-          <div class="search-box" id="command-palette-trigger">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search or jump to..." readonly>
-            <span class="search-shortcut">Ctrl+K</span>
+          <div class="search-box-wrapper">
+            <div class="search-box" id="search-box-trigger">
+              <i class="fas fa-search"></i>
+              <input type="text" id="search-box-input" placeholder="Search or jump to...">
+              <span class="search-shortcut">Ctrl+K</span>
+            </div>
+            <!-- Dropdown Panel (appears under searchbar on click) -->
+            <div class="search-dropdown" id="searchDropdown">
+              <div class="search-dropdown-body">
+                <div class="command-section">
+                  <div class="command-section-title">Quick Actions</div>
+                  <div class="command-item" data-action="new-invoice">
+                    <div class="command-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                      <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Create New Invoice</div>
+                      <div class="command-item-desc">Create and send a new invoice to a customer</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-action="new-expense">
+                    <div class="command-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
+                      <i class="fas fa-receipt"></i>
+                    </div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Record Expense</div>
+                      <div class="command-item-desc">Add a new expense entry</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-action="new-customer">
+                    <div class="command-item-icon" style="background: #e6f7e6; color: var(--success-color);">
+                      <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Add New Customer</div>
+                      <div class="command-item-desc">Create a new customer record</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-action="new-product">
+                    <div class="command-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
+                      <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Add New Product</div>
+                      <div class="command-item-desc">Add a product to your catalog</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="command-section">
+                  <div class="command-section-title">Go To</div>
+                  <div class="command-item" data-page="${indexPath}">
+                    <div class="command-item-icon"><i class="fas fa-home"></i></div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Dashboard</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-page="${pathPrefix}invoices.html">
+                    <div class="command-item-icon"><i class="fas fa-file-invoice"></i></div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Invoices</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-page="${pathPrefix}customers.html">
+                    <div class="command-item-icon"><i class="fas fa-users"></i></div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Customers</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-page="${pathPrefix}expenses.html">
+                    <div class="command-item-icon"><i class="fas fa-arrow-down"></i></div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Expenses</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-page="${pathPrefix}reports.html">
+                    <div class="command-item-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Reports</div>
+                    </div>
+                  </div>
+                  <div class="command-item" data-page="${pathPrefix}settings.html">
+                    <div class="command-item-icon"><i class="fas fa-cog"></i></div>
+                    <div class="command-item-content">
+                      <div class="command-item-title">Settings</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -61,12 +146,12 @@
         </div>
       </header>
 
-      <!-- Command Palette Modal -->
+      <!-- Command Palette Modal (appears on Ctrl+K) -->
       <div class="command-palette-overlay" id="commandPalette">
         <div class="command-palette">
           <div class="command-palette-header">
             <i class="fas fa-search"></i>
-            <input type="text" id="command-palette-input" placeholder="Type a command or search..." autofocus>
+            <input type="text" id="command-palette-input" placeholder="Type a command or search...">
             <span class="command-palette-esc">ESC</span>
           </div>
           <div class="command-palette-body">
@@ -182,13 +267,19 @@
       font-size: 14px;
     }
 
+    /* Search box wrapper for dropdown positioning */
+    .search-box-wrapper {
+      position: relative;
+    }
+
     /* Search box with shortcut */
     .search-box {
       position: relative;
       cursor: pointer;
     }
     .search-box input {
-      cursor: pointer;
+      cursor: text;
+      padding-right: 60px;
     }
     .search-shortcut {
       position: absolute;
@@ -201,9 +292,39 @@
       padding: 2px 6px;
       border-radius: 4px;
       font-weight: 500;
+      pointer-events: none;
     }
 
-    /* Command Palette */
+    /* Search Dropdown Panel */
+    .search-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 8px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: var(--transition);
+      z-index: 1000;
+      min-width: 400px;
+    }
+    .search-dropdown.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .search-dropdown-body {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+
+    /* Command Palette Modal */
     .command-palette-overlay {
       position: fixed;
       top: 0;
@@ -271,6 +392,8 @@
       overflow-y: auto;
       padding: 12px 0;
     }
+
+    /* Shared command styles */
     .command-section {
       margin-bottom: 8px;
     }
@@ -328,21 +451,69 @@
       mainContent.insertAdjacentHTML('afterbegin', headerHTML);
     }
 
-    // Initialize command palette
+    // Initialize search and command palette
+    initSearchDropdown();
     initCommandPalette();
   }
 
+  function initSearchDropdown() {
+    const searchBox = document.getElementById('search-box-trigger');
+    const searchInput = document.getElementById('search-box-input');
+    const dropdown = document.getElementById('searchDropdown');
+
+    if (!searchBox || !dropdown || !searchInput) return;
+
+    // Open dropdown on input focus
+    searchInput.addEventListener('focus', function() {
+      openDropdown();
+    });
+
+    // Filter on input
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      filterItems(dropdown, query);
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchBox.contains(e.target) && !dropdown.contains(e.target)) {
+        closeDropdown();
+      }
+    });
+
+    // Handle command items in dropdown
+    dropdown.querySelectorAll('.command-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        const page = this.getAttribute('data-page');
+        const action = this.getAttribute('data-action');
+
+        if (page) {
+          window.location.href = page;
+        } else if (action) {
+          handleAction(action);
+        }
+        closeDropdown();
+      });
+    });
+
+    function openDropdown() {
+      dropdown.classList.add('active');
+      // Reset filter
+      dropdown.querySelectorAll('.command-item').forEach(function(item) {
+        item.style.display = 'flex';
+      });
+    }
+
+    function closeDropdown() {
+      dropdown.classList.remove('active');
+    }
+  }
+
   function initCommandPalette() {
-    const trigger = document.getElementById('command-palette-trigger');
     const palette = document.getElementById('commandPalette');
     const input = document.getElementById('command-palette-input');
 
-    if (!trigger || !palette) return;
-
-    // Open palette on click
-    trigger.addEventListener('click', function() {
-      openPalette();
-    });
+    if (!palette) return;
 
     // Keyboard shortcut Ctrl+K
     document.addEventListener('keydown', function(e) {
@@ -351,8 +522,15 @@
         openPalette();
       }
       // Close on Escape
-      if (e.key === 'Escape' && palette.classList.contains('active')) {
-        closePalette();
+      if (e.key === 'Escape') {
+        if (palette.classList.contains('active')) {
+          closePalette();
+        }
+        // Also close dropdown
+        const dropdown = document.getElementById('searchDropdown');
+        if (dropdown && dropdown.classList.contains('active')) {
+          dropdown.classList.remove('active');
+        }
       }
     });
 
@@ -363,7 +541,7 @@
       }
     });
 
-    // Handle command items
+    // Handle command items in modal
     palette.querySelectorAll('.command-item').forEach(function(item) {
       item.addEventListener('click', function() {
         const page = this.getAttribute('data-page');
@@ -382,16 +560,7 @@
     if (input) {
       input.addEventListener('input', function() {
         const query = this.value.toLowerCase();
-        palette.querySelectorAll('.command-item').forEach(function(item) {
-          const title = item.querySelector('.command-item-title').textContent.toLowerCase();
-          const desc = item.querySelector('.command-item-desc');
-          const descText = desc ? desc.textContent.toLowerCase() : '';
-          if (title.includes(query) || descText.includes(query)) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
+        filterItems(palette, query);
       });
     }
 
@@ -410,26 +579,39 @@
     function closePalette() {
       palette.classList.remove('active');
     }
+  }
 
-    function handleAction(action) {
-      // For mockup purposes, navigate to relevant pages
-      const isInPagesFolder = window.location.pathname.includes('/pages/');
-      const prefix = isInPagesFolder ? '' : 'pages/';
-
-      switch (action) {
-        case 'new-invoice':
-          window.location.href = prefix + 'invoices.html';
-          break;
-        case 'new-expense':
-          window.location.href = prefix + 'expenses.html';
-          break;
-        case 'new-customer':
-          window.location.href = prefix + 'customers.html';
-          break;
-        case 'new-product':
-          window.location.href = prefix + 'products.html';
-          break;
+  function filterItems(container, query) {
+    container.querySelectorAll('.command-item').forEach(function(item) {
+      const title = item.querySelector('.command-item-title').textContent.toLowerCase();
+      const desc = item.querySelector('.command-item-desc');
+      const descText = desc ? desc.textContent.toLowerCase() : '';
+      if (title.includes(query) || descText.includes(query)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
       }
+    });
+  }
+
+  function handleAction(action) {
+    // For mockup purposes, navigate to relevant pages
+    const isInPagesFolder = window.location.pathname.includes('/pages/');
+    const prefix = isInPagesFolder ? '' : 'pages/';
+
+    switch (action) {
+      case 'new-invoice':
+        window.location.href = prefix + 'invoices.html';
+        break;
+      case 'new-expense':
+        window.location.href = prefix + 'expenses.html';
+        break;
+      case 'new-customer':
+        window.location.href = prefix + 'customers.html';
+        break;
+      case 'new-product':
+        window.location.href = prefix + 'products.html';
+        break;
     }
   }
 
