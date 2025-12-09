@@ -52,10 +52,20 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Supplier List</h3>
-            <button class="btn btn-primary" data-modal="addSupplierModal">
-              <i class="fas fa-plus"></i>
-              Add Supplier
-            </button>
+            <div class="d-flex gap-2">
+              <div class="search-box" style="width: 250px;">
+                <i class="fas fa-search"></i>
+                <input type="text" class="form-control" placeholder="Search suppliers...">
+              </div>
+              <button class="btn btn-outline" data-modal="filterSuppliersModal">
+                <i class="fas fa-filter"></i>
+                Filter
+              </button>
+              <button class="btn btn-primary" data-modal="addSupplierModal">
+                <i class="fas fa-plus"></i>
+                Add Supplier
+              </button>
+            </div>
           </div>
           <div class="card-body p-0">
             <table class="data-table">

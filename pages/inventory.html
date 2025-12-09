@@ -23,16 +23,10 @@
             <h1 class="page-title">Inventory Management</h1>
             <p class="text-muted">Track and manage stock levels across all products and locations</p>
           </div>
-          <div class="d-flex gap-2">
-            <button class="btn btn-outline" data-modal="importStockModal">
-              <i class="fas fa-file-import"></i>
-              Import
-            </button>
-            <button class="btn btn-outline" data-modal="exportStockModal">
-              <i class="fas fa-file-export"></i>
-              Export
-            </button>
-          </div>
+          <button class="btn btn-outline" data-modal="importStockModal">
+            <i class="fas fa-file-import"></i>
+            Import
+          </button>
         </div>
 
         <!-- Stats -->
@@ -884,16 +878,6 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label class="form-label">Product</label>
-          <select class="form-control form-select">
-            <option value="">Select product</option>
-            <option>Office Supplies Bundle (SKU-001)</option>
-            <option>Computer Monitor 24" (SKU-002)</option>
-            <option>Wireless Keyboard (SKU-003)</option>
-            <option>Steel Raw Material (SKU-004)</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label class="form-label">Adjustment Type</label>
           <select class="form-control form-select">
             <option value="add">Add Stock (Received)</option>
@@ -1194,68 +1178,6 @@
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-primary">Import</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Export Stock Modal -->
-  <div class="modal-overlay" id="exportStockModal">
-    <div class="modal" style="max-width: 500px;">
-      <div class="modal-header">
-        <h3 class="modal-title">Export Stock Data</h3>
-        <button class="modal-close"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label">Export Format</label>
-          <select class="form-control form-select">
-            <option>CSV (.csv)</option>
-            <option>Excel (.xlsx)</option>
-            <option>PDF Report (.pdf)</option>
-            <option>JSON (.json)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Data to Export</label>
-          <label class="d-flex align-center gap-2 mb-2">
-            <input type="checkbox" checked>
-            <span>All Items</span>
-          </label>
-          <label class="d-flex align-center gap-2 mb-2">
-            <input type="checkbox">
-            <span>Low Stock Only</span>
-          </label>
-          <label class="d-flex align-center gap-2 mb-2">
-            <input type="checkbox">
-            <span>Out of Stock Only</span>
-          </label>
-          <label class="d-flex align-center gap-2">
-            <input type="checkbox">
-            <span>Overstock Only</span>
-          </label>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Include Fields</label>
-          <label class="d-flex align-center gap-2 mb-2">
-            <input type="checkbox" checked>
-            <span>Stock Levels</span>
-          </label>
-          <label class="d-flex align-center gap-2 mb-2">
-            <input type="checkbox" checked>
-            <span>Supplier Information</span>
-          </label>
-          <label class="d-flex align-center gap-2">
-            <input type="checkbox" checked>
-            <span>Cost & Value</span>
-          </label>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary modal-cancel">Cancel</button>
-        <button class="btn btn-primary">
-          <i class="fas fa-download"></i>
-          Export
-        </button>
       </div>
     </div>
   </div>

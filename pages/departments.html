@@ -46,7 +46,14 @@
           <div class="card-header">
             <h3 class="card-title">Departments</h3>
             <div class="d-flex gap-2">
-              <span class="text-muted" style="display: flex; align-items: center;">6 departments</span>
+              <div class="search-box" style="width: 250px;">
+                <i class="fas fa-search"></i>
+                <input type="text" class="form-control" placeholder="Search departments...">
+              </div>
+              <button class="btn btn-outline" data-modal="filterDepartmentsModal">
+                <i class="fas fa-filter"></i>
+                Filter
+              </button>
               <button class="btn btn-primary" data-modal="addDepartmentModal">
                 <i class="fas fa-plus"></i>
                 Add Department

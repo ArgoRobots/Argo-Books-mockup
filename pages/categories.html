@@ -20,18 +20,21 @@
       <div class="page-content">
         <!-- Tabs -->
         <div class="tabs">
-          <div class="tab active" data-tab="expense-categories">Expense Categories</div>
-          <div class="tab" data-tab="revenue-categories">Revenue Categories</div>
-          <div class="tab" data-tab="rental-categories">Rental Categories</div>
+          <div class="tab active" data-tab="expense-categories">Expenses</div>
+          <div class="tab" data-tab="revenue-categories">Revenue</div>
         </div>
 
         <!-- Expense Categories Tab -->
         <div class="tab-content" id="expense-categories">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Expense Categories</h3>
-              <div class="d-flex gap-2">
-                <span class="text-muted" style="display: flex; align-items: center;">8 categories found</span>
+              <h3 class="card-title">Expenses</h3>
+              <div class="d-flex gap-3">
+                <div class="search-box" style="width: 250px;">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search categories...">
+                </div>
+                <div style="width: 1px; background: var(--border-color);"></div>
                 <button class="btn btn-primary" data-modal="addCategoryModal">
                   <i class="fas fa-plus"></i>
                   Add Category
@@ -44,7 +47,8 @@
                   <tr>
                     <th>Category Name</th>
                     <th>Description</th>
-                    <th>Products</th>
+                    <th>Type</th>
+                    <th>Products/Services</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -59,7 +63,8 @@
                       </div>
                     </td>
                     <td>Pens, paper, stationery, etc.</td>
-                    <td><span class="badge badge-info">24 products</span></td>
+                    <td>Product</td>
+                    <td>24</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -77,7 +82,8 @@
                       </div>
                     </td>
                     <td>Computers, peripherals, devices</td>
-                    <td><span class="badge badge-info">18 products</span></td>
+                    <td>Product</td>
+                    <td>18</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -95,7 +101,8 @@
                       </div>
                     </td>
                     <td>Cleaning, repairs, upkeep</td>
-                    <td><span class="badge badge-info">12 products</span></td>
+                    <td>Service</td>
+                    <td>12</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -113,7 +120,8 @@
                       </div>
                     </td>
                     <td>Steel, wood, plastics</td>
-                    <td><span class="badge badge-info">31 products</span></td>
+                    <td>Product</td>
+                    <td>31</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -131,7 +139,8 @@
                       </div>
                     </td>
                     <td>Software, hosting, support</td>
-                    <td><span class="badge badge-info">15 products</span></td>
+                    <td>Service</td>
+                    <td>15</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -149,7 +158,8 @@
                       </div>
                     </td>
                     <td>Shipping, transport, delivery</td>
-                    <td><span class="badge badge-info">8 products</span></td>
+                    <td>Service</td>
+                    <td>8</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -167,7 +177,8 @@
                       </div>
                     </td>
                     <td>Electric, water, gas, internet</td>
-                    <td><span class="badge badge-info">6 products</span></td>
+                    <td>Service</td>
+                    <td>6</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -185,7 +196,8 @@
                       </div>
                     </td>
                     <td>Advertising, promotions</td>
-                    <td><span class="badge badge-info">9 products</span></td>
+                    <td>Service</td>
+                    <td>9</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -203,9 +215,13 @@
         <div class="tab-content" id="revenue-categories" style="display: none;">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Revenue Categories</h3>
-              <div class="d-flex gap-2">
-                <span class="text-muted" style="display: flex; align-items: center;">3 categories found</span>
+              <h3 class="card-title">Revenue</h3>
+              <div class="d-flex gap-3">
+                <div class="search-box" style="width: 250px;">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search categories...">
+                </div>
+                <div style="width: 1px; background: var(--border-color);"></div>
                 <button class="btn btn-primary" data-modal="addCategoryModal">
                   <i class="fas fa-plus"></i>
                   Add Category
@@ -218,7 +234,8 @@
                   <tr>
                     <th>Category Name</th>
                     <th>Description</th>
-                    <th>Products</th>
+                    <th>Type</th>
+                    <th>Products/Services</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -233,7 +250,8 @@
                       </div>
                     </td>
                     <td>Various widget products</td>
-                    <td><span class="badge badge-info">42 products</span></td>
+                    <td>Product</td>
+                    <td>42</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -251,7 +269,8 @@
                       </div>
                     </td>
                     <td>Business consulting services</td>
-                    <td><span class="badge badge-info">8 products</span></td>
+                    <td>Service</td>
+                    <td>8</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -269,91 +288,8 @@
                       </div>
                     </td>
                     <td>Software licenses and subscriptions</td>
-                    <td><span class="badge badge-info">15 products</span></td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Rental Categories Tab (hidden by default) -->
-        <div class="tab-content" id="rental-categories" style="display: none;">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Rental Categories</h3>
-              <div class="d-flex gap-2">
-                <span class="text-muted" style="display: flex; align-items: center;">3 categories found</span>
-                <button class="btn btn-primary" data-modal="addCategoryModal">
-                  <i class="fas fa-plus"></i>
-                  Add Category
-                </button>
-              </div>
-            </div>
-            <div class="card-body p-0">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Category Name</th>
-                    <th>Description</th>
-                    <th>Products</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-center gap-2">
-                        <div class="stat-icon blue" style="width: 36px; height: 36px; font-size: 14px;">
-                          <i class="fas fa-tools"></i>
-                        </div>
-                        <div class="fw-600">Tools</div>
-                      </div>
-                    </td>
-                    <td>Power tools, hand tools</td>
-                    <td><span class="badge badge-info">28 products</span></td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-center gap-2">
-                        <div class="stat-icon green" style="width: 36px; height: 36px; font-size: 14px;">
-                          <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="fw-600">Photography</div>
-                      </div>
-                    </td>
-                    <td>Cameras, lighting, tripods</td>
-                    <td><span class="badge badge-info">15 products</span></td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-center gap-2">
-                        <div class="stat-icon yellow" style="width: 36px; height: 36px; font-size: 14px;">
-                          <i class="fas fa-hard-hat"></i>
-                        </div>
-                        <div class="fw-600">Construction</div>
-                      </div>
-                    </td>
-                    <td>Heavy equipment, scaffolding</td>
-                    <td><span class="badge badge-info">12 products</span></td>
+                    <td>Product</td>
+                    <td>15</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editCategoryModal"><i class="fas fa-edit"></i></button>
@@ -391,7 +327,6 @@
           <select class="form-control form-select">
             <option>Expense Category</option>
             <option>Revenue Category</option>
-            <option>Rental Category</option>
           </select>
         </div>
         <div class="form-row">

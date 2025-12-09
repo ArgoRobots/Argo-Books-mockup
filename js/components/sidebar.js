@@ -78,7 +78,7 @@
           </a>
           <a class="nav-item" data-page="${pathPrefix}products.html">
             <i class="fas fa-cube"></i>
-            <span>Products</span>
+            <span>Products/Services</span>
           </a>
           <a class="nav-item" data-page="${pathPrefix}categories.html">
             <i class="fas fa-tags"></i>
@@ -100,7 +100,7 @@
             <i class="fas fa-sliders-h"></i>
             <span>Adjustments</span>
           </a>
-          <a class="nav-item" data-page="${pathPrefix}stock-locations.html">
+          <a class="nav-item" data-page="${pathPrefix}locations.html">
             <i class="fas fa-map-marker-alt"></i>
             <span>Locations</span>
           </a>
@@ -146,17 +146,6 @@
           </a>
         </div>
 
-        <div class="nav-section">
-          <div class="nav-section-title">Tools</div>
-          <a class="nav-item" data-page="${pathPrefix}import-export.html">
-            <i class="fas fa-exchange-alt"></i>
-            <span>Import/Export</span>
-          </a>
-          <a class="nav-item" data-page="${pathPrefix}settings.html">
-            <i class="fas fa-cog"></i>
-            <span>Settings</span>
-          </a>
-        </div>
       </nav>
     </aside>
   `;
