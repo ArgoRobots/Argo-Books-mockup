@@ -1835,6 +1835,7 @@ input:checked + .slider:before {
 
 /* Flex utilities */
 .flex-1 { flex: 1; }
+.flex-column { flex-direction: column; }
 
 @media (max-width: 1200px) {
   .chart-grid-3 {
