@@ -117,6 +117,15 @@
             </select>
           </div>
 
+          <div class="form-group mb-3">
+            <label class="form-label">Date Range</label>
+            <div class="d-flex gap-2 align-center">
+              <input type="date" class="form-control" style="flex: 1;">
+              <span class="text-muted">to</span>
+              <input type="date" class="form-control" style="flex: 1;">
+            </div>
+          </div>
+
           <div class="form-group">
             <div class="d-flex justify-between align-center mb-2">
               <label class="form-label mb-0">Select Data to Export</label>
@@ -160,11 +169,6 @@
                 <input type="checkbox" class="form-check-input data-checkbox">
                 <span>Suppliers</span>
                 <span class="text-muted fs-sm">(48 records)</span>
-              </label>
-              <label class="export-data-item">
-                <input type="checkbox" class="form-check-input data-checkbox">
-                <span>Reports</span>
-                <span class="text-muted fs-sm">(Monthly summaries)</span>
               </label>
             </div>
           </div>
