@@ -299,8 +299,8 @@
     .search-dropdown {
       position: absolute;
       top: 100%;
-      left: 0;
-      right: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
       margin-top: 8px;
       background: var(--white);
       border-radius: var(--radius-lg);
@@ -308,7 +308,6 @@
       border: 1px solid var(--border-color);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(-10px);
       transition: var(--transition);
       z-index: 1000;
       min-width: 400px;
@@ -316,7 +315,7 @@
     .search-dropdown.active {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
     .search-dropdown-body {
       max-height: 400px;
