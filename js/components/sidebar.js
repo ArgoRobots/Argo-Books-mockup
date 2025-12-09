@@ -100,7 +100,7 @@
             <i class="fas fa-sliders-h"></i>
             <span>Adjustments</span>
           </a>
-          <a class="nav-item" data-page="${pathPrefix}stock-locations.html">
+          <a class="nav-item" data-page="${pathPrefix}locations.html">
             <i class="fas fa-map-marker-alt"></i>
             <span>Locations</span>
           </a>

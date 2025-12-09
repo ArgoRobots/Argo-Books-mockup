@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stock Locations - Argo Books</title>
+  <title>Locations - Argo Books</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -17,18 +17,6 @@
 
       <!-- Page Content -->
       <div class="page-content">
-        <!-- Page Header -->
-        <div class="d-flex justify-between align-center mb-3">
-          <div>
-            <h1 class="page-title">Stock Locations</h1>
-            <p class="text-muted">Manage warehouses, storage areas, and inventory locations</p>
-          </div>
-          <button class="btn btn-primary" data-modal="addLocationModal">
-            <i class="fas fa-plus"></i>
-            Add Location
-          </button>
-        </div>
-
         <!-- Stats -->
         <div class="stats-grid">
           <div class="stat-card">
@@ -72,21 +60,19 @@
           </div>
         </div>
 
-        <!-- Location Inventory Table -->
+        <!-- Locations Table -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Inventory by Location</h3>
-            <div class="d-flex gap-2">
-              <select class="form-control form-select" style="width: 200px;">
-                <option value="">All Locations</option>
-                <option>Main Warehouse</option>
-                <option>Secondary Storage</option>
-                <option>Factory Floor</option>
-                <option>Retail Store</option>
-              </select>
-              <button class="btn btn-outline">
-                <i class="fas fa-file-export"></i>
-                Export
+            <h3 class="card-title">Locations</h3>
+            <div class="d-flex gap-3">
+              <div class="search-box" style="width: 250px;">
+                <i class="fas fa-search"></i>
+                <input type="text" class="form-control" placeholder="Search locations...">
+              </div>
+              <div style="width: 1px; background: var(--border-color);"></div>
+              <button class="btn btn-primary" data-modal="addLocationModal">
+                <i class="fas fa-plus"></i>
+                Add Location
               </button>
             </div>
           </div>
@@ -95,12 +81,10 @@
               <thead>
                 <tr>
                   <th>Location</th>
-                  <th>Total SKUs</th>
-                  <th>Total Quantity</th>
-                  <th>Inventory Value</th>
-                  <th>Low Stock Items</th>
-                  <th>Out of Stock</th>
-                  <th>Capacity</th>
+                  <th>Type</th>
+                  <th>Address</th>
+                  <th>Manager</th>
+                  <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -108,109 +92,105 @@
                 <tr>
                   <td>
                     <div class="d-flex align-center gap-2">
-                      <i class="fas fa-warehouse text-primary"></i>
+                      <div class="stat-icon blue" style="width: 36px; height: 36px; font-size: 14px;">
+                        <i class="fas fa-warehouse"></i>
+                      </div>
                       <div>
                         <div class="fw-600">Main Warehouse</div>
                         <div class="text-muted fs-sm">LOC-001</div>
                       </div>
                     </div>
                   </td>
-                  <td>245</td>
-                  <td class="fw-600">1,456</td>
-                  <td>$285,400.00</td>
-                  <td><span class="badge badge-warning">12</span></td>
-                  <td><span class="badge badge-danger">3</span></td>
+                  <td>Warehouse</td>
                   <td>
-                    <div class="d-flex align-center gap-2">
-                      <div style="background: var(--gray-200); border-radius: 4px; height: 6px; width: 60px; overflow: hidden;">
-                        <div style="background: var(--success-color); width: 82%; height: 100%;"></div>
-                      </div>
-                      <span class="fs-sm">82%</span>
-                    </div>
+                    <div>123 Industrial Blvd</div>
+                    <div class="text-muted fs-sm">New York, NY 10001</div>
                   </td>
+                  <td>John Smith</td>
+                  <td><span class="badge badge-success">Active</span></td>
                   <td>
-                    <button class="btn btn-sm btn-outline" data-modal="viewLocationModal">View Details</button>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline" data-modal="editLocationModal"><i class="fas fa-edit"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <div class="d-flex align-center gap-2">
-                      <i class="fas fa-building text-success"></i>
+                      <div class="stat-icon green" style="width: 36px; height: 36px; font-size: 14px;">
+                        <i class="fas fa-building"></i>
+                      </div>
                       <div>
                         <div class="fw-600">Secondary Storage</div>
                         <div class="text-muted fs-sm">LOC-002</div>
                       </div>
                     </div>
                   </td>
-                  <td>156</td>
-                  <td class="fw-600">623</td>
-                  <td>$98,750.00</td>
-                  <td><span class="badge badge-warning">8</span></td>
-                  <td><span class="badge badge-danger">5</span></td>
+                  <td>Storage Facility</td>
                   <td>
-                    <div class="d-flex align-center gap-2">
-                      <div style="background: var(--gray-200); border-radius: 4px; height: 6px; width: 60px; overflow: hidden;">
-                        <div style="background: var(--warning-color); width: 65%; height: 100%;"></div>
-                      </div>
-                      <span class="fs-sm">65%</span>
-                    </div>
+                    <div>456 Commerce Way</div>
+                    <div class="text-muted fs-sm">Brooklyn, NY 11201</div>
                   </td>
+                  <td>Sarah Johnson</td>
+                  <td><span class="badge badge-success">Active</span></td>
                   <td>
-                    <button class="btn btn-sm btn-outline" data-modal="viewLocationModal">View Details</button>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline" data-modal="editLocationModal"><i class="fas fa-edit"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <div class="d-flex align-center gap-2">
-                      <i class="fas fa-industry text-purple"></i>
+                      <div class="stat-icon purple" style="width: 36px; height: 36px; font-size: 14px;">
+                        <i class="fas fa-industry"></i>
+                      </div>
                       <div>
                         <div class="fw-600">Factory Floor</div>
                         <div class="text-muted fs-sm">LOC-003</div>
                       </div>
                     </div>
                   </td>
-                  <td>89</td>
-                  <td class="fw-600">542</td>
-                  <td>$52,300.00</td>
-                  <td><span class="badge badge-warning">15</span></td>
-                  <td><span class="badge badge-danger">7</span></td>
+                  <td>Factory</td>
                   <td>
-                    <div class="d-flex align-center gap-2">
-                      <div style="background: var(--gray-200); border-radius: 4px; height: 6px; width: 60px; overflow: hidden;">
-                        <div style="background: var(--danger-color); width: 91%; height: 100%;"></div>
-                      </div>
-                      <span class="fs-sm">91%</span>
-                    </div>
+                    <div>789 Manufacturing Dr</div>
+                    <div class="text-muted fs-sm">Newark, NJ 07102</div>
                   </td>
+                  <td>Mike Wilson</td>
+                  <td><span class="badge badge-success">Active</span></td>
                   <td>
-                    <button class="btn btn-sm btn-outline" data-modal="viewLocationModal">View Details</button>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline" data-modal="editLocationModal"><i class="fas fa-edit"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <div class="d-flex align-center gap-2">
-                      <i class="fas fa-store text-warning"></i>
+                      <div class="stat-icon yellow" style="width: 36px; height: 36px; font-size: 14px;">
+                        <i class="fas fa-store"></i>
+                      </div>
                       <div>
                         <div class="fw-600">Retail Store</div>
                         <div class="text-muted fs-sm">LOC-004</div>
                       </div>
                     </div>
                   </td>
-                  <td>78</td>
-                  <td class="fw-600">226</td>
-                  <td>$21,780.00</td>
-                  <td><span class="badge badge-warning">4</span></td>
-                  <td><span class="badge badge-danger">2</span></td>
+                  <td>Retail Store</td>
                   <td>
-                    <div class="d-flex align-center gap-2">
-                      <div style="background: var(--gray-200); border-radius: 4px; height: 6px; width: 60px; overflow: hidden;">
-                        <div style="background: var(--success-color); width: 48%; height: 100%;"></div>
-                      </div>
-                      <span class="fs-sm">48%</span>
-                    </div>
+                    <div>321 Main Street</div>
+                    <div class="text-muted fs-sm">Manhattan, NY 10022</div>
                   </td>
+                  <td>Emily Davis</td>
+                  <td><span class="badge badge-success">Active</span></td>
                   <td>
-                    <button class="btn btn-sm btn-outline" data-modal="viewLocationModal">View Details</button>
+                    <div class="d-flex gap-1">
+                      <button class="btn btn-icon btn-outline" data-modal="editLocationModal"><i class="fas fa-edit"></i></button>
+                      <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -304,18 +284,12 @@
             <input type="tel" class="form-control" placeholder="(555) 123-4567">
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Storage Capacity (units)</label>
-            <input type="number" class="form-control" placeholder="e.g., 5000" min="0">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Status</label>
-            <select class="form-control form-select">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control form-select">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
         </div>
         <div class="form-group">
           <label class="form-label">Notes</label>
@@ -393,18 +367,12 @@
             <input type="tel" class="form-control" value="(555) 123-4567">
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Storage Capacity (units)</label>
-            <input type="number" class="form-control" value="2000" min="0">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Status</label>
-            <select class="form-control form-select">
-              <option value="active" selected>Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control form-select">
+            <option value="active" selected>Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
         </div>
         <div class="form-group">
           <label class="form-label">Notes</label>
@@ -414,102 +382,6 @@
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-primary">Save Changes</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- View Location Modal -->
-  <div class="modal-overlay" id="viewLocationModal">
-    <div class="modal" style="max-width: 650px;">
-      <div class="modal-header">
-        <h3 class="modal-title">Location Details</h3>
-        <button class="modal-close"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="d-flex justify-between align-center mb-3">
-          <div class="d-flex align-center gap-2">
-            <div class="stat-icon blue" style="width: 48px; height: 48px; font-size: 20px;">
-              <i class="fas fa-warehouse"></i>
-            </div>
-            <div>
-              <h4 class="fw-600 mb-0">Main Warehouse</h4>
-              <span class="text-muted">LOC-001</span>
-            </div>
-          </div>
-          <div class="d-flex gap-2">
-            <span class="badge badge-success">Active</span>
-            <span class="badge badge-info">Primary</span>
-          </div>
-        </div>
-
-        <div class="grid grid-2 gap-3 mb-3">
-          <div>
-            <div class="text-muted fs-sm">Address</div>
-            <div class="fw-500">123 Industrial Blvd</div>
-            <div class="text-muted">New York, NY 10001</div>
-          </div>
-          <div>
-            <div class="text-muted fs-sm">Manager</div>
-            <div class="fw-500">John Smith</div>
-            <div class="text-muted">john@argobooks.com</div>
-            <div class="text-muted">(555) 123-4567</div>
-          </div>
-        </div>
-
-        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
-          <div class="card-body">
-            <h5 class="fw-600 mb-2">Inventory Summary</h5>
-            <div class="grid grid-4 gap-2">
-              <div class="text-center">
-                <div class="stat-value" style="font-size: 20px;">245</div>
-                <div class="text-muted fs-sm">SKUs</div>
-              </div>
-              <div class="text-center">
-                <div class="stat-value" style="font-size: 20px;">1,456</div>
-                <div class="text-muted fs-sm">Total Qty</div>
-              </div>
-              <div class="text-center">
-                <div class="stat-value" style="font-size: 20px;">$285,400</div>
-                <div class="text-muted fs-sm">Value</div>
-              </div>
-              <div class="text-center">
-                <div class="stat-value text-success" style="font-size: 20px;">82%</div>
-                <div class="text-muted fs-sm">Capacity</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-3 gap-3 mt-3">
-          <div>
-            <div class="text-muted fs-sm">Low Stock Items</div>
-            <div class="fw-500 text-warning">12 items</div>
-          </div>
-          <div>
-            <div class="text-muted fs-sm">Out of Stock</div>
-            <div class="fw-500 text-danger">3 items</div>
-          </div>
-          <div>
-            <div class="text-muted fs-sm">Overstock</div>
-            <div class="fw-500 text-info">8 items</div>
-          </div>
-        </div>
-
-        <div class="mt-3">
-          <div class="text-muted fs-sm">Notes</div>
-          <div class="fw-500">Primary storage facility for all incoming shipments. Climate controlled for sensitive materials.</div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary modal-cancel">Close</button>
-        <button class="btn btn-outline">
-          <i class="fas fa-boxes"></i>
-          View Inventory
-        </button>
-        <button class="btn btn-primary" data-modal="editLocationModal">
-          <i class="fas fa-edit"></i>
-          Edit Location
-        </button>
       </div>
     </div>
   </div>
