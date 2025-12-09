@@ -2,34 +2,7 @@
 // Simple page navigation for the mockup
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Get all navigation items
-  const navItems = document.querySelectorAll('.nav-item[data-page]');
-
-  // Add click handlers
-  navItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      const page = this.getAttribute('data-page');
-      if (page) {
-        window.location.href = page;
-      }
-    });
-  });
-
-  // Mark current page as active
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  navItems.forEach(item => {
-    const page = item.getAttribute('data-page');
-    if (page === currentPage) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
-    }
-  });
-
-  // Sidebar toggle is now handled by js/components/sidebar.js
-
-  // Company modal handling is now in js/components/company-modal.js
+  // Navigation is handled by js/components/sidebar.js
 
   // Custom date range handling for Analytics
   const dateRangeSelect = document.getElementById('date-range-select');
@@ -128,28 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-
-  // Search box placeholder animation
-  const searchInput = document.querySelector('.search-box input');
-  if (searchInput) {
-    const placeholders = [
-      'Search transactions...',
-      'Search customers...',
-      'Search products...',
-      'Try AI search...'
-    ];
-    let currentIndex = 0;
-
-    // Simple placeholder rotation (optional feature)
-    // setInterval(() => {
-    //   currentIndex = (currentIndex + 1) % placeholders.length;
-    //   searchInput.placeholder = placeholders[currentIndex];
-    // }, 3000);
-  }
-
-  // Notification badge counter (mockup)
-  const notificationBadge = document.querySelector('.header-icon .badge');
-  // This would be connected to real data in production
 
   // Initialize tooltips (basic implementation)
   const tooltipElements = document.querySelectorAll('[data-tooltip]');

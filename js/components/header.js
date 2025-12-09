@@ -24,13 +24,6 @@
           </button>
         </div>
 
-        <div class="header-center">
-          <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search...">
-          </div>
-        </div>
-
         <div class="header-right">
           <button class="header-icon" id="upgrade-icon" title="Upgrades">
             <svg width="20" height="20" viewBox="0 0 24 24">
