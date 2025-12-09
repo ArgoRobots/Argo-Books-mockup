@@ -20,9 +20,8 @@
       <div class="page-content">
         <!-- Tabs -->
         <div class="tabs">
-          <div class="tab active" data-tab="expense-products">Expense Products</div>
-          <div class="tab" data-tab="revenue-products">Revenue Products</div>
-          <div class="tab" data-tab="rental-products">Rental Products</div>
+          <div class="tab active" data-tab="expense-products">Expenses</div>
+          <div class="tab" data-tab="revenue-products">Revenue</div>
         </div>
 
         <!-- Stats -->
@@ -63,7 +62,7 @@
         <div class="tab-content" id="expense-products">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Expense Products</h3>
+              <h3 class="card-title">Expenses</h3>
               <div class="d-flex gap-2">
                 <div class="search-box" style="width: 250px;">
                   <i class="fas fa-search"></i>
@@ -208,7 +207,7 @@
         <div class="tab-content" id="revenue-products" style="display: none;">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Revenue Products</h3>
+              <h3 class="card-title">Revenue</h3>
               <div class="d-flex gap-2">
                 <div class="search-box" style="width: 250px;">
                   <i class="fas fa-search"></i>
@@ -253,55 +252,6 @@
                     <td>Business consulting per hour</td>
                     <td><span class="badge badge-secondary">Service</span></td>
                     <td>Consulting</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Rental Products Tab (hidden by default) -->
-        <div class="tab-content" id="rental-products" style="display: none;">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Rental Products</h3>
-              <button class="btn btn-primary" data-modal="addProductModal">
-                <i class="fas fa-plus"></i>
-                Add Product
-              </button>
-            </div>
-            <div class="card-body p-0">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Product Name</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><div class="fw-600">Power Drill Set</div></td>
-                    <td>Professional power drill with accessories</td>
-                    <td>Tools</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-icon btn-outline"><i class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="fw-600">Camera Equipment</div></td>
-                    <td>DSLR camera with lenses</td>
-                    <td>Photography</td>
                     <td>
                       <div class="d-flex gap-1">
                         <button class="btn btn-icon btn-outline" data-modal="editProductModal"><i class="fas fa-edit"></i></button>
