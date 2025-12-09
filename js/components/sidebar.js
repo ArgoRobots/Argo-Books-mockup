@@ -78,7 +78,7 @@
           </a>
           <a class="nav-item" data-page="${pathPrefix}products.html">
             <i class="fas fa-cube"></i>
-            <span>Products</span>
+            <span>Products/Services</span>
           </a>
           <a class="nav-item" data-page="${pathPrefix}categories.html">
             <i class="fas fa-tags"></i>
