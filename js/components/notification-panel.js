@@ -57,9 +57,6 @@
         </div>
       </div>
     </div>
-    <div class="notification-panel-footer">
-      <a href="#" class="btn-link">View all notifications</a>
-    </div>
   </div>
   `;
 
@@ -168,12 +165,6 @@
       font-size: 12px;
       color: var(--text-muted);
       margin-top: 4px;
-    }
-
-    .notification-panel-footer {
-      padding: 12px 20px;
-      text-align: center;
-      border-top: 1px solid var(--border-color);
     }
 
     .btn-link {
