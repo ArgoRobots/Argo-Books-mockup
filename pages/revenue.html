@@ -251,7 +251,7 @@
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Accountant</label>
+            <label class="form-label">Accountant *</label>
             <select class="form-control form-select">
               <option>Select accountant</option>
               <option>John Doe</option>
@@ -260,12 +260,12 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Date</label>
+            <label class="form-label">Date *</label>
             <input type="date" class="form-control">
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Customer</label>
+          <label class="form-label">Customer *</label>
           <select class="form-control form-select">
             <option>Select customer</option>
             <option>Acme Corp</option>
@@ -275,7 +275,7 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Product</label>
+            <label class="form-label">Product *</label>
             <select class="form-control form-select">
               <option>Select product</option>
               <option>Premium Widget</option>
@@ -285,22 +285,21 @@
           </div>
           <div class="form-group">
             <label class="form-label">Destination Country</label>
-            <select class="form-control form-select">
-              <option>Select country</option>
-              <option>USA</option>
-              <option>Canada</option>
-              <option>UK</option>
-              <option>Germany</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"us","label":"United States","html":"<span class=\"country-flag\">🇺🇸</span> United States"},{"value":"ca","label":"Canada","html":"<span class=\"country-flag\">🇨🇦</span> Canada"},{"value":"de","label":"Germany","html":"<span class=\"country-flag\">🇩🇪</span> Germany"},{"value":"it","label":"Italy","html":"<span class=\"country-flag\">🇮🇹</span> Italy"},{"value":"fr","label":"France","html":"<span class=\"country-flag\">🇫🇷</span> France"},{"value":"cn","label":"China","html":"<span class=\"country-flag\">🇨🇳</span> China"},{"value":"jp","label":"Japan","html":"<span class=\"country-flag\">🇯🇵</span> Japan"},{"value":"gb","label":"United Kingdom","html":"<span class=\"country-flag\">🇬🇧</span> United Kingdom"},{"value":"au","label":"Australia","html":"<span class=\"country-flag\">🇦🇺</span> Australia"},{"value":"mx","label":"Mexico","html":"<span class=\"country-flag\">🇲🇽</span> Mexico"},{"value":"br","label":"Brazil","html":"<span class=\"country-flag\">🇧🇷</span> Brazil"},{"value":"in","label":"India","html":"<span class=\"country-flag\">🇮🇳</span> India"},{"value":"nl","label":"Netherlands","html":"<span class=\"country-flag\">🇳🇱</span> Netherlands"}]'>
+              <input type="text" class="search-input" placeholder="Search countries...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="country">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Quantity</label>
+            <label class="form-label">Quantity *</label>
             <input type="number" class="form-control" placeholder="1" value="1">
           </div>
           <div class="form-group">
-            <label class="form-label">Price Per Unit</label>
+            <label class="form-label">Price Per Unit *</label>
             <input type="number" class="form-control" placeholder="0.00">
           </div>
         </div>
@@ -418,7 +417,7 @@
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Accountant</label>
+            <label class="form-label">Accountant *</label>
             <select class="form-control form-select">
               <option>Select accountant</option>
               <option selected>John Doe</option>
@@ -427,12 +426,12 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Date</label>
+            <label class="form-label">Date *</label>
             <input type="date" class="form-control" value="2024-12-01">
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Customer</label>
+          <label class="form-label">Customer *</label>
           <select class="form-control form-select">
             <option>Select customer</option>
             <option selected>Acme Corp</option>
@@ -442,7 +441,7 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Product</label>
+            <label class="form-label">Product *</label>
             <select class="form-control form-select">
               <option>Select product</option>
               <option selected>Premium Widget</option>
@@ -452,22 +451,21 @@
           </div>
           <div class="form-group">
             <label class="form-label">Destination Country</label>
-            <select class="form-control form-select">
-              <option>Select country</option>
-              <option selected>USA</option>
-              <option>Canada</option>
-              <option>UK</option>
-              <option>Germany</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"us","label":"United States","html":"<span class=\"country-flag\">🇺🇸</span> United States"},{"value":"ca","label":"Canada","html":"<span class=\"country-flag\">🇨🇦</span> Canada"},{"value":"de","label":"Germany","html":"<span class=\"country-flag\">🇩🇪</span> Germany"},{"value":"it","label":"Italy","html":"<span class=\"country-flag\">🇮🇹</span> Italy"},{"value":"fr","label":"France","html":"<span class=\"country-flag\">🇫🇷</span> France"},{"value":"cn","label":"China","html":"<span class=\"country-flag\">🇨🇳</span> China"},{"value":"jp","label":"Japan","html":"<span class=\"country-flag\">🇯🇵</span> Japan"},{"value":"gb","label":"United Kingdom","html":"<span class=\"country-flag\">🇬🇧</span> United Kingdom"},{"value":"au","label":"Australia","html":"<span class=\"country-flag\">🇦🇺</span> Australia"},{"value":"mx","label":"Mexico","html":"<span class=\"country-flag\">🇲🇽</span> Mexico"},{"value":"br","label":"Brazil","html":"<span class=\"country-flag\">🇧🇷</span> Brazil"},{"value":"in","label":"India","html":"<span class=\"country-flag\">🇮🇳</span> India"},{"value":"nl","label":"Netherlands","html":"<span class=\"country-flag\">🇳🇱</span> Netherlands"}]' data-selected="us">
+              <input type="text" class="search-input" placeholder="Search countries..." value="United States">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="country" value="us">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Quantity</label>
+            <label class="form-label">Quantity *</label>
             <input type="number" class="form-control" value="10">
           </div>
           <div class="form-group">
-            <label class="form-label">Price Per Unit</label>
+            <label class="form-label">Price Per Unit *</label>
             <input type="number" class="form-control" value="245.00">
           </div>
         </div>
@@ -508,5 +506,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>

@@ -1942,3 +1942,17 @@ input:checked + .slider:before {
   color: var(--gray-500);
   font-style: italic;
 }
+
+/* Country flag in dropdown */
+.searchable-dropdown .dropdown-item .country-flag {
+  display: inline-block;
+  width: 20px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2px;
+  box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
