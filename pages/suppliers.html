@@ -248,23 +248,21 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Supplier Name</label>
+          <label class="form-label">Supplier Name *</label>
           <input type="text" class="form-control" placeholder="Enter supplier name">
         </div>
         <div class="form-group">
-          <label class="form-label">Contact Email</label>
+          <label class="form-label">Contact Email *</label>
           <input type="email" class="form-control" placeholder="Enter contact email">
         </div>
         <div class="form-group">
           <label class="form-label">Country</label>
-          <select class="form-control form-select">
-            <option>Select country</option>
-            <option>USA</option>
-            <option>China</option>
-            <option>Germany</option>
-            <option>Japan</option>
-            <option>Netherlands</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"us","label":"United States","html":"<span class=\"country-flag\">🇺🇸</span> United States"},{"value":"ca","label":"Canada","html":"<span class=\"country-flag\">🇨🇦</span> Canada"},{"value":"de","label":"Germany","html":"<span class=\"country-flag\">🇩🇪</span> Germany"},{"value":"it","label":"Italy","html":"<span class=\"country-flag\">🇮🇹</span> Italy"},{"value":"fr","label":"France","html":"<span class=\"country-flag\">🇫🇷</span> France"},{"value":"cn","label":"China","html":"<span class=\"country-flag\">🇨🇳</span> China"},{"value":"jp","label":"Japan","html":"<span class=\"country-flag\">🇯🇵</span> Japan"},{"value":"gb","label":"United Kingdom","html":"<span class=\"country-flag\">🇬🇧</span> United Kingdom"},{"value":"au","label":"Australia","html":"<span class=\"country-flag\">🇦🇺</span> Australia"},{"value":"mx","label":"Mexico","html":"<span class=\"country-flag\">🇲🇽</span> Mexico"},{"value":"br","label":"Brazil","html":"<span class=\"country-flag\">🇧🇷</span> Brazil"},{"value":"in","label":"India","html":"<span class=\"country-flag\">🇮🇳</span> India"},{"value":"nl","label":"Netherlands","html":"<span class=\"country-flag\">🇳🇱</span> Netherlands"}]'>
+            <input type="text" class="search-input" placeholder="Search countries...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="country">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -292,11 +290,11 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Supplier Name</label>
+          <label class="form-label">Supplier Name *</label>
           <input type="text" class="form-control" value="Staples Inc.">
         </div>
         <div class="form-group">
-          <label class="form-label">Contact Email</label>
+          <label class="form-label">Contact Email *</label>
           <input type="email" class="form-control" value="contact@staples.com">
         </div>
         <div class="form-group">
@@ -305,14 +303,12 @@
         </div>
         <div class="form-group">
           <label class="form-label">Country</label>
-          <select class="form-control form-select">
-            <option>Select country</option>
-            <option selected>USA</option>
-            <option>China</option>
-            <option>Germany</option>
-            <option>Japan</option>
-            <option>Netherlands</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"us","label":"United States","html":"<span class=\"country-flag\">🇺🇸</span> United States"},{"value":"ca","label":"Canada","html":"<span class=\"country-flag\">🇨🇦</span> Canada"},{"value":"de","label":"Germany","html":"<span class=\"country-flag\">🇩🇪</span> Germany"},{"value":"it","label":"Italy","html":"<span class=\"country-flag\">🇮🇹</span> Italy"},{"value":"fr","label":"France","html":"<span class=\"country-flag\">🇫🇷</span> France"},{"value":"cn","label":"China","html":"<span class=\"country-flag\">🇨🇳</span> China"},{"value":"jp","label":"Japan","html":"<span class=\"country-flag\">🇯🇵</span> Japan"},{"value":"gb","label":"United Kingdom","html":"<span class=\"country-flag\">🇬🇧</span> United Kingdom"},{"value":"au","label":"Australia","html":"<span class=\"country-flag\">🇦🇺</span> Australia"},{"value":"mx","label":"Mexico","html":"<span class=\"country-flag\">🇲🇽</span> Mexico"},{"value":"br","label":"Brazil","html":"<span class=\"country-flag\">🇧🇷</span> Brazil"},{"value":"in","label":"India","html":"<span class=\"country-flag\">🇮🇳</span> India"},{"value":"nl","label":"Netherlands","html":"<span class=\"country-flag\">🇳🇱</span> Netherlands"}]' data-selected="us">
+            <input type="text" class="search-input" placeholder="Search countries..." value="United States">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="country" value="us">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Status</label>
@@ -344,5 +340,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>

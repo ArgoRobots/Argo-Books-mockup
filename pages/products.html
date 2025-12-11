@@ -277,7 +277,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label class="form-label">Product Name</label>
+          <label class="form-label">Product Name *</label>
           <input type="text" class="form-control" placeholder="Enter product name">
         </div>
         <div class="form-group">
@@ -286,14 +286,14 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Item Type</label>
+            <label class="form-label">Item Type *</label>
             <select class="form-control form-select">
               <option value="product">Product</option>
               <option value="service">Service</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Category</label>
+            <label class="form-label">Category *</label>
             <select class="form-control form-select">
               <option>Select category</option>
               <option>Office Supplies</option>
@@ -315,13 +315,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Country of Origin</label>
-            <select class="form-control form-select">
-              <option>Select country</option>
-              <option>USA</option>
-              <option>China</option>
-              <option>Germany</option>
-              <option>Japan</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"us","label":"United States","html":"<span class=\"country-flag\">🇺🇸</span> United States"},{"value":"ca","label":"Canada","html":"<span class=\"country-flag\">🇨🇦</span> Canada"},{"value":"de","label":"Germany","html":"<span class=\"country-flag\">🇩🇪</span> Germany"},{"value":"it","label":"Italy","html":"<span class=\"country-flag\">🇮🇹</span> Italy"},{"value":"fr","label":"France","html":"<span class=\"country-flag\">🇫🇷</span> France"},{"value":"cn","label":"China","html":"<span class=\"country-flag\">🇨🇳</span> China"},{"value":"jp","label":"Japan","html":"<span class=\"country-flag\">🇯🇵</span> Japan"},{"value":"gb","label":"United Kingdom","html":"<span class=\"country-flag\">🇬🇧</span> United Kingdom"},{"value":"au","label":"Australia","html":"<span class=\"country-flag\">🇦🇺</span> Australia"},{"value":"mx","label":"Mexico","html":"<span class=\"country-flag\">🇲🇽</span> Mexico"},{"value":"br","label":"Brazil","html":"<span class=\"country-flag\">🇧🇷</span> Brazil"},{"value":"in","label":"India","html":"<span class=\"country-flag\">🇮🇳</span> India"},{"value":"nl","label":"Netherlands","html":"<span class=\"country-flag\">🇳🇱</span> Netherlands"}]'>
+              <input type="text" class="search-input" placeholder="Search countries...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="country">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -358,7 +357,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label class="form-label">Product Name</label>
+          <label class="form-label">Product Name *</label>
           <input type="text" class="form-control" value="Office Supplies Bundle">
         </div>
         <div class="form-group">
@@ -367,14 +366,14 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Item Type</label>
+            <label class="form-label">Item Type *</label>
             <select class="form-control form-select">
               <option value="product" selected>Product</option>
               <option value="service">Service</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Category</label>
+            <label class="form-label">Category *</label>
             <select class="form-control form-select">
               <option>Select category</option>
               <option selected>Office Supplies</option>
@@ -396,13 +395,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Country of Origin</label>
-            <select class="form-control form-select">
-              <option>Select country</option>
-              <option selected>USA</option>
-              <option>China</option>
-              <option>Germany</option>
-              <option>Japan</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"us","label":"United States","html":"<span class=\"country-flag\">🇺🇸</span> United States"},{"value":"ca","label":"Canada","html":"<span class=\"country-flag\">🇨🇦</span> Canada"},{"value":"de","label":"Germany","html":"<span class=\"country-flag\">🇩🇪</span> Germany"},{"value":"it","label":"Italy","html":"<span class=\"country-flag\">🇮🇹</span> Italy"},{"value":"fr","label":"France","html":"<span class=\"country-flag\">🇫🇷</span> France"},{"value":"cn","label":"China","html":"<span class=\"country-flag\">🇨🇳</span> China"},{"value":"jp","label":"Japan","html":"<span class=\"country-flag\">🇯🇵</span> Japan"},{"value":"gb","label":"United Kingdom","html":"<span class=\"country-flag\">🇬🇧</span> United Kingdom"},{"value":"au","label":"Australia","html":"<span class=\"country-flag\">🇦🇺</span> Australia"},{"value":"mx","label":"Mexico","html":"<span class=\"country-flag\">🇲🇽</span> Mexico"},{"value":"br","label":"Brazil","html":"<span class=\"country-flag\">🇧🇷</span> Brazil"},{"value":"in","label":"India","html":"<span class=\"country-flag\">🇮🇳</span> India"},{"value":"nl","label":"Netherlands","html":"<span class=\"country-flag\">🇳🇱</span> Netherlands"}]' data-selected="us">
+              <input type="text" class="search-input" placeholder="Search countries..." value="United States">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="country" value="us">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -453,14 +451,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Category</label>
-            <select class="form-control form-select">
-              <option value="">All Categories</option>
-              <option>Office Supplies</option>
-              <option>Electronics</option>
-              <option>Maintenance</option>
-              <option>Raw Materials</option>
-              <option>IT Services</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Categories"},{"value":"office-supplies","label":"Office Supplies"},{"value":"electronics","label":"Electronics"},{"value":"maintenance","label":"Maintenance"},{"value":"raw-materials","label":"Raw Materials"},{"value":"it-services","label":"IT Services"}]'>
+              <input type="text" class="search-input" placeholder="Search categories...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="category">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -475,13 +471,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Country of Origin</label>
-            <select class="form-control form-select">
-              <option value="">All Countries</option>
-              <option>USA</option>
-              <option>China</option>
-              <option>Germany</option>
-              <option>Japan</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Countries"},{"value":"us","label":"United States","html":"<span class=\"country-flag\">🇺🇸</span> United States"},{"value":"ca","label":"Canada","html":"<span class=\"country-flag\">🇨🇦</span> Canada"},{"value":"de","label":"Germany","html":"<span class=\"country-flag\">🇩🇪</span> Germany"},{"value":"it","label":"Italy","html":"<span class=\"country-flag\">🇮🇹</span> Italy"},{"value":"fr","label":"France","html":"<span class=\"country-flag\">🇫🇷</span> France"},{"value":"cn","label":"China","html":"<span class=\"country-flag\">🇨🇳</span> China"},{"value":"jp","label":"Japan","html":"<span class=\"country-flag\">🇯🇵</span> Japan"},{"value":"gb","label":"United Kingdom","html":"<span class=\"country-flag\">🇬🇧</span> United Kingdom"},{"value":"au","label":"Australia","html":"<span class=\"country-flag\">🇦🇺</span> Australia"},{"value":"mx","label":"Mexico","html":"<span class=\"country-flag\">🇲🇽</span> Mexico"},{"value":"br","label":"Brazil","html":"<span class=\"country-flag\">🇧🇷</span> Brazil"},{"value":"in","label":"India","html":"<span class=\"country-flag\">🇮🇳</span> India"},{"value":"nl","label":"Netherlands","html":"<span class=\"country-flag\">🇳🇱</span> Netherlands"}]'>
+              <input type="text" class="search-input" placeholder="Search countries...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="country">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
       </div>

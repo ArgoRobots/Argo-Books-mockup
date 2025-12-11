@@ -52,7 +52,7 @@ class SearchableDropdown {
     this.panel.addEventListener('click', (e) => {
       const item = e.target.closest('.dropdown-item');
       if (item) {
-        this.select(item.dataset.value, item.textContent);
+        this.select(item.dataset.value, item.dataset.label || item.textContent.trim());
       }
     });
   }
@@ -84,8 +84,9 @@ class SearchableDropdown {
 
     this.panel.innerHTML = items.map(item => `
       <div class="dropdown-item${item.value === this.selectedValue ? ' selected' : ''}"
-           data-value="${item.value}">
-        ${item.label}
+           data-value="${item.value}"
+           data-label="${item.label}">
+        ${item.html || item.label}
       </div>
     `).join('');
   }
@@ -127,7 +128,7 @@ class SearchableDropdown {
         e.preventDefault();
         if (this.highlightedIndex >= 0 && items[this.highlightedIndex]) {
           const item = items[this.highlightedIndex];
-          this.select(item.dataset.value, item.textContent);
+          this.select(item.dataset.value, item.dataset.label || item.textContent.trim());
         }
         break;
       case 'Escape':
