@@ -294,13 +294,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Category *</label>
-            <select class="form-control form-select">
-              <option>Select category</option>
-              <option>Office Supplies</option>
-              <option>Electronics</option>
-              <option>Maintenance</option>
-              <option>Raw Materials</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"office-supplies","label":"Office Supplies"},{"value":"electronics","label":"Electronics"},{"value":"maintenance","label":"Maintenance"},{"value":"raw-materials","label":"Raw Materials"},{"value":"it-services","label":"IT Services"},{"value":"furniture","label":"Furniture"},{"value":"safety-equipment","label":"Safety Equipment"},{"value":"packaging","label":"Packaging"},{"value":"cleaning-supplies","label":"Cleaning Supplies"}]'>
+              <input type="text" class="search-input" placeholder="Search categories...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="category">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -374,13 +373,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Category *</label>
-            <select class="form-control form-select">
-              <option>Select category</option>
-              <option selected>Office Supplies</option>
-              <option>Electronics</option>
-              <option>Maintenance</option>
-              <option>Raw Materials</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"office-supplies","label":"Office Supplies"},{"value":"electronics","label":"Electronics"},{"value":"maintenance","label":"Maintenance"},{"value":"raw-materials","label":"Raw Materials"},{"value":"it-services","label":"IT Services"},{"value":"furniture","label":"Furniture"},{"value":"safety-equipment","label":"Safety Equipment"},{"value":"packaging","label":"Packaging"},{"value":"cleaning-supplies","label":"Cleaning Supplies"}]' data-selected="office-supplies">
+              <input type="text" class="search-input" placeholder="Search categories..." value="Office Supplies">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="category" value="office-supplies">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">

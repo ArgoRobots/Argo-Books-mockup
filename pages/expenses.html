@@ -326,17 +326,12 @@
         </div>
         <div class="form-group">
           <label class="form-label">Category</label>
-          <select class="form-control form-select">
-            <option value="">All Categories</option>
-            <option>Office Supplies</option>
-            <option>Electronics</option>
-            <option>Maintenance</option>
-            <option>Raw Materials</option>
-            <option>IT Services</option>
-            <option>Logistics</option>
-            <option>Utilities</option>
-            <option>Marketing</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Categories"},{"value":"office-supplies","label":"Office Supplies"},{"value":"electronics","label":"Electronics"},{"value":"maintenance","label":"Maintenance"},{"value":"raw-materials","label":"Raw Materials"},{"value":"it-services","label":"IT Services"},{"value":"logistics","label":"Logistics"},{"value":"utilities","label":"Utilities"},{"value":"marketing","label":"Marketing"},{"value":"travel","label":"Travel"},{"value":"professional-services","label":"Professional Services"},{"value":"insurance","label":"Insurance"}]'>
+            <input type="text" class="search-input" placeholder="Search categories...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="category">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Supplier</label>
