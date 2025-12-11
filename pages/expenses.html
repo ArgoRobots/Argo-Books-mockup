@@ -229,12 +229,12 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Accountant</label>
-            <select class="form-control form-select">
-              <option>Select accountant</option>
-              <option>John Doe</option>
-              <option>Jane Smith</option>
-              <option>Mike Brown</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"mike-brown","label":"Mike Brown"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"robert-lee","label":"Robert Lee"},{"value":"alice-chen","label":"Alice Chen"}]'>
+              <input type="text" class="search-input" placeholder="Search accountants...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="accountant">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Date</label>
@@ -244,21 +244,21 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Product</label>
-            <select class="form-control form-select">
-              <option>Select product</option>
-              <option>Office Supplies Bundle</option>
-              <option>Computer Equipment</option>
-              <option>Cleaning Service</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"office-supplies","label":"Office Supplies Bundle"},{"value":"computer-equip","label":"Computer Equipment"},{"value":"cleaning-service","label":"Cleaning Service"},{"value":"raw-materials","label":"Raw Materials - Steel"},{"value":"it-equipment","label":"IT Equipment"},{"value":"marketing","label":"Marketing Materials"}]'>
+              <input type="text" class="search-input" placeholder="Search products...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="product">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option>Select supplier</option>
-              <option>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"techhelp","label":"TechHelp Pro"},{"value":"printco","label":"PrintCo Ltd."}]'>
+              <input type="text" class="search-input" placeholder="Search suppliers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -340,24 +340,21 @@
         </div>
         <div class="form-group">
           <label class="form-label">Supplier</label>
-          <select class="form-control form-select">
-            <option value="">All Suppliers</option>
-            <option>Staples Inc.</option>
-            <option>Tech Distributors</option>
-            <option>CleanCo Services</option>
-            <option>Steel Works Inc.</option>
-            <option>TechHelp Pro</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Suppliers"},{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"techhelp","label":"TechHelp Pro"},{"value":"printco","label":"PrintCo Ltd."}]'>
+            <input type="text" class="search-input" placeholder="Search suppliers...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="supplier">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Accountant</label>
-          <select class="form-control form-select">
-            <option value="">All Accountants</option>
-            <option>John Doe</option>
-            <option>Jane Smith</option>
-            <option>Mike Brown</option>
-            <option>Emily Wilson</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Accountants"},{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"mike-brown","label":"Mike Brown"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"robert-lee","label":"Robert Lee"},{"value":"alice-chen","label":"Alice Chen"}]'>
+            <input type="text" class="search-input" placeholder="Search accountants...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="accountant">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Status</label>
@@ -405,12 +402,12 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Accountant</label>
-            <select class="form-control form-select">
-              <option>Select accountant</option>
-              <option selected>John Doe</option>
-              <option>Jane Smith</option>
-              <option>Mike Brown</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"mike-brown","label":"Mike Brown"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"robert-lee","label":"Robert Lee"},{"value":"alice-chen","label":"Alice Chen"}]' data-selected="john-doe">
+              <input type="text" class="search-input" placeholder="Search accountants..." value="John Doe">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="accountant" value="john-doe">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Date</label>
@@ -420,21 +417,21 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Product</label>
-            <select class="form-control form-select">
-              <option>Select product</option>
-              <option selected>Office Supplies Bundle</option>
-              <option>Computer Equipment</option>
-              <option>Cleaning Service</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"office-supplies","label":"Office Supplies Bundle"},{"value":"computer-equip","label":"Computer Equipment"},{"value":"cleaning-service","label":"Cleaning Service"},{"value":"raw-materials","label":"Raw Materials - Steel"},{"value":"it-equipment","label":"IT Equipment"},{"value":"marketing","label":"Marketing Materials"}]' data-selected="office-supplies">
+              <input type="text" class="search-input" placeholder="Search products..." value="Office Supplies Bundle">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="product" value="office-supplies">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option>Select supplier</option>
-              <option selected>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"techhelp","label":"TechHelp Pro"},{"value":"printco","label":"PrintCo Ltd."}]' data-selected="staples">
+              <input type="text" class="search-input" placeholder="Search suppliers..." value="Staples Inc.">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier" value="staples">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -492,5 +489,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>

@@ -258,12 +258,12 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option value="">All Suppliers</option>
-              <option>TechHelp Pro</option>
-              <option>CleanCo Services</option>
-              <option>Furniture Plus</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Suppliers"},{"value":"techhelp","label":"TechHelp Pro"},{"value":"cleanco","label":"CleanCo Services"},{"value":"furniture-plus","label":"Furniture Plus"},{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"}]'>
+              <input type="text" class="search-input" placeholder="Search suppliers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Reason</label>
@@ -286,12 +286,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Returned By</label>
-            <select class="form-control form-select">
-              <option value="">All Employees</option>
-              <option>Robert Lee</option>
-              <option>Mike Brown</option>
-              <option>Jane Smith</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Employees"},{"value":"robert-lee","label":"Robert Lee"},{"value":"mike-brown","label":"Mike Brown"},{"value":"jane-smith","label":"Jane Smith"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"john-doe","label":"John Doe"}]'>
+              <input type="text" class="search-input" placeholder="Search employees...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="returned_by">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -323,11 +323,12 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Customer</label>
-            <select class="form-control form-select">
-              <option value="">All Customers</option>
-              <option>Metro Services</option>
-              <option>Local Shop</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Customers"},{"value":"metro-services","label":"Metro Services"},{"value":"local-shop","label":"Local Shop"},{"value":"acme-corp","label":"Acme Corp"},{"value":"techstart","label":"TechStart Inc"},{"value":"global-trade","label":"Global Trade"}]'>
+              <input type="text" class="search-input" placeholder="Search customers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="customer">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Reason</label>
@@ -351,11 +352,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Processed By</label>
-            <select class="form-control form-select">
-              <option value="">All Employees</option>
-              <option>Robert Lee</option>
-              <option>Emily Wilson</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Employees"},{"value":"robert-lee","label":"Robert Lee"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"mike-brown","label":"Mike Brown"},{"value":"jane-smith","label":"Jane Smith"},{"value":"john-doe","label":"John Doe"}]'>
+              <input type="text" class="search-input" placeholder="Search employees...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="processed_by">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -377,5 +379,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>

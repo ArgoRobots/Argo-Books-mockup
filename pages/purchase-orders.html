@@ -549,24 +549,21 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Supplier *</label>
-            <select class="form-control form-select">
-              <option value="">Select supplier</option>
-              <option>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-              <option>Steel Works Inc.</option>
-              <option>SafetyFirst Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"safetyfirst","label":"SafetyFirst Inc."}]'>
+              <input type="text" class="search-input" placeholder="Search suppliers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Delivery Location *</label>
-            <select class="form-control form-select">
-              <option value="">Select location</option>
-              <option>Main Warehouse (LOC-001)</option>
-              <option>Secondary Storage (LOC-002)</option>
-              <option>Factory Floor (LOC-003)</option>
-              <option>Retail Store (LOC-004)</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"loc-001","label":"Main Warehouse (LOC-001)"},{"value":"loc-002","label":"Secondary Storage (LOC-002)"},{"value":"loc-003","label":"Factory Floor (LOC-003)"},{"value":"loc-004","label":"Retail Store (LOC-004)"}]'>
+              <input type="text" class="search-input" placeholder="Search locations...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="location">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
 
@@ -846,24 +843,21 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Supplier *</label>
-            <select class="form-control form-select">
-              <option value="">Select supplier</option>
-              <option selected>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-              <option>Steel Works Inc.</option>
-              <option>SafetyFirst Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"safetyfirst","label":"SafetyFirst Inc."}]' data-selected="staples">
+              <input type="text" class="search-input" placeholder="Search suppliers..." value="Staples Inc.">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier" value="staples">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Delivery Location *</label>
-            <select class="form-control form-select">
-              <option value="">Select location</option>
-              <option selected>Main Warehouse (LOC-001)</option>
-              <option>Secondary Storage (LOC-002)</option>
-              <option>Factory Floor (LOC-003)</option>
-              <option>Retail Store (LOC-004)</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"loc-001","label":"Main Warehouse (LOC-001)"},{"value":"loc-002","label":"Secondary Storage (LOC-002)"},{"value":"loc-003","label":"Factory Floor (LOC-003)"},{"value":"loc-004","label":"Retail Store (LOC-004)"}]' data-selected="loc-001">
+              <input type="text" class="search-input" placeholder="Search locations..." value="Main Warehouse (LOC-001)">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="location" value="loc-001">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
 
@@ -1068,10 +1062,6 @@
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label">Search</label>
-          <input type="text" class="form-control" placeholder="Search by PO number or supplier...">
-        </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Status</label>
@@ -1088,14 +1078,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option value="">All Suppliers</option>
-              <option>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-              <option>Steel Works Inc.</option>
-              <option>SafetyFirst Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Suppliers"},{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"safetyfirst","label":"SafetyFirst Inc."}]'>
+              <input type="text" class="search-input" placeholder="Search suppliers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -1137,5 +1125,6 @@
   <script src="../js/components/account-modals.js"></script>
   <script src="../js/components/upgrade-modal.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/components/searchable-dropdown.js"></script>
 </body>
 </html>
