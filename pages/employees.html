@@ -259,7 +259,7 @@
           <div class="card mb-3">
             <div class="card-header">
               <h3 class="card-title">Payroll Processing</h3>
-              <button class="btn btn-primary">
+              <button class="btn btn-primary" data-modal="runPayrollModal">
                 <i class="fas fa-play"></i>
                 Run Payroll
               </button>
@@ -599,6 +599,77 @@
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Run Payroll Modal -->
+  <div class="modal-overlay" id="runPayrollModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Run Payroll</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200); margin-bottom: 20px;">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Period</span>
+              <span class="fw-600">Dec 1 - Dec 15, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Date</span>
+              <span class="fw-600">Dec 15, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Employees</span>
+              <span class="fw-600">28 active employees</span>
+            </div>
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Estimated Total</span>
+              <span class="fw-600 text-success">$92,700.00</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <select class="form-control form-select">
+            <option>Direct Deposit</option>
+            <option>Check</option>
+            <option>Cash</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Include</label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Regular wages</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox" checked>
+            <span>Overtime pay</span>
+          </label>
+          <label class="d-flex align-center gap-2 mb-2">
+            <input type="checkbox">
+            <span>Bonuses</span>
+          </label>
+          <label class="d-flex align-center gap-2">
+            <input type="checkbox">
+            <span>Commissions</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Optional notes for this payroll run" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-outline">Preview Payroll</button>
+        <button class="btn btn-primary">
+          <i class="fas fa-play"></i>
+          Process Payroll
+        </button>
       </div>
     </div>
   </div>
