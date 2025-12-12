@@ -738,103 +738,264 @@
         </div>
 
         <h4 class="fw-600 mb-2">Employee Breakdown</h4>
-        <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px;">
-          <table class="data-table" style="margin: 0;">
-            <thead>
-              <tr>
-                <th>Employee</th>
-                <th>Type</th>
-                <th style="text-align: center;">Hours</th>
-                <th style="text-align: center;">Bonus</th>
-                <th style="text-align: center;">Tax %</th>
-                <th style="text-align: center;">Ded %</th>
-                <th style="text-align: right;">Gross Pay</th>
-                <th style="text-align: right;">Net Pay</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John Doe</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$6,250.00</td>
-                <td style="text-align: right;" class="fw-600">$4,531.25</td>
-              </tr>
-              <tr>
-                <td>Jane Smith</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$4,250.00</td>
-                <td style="text-align: right;" class="fw-600">$3,081.25</td>
-              </tr>
-              <tr>
-                <td>Emily Wilson</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$3,900.00</td>
-                <td style="text-align: right;" class="fw-600">$2,827.50</td>
-              </tr>
-              <tr>
-                <td>Robert Lee</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$3,250.00</td>
-                <td style="text-align: right;" class="fw-600">$2,356.25</td>
-              </tr>
-              <tr>
-                <td>Alice Chen</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$2,400.00</td>
-                <td style="text-align: right;" class="fw-600">$1,740.00</td>
-              </tr>
-              <tr>
-                <td>Mike Brown</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$3,800.00</td>
-                <td style="text-align: right;" class="fw-600">$2,755.00</td>
-              </tr>
-              <tr>
-                <td>Sarah Johnson</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$4,100.00</td>
-                <td style="text-align: right;" class="fw-600">$2,972.50</td>
-              </tr>
-              <tr>
-                <td>David Kim</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: right;">$3,500.00</td>
-                <td style="text-align: right;" class="fw-600">$2,537.50</td>
-              </tr>
-            </tbody>
-          </table>
+        <div style="max-height: 400px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px; padding: 12px; display: flex; flex-direction: column; gap: 12px;">
+
+          <!-- John Doe -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">John Doe</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $4,531.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$6,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$1,406.25</span>
+              <span style="color: var(--danger-color);">Ded: -$312.50</span>
+            </div>
+          </div>
+
+          <!-- Jane Smith -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Jane Smith</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $3,081.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$956.25</span>
+              <span style="color: var(--danger-color);">Ded: -$212.50</span>
+            </div>
+          </div>
+
+          <!-- Emily Wilson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Emily Wilson</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,827.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,900.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$877.50</span>
+              <span style="color: var(--danger-color);">Ded: -$195.00</span>
+            </div>
+          </div>
+
+          <!-- Robert Lee -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Robert Lee</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,356.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$731.25</span>
+              <span style="color: var(--danger-color);">Ded: -$162.50</span>
+            </div>
+          </div>
+
+          <!-- Alice Chen -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Alice Chen</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $1,740.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$2,400.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$540.00</span>
+              <span style="color: var(--danger-color);">Ded: -$120.00</span>
+            </div>
+          </div>
+
+          <!-- Mike Brown -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Mike Brown</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,755.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,800.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$855.00</span>
+              <span style="color: var(--danger-color);">Ded: -$190.00</span>
+            </div>
+          </div>
+
+          <!-- Sarah Johnson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Sarah Johnson</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,972.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,100.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$922.50</span>
+              <span style="color: var(--danger-color);">Ded: -$205.00</span>
+            </div>
+          </div>
+
+          <!-- David Kim -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">David Kim</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,537.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,500.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$787.50</span>
+              <span style="color: var(--danger-color);">Ded: -$175.00</span>
+            </div>
+          </div>
+
         </div>
 
         <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
@@ -910,103 +1071,180 @@
         </div>
 
         <h4 class="fw-600 mb-2">Employee Breakdown</h4>
-        <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px;">
-          <table class="data-table" style="margin: 0;">
-            <thead>
-              <tr>
-                <th>Employee</th>
-                <th>Type</th>
-                <th style="text-align: center;">Hours</th>
-                <th style="text-align: right;">Bonus</th>
-                <th style="text-align: center;">Tax %</th>
-                <th style="text-align: center;">Ded %</th>
-                <th style="text-align: right;">Gross Pay</th>
-                <th style="text-align: right;">Net Pay</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John Doe</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: right;">$500.00</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$6,250.00</td>
-                <td style="text-align: right;" class="fw-600">$4,531.25</td>
-              </tr>
-              <tr>
-                <td>Jane Smith</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: right;">—</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$4,250.00</td>
-                <td style="text-align: right;" class="fw-600">$3,081.25</td>
-              </tr>
-              <tr>
-                <td>Emily Wilson</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;">80</td>
-                <td style="text-align: right;">—</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$3,900.00</td>
-                <td style="text-align: right;" class="fw-600">$2,827.50</td>
-              </tr>
-              <tr>
-                <td>Robert Lee</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;">80</td>
-                <td style="text-align: right;">$250.00</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$3,250.00</td>
-                <td style="text-align: right;" class="fw-600">$2,356.25</td>
-              </tr>
-              <tr>
-                <td>Alice Chen</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;">60</td>
-                <td style="text-align: right;">—</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$2,400.00</td>
-                <td style="text-align: right;" class="fw-600">$1,740.00</td>
-              </tr>
-              <tr>
-                <td>Mike Brown</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: right;">—</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$3,800.00</td>
-                <td style="text-align: right;" class="fw-600">$2,755.00</td>
-              </tr>
-              <tr>
-                <td>Sarah Johnson</td>
-                <td><span class="badge badge-info">Salary</span></td>
-                <td style="text-align: center;">—</td>
-                <td style="text-align: right;">—</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$4,100.00</td>
-                <td style="text-align: right;" class="fw-600">$2,972.50</td>
-              </tr>
-              <tr>
-                <td>David Kim</td>
-                <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;">88</td>
-                <td style="text-align: right;">—</td>
-                <td style="text-align: center;">22.5%</td>
-                <td style="text-align: center;">5%</td>
-                <td style="text-align: right;">$3,500.00</td>
-                <td style="text-align: right;" class="fw-600">$2,537.50</td>
-              </tr>
-            </tbody>
-          </table>
+        <div style="max-height: 400px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px; padding: 12px; display: flex; flex-direction: column; gap: 12px;">
+
+          <!-- John Doe -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">John Doe</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $4,531.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>$500.00</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$6,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$1,406.25</span>
+              <span style="color: var(--danger-color);">Ded: -$312.50</span>
+            </div>
+          </div>
+
+          <!-- Jane Smith -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Jane Smith</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $3,081.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$956.25</span>
+              <span style="color: var(--danger-color);">Ded: -$212.50</span>
+            </div>
+          </div>
+
+          <!-- Emily Wilson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Emily Wilson</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,827.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>80</strong></span>
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,900.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$877.50</span>
+              <span style="color: var(--danger-color);">Ded: -$195.00</span>
+            </div>
+          </div>
+
+          <!-- Robert Lee -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Robert Lee</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,356.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>80</strong></span>
+              <span>Bonus: <strong>$250.00</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$731.25</span>
+              <span style="color: var(--danger-color);">Ded: -$162.50</span>
+            </div>
+          </div>
+
+          <!-- Alice Chen -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Alice Chen</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $1,740.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>60</strong></span>
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$2,400.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$540.00</span>
+              <span style="color: var(--danger-color);">Ded: -$120.00</span>
+            </div>
+          </div>
+
+          <!-- Mike Brown -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Mike Brown</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,755.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,800.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$855.00</span>
+              <span style="color: var(--danger-color);">Ded: -$190.00</span>
+            </div>
+          </div>
+
+          <!-- Sarah Johnson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Sarah Johnson</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,972.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,100.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$922.50</span>
+              <span style="color: var(--danger-color);">Ded: -$205.00</span>
+            </div>
+          </div>
+
+          <!-- David Kim -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">David Kim</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,537.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>88</strong></span>
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,500.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$787.50</span>
+              <span style="color: var(--danger-color);">Ded: -$175.00</span>
+            </div>
+          </div>
+
         </div>
 
         <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
@@ -1015,9 +1253,17 @@
               <span>Total Gross Pay (28 employees)</span>
               <span class="fw-600">$98,500.00</span>
             </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Taxes</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$22,162.50</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Deductions</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$4,925.00</span>
+            </div>
             <div class="d-flex justify-between align-center" style="padding-top: 8px; border-top: 1px solid var(--gray-300);">
               <span class="fw-600">Total Net Pay</span>
-              <span class="fw-600 text-success">$71,264.75</span>
+              <span class="fw-600 text-success">$71,412.50</span>
             </div>
           </div>
         </div>
