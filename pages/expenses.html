@@ -71,7 +71,7 @@
               </button>
               <button class="btn btn-primary" data-modal="addExpenseModal">
                 <i class="fas fa-plus"></i>
-                New Expense
+                Add Expense
               </button>
             </div>
           </div>
@@ -222,34 +222,14 @@
   <div class="modal-overlay" id="addExpenseModal">
     <div class="modal" style="max-width: 700px;">
       <div class="modal-header">
-        <h3 class="modal-title">New Expense Transaction</h3>
+        <h3 class="modal-title">Add Expense</h3>
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Accountant *</label>
-            <div class="searchable-dropdown" data-items='[{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"mike-brown","label":"Mike Brown"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"robert-lee","label":"Robert Lee"},{"value":"alice-chen","label":"Alice Chen"}]'>
-              <input type="text" class="search-input" placeholder="Search accountants...">
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-              <input type="hidden" name="accountant">
-              <div class="dropdown-panel"></div>
-            </div>
-          </div>
-          <div class="form-group">
             <label class="form-label">Date *</label>
             <input type="date" class="form-control">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Product *</label>
-            <div class="searchable-dropdown" data-items='[{"value":"office-supplies","label":"Office Supplies Bundle"},{"value":"computer-equip","label":"Computer Equipment"},{"value":"cleaning-service","label":"Cleaning Service"},{"value":"raw-materials","label":"Raw Materials - Steel"},{"value":"it-equipment","label":"IT Equipment"},{"value":"marketing","label":"Marketing Materials"}]'>
-              <input type="text" class="search-input" placeholder="Search products...">
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-              <input type="hidden" name="product">
-              <div class="dropdown-panel"></div>
-            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Supplier *</label>
@@ -263,11 +243,26 @@
         </div>
         <div class="form-row">
           <div class="form-group">
+            <label class="form-label">Product *</label>
+            <div class="searchable-dropdown" data-items='[{"value":"office-supplies","label":"Office Supplies Bundle"},{"value":"computer-equip","label":"Computer Equipment"},{"value":"cleaning-service","label":"Cleaning Service"},{"value":"raw-materials","label":"Raw Materials - Steel"},{"value":"it-equipment","label":"IT Equipment"},{"value":"marketing","label":"Marketing Materials"}]'>
+              <input type="text" class="search-input" placeholder="Search products...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="product">
+              <div class="dropdown-panel"></div>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="form-label">Quantity *</label>
             <input type="number" class="form-control" placeholder="1" value="1">
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Price Per Unit *</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tax</label>
             <input type="number" class="form-control" placeholder="0.00">
           </div>
         </div>
@@ -326,17 +321,12 @@
         </div>
         <div class="form-group">
           <label class="form-label">Category</label>
-          <select class="form-control form-select">
-            <option value="">All Categories</option>
-            <option>Office Supplies</option>
-            <option>Electronics</option>
-            <option>Maintenance</option>
-            <option>Raw Materials</option>
-            <option>IT Services</option>
-            <option>Logistics</option>
-            <option>Utilities</option>
-            <option>Marketing</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Categories"},{"value":"office-supplies","label":"Office Supplies"},{"value":"office-supplies-writing","label":"Office Supplies > Writing Supplies"},{"value":"office-supplies-paper","label":"Office Supplies > Paper Products"},{"value":"electronics","label":"Electronics"},{"value":"electronics-computers","label":"Electronics > Computers"},{"value":"electronics-peripherals","label":"Electronics > Peripherals"},{"value":"maintenance","label":"Maintenance"},{"value":"raw-materials","label":"Raw Materials"},{"value":"it-services","label":"IT Services"},{"value":"logistics","label":"Logistics"},{"value":"utilities","label":"Utilities"},{"value":"marketing","label":"Marketing"},{"value":"travel","label":"Travel"},{"value":"professional-services","label":"Professional Services"},{"value":"insurance","label":"Insurance"}]'>
+            <input type="text" class="search-input" placeholder="Search categories...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="category">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Supplier</label>
@@ -344,15 +334,6 @@
             <input type="text" class="search-input" placeholder="Search suppliers...">
             <i class="fas fa-chevron-down dropdown-icon"></i>
             <input type="hidden" name="supplier">
-            <div class="dropdown-panel"></div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Accountant</label>
-          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Accountants"},{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"mike-brown","label":"Mike Brown"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"robert-lee","label":"Robert Lee"},{"value":"alice-chen","label":"Alice Chen"}]'>
-            <input type="text" class="search-input" placeholder="Search accountants...">
-            <i class="fas fa-chevron-down dropdown-icon"></i>
-            <input type="hidden" name="accountant">
             <div class="dropdown-panel"></div>
           </div>
         </div>
@@ -395,23 +376,23 @@
   <div class="modal-overlay" id="editExpenseModal">
     <div class="modal" style="max-width: 700px;">
       <div class="modal-header">
-        <h3 class="modal-title">Edit Expense Transaction</h3>
+        <h3 class="modal-title">Edit Expense</h3>
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Accountant *</label>
-            <div class="searchable-dropdown" data-items='[{"value":"john-doe","label":"John Doe"},{"value":"jane-smith","label":"Jane Smith"},{"value":"mike-brown","label":"Mike Brown"},{"value":"emily-wilson","label":"Emily Wilson"},{"value":"robert-lee","label":"Robert Lee"},{"value":"alice-chen","label":"Alice Chen"}]' data-selected="john-doe">
-              <input type="text" class="search-input" placeholder="Search accountants..." value="John Doe">
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-              <input type="hidden" name="accountant" value="john-doe">
-              <div class="dropdown-panel"></div>
-            </div>
-          </div>
-          <div class="form-group">
             <label class="form-label">Date *</label>
             <input type="date" class="form-control" value="2024-12-01">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Supplier *</label>
+            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"techhelp","label":"TechHelp Pro"},{"value":"printco","label":"PrintCo Ltd."}]' data-selected="staples">
+              <input type="text" class="search-input" placeholder="Search suppliers..." value="Staples Inc.">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier" value="staples">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">

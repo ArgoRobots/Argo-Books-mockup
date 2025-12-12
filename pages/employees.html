@@ -374,15 +374,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Department *</label>
-            <select class="form-control form-select">
-              <option>Select department</option>
-              <option>Finance</option>
-              <option>Operations</option>
-              <option>Sales</option>
-              <option>IT</option>
-              <option>HR</option>
-              <option>Customer Support</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"finance","label":"Finance"},{"value":"operations","label":"Operations"},{"value":"sales","label":"Sales"},{"value":"it","label":"IT"},{"value":"hr","label":"HR"},{"value":"customer-support","label":"Customer Support"},{"value":"marketing","label":"Marketing"},{"value":"engineering","label":"Engineering"},{"value":"logistics","label":"Logistics"},{"value":"quality-assurance","label":"Quality Assurance"}]'>
+              <input type="text" class="search-input" placeholder="Search departments...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="department">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -460,14 +457,12 @@
       <div class="modal-body">
         <div class="form-group">
           <label class="form-label">Department</label>
-          <select class="form-control form-select">
-            <option value="">All Departments</option>
-            <option>Finance</option>
-            <option>Operations</option>
-            <option>Sales</option>
-            <option>IT</option>
-            <option>HR</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Departments"},{"value":"finance","label":"Finance"},{"value":"operations","label":"Operations"},{"value":"sales","label":"Sales"},{"value":"it","label":"IT"},{"value":"hr","label":"HR"},{"value":"customer-support","label":"Customer Support"},{"value":"marketing","label":"Marketing"},{"value":"engineering","label":"Engineering"},{"value":"logistics","label":"Logistics"},{"value":"quality-assurance","label":"Quality Assurance"}]'>
+            <input type="text" class="search-input" placeholder="Search departments...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="department">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Status</label>
@@ -535,15 +530,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Department *</label>
-            <select class="form-control form-select">
-              <option>Select department</option>
-              <option selected>Finance</option>
-              <option>Operations</option>
-              <option>Sales</option>
-              <option>IT</option>
-              <option>HR</option>
-              <option>Customer Support</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"finance","label":"Finance"},{"value":"operations","label":"Operations"},{"value":"sales","label":"Sales"},{"value":"it","label":"IT"},{"value":"hr","label":"HR"},{"value":"customer-support","label":"Customer Support"},{"value":"marketing","label":"Marketing"},{"value":"engineering","label":"Engineering"},{"value":"logistics","label":"Logistics"},{"value":"quality-assurance","label":"Quality Assurance"}]' data-selected="finance">
+              <input type="text" class="search-input" placeholder="Search departments..." value="Finance">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="department" value="finance">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">

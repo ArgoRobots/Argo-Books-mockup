@@ -1023,26 +1023,21 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Category</label>
-            <select class="form-control form-select">
-              <option value="">All Categories</option>
-              <option>Office Supplies</option>
-              <option>Electronics</option>
-              <option>Raw Materials</option>
-              <option>Furniture</option>
-              <option>Maintenance</option>
-              <option>Safety Equipment</option>
-              <option>Packaging</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Categories"},{"value":"office-supplies","label":"Office Supplies"},{"value":"office-supplies-writing","label":"Office Supplies > Writing Supplies"},{"value":"office-supplies-paper","label":"Office Supplies > Paper Products"},{"value":"electronics","label":"Electronics"},{"value":"electronics-computers","label":"Electronics > Computers"},{"value":"electronics-peripherals","label":"Electronics > Peripherals"},{"value":"raw-materials","label":"Raw Materials"},{"value":"furniture","label":"Furniture"},{"value":"maintenance","label":"Maintenance"},{"value":"safety-equipment","label":"Safety Equipment"},{"value":"packaging","label":"Packaging"},{"value":"cleaning-supplies","label":"Cleaning Supplies"}]'>
+              <input type="text" class="search-input" placeholder="Search categories...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="category">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Location</label>
-            <select class="form-control form-select">
-              <option value="">All Locations</option>
-              <option>Main Warehouse</option>
-              <option>Secondary Storage</option>
-              <option>Factory Floor</option>
-              <option>Retail Store</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Locations"},{"value":"main-warehouse","label":"Main Warehouse"},{"value":"secondary-storage","label":"Secondary Storage"},{"value":"factory-floor","label":"Factory Floor"},{"value":"retail-store","label":"Retail Store"},{"value":"distribution-center","label":"Distribution Center"}]'>
+              <input type="text" class="search-input" placeholder="Search locations...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="location">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -1058,14 +1053,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Supplier</label>
-            <select class="form-control form-select">
-              <option value="">All Suppliers</option>
-              <option>Staples Inc.</option>
-              <option>Tech Distributors</option>
-              <option>CleanCo Services</option>
-              <option>Steel Works Inc.</option>
-              <option>SafetyFirst Inc.</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"","label":"All Suppliers"},{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"safetyfirst","label":"SafetyFirst Inc."},{"value":"office-depot","label":"Office Depot"},{"value":"amazon-business","label":"Amazon Business"}]'>
+              <input type="text" class="search-input" placeholder="Search suppliers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="supplier">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
         </div>
         <div class="form-row">

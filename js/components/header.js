@@ -4,13 +4,338 @@
 (function() {
   'use strict';
 
-  // Get page title from the document title (before " - Argo Books")
-  const fullTitle = document.title;
-
   // Detect if we're in the pages folder or root
   const isInPagesFolder = window.location.pathname.includes('/pages/');
   const pathPrefix = isInPagesFolder ? '' : 'pages/';
   const indexPath = isInPagesFolder ? '../index.html' : 'index.html';
+
+  // =====================================================
+  // UNIFIED DATA SOURCE - Used by both dropdown and modal
+  // =====================================================
+
+  const quickActionsData = {
+    // Quick Actions - Create/Add actions
+    quickActions: [
+      {
+        id: 'new-invoice',
+        title: 'Create New Invoice',
+        description: 'Create and send a new invoice to a customer',
+        icon: 'fas fa-file-invoice',
+        iconBg: 'var(--primary-light)',
+        iconColor: 'var(--primary-color)',
+        action: 'new-invoice'
+      },
+      {
+        id: 'new-expense',
+        title: 'Record Expense',
+        description: 'Add a new expense entry',
+        icon: 'fas fa-receipt',
+        iconBg: '#ffe6e6',
+        iconColor: 'var(--danger-color)',
+        action: 'new-expense'
+      },
+      {
+        id: 'scan-receipt',
+        title: 'Scan Receipt',
+        description: 'Scan and import receipt with OCR',
+        icon: 'fas fa-camera',
+        iconBg: '#fff3e6',
+        iconColor: '#f59e0b',
+        action: 'scan-receipt'
+      },
+      {
+        id: 'new-customer',
+        title: 'Add New Customer',
+        description: 'Create a new customer record',
+        icon: 'fas fa-user-plus',
+        iconBg: '#e6f7e6',
+        iconColor: 'var(--success-color)',
+        action: 'new-customer'
+      },
+      {
+        id: 'new-product',
+        title: 'Add New Product',
+        description: 'Add a product to your catalog',
+        icon: 'fas fa-cube',
+        iconBg: '#f0e6ff',
+        iconColor: 'var(--secondary-color)',
+        action: 'new-product'
+      },
+      {
+        id: 'new-supplier',
+        title: 'Add New Supplier',
+        description: 'Add a supplier to your vendor list',
+        icon: 'fas fa-truck',
+        iconBg: '#e6f0ff',
+        iconColor: '#3b82f6',
+        action: 'new-supplier'
+      },
+      {
+        id: 'new-employee',
+        title: 'Add New Employee',
+        description: 'Add an employee to your team',
+        icon: 'fas fa-user-tie',
+        iconBg: '#fce7f3',
+        iconColor: '#ec4899',
+        action: 'new-employee'
+      },
+      {
+        id: 'new-rental',
+        title: 'Create Rental Record',
+        description: 'Start a new rental transaction',
+        icon: 'fas fa-box',
+        iconBg: '#ecfdf5',
+        iconColor: '#10b981',
+        action: 'new-rental'
+      },
+      {
+        id: 'new-payment',
+        title: 'Record Payment',
+        description: 'Record a customer payment',
+        icon: 'fas fa-credit-card',
+        iconBg: '#eff6ff',
+        iconColor: '#3b82f6',
+        action: 'new-payment'
+      },
+      {
+        id: 'new-purchase-order',
+        title: 'Create Purchase Order',
+        description: 'Create a new purchase order for suppliers',
+        icon: 'fas fa-clipboard-list',
+        iconBg: '#fef3c7',
+        iconColor: '#d97706',
+        action: 'new-purchase-order'
+      },
+      {
+        id: 'stock-adjustment',
+        title: 'Adjust Stock',
+        description: 'Make inventory stock adjustments',
+        icon: 'fas fa-sliders-h',
+        iconBg: '#f3e8ff',
+        iconColor: '#9333ea',
+        action: 'stock-adjustment'
+      },
+      {
+        id: 'stock-transfer',
+        title: 'Transfer Stock',
+        description: 'Transfer inventory between locations',
+        icon: 'fas fa-exchange-alt',
+        iconBg: '#e0e7ff',
+        iconColor: '#6366f1',
+        action: 'stock-transfer'
+      },
+      {
+        id: 'record-return',
+        title: 'Record Return',
+        description: 'Process a customer return',
+        icon: 'fas fa-undo',
+        iconBg: '#fef2f2',
+        iconColor: '#ef4444',
+        action: 'record-return'
+      },
+      {
+        id: 'new-category',
+        title: 'Add Category',
+        description: 'Create a new product category',
+        icon: 'fas fa-tags',
+        iconBg: '#f0fdf4',
+        iconColor: '#22c55e',
+        action: 'new-category'
+      },
+      {
+        id: 'new-department',
+        title: 'Add Department',
+        description: 'Create a new department',
+        icon: 'fas fa-building',
+        iconBg: '#faf5ff',
+        iconColor: '#a855f7',
+        action: 'new-department'
+      },
+      {
+        id: 'new-location',
+        title: 'Add Location',
+        description: 'Add a new warehouse or store location',
+        icon: 'fas fa-map-marker-alt',
+        iconBg: '#fff7ed',
+        iconColor: '#ea580c',
+        action: 'new-location'
+      }
+    ],
+
+    // Navigation pages organized by section
+    navigation: {
+      main: [
+        { title: 'Dashboard', icon: 'fas fa-home', page: indexPath },
+        { title: 'Analytics', icon: 'fas fa-chart-line', page: `${pathPrefix}analytics.html` },
+        { title: 'Insights', icon: 'fas fa-lightbulb', page: `${pathPrefix}insights.html` },
+        { title: 'Reports', icon: 'fas fa-file-alt', page: `${pathPrefix}reports.html` }
+      ],
+      transactions: [
+        { title: 'Expenses', icon: 'fas fa-arrow-down', page: `${pathPrefix}expenses.html` },
+        { title: 'Revenue', icon: 'fas fa-arrow-up', page: `${pathPrefix}revenue.html` },
+        { title: 'Invoices', icon: 'fas fa-file-invoice', page: `${pathPrefix}invoices.html` },
+        { title: 'Payments', icon: 'fas fa-credit-card', page: `${pathPrefix}payments.html` }
+      ],
+      rentals: [
+        { title: 'Rental Inventory', icon: 'fas fa-box', page: `${pathPrefix}rentals.html` },
+        { title: 'Rental Records', icon: 'fas fa-clipboard-list', page: `${pathPrefix}rental-records.html` }
+      ],
+      management: [
+        { title: 'Customers', icon: 'fas fa-users', page: `${pathPrefix}customers.html` },
+        { title: 'Products/Services', icon: 'fas fa-cube', page: `${pathPrefix}products.html` },
+        { title: 'Categories', icon: 'fas fa-tags', page: `${pathPrefix}categories.html` },
+        { title: 'Suppliers', icon: 'fas fa-truck', page: `${pathPrefix}suppliers.html` }
+      ],
+      inventory: [
+        { title: 'Stock Levels', icon: 'fas fa-warehouse', page: `${pathPrefix}inventory.html` },
+        { title: 'Adjustments', icon: 'fas fa-sliders-h', page: `${pathPrefix}stock-adjustments.html` },
+        { title: 'Locations', icon: 'fas fa-map-marker-alt', page: `${pathPrefix}locations.html` },
+        { title: 'Transfers', icon: 'fas fa-exchange-alt', page: `${pathPrefix}stock-transfers.html` },
+        { title: 'Purchase Orders', icon: 'fas fa-clipboard-list', page: `${pathPrefix}purchase-orders.html` }
+      ],
+      team: [
+        { title: 'Employees', icon: 'fas fa-user-tie', page: `${pathPrefix}employees.html` },
+        { title: 'Departments', icon: 'fas fa-building', page: `${pathPrefix}departments.html` },
+        { title: 'Accountants', icon: 'fas fa-calculator', page: `${pathPrefix}accountants.html` }
+      ],
+      tracking: [
+        { title: 'Returns', icon: 'fas fa-undo', page: `${pathPrefix}returns.html` },
+        { title: 'Lost/Damaged', icon: 'fas fa-exclamation-triangle', page: `${pathPrefix}lost-products.html` },
+        { title: 'Receipts', icon: 'fas fa-receipt', page: `${pathPrefix}receipts.html` }
+      ]
+    },
+
+    // Utility/Settings actions
+    utilities: [
+      {
+        id: 'settings',
+        title: 'Settings',
+        description: 'Configure application settings',
+        icon: 'fas fa-cog',
+        action: 'open-settings'
+      },
+      {
+        id: 'help',
+        title: 'Help & Support',
+        description: 'Get help and view documentation',
+        icon: 'fas fa-question-circle',
+        action: 'open-help'
+      },
+      {
+        id: 'notifications',
+        title: 'Notifications',
+        description: 'View and manage notifications',
+        icon: 'fas fa-bell',
+        action: 'open-notifications'
+      },
+      {
+        id: 'export-data',
+        title: 'Export Data',
+        description: 'Export your data to CSV or PDF',
+        icon: 'fas fa-download',
+        action: 'export-data'
+      },
+      {
+        id: 'import-data',
+        title: 'Import Data',
+        description: 'Import data from files',
+        icon: 'fas fa-upload',
+        action: 'import-data'
+      },
+      {
+        id: 'backup',
+        title: 'Backup Data',
+        description: 'Create a backup of your data',
+        icon: 'fas fa-cloud-upload-alt',
+        action: 'backup-data'
+      }
+    ]
+  };
+
+  // =====================================================
+  // HTML Generation Functions
+  // =====================================================
+
+  function generateQuickActionHTML(action) {
+    return `
+      <div class="command-item" data-action="${action.action}">
+        <div class="command-item-icon" style="background: ${action.iconBg}; color: ${action.iconColor};">
+          <i class="${action.icon}"></i>
+        </div>
+        <div class="command-item-content">
+          <div class="command-item-title">${action.title}</div>
+          <div class="command-item-desc">${action.description}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function generateNavItemHTML(item) {
+    return `
+      <div class="command-item" data-page="${item.page}">
+        <div class="command-item-icon"><i class="${item.icon}"></i></div>
+        <div class="command-item-content">
+          <div class="command-item-title">${item.title}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function generateUtilityHTML(utility) {
+    return `
+      <div class="command-item" data-action="${utility.action}">
+        <div class="command-item-icon">
+          <i class="${utility.icon}"></i>
+        </div>
+        <div class="command-item-content">
+          <div class="command-item-title">${utility.title}</div>
+          <div class="command-item-desc">${utility.description}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function generateCommandPaletteBody() {
+    // Quick Actions section (show top 6 for dropdown, all for modal)
+    const quickActionsHTML = quickActionsData.quickActions
+      .map(action => generateQuickActionHTML(action))
+      .join('');
+
+    // Navigation sections - flatten all pages
+    const allNavItems = [
+      ...quickActionsData.navigation.main,
+      ...quickActionsData.navigation.transactions,
+      ...quickActionsData.navigation.rentals,
+      ...quickActionsData.navigation.management,
+      ...quickActionsData.navigation.inventory,
+      ...quickActionsData.navigation.team,
+      ...quickActionsData.navigation.tracking
+    ];
+    const navItemsHTML = allNavItems.map(item => generateNavItemHTML(item)).join('');
+
+    // Utilities section
+    const utilitiesHTML = quickActionsData.utilities
+      .map(utility => generateUtilityHTML(utility))
+      .join('');
+
+    return `
+      <div class="command-section">
+        <div class="command-section-title">Quick Actions</div>
+        ${quickActionsHTML}
+      </div>
+      <div class="command-section">
+        <div class="command-section-title">Go To</div>
+        ${navItemsHTML}
+      </div>
+      <div class="command-section">
+        <div class="command-section-title">Tools & Settings</div>
+        ${utilitiesHTML}
+      </div>
+    `;
+  }
+
+  // Generate the same content for both dropdown and modal
+  const commandPaletteBodyHTML = generateCommandPaletteBody();
 
   const headerHTML = `
       <header class="header">
@@ -39,84 +364,7 @@
             <!-- Dropdown Panel (appears under searchbar on click) -->
             <div class="search-dropdown" id="searchDropdown">
               <div class="search-dropdown-body">
-                <div class="command-section">
-                  <div class="command-section-title">Quick Actions</div>
-                  <div class="command-item" data-action="new-invoice">
-                    <div class="command-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
-                      <i class="fas fa-file-invoice"></i>
-                    </div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Create New Invoice</div>
-                      <div class="command-item-desc">Create and send a new invoice to a customer</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-action="new-expense">
-                    <div class="command-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
-                      <i class="fas fa-receipt"></i>
-                    </div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Record Expense</div>
-                      <div class="command-item-desc">Add a new expense entry</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-action="new-customer">
-                    <div class="command-item-icon" style="background: #e6f7e6; color: var(--success-color);">
-                      <i class="fas fa-user-plus"></i>
-                    </div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Add New Customer</div>
-                      <div class="command-item-desc">Create a new customer record</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-action="new-product">
-                    <div class="command-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
-                      <i class="fas fa-cube"></i>
-                    </div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Add New Product</div>
-                      <div class="command-item-desc">Add a product to your catalog</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="command-section">
-                  <div class="command-section-title">Go To</div>
-                  <div class="command-item" data-page="${indexPath}">
-                    <div class="command-item-icon"><i class="fas fa-home"></i></div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Dashboard</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-page="${pathPrefix}invoices.html">
-                    <div class="command-item-icon"><i class="fas fa-file-invoice"></i></div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Invoices</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-page="${pathPrefix}customers.html">
-                    <div class="command-item-icon"><i class="fas fa-users"></i></div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Customers</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-page="${pathPrefix}expenses.html">
-                    <div class="command-item-icon"><i class="fas fa-arrow-down"></i></div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Expenses</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-page="${pathPrefix}reports.html">
-                    <div class="command-item-icon"><i class="fas fa-file-alt"></i></div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Reports</div>
-                    </div>
-                  </div>
-                  <div class="command-item" data-page="${pathPrefix}settings.html">
-                    <div class="command-item-icon"><i class="fas fa-cog"></i></div>
-                    <div class="command-item-content">
-                      <div class="command-item-title">Settings</div>
-                    </div>
-                  </div>
-                </div>
+                ${commandPaletteBodyHTML}
               </div>
             </div>
           </div>
@@ -155,84 +403,7 @@
             <span class="command-palette-esc">ESC</span>
           </div>
           <div class="command-palette-body">
-            <div class="command-section">
-              <div class="command-section-title">Quick Actions</div>
-              <div class="command-item" data-action="new-invoice">
-                <div class="command-item-icon" style="background: var(--primary-light); color: var(--primary-color);">
-                  <i class="fas fa-file-invoice"></i>
-                </div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Create New Invoice</div>
-                  <div class="command-item-desc">Create and send a new invoice to a customer</div>
-                </div>
-              </div>
-              <div class="command-item" data-action="new-expense">
-                <div class="command-item-icon" style="background: #ffe6e6; color: var(--danger-color);">
-                  <i class="fas fa-receipt"></i>
-                </div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Record Expense</div>
-                  <div class="command-item-desc">Add a new expense entry</div>
-                </div>
-              </div>
-              <div class="command-item" data-action="new-customer">
-                <div class="command-item-icon" style="background: #e6f7e6; color: var(--success-color);">
-                  <i class="fas fa-user-plus"></i>
-                </div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Add New Customer</div>
-                  <div class="command-item-desc">Create a new customer record</div>
-                </div>
-              </div>
-              <div class="command-item" data-action="new-product">
-                <div class="command-item-icon" style="background: #f0e6ff; color: var(--secondary-color);">
-                  <i class="fas fa-cube"></i>
-                </div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Add New Product</div>
-                  <div class="command-item-desc">Add a product to your catalog</div>
-                </div>
-              </div>
-            </div>
-            <div class="command-section">
-              <div class="command-section-title">Go To</div>
-              <div class="command-item" data-page="${indexPath}">
-                <div class="command-item-icon"><i class="fas fa-home"></i></div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Dashboard</div>
-                </div>
-              </div>
-              <div class="command-item" data-page="${pathPrefix}invoices.html">
-                <div class="command-item-icon"><i class="fas fa-file-invoice"></i></div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Invoices</div>
-                </div>
-              </div>
-              <div class="command-item" data-page="${pathPrefix}customers.html">
-                <div class="command-item-icon"><i class="fas fa-users"></i></div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Customers</div>
-                </div>
-              </div>
-              <div class="command-item" data-page="${pathPrefix}expenses.html">
-                <div class="command-item-icon"><i class="fas fa-arrow-down"></i></div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Expenses</div>
-                </div>
-              </div>
-              <div class="command-item" data-page="${pathPrefix}reports.html">
-                <div class="command-item-icon"><i class="fas fa-file-alt"></i></div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Reports</div>
-                </div>
-              </div>
-              <div class="command-item" data-page="${pathPrefix}settings.html">
-                <div class="command-item-icon"><i class="fas fa-cog"></i></div>
-                <div class="command-item-content">
-                  <div class="command-item-title">Settings</div>
-                </div>
-              </div>
-            </div>
+            ${commandPaletteBodyHTML}
           </div>
         </div>
       </div>
@@ -310,7 +481,8 @@
       visibility: hidden;
       transition: var(--transition);
       z-index: 1000;
-      min-width: 400px;
+      min-width: 450px;
+      max-width: 550px;
     }
     .search-dropdown.active {
       opacity: 1;
@@ -318,7 +490,7 @@
       transform: translateX(-50%) translateY(0);
     }
     .search-dropdown-body {
-      max-height: 400px;
+      max-height: 500px;
       overflow-y: auto;
       padding: 8px 0;
     }
@@ -348,7 +520,7 @@
       background: var(--white);
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 600px;
+      max-width: 650px;
       box-shadow: var(--shadow-lg);
       overflow: hidden;
       transform: translateY(-20px);
@@ -387,7 +559,7 @@
       font-weight: 500;
     }
     .command-palette-body {
-      max-height: 400px;
+      max-height: 500px;
       overflow-y: auto;
       padding: 12px 0;
     }
@@ -425,9 +597,11 @@
       background: var(--gray-100);
       color: var(--text-secondary);
       font-size: 14px;
+      flex-shrink: 0;
     }
     .command-item-content {
       flex: 1;
+      min-width: 0;
     }
     .command-item-title {
       font-weight: 500;
@@ -436,6 +610,14 @@
     .command-item-desc {
       font-size: 12px;
       color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Hide sections with no visible items */
+    .command-section:has(.command-item[style*="display: none"]):not(:has(.command-item:not([style*="display: none"]))) {
+      display: none;
     }
   </style>
   `;
@@ -500,6 +682,9 @@
       // Reset filter
       dropdown.querySelectorAll('.command-item').forEach(function(item) {
         item.style.display = 'flex';
+      });
+      dropdown.querySelectorAll('.command-section').forEach(function(section) {
+        section.style.display = 'block';
       });
     }
 
@@ -572,6 +757,9 @@
         palette.querySelectorAll('.command-item').forEach(function(item) {
           item.style.display = 'flex';
         });
+        palette.querySelectorAll('.command-section').forEach(function(section) {
+          section.style.display = 'block';
+        });
       }
     }
 
@@ -581,35 +769,114 @@
   }
 
   function filterItems(container, query) {
-    container.querySelectorAll('.command-item').forEach(function(item) {
-      const title = item.querySelector('.command-item-title').textContent.toLowerCase();
-      const desc = item.querySelector('.command-item-desc');
-      const descText = desc ? desc.textContent.toLowerCase() : '';
-      if (title.includes(query) || descText.includes(query)) {
-        item.style.display = 'flex';
-      } else {
-        item.style.display = 'none';
-      }
+    container.querySelectorAll('.command-section').forEach(function(section) {
+      let hasVisibleItems = false;
+
+      section.querySelectorAll('.command-item').forEach(function(item) {
+        const title = item.querySelector('.command-item-title').textContent.toLowerCase();
+        const desc = item.querySelector('.command-item-desc');
+        const descText = desc ? desc.textContent.toLowerCase() : '';
+
+        if (title.includes(query) || descText.includes(query)) {
+          item.style.display = 'flex';
+          hasVisibleItems = true;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Hide section if no visible items
+      section.style.display = hasVisibleItems ? 'block' : 'none';
     });
   }
 
   function handleAction(action) {
-    // For mockup purposes, navigate to relevant pages
+    // For mockup purposes, navigate to relevant pages or trigger UI elements
     const isInPagesFolder = window.location.pathname.includes('/pages/');
     const prefix = isInPagesFolder ? '' : 'pages/';
 
     switch (action) {
+      // Create/Add actions - navigate to relevant pages
       case 'new-invoice':
         window.location.href = prefix + 'invoices.html';
         break;
       case 'new-expense':
         window.location.href = prefix + 'expenses.html';
         break;
+      case 'scan-receipt':
+        window.location.href = prefix + 'receipts.html';
+        break;
       case 'new-customer':
         window.location.href = prefix + 'customers.html';
         break;
       case 'new-product':
         window.location.href = prefix + 'products.html';
+        break;
+      case 'new-supplier':
+        window.location.href = prefix + 'suppliers.html';
+        break;
+      case 'new-employee':
+        window.location.href = prefix + 'employees.html';
+        break;
+      case 'new-rental':
+        window.location.href = prefix + 'rental-records.html';
+        break;
+      case 'new-payment':
+        window.location.href = prefix + 'payments.html';
+        break;
+      case 'new-purchase-order':
+        window.location.href = prefix + 'purchase-orders.html';
+        break;
+      case 'stock-adjustment':
+        window.location.href = prefix + 'stock-adjustments.html';
+        break;
+      case 'stock-transfer':
+        window.location.href = prefix + 'stock-transfers.html';
+        break;
+      case 'record-return':
+        window.location.href = prefix + 'returns.html';
+        break;
+      case 'new-category':
+        window.location.href = prefix + 'categories.html';
+        break;
+      case 'new-department':
+        window.location.href = prefix + 'departments.html';
+        break;
+      case 'new-location':
+        window.location.href = prefix + 'locations.html';
+        break;
+
+      // Utility actions - trigger UI elements
+      case 'open-settings':
+        // Trigger help panel with settings tab if available
+        const helpIcon = document.getElementById('help-icon');
+        if (helpIcon) {
+          helpIcon.click();
+          // Try to switch to settings tab if help panel has tabs
+          setTimeout(() => {
+            const settingsTab = document.querySelector('[data-tab="settings"], .settings-tab');
+            if (settingsTab) settingsTab.click();
+          }, 100);
+        }
+        break;
+      case 'open-help':
+        const helpBtn = document.getElementById('help-icon');
+        if (helpBtn) helpBtn.click();
+        break;
+      case 'open-notifications':
+        const notifBtn = document.getElementById('notification-icon');
+        if (notifBtn) notifBtn.click();
+        break;
+      case 'export-data':
+        window.location.href = prefix + 'reports.html';
+        break;
+      case 'import-data':
+        // Show import modal or navigate to import page
+        alert('Import data feature coming soon!');
+        break;
+      case 'backup-data':
+        // Show backup modal or trigger backup
+        alert('Backup feature coming soon!');
         break;
     }
   }

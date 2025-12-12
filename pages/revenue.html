@@ -71,7 +71,7 @@
               </button>
               <button class="btn btn-primary" data-modal="addRevenueModal">
                 <i class="fas fa-plus"></i>
-                Record Sale
+                Add Revenue
               </button>
             </div>
           </div>
@@ -245,43 +245,34 @@
   <div class="modal-overlay" id="addRevenueModal">
     <div class="modal" style="max-width: 700px;">
       <div class="modal-header">
-        <h3 class="modal-title">Record New Sale</h3>
+        <h3 class="modal-title">Add Revenue</h3>
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Accountant *</label>
-            <select class="form-control form-select">
-              <option>Select accountant</option>
-              <option>John Doe</option>
-              <option>Jane Smith</option>
-              <option>Mike Brown</option>
-            </select>
-          </div>
-          <div class="form-group">
             <label class="form-label">Date *</label>
             <input type="date" class="form-control">
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Customer *</label>
-          <select class="form-control form-select">
-            <option>Select customer</option>
-            <option>Acme Corp</option>
-            <option>TechStart Inc</option>
-            <option>Global Trade</option>
-          </select>
+          <div class="form-group">
+            <label class="form-label">Customer *</label>
+            <div class="searchable-dropdown" data-items='[{"value":"acme-corp","label":"Acme Corp"},{"value":"techstart-inc","label":"TechStart Inc"},{"value":"global-trade","label":"Global Trade"},{"value":"local-shop","label":"Local Shop"},{"value":"metro-services","label":"Metro Services"},{"value":"smart-co","label":"Smart Co."}]'>
+              <input type="text" class="search-input" placeholder="Search customers...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="customer">
+              <div class="dropdown-panel"></div>
+            </div>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Product *</label>
-            <select class="form-control form-select">
-              <option>Select product</option>
-              <option>Premium Widget</option>
-              <option>Consulting Service</option>
-              <option>Software License</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"premium-widget","label":"Premium Widget"},{"value":"widget-pro","label":"Widget Pro"},{"value":"standard-widget","label":"Standard Widget"},{"value":"consulting-service","label":"Consulting Service"},{"value":"software-license","label":"Software License"},{"value":"annual-support","label":"Annual Support"},{"value":"training-package","label":"Training Package"}]'>
+              <input type="text" class="search-input" placeholder="Search products...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="product">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Destination Country</label>
@@ -325,7 +316,7 @@
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-outline">Add Another Item</button>
-        <button class="btn btn-primary">Save Sale</button>
+        <button class="btn btn-primary">Add Revenue</button>
       </div>
     </div>
   </div>
@@ -362,22 +353,12 @@
         </div>
         <div class="form-group">
           <label class="form-label">Category</label>
-          <select class="form-control form-select">
-            <option value="">All Categories</option>
-            <option>Widgets</option>
-            <option>Consulting</option>
-            <option>Software</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Accountant</label>
-          <select class="form-control form-select">
-            <option value="">All Accountants</option>
-            <option>John Doe</option>
-            <option>Jane Smith</option>
-            <option>Mike Brown</option>
-            <option>Emily Wilson</option>
-          </select>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Categories"},{"value":"widgets","label":"Widgets"},{"value":"widgets-premium","label":"Widgets > Premium Widgets"},{"value":"widgets-standard","label":"Widgets > Standard Widgets"},{"value":"consulting","label":"Consulting"},{"value":"software","label":"Software"}]'>
+            <input type="text" class="search-input" placeholder="Search categories...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="category">
+            <div class="dropdown-panel"></div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Status</label>
@@ -411,43 +392,34 @@
   <div class="modal-overlay" id="editRevenueModal">
     <div class="modal" style="max-width: 700px;">
       <div class="modal-header">
-        <h3 class="modal-title">Edit Sale Transaction</h3>
+        <h3 class="modal-title">Edit Revenue</h3>
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Accountant *</label>
-            <select class="form-control form-select">
-              <option>Select accountant</option>
-              <option selected>John Doe</option>
-              <option>Jane Smith</option>
-              <option>Mike Brown</option>
-            </select>
-          </div>
-          <div class="form-group">
             <label class="form-label">Date *</label>
             <input type="date" class="form-control" value="2024-12-01">
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Customer *</label>
-          <select class="form-control form-select">
-            <option>Select customer</option>
-            <option selected>Acme Corp</option>
-            <option>TechStart Inc</option>
-            <option>Global Trade</option>
-          </select>
+          <div class="form-group">
+            <label class="form-label">Customer *</label>
+            <div class="searchable-dropdown" data-items='[{"value":"acme-corp","label":"Acme Corp"},{"value":"techstart-inc","label":"TechStart Inc"},{"value":"global-trade","label":"Global Trade"},{"value":"local-shop","label":"Local Shop"},{"value":"metro-services","label":"Metro Services"},{"value":"smart-co","label":"Smart Co."}]' data-selected="acme-corp">
+              <input type="text" class="search-input" placeholder="Search customers..." value="Acme Corp">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="customer" value="acme-corp">
+              <div class="dropdown-panel"></div>
+            </div>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Product *</label>
-            <select class="form-control form-select">
-              <option>Select product</option>
-              <option selected>Premium Widget</option>
-              <option>Consulting Service</option>
-              <option>Software License</option>
-            </select>
+            <div class="searchable-dropdown" data-items='[{"value":"premium-widget","label":"Premium Widget"},{"value":"widget-pro","label":"Widget Pro"},{"value":"standard-widget","label":"Standard Widget"},{"value":"consulting-service","label":"Consulting Service"},{"value":"software-license","label":"Software License"},{"value":"annual-support","label":"Annual Support"},{"value":"training-package","label":"Training Package"}]' data-selected="premium-widget">
+              <input type="text" class="search-input" placeholder="Search products..." value="Premium Widget">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="product" value="premium-widget">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">Destination Country</label>
