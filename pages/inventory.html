@@ -694,10 +694,6 @@
             <input type="text" class="form-control" placeholder="e.g., SKU-001">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Description</label>
-          <textarea class="form-control" placeholder="Enter product description" rows="2"></textarea>
-        </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Location *</label>
@@ -709,31 +705,19 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Unit of Measure</label>
-            <select class="form-control form-select">
-              <option>Each</option>
-              <option>Box</option>
-              <option>Pack</option>
-              <option>Carton</option>
-              <option>Pallet</option>
-              <option>Kg</option>
-              <option>Liter</option>
-            </select>
+            <label class="form-label">Initial Quantity *</label>
+            <input type="number" class="form-control" placeholder="0" min="0">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Initial Quantity *</label>
-            <input type="number" class="form-control" placeholder="0" min="0">
-          </div>
-          <div class="form-group">
             <label class="form-label">Reorder Point</label>
             <input type="number" class="form-control" placeholder="Minimum stock level" min="0">
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Overstock Threshold</label>
-          <input type="number" class="form-control" placeholder="Maximum stock level" min="0">
+          <div class="form-group">
+            <label class="form-label">Overstock Threshold</label>
+            <input type="number" class="form-control" placeholder="Maximum stock level" min="0">
+          </div>
         </div>
       </div>
       <div class="modal-footer">
