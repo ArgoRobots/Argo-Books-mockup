@@ -747,9 +747,8 @@
                 <th style="text-align: center;">Hours</th>
                 <th style="text-align: center;">Bonus</th>
                 <th style="text-align: center;">Tax %</th>
+                <th style="text-align: center;">Ded %</th>
                 <th style="text-align: right;">Gross Pay</th>
-                <th style="text-align: right;">Taxes</th>
-                <th style="text-align: right;">Deductions</th>
                 <th style="text-align: right;">Net Pay</th>
               </tr>
             </thead>
@@ -758,88 +757,80 @@
                 <td>John Doe</td>
                 <td><span class="badge badge-info">Salary</span></td>
                 <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$6,250.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$1,406.25</td>
-                <td style="text-align: right; color: var(--danger-color);">-$312.50</td>
                 <td style="text-align: right;" class="fw-600">$4,531.25</td>
               </tr>
               <tr>
                 <td>Jane Smith</td>
                 <td><span class="badge badge-info">Salary</span></td>
                 <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$4,250.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$956.25</td>
-                <td style="text-align: right; color: var(--danger-color);">-$212.50</td>
                 <td style="text-align: right;" class="fw-600">$3,081.25</td>
               </tr>
               <tr>
                 <td>Emily Wilson</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$3,900.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$877.50</td>
-                <td style="text-align: right; color: var(--danger-color);">-$195.00</td>
                 <td style="text-align: right;" class="fw-600">$2,827.50</td>
               </tr>
               <tr>
                 <td>Robert Lee</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$3,250.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$731.25</td>
-                <td style="text-align: right; color: var(--danger-color);">-$162.50</td>
                 <td style="text-align: right;" class="fw-600">$2,356.25</td>
               </tr>
               <tr>
                 <td>Alice Chen</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$2,400.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$540.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$120.00</td>
                 <td style="text-align: right;" class="fw-600">$1,740.00</td>
               </tr>
               <tr>
                 <td>Mike Brown</td>
                 <td><span class="badge badge-info">Salary</span></td>
                 <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$3,800.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$855.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$190.00</td>
                 <td style="text-align: right;" class="fw-600">$2,755.00</td>
               </tr>
               <tr>
                 <td>Sarah Johnson</td>
                 <td><span class="badge badge-info">Salary</span></td>
                 <td style="text-align: center;">—</td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$4,100.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$922.50</td>
-                <td style="text-align: right; color: var(--danger-color);">-$205.00</td>
                 <td style="text-align: right;" class="fw-600">$2,972.50</td>
               </tr>
               <tr>
                 <td>David Kim</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 80px; padding: 4px 8px; text-align: center;"></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$3,500.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$787.50</td>
-                <td style="text-align: right; color: var(--danger-color);">-$175.00</td>
                 <td style="text-align: right;" class="fw-600">$2,537.50</td>
               </tr>
             </tbody>
@@ -928,9 +919,8 @@
                 <th style="text-align: center;">Hours</th>
                 <th style="text-align: right;">Bonus</th>
                 <th style="text-align: center;">Tax %</th>
+                <th style="text-align: center;">Ded %</th>
                 <th style="text-align: right;">Gross Pay</th>
-                <th style="text-align: right;">Taxes</th>
-                <th style="text-align: right;">Deductions</th>
                 <th style="text-align: right;">Net Pay</th>
               </tr>
             </thead>
@@ -941,9 +931,8 @@
                 <td style="text-align: center;">—</td>
                 <td style="text-align: right;">$500.00</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$6,250.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$1,406.25</td>
-                <td style="text-align: right; color: var(--danger-color);">-$312.50</td>
                 <td style="text-align: right;" class="fw-600">$4,531.25</td>
               </tr>
               <tr>
@@ -952,9 +941,8 @@
                 <td style="text-align: center;">—</td>
                 <td style="text-align: right;">—</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$4,250.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$956.25</td>
-                <td style="text-align: right; color: var(--danger-color);">-$212.50</td>
                 <td style="text-align: right;" class="fw-600">$3,081.25</td>
               </tr>
               <tr>
@@ -963,9 +951,8 @@
                 <td style="text-align: center;">80</td>
                 <td style="text-align: right;">—</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$3,900.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$877.50</td>
-                <td style="text-align: right; color: var(--danger-color);">-$195.00</td>
                 <td style="text-align: right;" class="fw-600">$2,827.50</td>
               </tr>
               <tr>
@@ -974,9 +961,8 @@
                 <td style="text-align: center;">80</td>
                 <td style="text-align: right;">$250.00</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$3,250.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$731.25</td>
-                <td style="text-align: right; color: var(--danger-color);">-$162.50</td>
                 <td style="text-align: right;" class="fw-600">$2,356.25</td>
               </tr>
               <tr>
@@ -985,9 +971,8 @@
                 <td style="text-align: center;">60</td>
                 <td style="text-align: right;">—</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$2,400.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$540.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$120.00</td>
                 <td style="text-align: right;" class="fw-600">$1,740.00</td>
               </tr>
               <tr>
@@ -996,9 +981,8 @@
                 <td style="text-align: center;">—</td>
                 <td style="text-align: right;">—</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$3,800.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$855.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$190.00</td>
                 <td style="text-align: right;" class="fw-600">$2,755.00</td>
               </tr>
               <tr>
@@ -1007,9 +991,8 @@
                 <td style="text-align: center;">—</td>
                 <td style="text-align: right;">—</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$4,100.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$922.50</td>
-                <td style="text-align: right; color: var(--danger-color);">-$205.00</td>
                 <td style="text-align: right;" class="fw-600">$2,972.50</td>
               </tr>
               <tr>
@@ -1018,9 +1001,8 @@
                 <td style="text-align: center;">88</td>
                 <td style="text-align: right;">—</td>
                 <td style="text-align: center;">22.5%</td>
+                <td style="text-align: center;">5%</td>
                 <td style="text-align: right;">$3,500.00</td>
-                <td style="text-align: right; color: var(--danger-color);">-$787.50</td>
-                <td style="text-align: right; color: var(--danger-color);">-$175.00</td>
                 <td style="text-align: right;" class="fw-600">$2,537.50</td>
               </tr>
             </tbody>
@@ -1032,14 +1014,6 @@
             <div class="d-flex justify-between align-center mb-2">
               <span>Total Gross Pay (28 employees)</span>
               <span class="fw-600">$98,500.00</span>
-            </div>
-            <div class="d-flex justify-between align-center mb-2">
-              <span>Total Taxes</span>
-              <span class="fw-600" style="color: var(--danger-color);">-$22,160.25</span>
-            </div>
-            <div class="d-flex justify-between align-center mb-2">
-              <span>Total Deductions</span>
-              <span class="fw-600" style="color: var(--danger-color);">-$5,075.00</span>
             </div>
             <div class="d-flex justify-between align-center" style="padding-top: 8px; border-top: 1px solid var(--gray-300);">
               <span class="fw-600">Total Net Pay</span>
