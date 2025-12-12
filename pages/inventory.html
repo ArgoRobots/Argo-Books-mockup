@@ -681,32 +681,20 @@
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Product Name *</label>
-            <input type="text" class="form-control" placeholder="Enter product name">
+            <label class="form-label">Product *</label>
+            <div class="searchable-dropdown" data-items='[{"value":"office-supplies-bundle","label":"Office Supplies Bundle"},{"value":"computer-monitor-24","label":"Computer Monitor 24\""},{"value":"wireless-keyboard","label":"Wireless Keyboard"},{"value":"steel-raw-material","label":"Steel Raw Material"},{"value":"printer-paper-a4","label":"Printer Paper A4"},{"value":"usb-c-cables","label":"USB-C Cables (6ft)"},{"value":"desk-chair-executive","label":"Desk Chair - Executive"},{"value":"cleaning-supplies-kit","label":"Cleaning Supplies Kit"},{"value":"printer-ink-cartridge","label":"Printer Ink Cartridge"},{"value":"safety-gloves","label":"Safety Gloves"}]'>
+              <input type="text" class="search-input" placeholder="Search products...">
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+              <input type="hidden" name="product">
+              <div class="dropdown-panel"></div>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">SKU *</label>
             <input type="text" class="form-control" placeholder="e.g., SKU-001">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Description</label>
-          <textarea class="form-control" placeholder="Enter product description" rows="2"></textarea>
-        </div>
         <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Category *</label>
-            <select class="form-control form-select">
-              <option value="">Select category</option>
-              <option>Office Supplies</option>
-              <option>Electronics</option>
-              <option>Raw Materials</option>
-              <option>Furniture</option>
-              <option>Maintenance</option>
-              <option>Safety Equipment</option>
-              <option>Packaging</option>
-            </select>
-          </div>
           <div class="form-group">
             <label class="form-label">Location *</label>
             <div class="searchable-dropdown" data-items='[{"value":"main-warehouse","label":"Main Warehouse"},{"value":"secondary-storage","label":"Secondary Storage"},{"value":"factory-floor","label":"Factory Floor"},{"value":"retail-store","label":"Retail Store"}]'>
@@ -716,41 +704,9 @@
               <div class="dropdown-panel"></div>
             </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Supplier</label>
-            <div class="searchable-dropdown" data-items='[{"value":"staples","label":"Staples Inc."},{"value":"tech-dist","label":"Tech Distributors"},{"value":"cleanco","label":"CleanCo Services"},{"value":"steel-works","label":"Steel Works Inc."},{"value":"safetyfirst","label":"SafetyFirst Inc."}]'>
-              <input type="text" class="search-input" placeholder="Search suppliers...">
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-              <input type="hidden" name="supplier">
-              <div class="dropdown-panel"></div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Unit of Measure</label>
-            <select class="form-control form-select">
-              <option>Each</option>
-              <option>Box</option>
-              <option>Pack</option>
-              <option>Carton</option>
-              <option>Pallet</option>
-              <option>Kg</option>
-              <option>Liter</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Initial Quantity *</label>
             <input type="number" class="form-control" placeholder="0" min="0">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Unit Cost</label>
-            <div class="input-group">
-              <span class="input-prefix">$</span>
-              <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
-            </div>
           </div>
         </div>
         <div class="form-row">
@@ -1020,6 +976,15 @@
         <button class="modal-close"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Product</label>
+          <div class="searchable-dropdown" data-items='[{"value":"","label":"All Products"},{"value":"office-supplies-bundle","label":"Office Supplies Bundle"},{"value":"computer-monitor-24","label":"Computer Monitor 24\""},{"value":"wireless-keyboard","label":"Wireless Keyboard"},{"value":"steel-raw-material","label":"Steel Raw Material"},{"value":"printer-paper-a4","label":"Printer Paper A4"},{"value":"usb-c-cables","label":"USB-C Cables (6ft)"},{"value":"desk-chair-executive","label":"Desk Chair - Executive"},{"value":"cleaning-supplies-kit","label":"Cleaning Supplies Kit"},{"value":"printer-ink-cartridge","label":"Printer Ink Cartridge"},{"value":"safety-gloves","label":"Safety Gloves"},{"value":"stapler-heavy-duty","label":"Stapler - Heavy Duty"},{"value":"packing-tape","label":"Packing Tape"}]'>
+            <input type="text" class="search-input" placeholder="Search products...">
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+            <input type="hidden" name="product">
+            <div class="dropdown-panel"></div>
+          </div>
+        </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Category</label>

@@ -78,13 +78,13 @@
           </div>
           <div class="card-body">
             <div class="grid grid-4">
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-image"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#EXP-001</div>
                       <div class="text-muted fs-sm">Dec 1, 2024</div>
@@ -97,13 +97,13 @@
                 </div>
               </div>
 
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-pdf"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#REV-001</div>
                       <div class="text-muted fs-sm">Dec 1, 2024</div>
@@ -116,13 +116,13 @@
                 </div>
               </div>
 
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-image"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#EXP-002</div>
                       <div class="text-muted fs-sm">Dec 1, 2024</div>
@@ -135,13 +135,13 @@
                 </div>
               </div>
 
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-image"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#REV-003</div>
                       <div class="text-muted fs-sm">Nov 30, 2024</div>
@@ -154,13 +154,13 @@
                 </div>
               </div>
 
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-pdf"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#EXP-004</div>
                       <div class="text-muted fs-sm">Nov 29, 2024</div>
@@ -173,13 +173,13 @@
                 </div>
               </div>
 
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-image"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#REV-004</div>
                       <div class="text-muted fs-sm">Nov 29, 2024</div>
@@ -192,13 +192,13 @@
                 </div>
               </div>
 
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-image"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#EXP-006</div>
                       <div class="text-muted fs-sm">Nov 27, 2024</div>
@@ -211,13 +211,13 @@
                 </div>
               </div>
 
-              <div class="card receipt-card">
+              <div class="card receipt-card" data-modal="receiptPreviewModal" style="cursor: pointer;">
                 <div class="receipt-card-preview">
                   <i class="fas fa-file-pdf"></i>
                 </div>
                 <div class="receipt-card-body">
                   <div class="d-flex align-center gap-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" onclick="event.stopPropagation();">
                     <div>
                       <div class="fw-600 fs-sm">#REV-006</div>
                       <div class="text-muted fs-sm">Nov 27, 2024</div>
@@ -248,6 +248,34 @@
         </div>
       </div>
     </main>
+  </div>
+
+  <!-- Receipt Preview Modal -->
+  <div class="modal-overlay" id="receiptPreviewModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Receipt Preview</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" style="text-align: center; padding: 40px 20px;">
+        <div style="font-size: 64px; color: var(--gray-300); margin-bottom: 20px;">
+          <i class="fas fa-expand"></i>
+        </div>
+        <p style="font-size: 16px; color: var(--gray-600); margin-bottom: 8px;">
+          This would open the receipt in full screen view.
+        </p>
+        <p class="text-muted" style="font-size: 14px;">
+          You could zoom, pan, and inspect the receipt details.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Close</button>
+        <button class="btn btn-primary">
+          <i class="fas fa-download"></i>
+          Download Receipt
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- Filter Receipts Modal -->

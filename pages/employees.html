@@ -259,12 +259,26 @@
           <div class="card mb-3">
             <div class="card-header">
               <h3 class="card-title">Payroll Processing</h3>
-              <button class="btn btn-primary">
-                <i class="fas fa-play"></i>
-                Run Payroll
-              </button>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline" data-modal="payFrequencyModal">
+                  <i class="fas fa-calendar-alt"></i>
+                  Pay Frequency
+                </button>
+                <button class="btn btn-outline" data-modal="overtimeSettingsModal">
+                  <i class="fas fa-clock"></i>
+                  Overtime
+                </button>
+                <button class="btn btn-primary" data-modal="runPayrollModal">
+                  <i class="fas fa-play"></i>
+                  Run Payroll
+                </button>
+              </div>
             </div>
             <div class="card-body">
+              <div class="d-flex align-center gap-2 mb-3" style="padding: 12px; background: var(--gray-50); border-radius: 8px; border: 1px solid var(--gray-200);">
+                <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
+                <span class="text-muted">This payroll system is for tracking purposes only. It does not process payments or transfer funds to employees.</span>
+              </div>
               <div class="grid grid-3">
                 <div class="stat-card" style="margin-bottom: 0;">
                   <div class="stat-icon blue"><i class="fas fa-calendar-alt"></i></div>
@@ -316,7 +330,12 @@
                     <td>$24,625.00</td>
                     <td>$73,875.00</td>
                     <td><span class="badge badge-success">Completed</span></td>
-                    <td><button class="btn btn-outline btn-sm">View Details</button></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline btn-sm" data-modal="payrollDetailsModal" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td>Nov 1 - Nov 15, 2024</td>
@@ -325,7 +344,12 @@
                     <td>$25,300.00</td>
                     <td>$75,900.00</td>
                     <td><span class="badge badge-success">Completed</span></td>
-                    <td><button class="btn btn-outline btn-sm">View Details</button></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline btn-sm" data-modal="payrollDetailsModal" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td>Oct 16 - Oct 31, 2024</td>
@@ -334,7 +358,12 @@
                     <td>$24,950.00</td>
                     <td>$74,850.00</td>
                     <td><span class="badge badge-success">Completed</span></td>
-                    <td><button class="btn btn-outline btn-sm">View Details</button></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-outline btn-sm" data-modal="payrollDetailsModal" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-icon btn-outline btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -414,30 +443,35 @@
             </label>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group" id="annualSalaryGroup">
-            <label class="form-label">Annual Salary</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
-            </div>
+        <div class="form-group" id="annualSalaryGroup">
+          <label class="form-label">Annual Salary</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
           </div>
-          <div class="form-group" id="hourlyRateGroup" style="display: none;">
-            <label class="form-label">Hourly Rate</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
-              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
-            </div>
+        </div>
+        <div class="form-group" id="hourlyRateGroup" style="display: none;">
+          <label class="form-label">Hourly Rate</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
+          </div>
+        </div>
+        <h4 class="fw-600 mb-2" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--gray-200);">Emergency Contact</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Contact Name</label>
+            <input type="text" class="form-control" placeholder="Full name">
           </div>
           <div class="form-group">
-            <label class="form-label">Pay Frequency</label>
-            <select class="form-control form-select">
-              <option>Weekly</option>
-              <option selected>Bi-weekly</option>
-              <option>Monthly</option>
-            </select>
+            <label class="form-label">Relationship</label>
+            <input type="text" class="form-control" placeholder="e.g., Spouse, Parent">
           </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" placeholder="(555) 000-0000">
         </div>
       </div>
       <div class="modal-footer">
@@ -570,35 +604,769 @@
             </label>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group" id="editAnnualSalaryGroup">
-            <label class="form-label">Annual Salary</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" value="150000" style="padding-left: 28px;">
-            </div>
+        <div class="form-group" id="editAnnualSalaryGroup">
+          <label class="form-label">Annual Salary</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" value="150000" style="padding-left: 28px;">
           </div>
-          <div class="form-group" id="editHourlyRateGroup" style="display: none;">
-            <label class="form-label">Hourly Rate</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
-              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
-            </div>
+        </div>
+        <div class="form-group" id="editHourlyRateGroup" style="display: none;">
+          <label class="form-label">Hourly Rate</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
+          </div>
+        </div>
+        <h4 class="fw-600 mb-2" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--gray-200);">Emergency Contact</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Contact Name</label>
+            <input type="text" class="form-control" value="Jane Doe">
           </div>
           <div class="form-group">
-            <label class="form-label">Pay Frequency</label>
-            <select class="form-control form-select">
-              <option>Weekly</option>
-              <option selected>Bi-weekly</option>
-              <option>Monthly</option>
-            </select>
+            <label class="form-label">Relationship</label>
+            <input type="text" class="form-control" value="Spouse">
           </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" value="(555) 987-6543">
         </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary modal-cancel">Cancel</button>
         <button class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Run Payroll Modal -->
+  <div class="modal-overlay" id="runPayrollModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Run Payroll</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200); margin-bottom: 20px;">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Period</span>
+              <span class="fw-600">Dec 1 - Dec 15, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Date</span>
+              <span class="fw-600">Dec 15, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Employees</span>
+              <span class="fw-600">28 active employees</span>
+            </div>
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Estimated Total</span>
+              <span class="fw-600 text-success">$92,700.00</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <select class="form-control form-select">
+            <option>Direct Deposit</option>
+            <option>Check</option>
+            <option>Cash</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tax Rate (%)</label>
+            <input type="number" class="form-control" value="22.5" step="0.1" min="0" max="100">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deductions (%)</label>
+            <input type="number" class="form-control" value="5" step="0.1" min="0" max="100">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" placeholder="Optional notes for this payroll run" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary" data-modal="reviewPayrollModal">Review Payroll</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Payroll Modal -->
+  <div class="modal-overlay" id="reviewPayrollModal">
+    <div class="modal" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Review Payroll</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200); margin-bottom: 20px;">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Period</span>
+              <span class="fw-600">Dec 1 - Dec 15, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Date</span>
+              <span class="fw-600">Dec 15, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Payment Method</span>
+              <span class="fw-600">Direct Deposit</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Tax Rate</span>
+              <span class="fw-600">22.5%</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Deductions</span>
+              <span class="fw-600">5%</span>
+            </div>
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Notes</span>
+              <span class="fw-600 text-muted" style="font-style: italic;">End of year payroll</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="fw-600 mb-2">Employee Breakdown</h4>
+        <div style="max-height: 400px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px; padding: 12px; display: flex; flex-direction: column; gap: 0;">
+
+          <!-- John Doe -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">John Doe</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $4,531.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$6,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$1,406.25</span>
+              <span style="color: var(--danger-color);">Ded: -$312.50</span>
+            </div>
+          </div>
+
+          <!-- Jane Smith -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Jane Smith</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $3,081.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$956.25</span>
+              <span style="color: var(--danger-color);">Ded: -$212.50</span>
+            </div>
+          </div>
+
+          <!-- Emily Wilson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Emily Wilson</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,827.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,900.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$877.50</span>
+              <span style="color: var(--danger-color);">Ded: -$195.00</span>
+            </div>
+          </div>
+
+          <!-- Robert Lee -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Robert Lee</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,356.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$731.25</span>
+              <span style="color: var(--danger-color);">Ded: -$162.50</span>
+            </div>
+          </div>
+
+          <!-- Alice Chen -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Alice Chen</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $1,740.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$2,400.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$540.00</span>
+              <span style="color: var(--danger-color);">Ded: -$120.00</span>
+            </div>
+          </div>
+
+          <!-- Mike Brown -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Mike Brown</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,755.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,800.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$855.00</span>
+              <span style="color: var(--danger-color);">Ded: -$190.00</span>
+            </div>
+          </div>
+
+          <!-- Sarah Johnson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Sarah Johnson</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,972.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,100.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$922.50</span>
+              <span style="color: var(--danger-color);">Ded: -$205.00</span>
+            </div>
+          </div>
+
+          <!-- David Kim -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">David Kim</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,537.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="flex-wrap: wrap;">
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Hours:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Bonus:</span>
+                <input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Tax %:</span>
+                <input type="number" class="form-control" value="22.5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+              <div class="d-flex align-center gap-1">
+                <span class="text-muted" style="font-size: 12px;">Ded %:</span>
+                <input type="number" class="form-control" value="5" step="0.1" style="width: 60px; padding: 4px 8px; text-align: center;">
+              </div>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,500.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$787.50</span>
+              <span style="color: var(--danger-color);">Ded: -$175.00</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Gross Pay (28 employees)</span>
+              <span class="fw-600">$92,700.00</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Bonuses</span>
+              <span class="fw-600">$0.00</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Taxes</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$20,857.50</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Deductions</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$4,773.05</span>
+            </div>
+            <div class="d-flex justify-between align-center" style="padding-top: 8px; border-top: 1px solid var(--gray-300);">
+              <span class="fw-600">Total Net Pay</span>
+              <span class="fw-600 text-success">$67,068.45</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Back</button>
+        <button class="btn btn-primary">
+          <i class="fas fa-play"></i>
+          Process Payroll
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payroll Details Modal -->
+  <div class="modal-overlay" id="payrollDetailsModal">
+    <div class="modal" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Payroll Details</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200); margin-bottom: 20px;">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Period</span>
+              <span class="fw-600">Nov 16 - Nov 30, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Pay Date</span>
+              <span class="fw-600">Nov 30, 2024</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Payment Method</span>
+              <span class="fw-600">Direct Deposit</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Tax Rate</span>
+              <span class="fw-600">22.5%</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Deductions</span>
+              <span class="fw-600">5%</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span class="text-muted">Status</span>
+              <span class="badge badge-success">Completed</span>
+            </div>
+            <div class="d-flex justify-between align-center">
+              <span class="text-muted">Notes</span>
+              <span class="fw-600 text-muted" style="font-style: italic;">Regular bi-weekly payroll</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="fw-600 mb-2">Employee Breakdown</h4>
+        <div style="max-height: 400px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px; padding: 12px; display: flex; flex-direction: column; gap: 12px;">
+
+          <!-- John Doe -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">John Doe</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $4,531.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>$500.00</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$6,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$1,406.25</span>
+              <span style="color: var(--danger-color);">Ded: -$312.50</span>
+            </div>
+          </div>
+
+          <!-- Jane Smith -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Jane Smith</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $3,081.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$956.25</span>
+              <span style="color: var(--danger-color);">Ded: -$212.50</span>
+            </div>
+          </div>
+
+          <!-- Emily Wilson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Emily Wilson</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,827.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>80</strong></span>
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,900.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$877.50</span>
+              <span style="color: var(--danger-color);">Ded: -$195.00</span>
+            </div>
+          </div>
+
+          <!-- Robert Lee -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Robert Lee</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,356.25</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>80</strong></span>
+              <span>Bonus: <strong>$250.00</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,250.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$731.25</span>
+              <span style="color: var(--danger-color);">Ded: -$162.50</span>
+            </div>
+          </div>
+
+          <!-- Alice Chen -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Alice Chen</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $1,740.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>60</strong></span>
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$2,400.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$540.00</span>
+              <span style="color: var(--danger-color);">Ded: -$120.00</span>
+            </div>
+          </div>
+
+          <!-- Mike Brown -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Mike Brown</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,755.00</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,800.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$855.00</span>
+              <span style="color: var(--danger-color);">Ded: -$190.00</span>
+            </div>
+          </div>
+
+          <!-- Sarah Johnson -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">Sarah Johnson</span>
+                <span class="badge badge-info">Salary</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,972.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$4,100.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$922.50</span>
+              <span style="color: var(--danger-color);">Ded: -$205.00</span>
+            </div>
+          </div>
+
+          <!-- David Kim -->
+          <div style="background: var(--gray-50); border-radius: 8px; padding: 12px;">
+            <div class="d-flex justify-between align-center mb-2">
+              <div class="d-flex align-center gap-2">
+                <span class="fw-600">David Kim</span>
+                <span class="badge badge-warning">Hourly</span>
+              </div>
+              <span class="fw-600 text-success">Net: $2,537.50</span>
+            </div>
+            <div class="d-flex gap-3 mb-2" style="font-size: 13px; flex-wrap: wrap;">
+              <span>Hours: <strong>88</strong></span>
+              <span>Bonus: <strong>—</strong></span>
+              <span>Tax: <strong>22.5%</strong></span>
+              <span>Ded: <strong>5%</strong></span>
+            </div>
+            <div class="d-flex gap-3" style="font-size: 13px;">
+              <span>Gross: <strong>$3,500.00</strong></span>
+              <span style="color: var(--danger-color);">Taxes: -$787.50</span>
+              <span style="color: var(--danger-color);">Ded: -$175.00</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Gross Pay (28 employees)</span>
+              <span class="fw-600">$98,500.00</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Bonuses</span>
+              <span class="fw-600">$750.00</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Taxes</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$22,162.50</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Deductions</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$4,925.00</span>
+            </div>
+            <div class="d-flex justify-between align-center" style="padding-top: 8px; border-top: 1px solid var(--gray-300);">
+              <span class="fw-600">Total Net Pay</span>
+              <span class="fw-600 text-success">$71,412.50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Close</button>
+        <button class="btn btn-outline">
+          <i class="fas fa-download"></i>
+          Export Report
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pay Frequency Modal -->
+  <div class="modal-overlay" id="payFrequencyModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Pay Frequency Settings</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Pay Frequency</label>
+          <select class="form-control form-select">
+            <option>Weekly</option>
+            <option selected>Bi-weekly</option>
+            <option>Semi-monthly</option>
+            <option>Monthly</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pay Day</label>
+          <select class="form-control form-select">
+            <option>Sunday</option>
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option selected>Friday</option>
+            <option>Saturday</option>
+          </select>
+        </div>
+        <div class="d-flex align-center gap-2" style="padding: 12px; background: var(--gray-50); border-radius: 8px; border: 1px solid var(--gray-200);">
+          <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
+          <span class="text-muted">Changes will apply to future payroll runs.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overtime Settings Modal -->
+  <div class="modal-overlay" id="overtimeSettingsModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Overtime Settings</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Overtime Threshold (hours per week)</label>
+          <input type="number" class="form-control" value="40" min="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Overtime Rate Multiplier</label>
+          <select class="form-control form-select">
+            <option value="1.25">1.25x (Time and a quarter)</option>
+            <option value="1.5" selected>1.5x (Time and a half)</option>
+            <option value="2">2x (Double time)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Double Overtime Threshold (hours per week)</label>
+          <input type="number" class="form-control" placeholder="Leave blank if not applicable" min="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Double Overtime Rate Multiplier</label>
+          <select class="form-control form-select">
+            <option value="2" selected>2x (Double time)</option>
+            <option value="2.5">2.5x</option>
+            <option value="3">3x (Triple time)</option>
+          </select>
+        </div>
+        <div class="d-flex align-center gap-2" style="padding: 12px; background: var(--gray-50); border-radius: 8px; border: 1px solid var(--gray-200);">
+          <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
+          <span class="text-muted">Overtime applies to hourly employees only.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Settings</button>
       </div>
     </div>
   </div>
