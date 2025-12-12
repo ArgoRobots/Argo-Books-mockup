@@ -259,10 +259,20 @@
           <div class="card mb-3">
             <div class="card-header">
               <h3 class="card-title">Payroll Processing</h3>
-              <button class="btn btn-primary" data-modal="runPayrollModal">
-                <i class="fas fa-play"></i>
-                Run Payroll
-              </button>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline" data-modal="payFrequencyModal">
+                  <i class="fas fa-calendar-alt"></i>
+                  Pay Frequency
+                </button>
+                <button class="btn btn-outline" data-modal="overtimeSettingsModal">
+                  <i class="fas fa-clock"></i>
+                  Overtime
+                </button>
+                <button class="btn btn-primary" data-modal="runPayrollModal">
+                  <i class="fas fa-play"></i>
+                  Run Payroll
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <div class="d-flex align-center gap-2 mb-3" style="padding: 12px; background: var(--gray-50); border-radius: 8px; border: 1px solid var(--gray-200);">
@@ -322,7 +332,7 @@
                     <td><span class="badge badge-success">Completed</span></td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-outline btn-sm" data-modal="payrollDetailsModal">View Details</button>
+                        <button class="btn btn-icon btn-outline btn-sm" data-modal="payrollDetailsModal" title="View Details"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -336,7 +346,7 @@
                     <td><span class="badge badge-success">Completed</span></td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-outline btn-sm" data-modal="payrollDetailsModal">View Details</button>
+                        <button class="btn btn-icon btn-outline btn-sm" data-modal="payrollDetailsModal" title="View Details"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -350,7 +360,7 @@
                     <td><span class="badge badge-success">Completed</span></td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-outline btn-sm" data-modal="payrollDetailsModal">View Details</button>
+                        <button class="btn btn-icon btn-outline btn-sm" data-modal="payrollDetailsModal" title="View Details"><i class="fas fa-eye"></i></button>
                         <button class="btn btn-icon btn-outline btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -433,30 +443,35 @@
             </label>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group" id="annualSalaryGroup">
-            <label class="form-label">Annual Salary</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
-            </div>
+        <div class="form-group" id="annualSalaryGroup">
+          <label class="form-label">Annual Salary</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
           </div>
-          <div class="form-group" id="hourlyRateGroup" style="display: none;">
-            <label class="form-label">Hourly Rate</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
-              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
-            </div>
+        </div>
+        <div class="form-group" id="hourlyRateGroup" style="display: none;">
+          <label class="form-label">Hourly Rate</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
+          </div>
+        </div>
+        <h4 class="fw-600 mb-2" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--gray-200);">Emergency Contact</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Contact Name</label>
+            <input type="text" class="form-control" placeholder="Full name">
           </div>
           <div class="form-group">
-            <label class="form-label">Pay Frequency</label>
-            <select class="form-control form-select">
-              <option>Weekly</option>
-              <option selected>Bi-weekly</option>
-              <option>Monthly</option>
-            </select>
+            <label class="form-label">Relationship</label>
+            <input type="text" class="form-control" placeholder="e.g., Spouse, Parent">
           </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact Phone</label>
+          <input type="tel" class="form-control" placeholder="(555) 000-0000">
         </div>
       </div>
       <div class="modal-footer">
@@ -589,30 +604,35 @@
             </label>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group" id="editAnnualSalaryGroup">
-            <label class="form-label">Annual Salary</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" value="150000" style="padding-left: 28px;">
-            </div>
+        <div class="form-group" id="editAnnualSalaryGroup">
+          <label class="form-label">Annual Salary</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" value="150000" style="padding-left: 28px;">
           </div>
-          <div class="form-group" id="editHourlyRateGroup" style="display: none;">
-            <label class="form-label">Hourly Rate</label>
-            <div style="position: relative;">
-              <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
-              <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
-              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
-            </div>
+        </div>
+        <div class="form-group" id="editHourlyRateGroup" style="display: none;">
+          <label class="form-label">Hourly Rate</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500);">$</span>
+            <input type="number" class="form-control" placeholder="0.00" style="padding-left: 28px;">
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-500); font-size: 12px;">/hr</span>
+          </div>
+        </div>
+        <h4 class="fw-600 mb-2" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--gray-200);">Emergency Contact</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Contact Name</label>
+            <input type="text" class="form-control" value="Jane Doe">
           </div>
           <div class="form-group">
-            <label class="form-label">Pay Frequency</label>
-            <select class="form-control form-select">
-              <option>Weekly</option>
-              <option selected>Bi-weekly</option>
-              <option>Monthly</option>
-            </select>
+            <label class="form-label">Relationship</label>
+            <input type="text" class="form-control" value="Spouse">
           </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact Phone</label>
+          <input type="tel" class="form-control" value="(555) 987-6543">
         </div>
       </div>
       <div class="modal-footer">
@@ -657,17 +677,6 @@
             <option>Check</option>
             <option>Cash</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Include</label>
-          <label class="d-flex align-center gap-2 mb-2">
-            <input type="checkbox" checked>
-            <span>Regular wages</span>
-          </label>
-          <label class="d-flex align-center gap-2">
-            <input type="checkbox" checked>
-            <span>Overtime pay</span>
-          </label>
         </div>
         <div class="form-group">
           <label class="form-label">Notes</label>
@@ -742,7 +751,7 @@
               <tr>
                 <td>Emily Wilson</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="80" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$3,900.00</td>
                 <td style="text-align: right; color: var(--danger-color);">-$877.50</td>
                 <td style="text-align: right; color: var(--danger-color);">-$195.00</td>
@@ -751,7 +760,7 @@
               <tr>
                 <td>Robert Lee</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="80" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$3,250.00</td>
                 <td style="text-align: right; color: var(--danger-color);">-$731.25</td>
                 <td style="text-align: right; color: var(--danger-color);">-$162.50</td>
@@ -760,7 +769,7 @@
               <tr>
                 <td>Alice Chen</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="60" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$2,400.00</td>
                 <td style="text-align: right; color: var(--danger-color);">-$540.00</td>
                 <td style="text-align: right; color: var(--danger-color);">-$120.00</td>
@@ -787,7 +796,7 @@
               <tr>
                 <td>David Kim</td>
                 <td><span class="badge badge-warning">Hourly</span></td>
-                <td style="text-align: center;"><input type="number" class="form-control" value="88" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
+                <td style="text-align: center;"><input type="number" class="form-control" placeholder="0" style="width: 70px; padding: 4px 8px; text-align: center;"></td>
                 <td style="text-align: right;">$3,500.00</td>
                 <td style="text-align: right; color: var(--danger-color);">-$787.50</td>
                 <td style="text-align: right; color: var(--danger-color);">-$175.00</td>
@@ -975,6 +984,93 @@
           <i class="fas fa-download"></i>
           Export Report
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pay Frequency Modal -->
+  <div class="modal-overlay" id="payFrequencyModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Pay Frequency Settings</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Pay Frequency</label>
+          <select class="form-control form-select">
+            <option>Weekly</option>
+            <option selected>Bi-weekly</option>
+            <option>Semi-monthly</option>
+            <option>Monthly</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pay Day</label>
+          <select class="form-control form-select">
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option selected>Friday</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Next Pay Date</label>
+          <input type="date" class="form-control" value="2024-12-15">
+        </div>
+        <div class="d-flex align-center gap-2" style="padding: 12px; background: var(--gray-50); border-radius: 8px; border: 1px solid var(--gray-200);">
+          <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
+          <span class="text-muted">Changes will apply to future payroll runs.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overtime Settings Modal -->
+  <div class="modal-overlay" id="overtimeSettingsModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Overtime Settings</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Overtime Threshold (hours per week)</label>
+          <input type="number" class="form-control" value="40" min="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Overtime Rate Multiplier</label>
+          <select class="form-control form-select">
+            <option value="1.25">1.25x (Time and a quarter)</option>
+            <option value="1.5" selected>1.5x (Time and a half)</option>
+            <option value="2">2x (Double time)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Double Overtime Threshold (hours per week)</label>
+          <input type="number" class="form-control" placeholder="Leave blank if not applicable" min="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Double Overtime Rate Multiplier</label>
+          <select class="form-control form-select">
+            <option value="2" selected>2x (Double time)</option>
+            <option value="2.5">2.5x</option>
+            <option value="3">3x (Triple time)</option>
+          </select>
+        </div>
+        <div class="d-flex align-center gap-2" style="padding: 12px; background: var(--gray-50); border-radius: 8px; border: 1px solid var(--gray-200);">
+          <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
+          <span class="text-muted">Overtime applies to hourly employees only.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-cancel">Cancel</button>
+        <button class="btn btn-primary">Save Settings</button>
       </div>
     </div>
   </div>
