@@ -672,7 +672,7 @@
 
   <!-- Review Payroll Modal -->
   <div class="modal-overlay" id="reviewPayrollModal">
-    <div class="modal" style="max-width: 700px;">
+    <div class="modal" style="max-width: 900px;">
       <div class="modal-header">
         <h3 class="modal-title">Review Payroll</h3>
         <button class="modal-close"><i class="fas fa-times"></i></button>
@@ -695,49 +695,99 @@
           </div>
         </div>
 
-        <h4 class="fw-600 mb-2">Payroll Summary</h4>
-        <table class="data-table mb-3">
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th style="text-align: right;">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Regular Wages (28 employees)</td>
-              <td style="text-align: right;">$85,200.00</td>
-            </tr>
-            <tr>
-              <td>Overtime Pay</td>
-              <td style="text-align: right;">$7,500.00</td>
-            </tr>
-            <tr>
-              <td><strong>Gross Pay</strong></td>
-              <td style="text-align: right;"><strong>$92,700.00</strong></td>
-            </tr>
-            <tr>
-              <td>Federal Tax Withholding</td>
-              <td style="text-align: right; color: var(--danger-color);">-$13,905.00</td>
-            </tr>
-            <tr>
-              <td>State Tax Withholding</td>
-              <td style="text-align: right; color: var(--danger-color);">-$4,635.00</td>
-            </tr>
-            <tr>
-              <td>Social Security</td>
-              <td style="text-align: right; color: var(--danger-color);">-$5,747.40</td>
-            </tr>
-            <tr>
-              <td>Medicare</td>
-              <td style="text-align: right; color: var(--danger-color);">-$1,344.15</td>
-            </tr>
-            <tr style="background: var(--gray-50);">
-              <td><strong>Net Pay</strong></td>
-              <td style="text-align: right;"><strong class="text-success">$67,068.45</strong></td>
-            </tr>
-          </tbody>
-        </table>
+        <h4 class="fw-600 mb-2">Employee Breakdown</h4>
+        <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px;">
+          <table class="data-table" style="margin: 0;">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th style="text-align: right;">Gross Pay</th>
+                <th style="text-align: right;">Taxes</th>
+                <th style="text-align: right;">Deductions</th>
+                <th style="text-align: right;">Net Pay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Doe</td>
+                <td style="text-align: right;">$6,250.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$1,406.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$312.50</td>
+                <td style="text-align: right;" class="fw-600">$4,531.25</td>
+              </tr>
+              <tr>
+                <td>Jane Smith</td>
+                <td style="text-align: right;">$4,250.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$956.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$212.50</td>
+                <td style="text-align: right;" class="fw-600">$3,081.25</td>
+              </tr>
+              <tr>
+                <td>Emily Wilson</td>
+                <td style="text-align: right;">$3,900.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$877.50</td>
+                <td style="text-align: right; color: var(--danger-color);">-$195.00</td>
+                <td style="text-align: right;" class="fw-600">$2,827.50</td>
+              </tr>
+              <tr>
+                <td>Robert Lee</td>
+                <td style="text-align: right;">$3,250.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$731.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$162.50</td>
+                <td style="text-align: right;" class="fw-600">$2,356.25</td>
+              </tr>
+              <tr>
+                <td>Alice Chen</td>
+                <td style="text-align: right;">$2,400.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$540.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$120.00</td>
+                <td style="text-align: right;" class="fw-600">$1,740.00</td>
+              </tr>
+              <tr>
+                <td>Mike Brown</td>
+                <td style="text-align: right;">$3,800.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$855.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$190.00</td>
+                <td style="text-align: right;" class="fw-600">$2,755.00</td>
+              </tr>
+              <tr>
+                <td>Sarah Johnson</td>
+                <td style="text-align: right;">$4,100.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$922.50</td>
+                <td style="text-align: right; color: var(--danger-color);">-$205.00</td>
+                <td style="text-align: right;" class="fw-600">$2,972.50</td>
+              </tr>
+              <tr>
+                <td>David Kim</td>
+                <td style="text-align: right;">$3,500.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$787.50</td>
+                <td style="text-align: right; color: var(--danger-color);">-$175.00</td>
+                <td style="text-align: right;" class="fw-600">$2,537.50</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200); margin-bottom: 16px;">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Gross Pay (28 employees)</span>
+              <span class="fw-600">$92,700.00</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Taxes</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$20,857.50</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Deductions</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$4,773.05</span>
+            </div>
+            <div class="d-flex justify-between align-center" style="padding-top: 8px; border-top: 1px solid var(--gray-300);">
+              <span class="fw-600">Total Net Pay</span>
+              <span class="fw-600 text-success">$67,068.45</span>
+            </div>
+          </div>
+        </div>
 
         <div class="d-flex align-center gap-2" style="padding: 12px; background: #fff8e6; border-radius: 8px; border: 1px solid #e6a700;">
           <i class="fas fa-exclamation-triangle" style="color: #e6a700;"></i>
@@ -756,7 +806,7 @@
 
   <!-- Payroll Details Modal -->
   <div class="modal-overlay" id="payrollDetailsModal">
-    <div class="modal" style="max-width: 700px;">
+    <div class="modal" style="max-width: 900px;">
       <div class="modal-header">
         <h3 class="modal-title">Payroll Details</h3>
         <button class="modal-close"><i class="fas fa-times"></i></button>
@@ -783,88 +833,98 @@
           </div>
         </div>
 
-        <h4 class="fw-600 mb-2">Payment Summary</h4>
-        <table class="data-table mb-3">
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th style="text-align: right;">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Regular Wages (28 employees)</td>
-              <td style="text-align: right;">$90,500.00</td>
-            </tr>
-            <tr>
-              <td>Overtime Pay</td>
-              <td style="text-align: right;">$8,000.00</td>
-            </tr>
-            <tr>
-              <td><strong>Gross Pay</strong></td>
-              <td style="text-align: right;"><strong>$98,500.00</strong></td>
-            </tr>
-            <tr>
-              <td>Federal Tax Withholding</td>
-              <td style="text-align: right; color: var(--danger-color);">-$14,775.00</td>
-            </tr>
-            <tr>
-              <td>State Tax Withholding</td>
-              <td style="text-align: right; color: var(--danger-color);">-$4,925.00</td>
-            </tr>
-            <tr>
-              <td>Social Security</td>
-              <td style="text-align: right; color: var(--danger-color);">-$6,107.00</td>
-            </tr>
-            <tr>
-              <td>Medicare</td>
-              <td style="text-align: right; color: var(--danger-color);">-$1,428.25</td>
-            </tr>
-            <tr style="background: var(--gray-50);">
-              <td><strong>Net Pay</strong></td>
-              <td style="text-align: right;"><strong class="text-success">$71,264.75</strong></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4 class="fw-600 mb-2">Employees Paid</h4>
-        <div style="max-height: 150px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px;">
+        <h4 class="fw-600 mb-2">Employee Breakdown</h4>
+        <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 16px;">
           <table class="data-table" style="margin: 0;">
             <thead>
               <tr>
                 <th>Employee</th>
-                <th style="text-align: right;">Gross</th>
-                <th style="text-align: right;">Net</th>
+                <th style="text-align: right;">Gross Pay</th>
+                <th style="text-align: right;">Taxes</th>
+                <th style="text-align: right;">Deductions</th>
+                <th style="text-align: right;">Net Pay</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>John Doe</td>
                 <td style="text-align: right;">$6,250.00</td>
-                <td style="text-align: right;">$4,531.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$1,406.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$312.50</td>
+                <td style="text-align: right;" class="fw-600">$4,531.25</td>
               </tr>
               <tr>
                 <td>Jane Smith</td>
                 <td style="text-align: right;">$4,250.00</td>
-                <td style="text-align: right;">$3,081.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$956.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$212.50</td>
+                <td style="text-align: right;" class="fw-600">$3,081.25</td>
               </tr>
               <tr>
                 <td>Emily Wilson</td>
                 <td style="text-align: right;">$3,900.00</td>
-                <td style="text-align: right;">$2,827.50</td>
+                <td style="text-align: right; color: var(--danger-color);">-$877.50</td>
+                <td style="text-align: right; color: var(--danger-color);">-$195.00</td>
+                <td style="text-align: right;" class="fw-600">$2,827.50</td>
               </tr>
               <tr>
                 <td>Robert Lee</td>
                 <td style="text-align: right;">$3,250.00</td>
-                <td style="text-align: right;">$2,356.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$731.25</td>
+                <td style="text-align: right; color: var(--danger-color);">-$162.50</td>
+                <td style="text-align: right;" class="fw-600">$2,356.25</td>
               </tr>
               <tr>
                 <td>Alice Chen</td>
                 <td style="text-align: right;">$2,400.00</td>
-                <td style="text-align: right;">$1,740.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$540.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$120.00</td>
+                <td style="text-align: right;" class="fw-600">$1,740.00</td>
+              </tr>
+              <tr>
+                <td>Mike Brown</td>
+                <td style="text-align: right;">$3,800.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$855.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$190.00</td>
+                <td style="text-align: right;" class="fw-600">$2,755.00</td>
+              </tr>
+              <tr>
+                <td>Sarah Johnson</td>
+                <td style="text-align: right;">$4,100.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$922.50</td>
+                <td style="text-align: right; color: var(--danger-color);">-$205.00</td>
+                <td style="text-align: right;" class="fw-600">$2,972.50</td>
+              </tr>
+              <tr>
+                <td>David Kim</td>
+                <td style="text-align: right;">$3,500.00</td>
+                <td style="text-align: right; color: var(--danger-color);">-$787.50</td>
+                <td style="text-align: right; color: var(--danger-color);">-$175.00</td>
+                <td style="text-align: right;" class="fw-600">$2,537.50</td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="card" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Gross Pay (28 employees)</span>
+              <span class="fw-600">$98,500.00</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Taxes</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$22,160.25</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-2">
+              <span>Total Deductions</span>
+              <span class="fw-600" style="color: var(--danger-color);">-$5,075.00</span>
+            </div>
+            <div class="d-flex justify-between align-center" style="padding-top: 8px; border-top: 1px solid var(--gray-300);">
+              <span class="fw-600">Total Net Pay</span>
+              <span class="fw-600 text-success">$71,264.75</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
